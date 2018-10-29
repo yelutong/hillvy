@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+　　<meta charset="utf-8">
+　　<title>CSS3鼠标滑过图标放大旋转动画DEMO演示</title>
+　　<style type="text/css">
+<style>
+*{margin:0px;padding:0px;}
+	#nav{width:980px;height:350px;margin:50px auto;}
+	#nav ul li{list-style:none;background:brown;height:105px;width:180px;float:left;margin:60px 5px;position:relative;}
+	#nav ul li:before{
+		content:"";height:105px;width:180px;background:brown;position:absolute;top:0px;left:0px;
+		transform:rotate(60deg);
+		-webkit-transform:rotate(60deg);
+		-moz-transform:rotate(60deg);
+	}
+	#nav ul li:after{
+		content:"";height:105px;width:180px;background:brown;position:absolute;top:0px;left:0px;z-index:1;
+		transform:rotate(-60deg);
+		-webkit-transform:rotate(-60deg);
+		-moz-transform:rotate(-60deg);
+	}
+	#nav ul li.mar{margin-left:100px;}
+	#nav ul li img{
+		top:0px;left:0px;right:0px;bottom:0px;margin:auto;z-index:2;position:absolute;
+		transition:1s;
+		-webkit-transition:1s;
+		-moz-transition:1s;
+	}
+	#nav ul li img:hover{
+		-webkit-transform:rotate(360deg) scale(1.2); 
+		-moz-transform:rotate(360deg) scale(1.2);
+		-ms-transform:rotate(360deg) scale(1.2);
+		-o-transform:rotate(360deg) scale(1.2);
+	}
+</style>
+
+　　</style>
+</head>
+
+<body>
+
+<div id="nav">
+<ul>
+<li><img src="o_1.png" alt="" /></li>
+<li><img src="o_2.png" alt="" /></li>
+<li><img src="o_3.png" alt="" /></li>
+<li><img src="o_4.png" alt="" /></li>
+<li><img src="o_7.png" alt="" /></li>
+<li class="mar"><img src="t_11.png" alt="" /></li>
+<li><img src="o_7.png" alt="" /></li>
+<li><img src="o_4.png" alt="" /></li>
+<li><img src="o_3.png" alt="" /></li>
+<li><img src="o_2.png" alt="" /></li>
+<li><img src="o_1.png" alt="" /></li>
+<li><img src="o_7.png" alt="" /></li>
+<li><img src="o_3.png" alt="" /></li>
+<li><img src="o_1.png" alt="" /></li>
+</ul>
+</div>
+
+
+</body>
+
+</html>

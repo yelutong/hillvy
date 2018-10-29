@@ -1,0 +1,8 @@
+background:url(../image/WhatHilegen/whathi.png)  50% 0 no-repeat;
+//表示背景图片放的位置。第一个是水平位置，第二个是垂直位置。0表示从最左边开始，50%表示垂直居中。
+
+
+-moz-background-size:cover;
+-ms-background-size:cover;
+-webkit-background-size:cover;
+background-size:cover;

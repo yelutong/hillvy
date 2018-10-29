@@ -1,0 +1,8 @@
+path.join('/a', '/b') // 'a/b'
+path.resolve('/a', '/b') // '/b'
+ 
+
+2. path.resolve总是返回一个以相对于当前的工作目录（working directory）的绝对路径。
+
+path.join('./a', './b') // 'a/b'
+path.resolve('./a', './b') // '/Users/username/Projects/webpack-demo/a/b'

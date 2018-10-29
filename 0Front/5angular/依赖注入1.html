@@ -1,0 +1,31 @@
+<html>
+   
+   <head>
+      <meta charset="utf-8">
+      <title>AngularJS  依赖注入</title>
+   </head>
+   
+   <body>
+     
+      
+      <script>
+        let A=function(){
+            this.name=function(){
+               return "海涛";
+            }
+        }
+       let a=new A;
+       let B=function(){
+           document.write(a.name());
+       }
+
+       //a注入Ba
+      let b=new B();
+
+
+
+
+      </script>
+      
+   </body>
+</html>

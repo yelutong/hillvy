@@ -1,0 +1,4 @@
+let scriptEl = document.createElement("script");
+        scriptEl.type = "text/javascript"; 
+        scriptEl.src = "https://app.sf-pay.com/card/static/prd/script/jweixin-1.1.0.js";
+        document.body.appendChild(scriptEl);

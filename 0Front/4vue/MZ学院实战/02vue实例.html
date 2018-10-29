@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue</title>
+<script src="vue.min.js"></script> 
+</head>
+<body>
+<div id="app">
+ 
+</div>
+
+<script>
+window.onload=function(){
+	let dataObj={
+		valueClass:"face",
+		message:"大家好，欢迎来到麦子学院"
+	}
+	 
+	const vue=new Vue({
+	  el: '#app',
+	  data:dataObj  
+	})
+
+   console.log(vue.message);//大家好，欢迎来到麦子学院
+   console.log(dataObj.message);//大家好，欢迎来到麦子学院
+   console.log(vue.message===dataObj.message);//true
+   vue.message="魏海涛";
+   console.log(dataObj.message);//魏海涛
+
+   console.log(vue.$el===document.getElementById("app"));//true
+}	
+
+</script>
+</body>
+</html>

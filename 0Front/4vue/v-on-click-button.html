@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+   <!-- `greet` 是在下面定义的方法名 -->
+  <button v-on:click="greet">Greet</button>
+</div>
+
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    name: 'Vue.js'
+  },
+  // 在 `methods` 对象中定义方法
+  methods: {
+    greet: function (event) {
+      // `this` 在方法里指当前 Vue 实例
+      alert('Hello ' + this.name + '!')
+      // `event` 是原生 DOM 事件
+	  if (event) {//Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。
+		  alert(event.target.tagName)
+	  }
+    }
+  }
+})
+// 也可以用 JavaScript 直接调用方法
+app.greet() // -> 'Hello Vue.js!'
+</script>
+</body>
+</html>

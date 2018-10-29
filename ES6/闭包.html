@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>顺丰企业金融</title>
+</head>
+<body>
+<div></div>
+<script>
+function f1(){
+　　var n=999;
+　　nAdd=function(){
+    n+=1
+  }
+　　function f2(){
+　　　　alert(n);
+　　}
+　　return f2;
+}
+var result=f1();
+result(); // 999
+nAdd();// 不要怀疑在外部为什么还可以调用，nAdd()是挂载在window下的
+result(); // 1000
+
+
+
+var name = "The Window";
+var object = {
+　　name : "My Object",
+　　getNameFunc : function(){
+　　　　return function(){
+　　　　　　return this.name;
+　　　　};
+　　}
+};
+alert(object.getNameFunc()());//The Window
+
+
+
+var name = "The Window";
+var object = {
+　　name: "My Object",
+　　getNameFunc : function(){
+　　　　var that = this;
+　　　　return function(){
+　　　　　　return that.name;
+　　　　};
+　　}
+};
+alert(object.getNameFunc()());//My Object
+</script>
+</body>
+</html>

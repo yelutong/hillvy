@@ -1,0 +1,151 @@
+﻿1.ng-repeat迭代数组的时候，如果数组中有相同值，会有什么问题，如何解决？
+
+会提示 Duplicates in a repeater are not allowed. 在后面加 track by $index 可以解决
+
+$event.stopPropagation();//阻止事件冒泡 内层点击事件不会扩散到外层的点击事件
+
+2.HTML5 为什么只需要写 !DOCTYPE HTML？
+
+HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。
+
+2.filter
+<p>{{13.14 | parseIntFilter}}</p>
+
+app.filter('parseIntFilter', function(){
+
+return function(item){
+
+return parseInt(item);
+
+}
+
+})
+2、HTTP和HTTPS？
+HTTP协议通常承载于TCP协议之上，在HTTP和TCP之间添加一个安全协议层（SSL或TSL），这个时候，就成了我们常说的HTTPS。
+
+默认HTTP的端口号为80，HTTPS的端口号为443
+
+Q：垂直居中有哪些方法？单行文本的话可以使用height和line-height设置同一高度。
+
+position+margin：
+设置父元素:position: relative;，子元素height: 100px; position:absolute;top: 50%; margin: -50px 0 0 0;（定高）
+
+position+transform：
+设置父元素position:relative,
+子元素：position: absolute;top: 50%;transform: translate(0, -50%);（不定高）
+
+百搭flex布局(ie10+)，设置父元素display:flex;align-items: center;（不定高）
+
+
+2.// 捕获阶段绑定事件 window.addEventListener("click", function(e){ console.log("window 捕获", e.target.nodeName, e.currentTarget.nodeName); }, true); document.addEventListener("click", function(e){ console.log("document 捕获", e.target.nodeName, e.currentTarget.nodeName); }, true);
+
+3.数组去重
+// 方法一： var arr1 =[1,2,2,2,3,3,3,4,5,6], arr2 = []; for(var i = 0,len = arr1.length; i< len; i++){ if(arr2.indexof(arr1[i])<0){arr2.push(arr1[i]); } } document.write(arr2); // 1,2,3,4,5,6
+
+4. 一次完整的HTTP事务是怎样的一个过程？
+基本流程：
+a. 域名解析
+b. 发起TCP的3次握手
+c. 建立TCP连接后发起http请求
+d. 服务器端响应http请求，浏览器得到html代码
+e. 浏览器解析html代码，并请求html代码中的资源
+f. 浏览器对页面进行渲染呈现给用户
+
+
+5. 你所了解到的Web攻击技术
+
+（1）XSS（Cross-Site Scripting，跨站脚本攻击）：指通过存在安全漏洞的Web网站注册用户的浏览器内运行非法的HTML标签或者JavaScript进行的一种攻击。
+（2）SQL注入攻击
+（3）CSRF（Cross-Site Request Forgeries，跨站点请求伪造）：指攻击者通过设置好的陷阱，强制对已完成的认证用户进行非预期的个人信息或设定信息等某些状态更新。
+
+5. 什么情况下会碰到跨域问题？有哪些解决方法？跨域问题是这是浏览器为了安全实施的同源策略导致的，同源策略限制了来自不同源的document、脚本，同源的意思就是两个URL的域名、协议、端口要完全相同。script标签jsonp跨域、nginx反向代理、node.js中间件代理跨域、后端在头部信息设置安全域名、后端在服务器上设置cors。
+
+10.定时器的执行顺序或机制。
+
+这个问题还是挺经常被问到的，有一些会直接问定时器的机制，有一些是通过笔试题的方式问执行顺序然后问我为什么是这样。
+
+长话短说，我们需要记住的是：因为js是单线程的，浏览器遇到setTimeout或者setInterval会先执行完当前的代码块，在此之前会把定时器推入浏览器的待执行事件队列里面，等到浏览器执行完当前代码之后会看一下事件队列里面有没有任务，有的话才执行定时器的代码。 所以即使把定时器的时间设置为0还是会先执行当前的一些代码。
+
+setTimeout里面的代码永远是最后执行，因为它属于待执行代码块。
+13、说出至少4种vue当中的指令和它的用法？
+
+答：v-if：判断是否隐藏；v-for：数据循环出来；v-bind:class：绑定一个属性；v-model：实现双向绑定
+
+3.深拷贝和浅拷贝
+
+假设B复制了A，修改A的时候，看B是否发生变化：
+如果B跟着也变了，说明是浅拷贝，拿人手短！（修改堆内存中的同一个值）
+
+如果B没有改变，说明是深拷贝，自食其力！（修改堆内存中的不同的值）
+ 
+浅拷贝（shallowCopy）只是增加了一个指针指向已存在的内存地址，
+
+深拷贝（deepCopy）是增加了一个指针并且申请了一个新的内存，使这个增加的指针指向这个新的内存，
+
+使用深拷贝的情况下，释放内存的时候不会因为出现浅拷贝时释放同一个内存的错误。
+
+浅复制：仅仅是指向被复制的内存地址，如果原地址发生改变，那么浅复制出来的对象也会相应的改变。
+
+深复制：在计算机中开辟一块新的内存地址用于存放复制的对象。
+2.正则
+实例
+从字符串 str 中提取数字部分的内容(匹配一次)：
+var str = "abc123def"; 
+var patt1 = /[0-9]+/; document.write(str.match(patt1));
+以下标记的文本是获得的匹配的表达式：
+123
+
+2.  使用Angular 2，和使用Angular 1相比。有什么优势？
+Angular 2是一个平台，不仅是一种语言
+更好的速度和性能
+更简单的依赖注入
+模块化。跨平台
+具备ES6和Typescript的优点。
+灵活的路由，具备延迟载入功能
+更easy学习
+3. dom事件委托什么原理，有什么优缺点事件委托原理:事件冒泡机制优点
+
+1.可以大量节省内存占用，减少事件注册。比如ul上代理所有li的click事件就很不错。
+2.可以实现当新增子对象时，无需再对其进行事件绑定，对于动态内容部分尤为合适
+
+缺点
+
+事件代理的常用应用应该仅限于上述需求，如果把所有事件都用事件代理，可能会出现事件误判。即本不该被触发的事件被绑定上了事件。
+
+2.试题
+    '11' * 2 //22
+    'a8' * 3 //NaN
+    "88'"*2  //NaN
+    var a = 2, b = 3;
+    var c = a+++b; // c = 5
+    var c = a+++(++b); //7, a=3, b=3
+3.     
+
+var num = 10;
+    var obj = {
+        num:8,
+        inner: {
+            num: 6,
+            print: function () {
+                console.log("num: "+num+" , this.num: "+this.num);
+            }
+        }
+    }
+    num = 888;
+    obj.inner.print(); //num: 888 , this.num: 6
+    var fn = obj.inner.print;
+    fn(); //num: 888 , this.num: 888, this: Window
+    (obj.inner.print)(); //num: 888 , this.num: 6
+    (obj.inner.print = obj.inner.print)(); //num: 888 , this.num: 888 , this: Window
+2.继承
+function SuperType(name){
+this.name = name;
+}
+function SubType(){//继承了SuperType，同时还传递了参数
+SuperType.call(this, "Nicholas");//实例属性
+this.age = 29;
+}
+var instance = new SubType();
+alert(instance.name); //"Nicholas";
+alert(instance.age); //29
+

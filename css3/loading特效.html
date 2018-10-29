@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>多种多样的加载中特效</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+    #loading_1 {
+        width: 400px;
+        height: 200px;
+        /*border: 1px solid #ddd;*/
+        position: relative;
+        animation: rotate 2s infinite;
+        margin: 0 auto;
+    }
+    
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate(180deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    .cir {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        overflow: hidden;
+        top: 92px;
+        left: 192px;
+    }
+    
+    #loading_1 div:nth-child(1) {
+        background: #8EE5EE;
+    }
+    
+    #loading_1 div:nth-child(2) {
+        background: #FFE4B5;
+    }
+    
+    #loading_1 div:nth-child(3) {
+        background: #00CD00;
+    }
+    
+    #loading_1 div:nth-child(4) {
+        background: #FF6A6A;
+    }
+    
+    .cir1 {
+        animation: loading_1 2s linear infinite;
+    }
+    
+    @keyframes loading_1 {
+        0% {
+            top: 62px;
+            left: 162px;
+        }
+        50% {
+            top: 92px;
+            left: 192px;
+        }
+        100% {
+            top: 62px;
+            left: 162px;
+        }
+    }
+    
+    .cir2 {
+        animation: loading_2 2s linear infinite;
+    }
+    
+    @keyframes loading_2 {
+        0% {
+            top: 62px;
+            left: 222px;
+        }
+        50% {
+            top: 92px;
+            left: 192px;
+        }
+        100% {
+            top: 62px;
+            left: 222px;
+        }
+    }
+    
+    .cir3 {
+        animation: loading_3 2s linear infinite;
+    }
+    
+    @keyframes loading_3 {
+        0% {
+            top: 122px;
+            left: 162px;
+        }
+        50% {
+            top: 92px;
+            left: 192px;
+        }
+        100% {
+            top: 122px;
+            left: 162px;
+        }
+    }
+    
+    .cir4 {
+        animation: loading_4 2s linear infinite;
+    }
+    
+    @keyframes loading_4 {
+        0% {
+            top: 122px;
+            left: 222px;
+        }
+        50% {
+            top: 92px;
+            left: 192px;
+        }
+        100% {
+            top: 122px;
+            left: 222px;
+        }
+    }
+    
+    #loading_2 {
+        width: 400px;
+        height: 200px;
+        position: relative;
+        margin: 0 auto;
+    }
+    
+    #loading_2 div {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        margin-left: 150px;
+        animation: loading 1.8s linear infinite;
+    }
+    
+    #loading_2 span {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+    }
+    
+    @keyframes loading {
+        0% {
+            transform: rotate(0deg);
+        }
+        10% {
+            transform: rotate(45deg);
+        }
+        50% {
+            opacity: 1;
+            transform: rotate(160deg);
+        }
+        62% {
+            opacity: 0;
+        }
+        65% {
+            opacity: 0;
+            transform: rotate(200deg);
+        }
+        90% {
+            transform: rotate(340deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    #loading_2 span {
+        background: #8EE5EE;
+    }
+    
+    #loading_2 div:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+    
+    #loading_2 div:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+    
+    #loading_2 div:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+    
+    #loading_2 div:nth-child(4) {
+        animation-delay: 0.8s;
+    }
+    
+    #loading_3 {
+        width: 400px;
+        height: 200px;
+        margin: 0 auto;
+    }
+    
+    #loading_3 div {
+        float: left;
+        width: 10px;
+        height: 80px;
+        margin-left: 20px;
+        animation: scale 1.5s linear infinite;
+    }
+    
+    @keyframes scale {
+        0% {
+            transform: scale(1, 1);
+        }
+        50% {
+            transform: scale(1, 1.8);
+        }
+        100% {
+            transform: scale(1, 1);
+        }
+    }
+    
+    #loading_3 div:nth-child(1) {
+        background: #8EE5EE;
+        margin-left: 150px;
+        animation-delay: 0.2s;
+    }
+    
+    #loading_3 div:nth-child(2) {
+        background: #FFE4B5;
+        animation-delay: 0.4s;
+    }
+    
+    #loading_3 div:nth-child(3) {
+        background: #00CD00;
+        animation-delay: 0.6s;
+    }
+    
+    #loading_3 div:nth-child(4) {
+        background: #FF6A6A;
+        animation-delay: 0.8s;
+    }
+    
+    #loading_4 {
+        width: 400px;
+        height: 200px;
+        margin: 0 auto;
+    }
+    
+    #loading_4 div {
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin-right: 20px;
+        animation: dash 2s linear infinite;
+    }
+    
+    @keyframes dash {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    #loading_4 div:nth-child(1) {
+        background: #8EE5EE;
+        margin-left: 100px;
+        animation-delay: 0.2s;
+    }
+    
+    #loading_4 div:nth-child(2) {
+        background: #FFE4B5;
+        animation-delay: 0.4s;
+    }
+    
+    #loading_4 div:nth-child(3) {
+        background: #00CD00;
+        animation-delay: 0.6s;
+    }
+    
+    #loading_4 div:nth-child(4) {
+        background: #FF6A6A;
+        animation-delay: 0.8s;
+    }
+    
+    #loading_4 div:nth-child(5) {
+        background: #FF7F24;
+        animation-delay: 1s;
+    }
+    
+    #loading_4 div:nth-child(6) {
+        background: #FF00FF;
+        animation-delay: 1.2s;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="loading_1">
+        <div class="cir cir1"><span></span></div>
+        <div class="cir cir2"><span></span></div>
+        <div class="cir cir3"><span></span></div>
+        <div class="cir cir4"><span></span></div>
+    </div>
+    <div id="loading_2">
+        <div><span></span></div>
+        <div><span></span></div>
+        <div><span></span></div>
+        <div><span></span></div>
+    </div>
+    <div id="loading_3">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div id="loading_4">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+
+</html>

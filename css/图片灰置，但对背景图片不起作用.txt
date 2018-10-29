@@ -1,0 +1,8 @@
+.sfcouponList .gray {  /*图片灰置 对背景图片不起作用*/     
+-webkit-filter: grayscale(0.5);     
+-moz-filter: grayscale(0.5);    
+-ms-filter: grayscale(0.5);     
+-o-filter: grayscale(0.5);       
+filter: grayscale(0.5);       
+filter: gray; 
+} 

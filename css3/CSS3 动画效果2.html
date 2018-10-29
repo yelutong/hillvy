@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"> 
+    <meta charset="UTF-8">
+    <title></title>
+
+<style>
+*{margin: 0;padding: 0;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+ul li{list-style: none;}
+body{
+background:#202020;
+font-family: "microsoft yahei", arial;
+font-size:62.5%;
+color:#202020;
+}
+.wrapper{
+width: 760px;
+margin: 0 auto;
+text-align:center;
+padding-top:50px;
+border: 1px solid red;
+}
+.wrapper ul{
+text-align: center;
+}
+ul li{
+width: 130px;
+height:450px;
+background-color: #ffffff;
+display: block;
+float: left;
+border: 1px solid #666;
+padding:25px 10px;
+position:relative;
+border-radius: 10px;
+-webkit-border-radius: 10px;
+box-shadow: 2px 2px 10px #000;
+-webkit-box-shadow: 2px 2px 10px #000;
+-moz-transition: all 0.5s ease-in-out;
+-webkit-transition: all 0.5s ease-in-out;
+}
+.card-1{
+-webkit-transform: rotate(-20deg);
+-moz-transform: rotate(-20deg);
+z-index:1;
+left:150px;
+top:40px;
+}
+.card-2{
+-webkit-transform: rotate(-10deg);
+-moz-transform: rotate(-10deg);
+z-index:2;
+left:70px;
+top:10px;
+}
+.card-3{
+z-index:3;
+}
+.card-4{
+-webkit-transform: rotate(10deg);
+-moz-transform: rotate(10deg);
+z-index:2;
+left:-70px;
+top:10px;
+}
+.card-5{
+-webkit-transform: rotate(20deg);
+-moz-transform: rotate(20deg);
+z-index:1;
+left:-150px;
+top:40px;
+}
+
+ul li:hover{
+z-index:4;
+}
+.card-1:hover{
+-webkit-transform:scale(1.1) rotate(-20deg);
+-moz-transform:scale(1.1) rotate(-20deg);
+}
+.card-2:hover{
+-webkit-transform:scale(1.1) rotate(-10deg);
+-moz-transform:scale(1.1) rotate(-10deg);
+}
+.card-3:hover{
+-webkit-transform:scale(1.1) rotate(0deg);
+-moz-transform:scale(1.1) rotate(0deg);
+}
+.card-4:hover{
+-webkit-transform:scale(1.1) rotate(10deg);
+-moz-transform:scale(1.1) rotate(10deg);
+}
+.card-5:hover{
+-webkit-transform:scale(1.1) rotate(20deg);
+-moz-transform:scale(1.1) rotate(20deg);
+}
+
+li h3{
+font-size: 1.6em;
+}
+li img{
+margin-top:7px;
+background:#eee;
+border-radius: 10px;
+-webkit-border-radius: 10px;
+-webkit-box-shadow: 0px 0px 5px #aaa;
+box-shadow: 0px 0px 5px #aaa;
+}
+li p{
+margin-top:10px;
+text-align:left;
+line-height:28px;
+font-size: 1.4em;
+}
+
+</style>
+
+</head>
+<body>
+      <div class="wrapper">
+          <ul class="clearfix">
+              <li class="card-1">
+                  <h3>card 1</h3>
+                  <img src="http://www.w3cfuns.com/data/attachment/album/201510/09/113220eqvhhbu0qdtbwb0a.png" height="130" width="130"/>
+                  <p>
+                      Name: Toucan <br/>
+                      Age: 5 <br/>
+                      Size: 50cm <br/>
+                      Weight: 600g <br/>
+                      Food: Fruit <br/>
+                      Toucan lives in southern and central America and loves to fly around
+                  </p>
+              </li>
+              <li class="card-2">
+                  <h3>card 2</h3>
+                  <img src="http://www.w3cfuns.com/data/attachment/album/201510/09/113226j8zghamv3n0rnwnh.png" height="130" width="130"/>
+                  <p>Name: Fox<br />
+                      Age: 3<br />
+                      Size: 70 cm<br />
+                      Weight: 5.5 kg<br />
+                      Food: Meat<br />
+                      Fox lives in the northern hemisphere and loves to play seek and hide
+                  </p>
+              </li>
+              <li class="card-3">
+                  <h3>card 3</h3>
+                  <img src="http://www.w3cfuns.com/data/attachment/album/201510/09/113232ykm90smsebkzseme.png" height="130" width="130"/>
+                  <p>Name: Dog<br />
+                      Age: 8<br />
+                      Size: 120 cm<br />
+                      Weight: 10 kg<br />
+                      Food: Bones<br />
+                      Dog lives in a dog hut and loves to chew shoes, bark and go for walks
+                  </p>
+              </li>
+              <li class="card-4">
+                  <h3>card 4</h3>
+                  <img src="http://www.w3cfuns.com/data/attachment/album/201510/09/113235d9an99aqmn1r9udb.png" height="130" width="130"/>
+                  <p>Name: Penguin<br />
+                      Age: 20<br />
+                      Size: 110 cm<br />
+                      Weight: 35 kg<br />
+                      Food: Fish<br />
+                      Penguin lives where it's cold and icy and loves to swim and dive
+                  </p>
+              </li>
+              <li class="card-5">
+                  <h3>card 5</h3>
+                  <img src="http://www.w3cfuns.com/data/attachment/album/201510/09/113239k0wcchss0ttdgjas.png" height="130" width="130"/>
+                  <p>Name: Lion<br />
+                      Age: 12<br />
+                      Size: 190 cm<br />
+                      Weight: 180 kg<br />
+                      Food: Meat<br />
+                      Lions lives in Africa and loves to sleep most of the day and hunt sometimes
+                  </p>
+              </li>
+          </ul>
+      </div>
+</body>
+</html>

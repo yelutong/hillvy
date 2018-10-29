@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/vue.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+	<p v-if="ok">{{message}}</p>
+	<ul>
+		<li v-for="children in parents">my name is {{ children.name }},i am {{children.age}} years old.</li>
+	</ul>
+	
+</div>
+</body>
+</html>
+<script>
+new Vue({
+	el:"#app",
+	data:{
+		message:"hello Vue",
+		parents:[
+			{name:"atob",age:21},
+			{name:"vtob",age:27},
+			{name:"dtob",age:26},
+			{name:"wtob",age:24},
+			{name:"ftob",age:23},
+		],
+	ok:true
+	}
+	
+})
+
+
+</script>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-runoob="{ color: 'green', text: '菜鸟教程!' }"></div>
+</div>
+
+<script>
+Vue.directive('runoob', function (el, binding) {
+	// 简写方式设置文本及背景颜色
+	el.innerHTML = binding.value.text;
+	el.style.backgroundColor = binding.value.color;
+})
+new Vue({
+  el: '#app'
+})
+</script>
+</body>
+</html>

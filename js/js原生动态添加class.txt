@@ -1,0 +1,3 @@
+var arr = document.getElementsByClassName("psd-item");
+
+arr[i].classList.add("active");

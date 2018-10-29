@@ -1,0 +1,18 @@
+.sfcouponList .coupon-box {
+    width: 86.66%;
+    margin: 0 auto;
+    background: #fff;
+    background-size: 100%;
+    position: fixed;
+    z-index: 999;
+    left: 6.67%;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
+
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);

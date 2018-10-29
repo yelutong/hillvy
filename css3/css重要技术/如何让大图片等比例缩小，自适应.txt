@@ -1,0 +1,3 @@
+background:url(../images/bgbody3.jpg) fixed center center no-repeat; 
+background-size: cover;
+width: 100%;

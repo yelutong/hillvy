@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue</title>
+<script src="vue.min.js"></script> 
+</head>
+<body>
+<div id="app">
+  <p :class="valueClass" >{{ message }}</p>
+</div>
+
+<script>
+window.onload=function(){
+	let dataObj={
+		valueClass:"hillvy",
+		message:"大家好，欢迎来到麦子学院"
+	}
+	console.log(dataObj.valueClass);
+	new Vue({
+	  el: '#app',
+	  data:dataObj  
+	})
+}	
+
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+AngularJS展示数据的ng-bind指令和{{}} 区别
+
+在AngularJS中显示模型中的数据有两种方式：
+
+一种是使用花括号插值的方式：
+
+1	<p>{{text}}</p>
+ 
+
+另一种是使用基于属性的指令，叫做ng-bind：
+
+1	<p ng-bind="text"></p>
+ 

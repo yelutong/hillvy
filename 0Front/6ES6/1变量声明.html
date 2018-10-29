@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+	//我们通常用let和const来声明，let表示变量、const表示常量。let和const都是块级作用域。
+function aa() {
+	let bool=true;
+    if(bool) {
+       let test = 'hello man';//let的作用域是在它所在当前代码块，但不会被提升到当前函数的最顶部。
+	   document.write(test);
+    } else {
+        //test 在此处访问不到
+        console.log(test);
+    }
+  }
+aa();	
+var func=[];
+function f(){
+	/*const k=20;
+	k=10;
+	document.write(k);//会报错，因为const定义的是常量，即不能改变的量
+	*/
+	for (let i = 0; i < 10; i++) {//let的作用域是在它所在当前代码块，但不会被提升到当前函数的最顶部。
+         func.push(i) 
+    }
+	return func;
+	
+}	
+
+document.write(f());	
+</script>
+</head>
+
+<body>
+</body>
+</html>

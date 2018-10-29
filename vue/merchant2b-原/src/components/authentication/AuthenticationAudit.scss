@@ -1,0 +1,72 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.auth-nav {
+  @extend .bg-white;
+  padding: .52rem .4rem 0 .4rem;
+  @at-root .auth-audit-nav {
+    @extend .horizontal-view, .justify-content-start;
+
+    @at-root .auth-pro-box {
+      width: .6rem;
+      @extend .vertical-view, .justify-content-start, .align-items-center;
+      @at-root .auth-icon {
+        width: .14rem;
+        height: .14rem;
+        border: 1px solid $color_blue;
+        border-radius: 100%;
+
+      }
+      @at-root .auth-line {
+        @extend .flex1;
+        border-left: 1px dotted $color_blue;
+      }
+      .auth-audit-icon {
+        width: .3rem;
+        height: .3rem;
+        background: url("../../assets/images/audit@2x.png") no-repeat center;
+        background-size: 100%;
+      }
+
+      .auth-line-gray {
+        border-color: #ccc !important;
+      }
+
+    }
+
+    @at-root .auth-nav-box-audit {
+      padding-bottom: .68rem;
+      margin-top: -.04rem !important;
+      h3 {
+        font-size: .28rem;
+        padding-bottom: .2rem;
+        line-height: 1;
+      }
+
+      time {
+        font-size: .24rem;
+        color: rgb(153, 153, 153);
+        display: block;
+      }
+    }
+    @at-root .auth-nav-box-audit-finish {
+      padding-bottom: .49rem;
+    }
+  }
+}
+
+.audit-box {
+  @extend .bg-white;
+  .boxcssc{
+    @extend .vux-1px-tb;
+    border-top: 1px solid #ececec;
+    padding-top: .24rem;
+  }
+  padding: 0 .4rem .2rem .4rem;
+  .item-nav {
+    padding: .1rem 0;
+  }
+
+}
+
+

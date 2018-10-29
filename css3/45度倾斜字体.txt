@@ -1,0 +1,29 @@
+
+.index_h .right .heng_left .yzdg{ 
+transform:rotate(45deg);
+-ms-transform:rotate(45deg);
+-webkit-transform:rotate(45deg);
+text-align:center; 
+background-color:#f93;
+width:140px;
+color:#FFF;
+position:absolute;
+right:-30px;
+top:20px;
+height:30px;
+line-height:30px;
+}
+.index_h .left .heng_left .yzdg{ 
+transform:rotate(-45deg);
+-ms-transform:rotate(-45deg);
+-webkit-transform:rotate(-45deg);
+text-align:center; 
+background-color:#f93;
+width:140px;
+color:#FFF;
+position:absolute;
+left:-30px;
+top:20px;
+height:30px;
+line-height:30px;
+}

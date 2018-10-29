@@ -1,0 +1,16 @@
+@media screen and (min-widht:800px) and (max-width:1024px){//屏幕大于800px;小于1024的时候
+.floor_four { width:1002px;}
+.floor_four .floor_box_right{ width:809px; }
+.floor_four .floorclass { width:808px;}
+.floor_four .ftab { width:808px;}
+.floor_four .floorclass .floorul { width:808px;}
+.floor_four .floorclass .floorul li { width:134px;}
+.floor_four .floorclass .floorul .this { width:132px;}
+.floor_four .productone {width:162px;}
+.floor_four .productone ul { width:150px;}
+.floor_four .floor_brand{ width:808px;}
+.floor_four .floor_two_sort{ width:808px; float:left; overflow:hidden;}
+
+}
+
+@media screen and (min-width:1024px) {//屏幕大于1024的时候

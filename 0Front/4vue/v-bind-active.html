@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="js/vue.min.js"></script>
+<style>
+.active {
+	width: 100px;
+	height: 100px;
+	background: green;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div v-bind:class="{ active: isActive }"></div>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    isActive: true
+  }
+})
+</script>
+</body>
+</html>

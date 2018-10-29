@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>www.jb51.net BASE64编码</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script type="text/javascript" src="Base64.js"></script>
+  <script type="text/javascript" src="DES3.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var str = '{"token":"ACT-579df5aadcce2fdbb62d58d2d71593a3-3592955682"}';
+document.write("原始字符串:</br>"+str);
+var base64 = BASE64.encoder(str);//返回编码后的字符串
+document.write("</br>BASE64后:</br>"+base64);
+var unicode= BASE64.decoder(base64);//返回解码后的字符串。
+//alert(unicode);
+document.write("</br>还原:</br>"+unicode);
+//var str= "你好123hello";
+var key = "abc123abc123abc123abc123abc123";//这里的key为密钥
+//alert(decrypt_3des);
+var des3en = DES3.encrypt(key,str);
+document.write("</br>des3加密:</br>"+des3en);
+ var repParams = 'FlqMd0bITiLAIKpa/UiB849Pk0v0ptt3';
+ var repParams1 = '5xhpi8DYZm0asoCR5xn8Tda4N90zhzGSfXb8bBrwCs54NPuyRYmgYOPigbuKqSFMJ9774v1AtbUXZ9AUku2YAw%3D%3D';
+
+document.write("</br>des3解密:</br>"+DES3.decrypt(key,repParams1));
+</script>
+</body>

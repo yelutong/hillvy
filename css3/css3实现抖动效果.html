@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+/*抖动效果需要用到animation属性，首先先加一个keyframes，我用的是chrome浏览器所以要加上-webkit-keyframes前缀 keyframes、-moz-keyframes 、-o-keyframes*/
+@-webkit-keyframes buzz-out {
+          0%,100% {
+            -webkit-transform: translateX(0px) rotate(0deg);
+          }
+		   20% {
+            -webkit-transform: translateX(3px) rotate(10deg);
+          }
+		   40% {
+            -webkit-transform: translateX(3px) rotate(20deg);
+          }
+		    60% {
+            -webkit-transform: translateX(3px) rotate(30deg);
+          }
+		    80% {
+            -webkit-transform: translateX(3px) rotate(40deg);
+          }
+          90% {
+            -webkit-transform: translateX(3px) rotate(-2deg);
+          }
+}
+/*0% 是动画的开始时间，而100% 动画的结束时间。*/
+
+#buz{
+	width:100px;height:100px;background:#eee;
+	}
+#buz:hover  {
+            -webkit-animation-name: buzz-out;
+            -webkit-animation-duration: 0.75s;
+            -webkit-animation-timing-function: linear;
+            -webkit-animation-iteration-count: 1;
+}	
+
+</style>
+</head>
+
+<body>
+<div id="buz">
+</div>
+</body>
+</html>

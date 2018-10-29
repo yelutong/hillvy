@@ -1,0 +1,51 @@
+.fillMoney{
+  .account-money{
+    padding-top: .4rem;
+    .content-number{
+      height: .8rem;
+      line-height: .8rem;
+      padding: .5rem 0rem;
+      font-size: .56rem;
+      color:#000;
+      .number-input{
+        width: 80%;
+        font-size: .68rem;
+      }
+    }
+  }
+  .bg-white{
+    padding: 0rem .3rem;
+    .withdrawDeposit-title{
+      height: 1.1rem;
+      line-height: 1.1rem;
+    }
+    .withdrawDeposit-content{
+      .content-function {
+        height: .9rem;
+        span:first-of-type {
+          height: .9rem;
+          line-height: .9rem;
+        }
+        span:last-of-type {
+          height: .9rem;
+          line-height: .9rem;
+          text-align: right;
+        }
+      }
+    }
+  }
+  .withdrawDeposit-button{
+    padding: 0rem .3rem;
+    p{
+      margin-top: .24rem;
+    }
+    .extractBtn{
+      margin-top: .6rem;
+    }
+  }
+  .bankIcon{
+    width:.56rem;
+    height:.56rem;
+    margin: .2rem .3rem 0 0;
+  }
+}

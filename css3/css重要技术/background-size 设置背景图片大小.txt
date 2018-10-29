@@ -1,0 +1,76 @@
+background-size 设置背景图片大小。
+
+
+复制代码
+代码如下:
+
+/* 关键字 */
+background-size: cover
+background-size: contain
+/* 一个值: 这个值指定图片的宽度，图片的高度隐式的为auto */
+background-size: 50%
+background-size: 3em
+background-size: 12px
+background-size: auto
+/* 两个值: 第一个值指定图片的宽度，第二个值指定图片的高度 */
+background-size: 50% auto
+background-size: 3em 25%
+background-size: auto 6px
+background-size: auto auto
+/* 逗号分隔的多个值：设置多重背景 */
+background-size: auto, auto /* 不同于background-size: auto auto */
+background-size: 50%, 25%, 25%
+background-size: 6px, auto, contain
+background-size: inherit
+
+Values
+<length>
+<length> 值，指定背景图片大小，不能为负值。
+<percentage>
+<percentage> 值，指定背景图片相对背景区（background positioning area）的百分比。背景区由background-origin设置，默认为盒模型的内容区与内边距，也可设置为只有内容区，或者还包括边框。如果attachment 为fixed，背景区为浏览器可视区（即视口），不包括滚动条。不能为负值。
+auto
+以背景图片的比例缩放背景图片。
+cover
+缩放背景图片以完全覆盖背景区，可能背景图片部分看不见。
+contain
+缩放背景图片以完全装入背景区，可能背景区部分空白。
+位图一定有固有尺寸与固有比例，矢量图可能两者都有，也可能只有一个。渐变视为只有固有尺寸或者只有固有比例的图片。
+
+背景图片大小计算：
+
+如果指定了 background-size 的两个值并且不是auto：
+背景图片按指定大小渲染。
+contain 或 cover:
+保留固有比例，最大的包含或覆盖背景区。如果图像没有固有比例，则按背景区大小。
+auto 或 auto auto:
+图像如果有两个长度，则按这个尺寸。如果没有固有尺寸与固有比例，则按背景区的大小。如果没有固有尺寸但是有固有比例， 效果同 contain。如果有一个长度与比例，则由此长度与比例计算大小。如果有一个长度但是没有比例，则使用此长度与背景区相应的长度。
+一个为 auto 另一个不是auto:
+如果图像有固有比例，则指定的长度使用指定值，未指定的长度由指定值与固有比例计算。如果图像没有固有比例，则指定的长度使用指定值，未指定的长度使用图像相应的固有长度，若没有固有长度，则使用背景区相应的长度。
+注意，对于没有固有尺寸或固有比例的矢量图不是所有的浏览器都支持。特别注意测试Firefox 7- 与Firefox 8+，以确定不同之处能否接受。
+
+Examples
+background-size: cover 演示 与  background-size: contain 演示 在新窗口打开，这样你可以看到当背景区大小变化时 contain 与 cover 是怎样的。 系列演示：background-size 及其与background-*属性的关联  很好的说明了单独使用 background-size 及与其它属性共同使用。
+
+Notes
+如果用渐变作为背景并且对它使用了background-size ，最好不要只用一个auto， 或者只指定一个宽度值 (例如 background-size: 50%)。对这两种情况 Firefox 8有所改变， 并且目前各浏览器表现不一致，不是全部浏览器都完全支持 CSS3 background-size 规范 与 CSS3 Image Values gradient 规范。
+
+
+复制代码
+代码如下:
+
+.bar {
+width: 50px; height: 100px;
+background-image: gradient(...);
+/* 不推荐 */
+background-size: 25px;
+background-size: 50%;
+background-size: auto 50px;
+background-size: auto 50%;
+/* 可行 */
+background-size: 25px 50px;
+background-size: 50% 50%;
+}
+
+特别不推荐对渐变px与auto一起用, 因为Firefox 8之前不能重复渲染，并且对于没有实现Firefox 8渲染特性的浏览器，不知道指定了背景的元素的确切大小。
+
+IE9及以上才支持。

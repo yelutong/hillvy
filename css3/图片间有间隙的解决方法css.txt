@@ -1,0 +1,30 @@
+方法一：img{vertical-align:top; display:block}
+方法二：设置容器font-size:0
+
+
+<style>
+
+#l1 {float:left;background:#000;}
+
+#l1 ul li {list-style:none;padding:0;margin:0}
+
+img {vertical-align:bottom; display:block;}
+
+</style>
+
+<div id="l1">
+
+<ul>
+
+<li><img src="图片地址1" /></li>
+
+<li><img src="图片地址2" /></li>
+
+<li><img src="图片地址3" /></li>
+
+<li><img src="图片地址4" /></li>
+
+</ul>
+
+</div>
+

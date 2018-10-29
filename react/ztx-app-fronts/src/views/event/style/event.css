@@ -1,0 +1,42 @@
+.event{
+  min-width: 320px;
+  height: 100%;
+}
+.event .eventLink{
+  display: block;
+  width: 92%;
+  margin: auto;
+  position: relative;
+}
+.event .img{
+  width: 100%;
+  margin-top: 1em;
+}
+.event .eventDate{
+  color:#AB6600;
+  font-size: 0.7rem;
+  text-transform: none;
+  position: absolute;
+  top:59%;
+  left: 4.5%;
+  font-family:PingFang-SC;
+}
+.event .emptyTip{
+  color: #999999;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  font-size: 0.81rem;
+  line-height: 1.4rem;
+  background-color: #f6f6f6;
+}
+.event .emptyTip span{
+  width: 60%;
+  margin: auto;
+  padding-top: 40%;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+  display: block;
+}

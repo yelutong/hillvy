@@ -1,0 +1,236 @@
+<pre name="code" class="javascript">Loginmgmt = {
+	passwordChecker:{
+		passwordReg:/^[\w\W]{8,20}$/,
+		specialReg:/[\W_]+/,
+		numberReg:/[0-9]+/,
+		letter:/([a-z]|[A-Z])+/,
+		capLetter:/[A-Z]/,
+		lowLetter:/[a-z]/,
+		specialLetter:/[\W_]/,
+		check:function(password){
+			if (!this.passwordReg.test(password)) {
+				return false;
+			}
+			
+			if (this.isRepeat(password)) {
+				return false;
+			}
+			
+			return this.isCategoryAmountEnough(password, 3);
+		},
+		isCategoryAmountEnough:function(password, minCategoryAmount){
+			var numIsExist = 0;
+		    var letterIsExist = 0;
+		    var specialIsExist = 0;
+		    if (this.specialReg.test(password)) {
+		    	specialIsExist = 1;
+		    }
+		    if (this.numberReg.test(password)) {
+		    	numIsExist = 1;
+		    }
+		    if (this.letter.test(password)) {
+		    	letterIsExist = 1;
+		    }
+		    return (numIsExist + letterIsExist + specialIsExist) == minCategoryAmount;
+		},
+		isRepeat:function(password) {
+			for(var i = 0;i < password.length; i ++){
+		        for(var j = i + 1; j < password.length; j ++){
+		            if(password.charAt(i) == password.charAt(j)){
+		                 return true;
+		            }
+		        }
+		    }
+			return false;
+		},
+		checkNumSeq:function(password){
+			if(password){
+				var len = password.length;
+				for(var i = 0; i < len; ++i){
+					if(i + 3 < len){
+						var c1 = password.charAt(i) - 0;
+						var c2 = password.charAt(i + 1) - 0;
+						var c3 = password.charAt(i + 2) - 0;
+						var c4 = password.charAt(i + 3) - 0;
+ 
+						if(isNaN(c1) || isNaN(c2) || isNaN(c3) || isNaN(c4))
+							continue;
+ 
+						var m = c2 - c1;
+						if(m == 1 || m == -1){
+							if((c3 - c2) == m && (c4 - c3) == m)
+								return true;
+						}
+					}
+				}
+			}
+			return false;
+		},
+		isRepeat4Times:function(password){
+			if(password){
+				var pwd = password.toUpperCase();
+				var len = pwd.length;
+				for(var i = 0; i < len; ++i){
+					if(i + 3 < len){
+						var u1 = pwd.charAt(i);
+						var u2 = pwd.charAt(i + 1);
+						var u3 = pwd.charAt(i + 2);
+						var u4 = pwd.charAt(i + 3);
+ 
+						if(u1 == u2 && u2 == u3 && u3 == u4)
+							return true;
+					}
+				}
+			}
+			return false;
+		},
+		isNotComplex:function(password){
+			if(password){
+				var comp = 0;
+				if(this.capLetter.test(password))
+					comp += 1;
+				if(this.lowLetter.test(password))
+					comp += 1;
+				if(this.numberReg.test(password))
+					comp += 1;
+				if(this.specialLetter.test(password))
+					comp += 1;
+				if(comp < 3)
+					return true;
+			}
+			return false;
+		},
+		checkSeqChar:function(password){
+			if(password){
+				var pwd = password.toUpperCase();
+				var len = pwd.length;
+				for(var i = 0; i < len; ++i){
+					if(i + 3 < len){
+						var u1 = pwd.charCodeAt(i);
+						var u2 = pwd.charCodeAt(i + 1);
+						var u3 = pwd.charCodeAt(i + 2);
+						var u4 = pwd.charCodeAt(i + 3);
+						
+						var m = u2 - u1;
+						if(m == 1 || m == -1){
+							if((u3 - u2 == m) && (u4 - u3 == m))
+								return true;
+						}
+					}
+				}
+			}
+			return false;
+		},
+		isStartOrEndBySF:function(password){
+			if(password && password.length >= 2){
+				var c1 = password.charAt(0);
+				var c2 = password.charAt(1);
+				var c3 = password.charAt(password.length - 2);
+				var c4 = password.charAt(password.length - 1);
+				if((c1 == 's' || c1 == 'S') && (c2 == 'f' || c2 == 'F')){
+						return true;
+				}
+				if((c3 == 's' || c3 == 'S') && (c4 == 'f' || c4 == 'F')){
+					return true;
+				}
+			}
+			return false;
+		},
+		isIncludeUsername:function(username, password){
+			if(password && username){
+				var idx = password.indexOf(username);
+				if(idx >= 0)
+					return true;
+			}
+			return false;
+		},
+		isIncludeBenWord:function(password){
+			var a = Loginmgmt.benWords;
+			for(var i = 0; i < a.length; ++i){
+				if(this.isIncludeUsername(a[i], password))
+					return true;
+			}
+			return false;
+		}
+	},
+ 
+	benWords:['admin', 'pass'],
+ 
+	getchgpwdUrl: function() {
+	    return "https://sfpwd.sf-express.com/";
+	}
+};
+
+
+
+//检验旧密码，包括长度为八位，字符不重复
+function checkOldPassword(password, fieldname, username) {
+    if(password == null || password == ''){
+        alert( fieldname + "<spring:message code="error.checkPasswordEmpty" />");
+        return false;
+    }
+    if(password.length < 10){
+        alert( fieldname + "<spring:message code="error.checkPasswordLength" />");
+        return false;
+    }
+    //密码复杂度要求：3种；（大写字母、小写字母、数字、特殊字符中任选3种）
+    if (Loginmgmt.passwordChecker.isNotComplex(password)) {
+    	alert("<spring:message code="error.checkPasswordNotComplex" />");
+    	window.location.href=Loginmgmt.getchgpwdUrl();
+	    return false;
+	}
+    //密码中不能包含有连续四位及以上顺序(或逆序)数字；（如：密码中不能包含1234或3210等）
+    if (Loginmgmt.passwordChecker.checkNumSeq(password)) {
+    	alert("<spring:message code="error.checkPasswordSeq" />");
+    	window.location.href=Loginmgmt.getchgpwdUrl();
+	    return false;
+	}
+    //密码中不能包含有连续四位及以上顺序(或逆序)字母，字母不区分大小写；（如：密码中不能包含abcd或ABCD或AbcD或DcbA等）
+    if (Loginmgmt.passwordChecker.checkSeqChar(password)) {
+    	alert("<spring:message code="error.checkPasswordSeqChar" />");
+    	window.location.href=Loginmgmt.getchgpwdUrl();
+	    return false;
+	}
+    //密码中不能包含有连续四位及以上重复字符，字母不区分大小写；（如：密码中不能包含8888、9999、aaaa 或AAAA或BbbB或 $$$$等四位及以上的重复字符）
+    if (Loginmgmt.passwordChecker.isRepeat4Times(password)) {
+    	alert("<spring:message code="error.checkPasswordRepeat4" />");
+    	window.location.href=Loginmgmt.getchgpwdUrl();
+	    return false;
+	}
+    //sf不区分大小写不能出现在密码首与尾；（如：密码不允许设置为sf********或********sF等）
+    if (Loginmgmt.passwordChecker.isStartOrEndBySF(password)) {
+    	alert("<spring:message code="error.checkPasswordSE" />");
+    	window.location.href=Loginmgmt.getchgpwdUrl();
+	    return false;
+	}
+    //不能将帐号名作为密码的一部分存在于密码中；（如：用户帐号名为013579，密码不允许设置为***013579****）
+    if (Loginmgmt.passwordChecker.isIncludeUsername(username, password)) {
+    	alert("<spring:message code="error.checkPasswordUsername" />");
+    	window.location.href=Loginmgmt.getchgpwdUrl();
+	    return false;
+	}
+    //禁忌词不区分大小写不能作为密码的一部分存在于密码中；（如：admin, pass）
+    if (Loginmgmt.passwordChecker.isIncludeBenWord(password)) {
+    	alert("<spring:message code="error.checkPasswordBen" />");
+    	window.location.href=Loginmgmt.getchgpwdUrl();
+	    return false;
+	}
+    return true;
+}
+ 
+//附加anchor参数，防止anchor(#)的参数丢失
+function appendAnchorParam(form) {
+    var location = window.document.URLUnencoded;
+    if (location == undefined) {
+        location = window.document.location;
+    }
+    if (location) {
+    	var url = location.toString();
+    	var index = url.lastIndexOf("#");
+    	if (index > 0) {
+        	var hash = url.substring(index);
+        	form.action = form.action + hash;
+    	}
+    }
+
+}

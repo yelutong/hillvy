@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+var arr = [];
+for (var i = 0; i < 5; i++) {
+	var temp = i + 1;
+	arr.push(temp);
+	console.log(temp + "  入栈"); 
+}
+console.log(arr);	
+console.log('栈，先进后出:如下');
+/*
+  这个地方需要注意，因为在出栈的过程arr.length是变化的，每移除一个元素，arr.length就会减一
+，所以需要将其赋值给一个变量
+*/
+var len = arr.length,arr1=[];
+	
+for (var i = 0; i < len; i++) { 
+	console.log(arr.pop());
+	arr1.push(i);
+}
+console.log(arr1);
+	
+	
+var arr3 = [];
+for (var i = 0; i < 5; i++) {
+	var temp = i + 1;
+	arr3.unshift(temp);
+	console.log(temp + "  插入"); 
+}
+console.log(arr3);
+console.log('队列，先进先出 First In First Out');
+/*
+  这个地方需要注意，因为在删除的过程arr.length是变化的，每移除一个元素，arr.length就会减一
+，所以需要将其赋值给一个变量
+*/
+var arr4 = [];	
+var len1 = arr3.length;
+for (var i = 0; i < len1; i++) {
+	console.log(arr3.pop());
+	arr4.push(i);
+}	
+console.log(arr4);	
+</script>	
+</head>
+
+<body>
+</body>
+</html>

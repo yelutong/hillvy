@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AngularJS</title>
+<script type="text/javascript" src="angular.min.js"></script>
+</head>
+
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl"> 
+
+<p>欢迎信息:</p>
+
+<h1>{{myWelcome}}</h1>
+
+</div>
+
+<p> $http 服务向服务器请求信息，返回的值放入变量 "myWelcome" 中。</p>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+
+  $http.get("welcome.html").then(function (response) {
+      $scope.myWelcome = response.data;
+  });
+
+
+  $http({
+    method: 'GET',
+    url: 'a.php',
+    params:{a:12,b:20},
+    //responseType:'json'
+	}).then(function successCallback(response) {
+	        // 请求成功执行代码
+               console.log(response);
+               console.log(response.data);
+	    }, function errorCallback(response) {
+	        // 请求失败执行代码
+               alert('error');
+	});
+
+
+});
+</script>
+</body>
+</html>

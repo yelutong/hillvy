@@ -1,0 +1,129 @@
+.coupon{
+  font-size: 16px;
+  min-width: 320px;
+  height: 100%;
+}
+.coupon .nav{
+  background-color: #ffffff;
+  height:3rem;
+  line-height: 3rem;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 1;
+}
+.coupon .nav li{
+  width:33.3%;
+  text-align: center;
+  color:#999999;
+  font-size: 1rem;
+}
+.coupon .nav li.on{
+  color:#333333;
+  font-weight: bold;
+}
+.coupon .nav li.on:after{
+  width: 3.81rem;
+  height: 0.19rem;
+  background-color: #FBCB58;
+  content: '';
+  display: block;
+  margin: auto;
+  margin-top: -0.19rem;
+  animation:myNavOn 1s;
+  -webkit-animation:myNavOn 1s; /*Safari and Chrome*/
+}
+@keyframes myNavOn
+{
+  from {width:0rem;}
+  to {left:3.81rem;}
+}
+
+@-webkit-keyframes myNavOn /*Safari and Chrome*/
+{
+  from {width:0rem;}
+  to {left:3.81rem;}
+}
+.coupon .couponImg{
+  width: 93%;
+  margin: auto;
+  margin-top: 1rem;
+  position: relative;
+  font-size: 0px;
+}
+.coupon .couponImg img{
+  width: 100%;
+}
+.coupon .couponImg .amountArea{
+  font-size: 1.35rem;
+  position: absolute;
+  width: 32%;
+  height: 70%;
+  right: 0rem;
+  top: 25%;
+  text-align: center;
+  font-family: PingFang SC;
+  color: #fff;
+}
+.coupon .couponImg .amount label{
+  font-size: 0.7rem;
+  letter-spacing: 0.03rem;
+}
+.coupon .couponImg .validTime{
+  font-size: 0.69rem;
+  color: #CFCFCF;
+  position: absolute;
+  bottom: 9%;
+  left: 4%;
+}
+.coupon .swiper-container{
+  min-height: 100%;
+  padding-top: 3rem;
+  box-sizing: border-box;
+  z-index: 0;
+}
+.coupon .swiper-slide{
+  padding-bottom: 1rem;
+}
+.coupon .swiper-slide{
+  height:16px
+} 
+.coupon .swiper-slide-active{
+  height:auto;
+} 
+.coupon .couponInvalid .cover{
+  background-color: rgba(0,0,0,0.5);
+  color: #cccccc;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top:0px;
+  border-radius:0.25rem 0.25rem 0rem 0rem;
+  font-size: 1.25rem;
+}
+.coupon .couponInvalid .cover span{
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 100%;
+  line-height: 1.75rem;
+  height: 1.75rem;
+  margin-top: -0.875rem;
+  text-align: center;
+}
+.coupon .couponUsed .couponImg .amountArea{
+  color: #DEDEDE;
+}
+.coupon .hasNoCoupon{
+  font-size: 0.88rem;
+  color: #999999;
+  text-align: center;
+  width: 100%;
+  margin-top: 25%;
+}
+.coupon .hasNoCoupon img{
+  width: 22%;
+  margin-bottom: 1rem;
+}

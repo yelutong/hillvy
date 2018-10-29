@@ -1,0 +1,18 @@
+.applyMember ul li img:hover{
+	transform: rotateY(-180deg);
+}
+.applyMember ul li img {
+	transition: 1.5s;
+	transform-style: preserve-3d;
+}
+
+
+使被转换的子元素保留其 3D 转换
+
+div
+{
+transform: rotateY(60deg);
+transform-style: preserve-3d;
+-webkit-transform: rotateY(60deg);	/* Safari 和 Chrome */
+-webkit-transform-style: preserve-3d;	/* Safari 和 Chrome */
+}

@@ -1,0 +1,92 @@
+$scope.appWxShare=false; 
+    $scope.conWxflag=true;
+    $scope.shareAnx = () =>{   
+        if($scope.conWxflag==true){
+            $scope.conWxflag=false;
+            $scope.appWxShare=true;  
+            $timeout(function(){ 
+              $scope.conWxflag=true; 
+            },500); 
+        }  
+    }
+    
+  $scope.closePickerBox = () => {   
+       if($scope.conWxflag==true){  
+          $scope.appWxShare=false; 
+       }
+    }
+
+<ion-content scroll="false">
+        <div class="picker-new" ng-class='{"showAppWxShare":appWxShare}'>
+          <div class="picker-mask" ng-class='{"show":conWxShareBg}' ng-click='closePickerBox()'></div>
+           <div class="picker-panel" ng-class='{"show":conWxShare}'>
+             <div class="wx-h55 wx-disburden-top" ng-click="WxShareTo('WF')"><span><i class="disburden-wechat-Icon"></i>微信</span></div>
+             <div class="disburden-onepx"></div>
+            <div class="wx-h55 wx-disburden-center" ng-click="WxShareTo('WG')"><span><i class="disburden-wechat-Friend"></i>朋友圈</span></div>
+             <div class="wx-h55 wx-disburden-cancel" ng-click='closePickerBox()'>取消</div>
+          </div>
+        </div> 
+</ion-content>
+
+  
+/*底部弹出上升样式*/
+.picker-new {
+    visibility:hidden;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+    font-family: PingFang SC,STHeitiSC-Light,Helvetica-Light,arial,sans-serif;
+    font-size: 14px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+.picker-new .picker-mask.show {
+    background: rgba(0,0,0,.6);
+    opacity: 1; 
+    visibility: visible!important 
+} 
+.picker-new .picker-mask {
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 500;
+    width: 100%;
+    height: 100%;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    background: transparent;
+    opacity: 0;
+    z-index: 11;
+    visibility:hidden
+}
+.picker-new .picker-panel.show {
+    transform: translateY(0);
+    -webkit-transform: translateY(0); 
+}
+.picker-new .picker-panel { 
+    z-index: 600; 
+    background:#ededed;
+    font-size: 14px;
+    border-radius: 0;
+    bottom: 0;
+    left: 0; 
+    position: fixed;
+    text-align: center;
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+    -webkit-transition: -webkit-transform 300ms;
+    transition: transform 300ms;
+    width: 100%;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+}
+/*app微信分享弹窗*/
+.showAppWxShare{visibility: visible!important}
+

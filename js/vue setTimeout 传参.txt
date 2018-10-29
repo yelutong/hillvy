@@ -1,0 +1,8 @@
+把data里的变量继承过来重新封装一下
+
+ 
+ let that = this
+
+          setTimeout(function() {
+            that.cvShow = true
+          },1000)

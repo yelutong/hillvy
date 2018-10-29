@@ -1,0 +1,13 @@
+<div style="background-image: url(http://your-image.jpg);">  
+ <img src="http://your-image.jpg" style="visibility: hidden;" />  
+</div> 
+
+同时设置图片和背景图片，同时将图片设置为不可见（不是不显示），只显示背景图片。
+
+这里用到技巧就是：display:none和visibility:hidden的区别
+
+ 
+
+dispaly:none ；　CSS1隐藏对象。与visibility属性的hidden值不同，其不为被隐藏的对象保留其物理空间
+
+visibility: hidden；设置或检索是否显示对象。与display属性不同，此属性为隐藏的对象保留其占据的物理空间。如果希望对象为可视，其父对象也必须是可视的。

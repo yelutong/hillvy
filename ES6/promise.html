@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, viewport-fit=cover">
+<title>顺丰金融</title> 
+</head>
+<body>
+<div>
+  <p class="classD">111</p>
+  <p class="classB">222</p>
+  <p class="classC">333</p>
+</div> 
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+    function getPromise(n) {
+      return new Promise((resovle, reject) => {
+        if(n <= 100) {
+          resovle(n)
+        } else {
+          reject('请传入100以内的数值！')
+        }
+      })
+    }  
+    getPromise(99).then((value) => {
+      console.log(value)
+    }).catch((error) => {
+      console.log(error)
+    })
+    var p = [1, 11, 33].map((time) => {
+      return getPromise(time)
+    })
+    Promise.all(p).then((arrs) => {
+      console.log(arrs)
+    })
+    // 结果：[1,2,3]
+
+$(function(){
+       //继续简化
+    $.ajax({
+        url:"21.txt",
+        dataType:"text"
+    }).then(arr=>{
+            console.log(arr)
+        },error=>{
+            console.log('错误') 
+        }
+    ); 
+})
+document.title = '会员登录'
+
+var obj = {
+   say: function () {
+     setTimeout(() => {
+       console.log(this)
+     });
+   }
+ }
+ obj.say(); // obj
+
+//箭头函数的魅力
+//定义一个对象
+    var obj1 = {
+        x:100,//属性x
+        show(){
+            //延迟500毫秒，输出x的值
+            setTimeout(
+               //不同处：箭头函数
+               () => { 
+                console.log(this.x)
+               },500);
+        }
+    };
+obj1.show();//打印结果：100 
+
+var obj2={  
+    num:4,  
+    fn:function(){  
+        var f=() => {    //object，也就是指obj1  因为这是箭头函数
+            console.log(this);  
+            setTimeout(() => {  
+                console.log(this);// //object，也就是指obj1  
+            });  
+        }  
+        f();  
+    }  
+}  
+obj2.fn(); 
+
+
+var obj3={  
+    num:4,  
+    fn:function(){ 
+    console.log(this)  //object 因为函数fn定义后被obj1对象调用了
+        var f=function(){      
+            console.log(this); //window,因为函数f定义后并没有对象调用，this直接绑定到最外层的window对象  
+            setTimeout(() => {  
+                console.log(this);//window，外层this绑定到了window,内层也相当于定义在window层（全局环境）  
+            });  
+        }  
+        f();  
+    }  
+}  
+obj3.fn();  
+
+var obj4={  
+    num:4,  
+    fn:function(){  
+        var f=() => {      
+            console.log(this); //object,f()定义在obj1对象中，this就指向obj1,这就是箭头函数this指向的关键  
+            setTimeout(function() {  
+                console.log(this);//window，非箭头函数的情况下还是要看宿主对象是谁，如果没有被对象调用，函数体中的this就绑定的window上  
+            });  
+        }  
+        f();  
+    }  
+}  
+obj4.fn();  
+</script>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/vue.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+	 <p>原始字符串:{{message}}</p>
+	 <P>计算后反转字符串: {{reversemessage}}</P>
+     <p>使用方法后反转字符串: {{ reversemessage2() }}</p> 
+</div>
+</body>
+</html>
+<script>
+new Vue({
+	el:"#app",
+	data:{
+		message:"Vuejs" 
+	},
+	computed:{
+	    reversemessage:function(){
+		  return this.message.split("").reverse().join("");
+		}
+	},
+	methods:{
+		reversemessage2:function(){
+			return this.message.split("").reverse().join("");
+		}
+	}
+})
+
+</script>

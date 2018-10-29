@@ -1,0 +1,11 @@
+让图片做背景图，利用背景图的background-position:center center的属性实现图片居中显示
+
+height: 410px;
+   
+background-repeat:no-repeat;
+   
+background-position: center center;
+    
+background-size: cover;
+
+

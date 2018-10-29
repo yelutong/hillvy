@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="angular.min.js"></script> 
+</head>
+<body>
+
+<div ng-app="" ng-init="quantity=10;cost=5">
+<p>数量<input  type="text" ng-model="quantity"/></p>
+<p>价格<input type="text" ng-model="cost"/></p>
+
+<p>总价: {{ quantity * cost  | currency }}</p><!--总价: $50.00-->
+</div>
+
+</body>
+</html>

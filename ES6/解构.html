@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>顺丰企业金融</title>
+</head>
+<body>
+<div></div>
+<script>
+document.body.classList.add('myclass');    
+let node = {
+        type: "Identifier",
+        name: "foo"
+}
+let {type,name} = node;
+
+console.log(type);// "Identifier"
+console.log(name); 
+
+let node1 = {
+    type: "Identifier",
+    name: "foo",
+    loc: {
+        start: {
+            line: 1,
+            column: 1
+        },
+        end: {
+            line: 1,
+            column: 4
+        }
+    }
+};
+
+let {loc:{start}} = node1
+
+console.log(start.line);        // 1
+console.log(start.column);      // 1
+
+var a = {
+    a: 'haha',
+    getA: function () {
+        console.log(this.a); // haha
+    }
+};
+var b = {
+    a: 'hello'
+};
+var getA = a.getA;
+var getA2 = getA.bind(a);
+function run (fn) {
+    fn();
+}
+
+
+//一下分别输出
+a.getA();//haha
+//this指向当前调用函数的对象a
+getA();//a 对象
+//当前的this指向全局this,一般遇到这样的函数调用，fn（）=this.fn()，当前this指向全局
+run(a.getA);//a 对象
+//这里 fn = a.getA = a对象中getA这个函数，fn（）this指向全局。所以 a对象
+getA2.call(b);// 'haha'
+//call（b）幌子。getA.bind(a) 'haha'
+</script>
+</body>
+</html>

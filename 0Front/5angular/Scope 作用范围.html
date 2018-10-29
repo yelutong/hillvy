@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script>
+var app=angular.module("myApp",[]);
+app.controller("myCtrl",function($scope){
+	$scope.names=["email","QQ","wechat"];
+	})
+</script>
+</head>
+
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+
+<ul>
+    <li ng-repeat="x in names">{{x}}</li>
+</ul>
+
+</div>
+</body>
+</html>

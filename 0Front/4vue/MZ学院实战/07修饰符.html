@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue</title>
+<script src="vue.min.js"></script> 
+</head>
+<body>
+
+<div id="app">  
+	<!--lay：在改变后才触发（也就是说只有光标离开input输入框的时候值才会改变）--> 
+	<input v-model.lazy="msg" :value="msg">{{ msg }}<br>
+	<!--number：如果输入的数字就立即触发改变--> 
+	<input v-model.number="msg1" :value="msg1">{{ msg1 }}<br> 
+    
+</div>
+
+<script>
+/*
+<!-- 阻止单击事件冒泡 -->
+	<a v-on:click.stop="doThis"></a>
+	<!-- 提交事件不再重载页面 -->
+	<form v-on:submit.prevent="onSubmit"></form>
+	<!-- 修饰符可以串联  -->
+	<a v-on:click.stop.prevent="doThat"></a>
+	<!-- 只有修饰符 -->
+	<form v-on:submit.prevent></form>
+	<!-- 添加事件侦听器时使用时间捕获模式 -->
+	<div v-on:click.capture="doThis">...</div>
+	<!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
+	<div v-on:click.self="doThat">...</div>
+	<!-- 只有在 keyCode 是 13 时调用 vm.submit() -->
+    <input v-on:keyup.13="submit"> 
+    <!-- 同上 -->
+    <input v-on:keyup.enter="submit">
+    <!-- 缩写语法 -->
+    <input @keyup.enter="submit">
+
+    <a v-bind:href.literal="">1</a><!--其中literal就是修饰符 -->
+    	
+   */ 	 
+
+window.onload=function(){
+	let dataObj={ 
+		msg: '强制转数字，如果不能转则直接输出', 
+        msg1: '内容是change事件后改变的。', 
+        msg3:'内容是在3秒后才改变的（change马上改变）'
+	}
+	 
+	new Vue({
+	  el: '#app',
+	  data:dataObj,
+	  filters: {
+		  uppercase: function (value) {
+		    if (!value){
+		    	return ''
+		    }else{
+              value = value.toString()
+		      return value.charAt(0).toUpperCase() + value.slice(1);
+		      //charAt() 方法可返回指定位置的字符。slice(1)从第一个开始返回元素
+		    } 
+		    
+		  },
+		  filterA:function(a,b){ 
+		  	if(typeof(b) == 'string'){
+                a=a+b;
+                return a;
+		  	}else{
+		  		console.log("呵呵");
+		  	}
+		  }
+		}
+
+
+	})
+}	
+
+</script>
+</body>
+</html>

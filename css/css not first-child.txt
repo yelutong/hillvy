@@ -1,0 +1,5 @@
+.LendDtail .billList:not(:first-child) {
+    margin: 0 10px 15px 10px;
+    background: #FFF;
+    padding-bottom: 12px;
+}

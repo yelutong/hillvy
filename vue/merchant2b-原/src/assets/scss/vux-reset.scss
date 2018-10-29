@@ -1,0 +1,107 @@
+/* 重写 VUX 的样式 */
+.vux-alert, .vux-confirm, .vux-toast, .weui-loading_toast, .vux-loading{
+  font-size: .24rem;
+}
+.weui-dialog__title{
+  color: $color_black
+}
+.weui-dialog__bd{
+  color: $color_dark
+}
+.weui-cells{
+  margin-top:0!important
+}
+.weui-cell:before{
+  border-top: 0;
+}
+.weui-toast_success .weui-icon_toast:before{
+  content:''!important;
+  width:55px;
+  height:55px;
+  background-image:$bg_toast;
+  background-size: 246px;
+  background-position: -113px 0;
+  margin-bottom: .24rem;
+}
+.weui-toast_cancel .weui-icon_toast:before{
+  content:''!important;
+  width:55px;
+  height:55px;
+  background-image:$bg_toast;
+  background-size: 246px;
+  background-position: -57px 0;
+  margin-bottom: .24rem;
+}
+.weui-toast_forbidden .weui-icon_toast.weui-icon-success-no-circle:before{
+  content:''!important;
+  width:55px;
+  height:55px;
+  background-image:$bg_toast;
+  background-size: 246px;
+  background-position: 0 0;
+  margin-bottom: .24rem;
+}
+.weui-toast.weui-toast_forbidden .weui-toast__content{
+  margin-top: 0!important;
+  color: $color_white
+}
+.colorRed .weui-cell__ft{color:$color_red}
+.vux-1px:before, .vux-1px-t:before, .vux-1px-b:before, .vux-1px-tb:before, .vux-1px-l:before, .vux-1px-r:before{border-top: 1px solid #eee!important;color: #eee!important;}
+.vux-1px:after, .vux-1px-t:after, .vux-1px-b:after, .vux-1px-tb:after, .vux-1px-l:after, .vux-1px-r:after{border-bottom: 1px solid #eee!important;color: #eee!important;}
+.weui-cells:after,.weui-cell:after,.weui-cells:before,.weui-cell:before{height:0!important;border-top:0!important}
+.weui-cells:after{border-bottom:0!important;}
+.weui-cell_access .weui-cell__ft:after{
+  width:.16rem!important;
+  height:.16rem!important;
+  background-size:.16rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  right: 2px;
+  transform:none!important;
+  -webkit-transform:none!important;
+  border-width:0!important;
+  border:0!important;
+  background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzQ1N0FFMzU2MEJEMTFFOEFDMThFOEI4N0UxNDFBMjgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzQ1N0FFMzY2MEJEMTFFOEFDMThFOEI4N0UxNDFBMjgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozNDU3QUUzMzYwQkQxMUU4QUMxOEU4Qjg3RTE0MUEyOCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozNDU3QUUzNDYwQkQxMUU4QUMxOEU4Qjg3RTE0MUEyOCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PojwDPIAAAC3SURBVHjaYvz//z9Deno6AxQcA2I2IPYE4tcMeMDMmTPBNBOaODMQGwPxfiAWZSACoBvgDcQXgVgbaogYqQa8AWIXJEP2ETKECYsYzJALxBjChEMcZIgrMYYw4XEduiFYw4SJQBghG6IFxNtJNYDkaEQHIkC8G4gNgPgaNIERbQCy5qtA7AjEr4g1AF2zEzbNIMCCQ/MeINYnpBmbC0jSjM0FW5E0OxLKkdhc8BeIzxGrGQQAAgwATHEuIg2bPjkAAAAASUVORK5CYII=)!important;
+}
+.txt-black3 .weui-cell__ft{color:#333!important}
+.weui-dialog__btn_primary,.weui-dialog__btn_default{color:$color_blue}
+.weui-cell_access .weui-cell__ft{padding-right:.36rem!important}
+.vux-divider:after, .vux-divider:before{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAAABCAYAAAD3qpk/AAAAHklEQVRIie3BAQEAAAgCoPr/1Qt2oQHAJukAAAAvB6hxA8veVZDMAAAAAElFTkSuQmCC)!important}
+.vux-popup-dialog{background:#FFF!important}
+.weui-dialog{border-radius:.1rem!important;}
+.weui-input{color:$color_black}
+.vux-cell-primary{color:$color_black}
+.vux-popup-mask{
+  display: none!important;
+}
+.weui-dialog {
+  border-radius: 0px;
+}
+.weui-dialog__bd{
+  line-height: 1.8!important;
+  font-size: 15px!important;
+  padding: 0.4rem .2rem 0.3rem!important;
+}
+.weui-dialog__ft{
+  font-size: 17px!important;
+}
+.weui-btn:after{
+  border: none!important;
+}
+.vux-1px-l:before{
+  border-bottom: 0.5px solid #eee!important;
+  color: #eee!important;
+}
+.vux-dialog-enter-active {
+  animation: vux-dialog-in 0.3s!important;
+}
+.vux-dialog-leave-active {
+  animation: vux-dialog-out 0.3s!important;
+}
+.vux-mask-leave-active,
+.vux-mask-enter-active {
+  transition: opacity 0s!important;
+}
+.txt-c3 .weui-cell__ft{color:#333}
+.loginout-button.weui-btn_disabled{background-color: #fff!important;}

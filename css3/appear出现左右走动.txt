@@ -1,0 +1,26 @@
+.introduceContent .header .child{
+	position: absolute;
+	left: 60%;
+	bottom: 20px;
+	width: 81px;
+	height: 97px;
+	animation: appear 6s;
+    -moz-animation: appear 6s;    
+    -webkit-animation: appear 6s;
+}
+@keyframes appear{
+	0% {opacity: 0.5;-webkit-transform: translateX(0);left: 0;}
+	25% {opacity: 0.8;-webkit-transform: translateX(20%);left: 20%;}
+	50% {opacity: 1;-webkit-transform: translateX(40%);left: 40%;}	
+	100%{opacity: 1;-webkit-transform: translateX(60%);left: 60%;}
+	from {width: 20px;height: 24px;opacity: 0;}
+    to {width: 81px;height: 97px;opacity: 1;}
+}
+@-webkit-keyframes appear{
+	0% {opacity: 0.5;-webkit-transform: translateX(0);left: 0;}
+	25% {opacity: 0.8;-webkit-transform: translateX(20%);left: 20%;}
+	50% {opacity: 1;-webkit-transform: translateX(40%);left: 40%;}	
+	100%{opacity: 1;-webkit-transform: translateX(60%);left: 60%;}
+	from {width: 20px;height: 24px;opacity: 0;}
+    to {width: 81px;height: 97px;opacity: 1;}
+}

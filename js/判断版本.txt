@@ -1,0 +1,9 @@
+Vue.prototype.$UA = function () {
+      let ua = navigator.userAgent.toLowerCase();
+      return {
+        weChat: /MicroMessenger/i.test(ua),
+        ios: /iPhone/i.test(ua),
+        android: /android/i.test(ua),
+        iphoneX: /iphone/gi.test(navigator.userAgent) && (screen.height === 812 && screen.width === 375)
+      }
+    };

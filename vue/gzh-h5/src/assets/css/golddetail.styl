@@ -1,0 +1,42 @@
+.page-golddetail {
+  padding: 10px 0;
+
+  .item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+    padding: 0 15px;
+    background-color: #fff;
+    bd-line(bottom, 1px, #eaeaea);
+
+    .tag {
+      font-size: 14px;
+      color: #828282;
+    }
+
+    .con {
+      font-size: 13px;
+      color: #484848;
+    }
+
+    &:first-child {
+      margin-bottom: 10px;
+
+      .con {
+        font-size: 14px;
+      }
+
+      &:after {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.introduceContent .header .text1{
+	animation: fade-in;
+    animation-duration: 1.5s;
+    -webkit-animation:fade-in 1.5s;
+	top: 98px;
+	width: 257px;
+	height: 38px;
+}
+@keyframes fade-in {  
+    0% {opacity: 0;top: 0;}
+    40% {opacity: 0;top:20px;}
+    100% {opacity: 1;top: 98px;}
+}  
+@-webkit-keyframes fade-in {
+    0% {opacity: 0;top: 0;}
+    40% {opacity: 0;top:20px;}
+    100% {opacity: 1;top: 98px;}
+}  
+
+
+
+
+
+.introduceContent .header .text2{
+	animation: Twofade-in;/*动画名称*/  
+    animation-duration: 3s;/*动画持续时间*/  
+    -webkit-animation:Twofade-in 3s;/*针对webkit内核*/ 
+	top: 140px;
+	width: 254px;
+	height: 20px;
+}
+@keyframes Twofade-in {  
+    0% {opacity: 0;top: 0px;}/*初始状态 透明度为0*/  
+    40% {opacity: 0;top:98px;}/*过渡状态 透明度为0*/  
+    100% {opacity: 1;top: 140px;}/*结束状态 透明度为1*/  
+}  
+@-webkit-keyframes Twofade-in {
+    0% {opacity: 0;top: 0px;}
+    40% {opacity: 0;top:98px;}
+    100% {opacity: 1;top: 140px;}
+}  

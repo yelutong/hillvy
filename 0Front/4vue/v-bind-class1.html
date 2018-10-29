@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="js/vue.min.js"></script>
+<style>
+.text-danger {
+	width: 100px;
+	height: 100px;
+	background: red;
+}
+.active {
+	width: 100px;
+	height: 100px;
+	background: green;
+}
+</style>
+</head>
+<body>
+<div id="app">
+	<div v-bind:class="[errorClass ,isActive ? activeClass : '']"></div><!--errorClass 是始终存在的，isActive 为 true 时添加 activeClass 类-->
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    isActive: false,
+	activeClass: 'active',
+    errorClass: 'text-danger'
+  }
+})
+</script>
+</body>
+</html>

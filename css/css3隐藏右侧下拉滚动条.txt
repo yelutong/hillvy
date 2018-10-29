@@ -1,0 +1,14 @@
+下面这三条，缺一不可
+
+#app, body, html {
+    height: 100%;
+}
+
+
+#app {
+    overflow-x: hidden;
+    width: 100%;
+}
+#app::-webkit-scrollbar {
+    display: none;
+}

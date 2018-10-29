@@ -1,0 +1,24 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.auth-info-tips{
+  color: #999;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+.switch{
+  background: url("../../assets/images/swich_open@3x.png") no-repeat 6.07rem 60%;
+  background-size: .98rem .68rem;
+}
+.switch-close{
+  background-image: url("../../assets/images/switch_close@3x.png");
+}
+.auth-download{
+  color: $color_blue;
+  display: block;
+}

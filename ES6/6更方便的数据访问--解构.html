@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+//数组和对象是JS中最常用也是最重要表示形式。为了简化提取信息，ES6新增了解构，这是将一个数据结构分解为更小的部分的过程
+
+//ES5我们提取对象中的信息形式如下：
+
+    const people = {
+        name1: 'lux',
+        age1: 20
+    }
+    const name1 = people.name1
+    const age1 = people.age1
+    console.log(name1 + ' --- ' + age1)
+
+//是不是觉得很熟悉，没错，在ES6之前我们就是这样获取对象信息的，一个一个获取。现在，解构能让我们从对象或者数组里取出数据存为变量，例如
+
+    //对象
+    const people1 = {
+        name: 'lux',
+        age: 20
+    }
+    const { name, age } = people1
+    console.log(`${name} --- ${age}`)
+    //数组
+    const color = ['red', 'blue']
+    const [first, second] = color
+    console.log(first) //'red'
+    console.log(second) //'blue'
+ 
+	
+</script>	
+</head>
+
+<body>
+</body>
+</html>

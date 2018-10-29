@@ -1,0 +1,275 @@
+<!doctype html>
+<html> 
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<meta http-equiv="Cache" content="no-cache">
+<title>明昌生态</title>
+<style type="text/css">
+/* 安全键盘 */
+.psk-modal{
+    background-color: transparent!important;
+}
+.psk-wrap{
+    background-color: transparent!important;
+}
+.psk-container{
+    position: absolute;bottom: 0;width: 100%;background-color: #fff;
+}
+.psk-header{
+    height: 40px;border-bottom: 1px solid #ddd;font-size: 15px;
+    line-height: 40px;text-align: center;color: #626d77;
+}
+.psk-header .ico-close{
+    position: absolute;left: 10px;top: 1px;
+}
+.psk-keyboard-item{
+    height:56px;background-color: #fff;border-top: 1px solid #dee1e1;border-right: 1px solid #dee1e1;font-size: 20px; line-height: 56px;text-align: center;transition: all 0.3s ease;
+}
+.psk-keyboard-item.activated{
+    background-color: #f7f7f7;
+}
+.psk-keyboard-row .psk-keyboard-item:first-child{
+    border-left: 0;
+}
+.psk-keyboard-row .psk-keyboard-item:nth-child(3){
+    border-right: 0;
+}
+.psk-psd{
+    height: 122px;background-color: #fff;
+}
+.psk-psd .psd-item{
+    width: 17px; height: 17px;margin:0 16px;background-color: #fff; 
+    border:1px solid #d8d8d8; border-radius:20px;
+}
+.psk-psd .psd-item.active{
+    background-color: #333;border: 1px solid #333;
+}
+.pki-bg {
+    background-color:#dae2e5;
+} 
+
+
+.psk-keyboard-row .psk-keyboard-item:first-child {
+    border-left: 0;
+}
+ 
+.flex1 {
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1; 
+}
+.flex1 {
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+.horizontal-view{
+display: flex; 
+}
+.ico-close, .ico-op {
+    display: block;
+    width: 36px;
+    height: 36px;
+    background: url(icon_operate.png) no-repeat 0 0;
+    background-size: 200px 200px;
+}
+.psk-header .ico-close {
+    position: absolute;
+    left: 10px;
+    top: 1px;
+}
+
+.ico-close-grey {
+    background-position: -36px 0;
+}
+.psk-psd {
+    height: 122px;
+    background-color: #fff;
+}
+
+.justify-content-center, .mask-img > .img-center {
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.align-items-center, .single-item-com, .single-item, .pro-div, .pro-div > .item-1 > .pro-container, .mask-img > .img-center {
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+}
+.horizontal-view, .single-item-com, .single-item, .pro-div, .pro-div > .item-1 > .pro-container {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.ico-op-hide {
+    background-position: -108px 0;
+}
+.ico-op-del {
+    background-position: -72px 0;
+}
+.psk-psd .psd-item.active {
+    background-color: #333;
+    border: 1px solid #333;
+}
+
+.psk-psd .psd-item {
+    width: 17px;
+    height: 17px;
+    margin: 0 16px;
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+    border-radius: 20px;
+}
+
+
+.slide-in-up.ng-leave, .slide-in-up>.ng-leave {
+    -webkit-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
+}
+
+.psk-modal {
+    background-color: transparent !important;
+}
+.slide-in-up {
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+}
+.modal {
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    overflow: hidden;
+    min-height: 100%;
+    width: 100%;
+    background-color: #fff;
+}
+
+
+</style>
+</head> 
+<body>
+<!-- 密码安全键盘 -->
+<div class="psk-modal" >
+    <div  class="psk-wrap" onClick="closeSecurityKeyboardModal();">
+        <div class="psk-container" onClick="stopBubble(event);">
+            <div class="psk-header">
+                <span class="ico-close ico-close-grey" onClick="closeSecurityKeyboardByMask();"></span><span>输入交易密码</span>
+            </div>
+            <div class="psk-psd horizontal-view justify-content-center align-items-center">
+                <div class="psd-item"></div>
+                <div class="psd-item"></div>
+                <div class="psd-item"></div>
+                <div class="psd-item"></div>
+                <div class="psd-item"></div>
+                <div class="psd-item"></div>
+            </div>
+            <div class="psk-keyboard">
+                <div class="psk-keyboard-row horizontal-view">
+                    <div class="psk-keyboard-item flex1" onClick="pressSecurityKey(1);">1</div>
+                    <div class="psk-keyboard-item flex1" onClick="pressSecurityKey(2);">2</div>
+                    <div class="psk-keyboard-item flex1" onClick="pressSecurityKey(3);">3</div>
+                </div>
+                <div class="psk-keyboard-row horizontal-view">
+                    <div class="psk-keyboard-item flex1" onClick="pressSecurityKey(4);">4</div>
+                    <div class="psk-keyboard-item flex1" onClick="pressSecurityKey(5);">5</div>
+                    <div class="psk-keyboard-item flex1" onClick="pressSecurityKey(6);">6</div>
+                </div>
+                <div class="psk-keyboard-row horizontal-view">
+                    <div class="psk-keyboard-item flex1" onClick="pressSecurityKey(7);">7</div>
+                    <div class="psk-keyboard-item flex1" onClick="pressSecurityKey(8);">8</div>
+                    <div class="psk-keyboard-item flex1" onClick="pressSecurityKey(9);">9</div>
+                </div>
+                <div class="psk-keyboard-row horizontal-view">
+                    <div class="psk-keyboard-item flex1 horizontal-view align-items-center justify-content-center" onClick="hideSecurityKeyboard();"><i class="ico-op ico-op-hide"></i></div>
+                    <div class="psk-keyboard-item flex1" onClick="pressSecurityKey(0);">0</div>
+                    <div class="psk-keyboard-item flex1 horizontal-view align-items-center justify-content-center" onClick="deleteOneKey();"><i class="ico-op ico-op-del"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body> 
+</html>
+<script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+            var securityKeyboardModal = {};
+			var immediateOpenFlag=false;
+            if(immediateOpenFlag){
+                openSecurityKeyboardModal();
+            }
+
+            var securityPsdNums = 6;
+
+            var securityPsd = '';
+
+            // 打开密码键盘
+            function openSecurityKeyboardModal(){
+                // 重置密码
+                securityPsd = '';
+                securityKeyboardModal.show();
+            }
+
+            // 关闭密码键盘
+            function closeSecurityKeyboardModal(){
+                securityKeyboardModal.hide();
+            }
+
+            // 点击遮罩关闭键盘
+            function closeSecurityKeyboardByMask(){
+                securityPsd = '';
+                closeSecurityKeyboardModal();
+            };
+
+            // 阻止单击事件冒泡
+            function stopBubble(event){
+                event.stopPropagation();
+            }
+
+            // 删除一个密码
+            function deleteOneKey(){
+                if(securityPsd){
+                    securityPsd = securityPsd.substr(0,securityPsd.length - 1);
+                }
+            };
+
+            // 键盘按键事件
+           function pressSecurityKey(key){
+		        
+                if(securityPsd.length < securityPsdNums){ 
+                    securityPsd += String(key);
+					console.log(securityPsd); 
+					var arr = document.getElementsByClassName("psd-item");
+					for(i=0;i<securityPsd.length;i++){
+					   arr[i].classList.add("active");
+					} 
+					if(securityPsd.length >= securityPsdNums){ 
+                        //closeSecurityKeyboardModal();
+						securityPsd='';
+                        typeof callback === 'function' && callback($scope.securityPsd);
+                    }
+                } else {
+                        closeSecurityKeyboardModal();
+                    typeof callback === 'function' && callback($scope.securityPsd);
+                }
+            };
+
+            // 收起键盘
+            function hideSecurityKeyboard(){
+                securityKeyboardModal.hide();
+            };
+
+            // 监听
+           /* $scope.$on('$destroy', () => {
+                $scope.securityKeyboardModal.remove();
+            });  */  
+</script>    

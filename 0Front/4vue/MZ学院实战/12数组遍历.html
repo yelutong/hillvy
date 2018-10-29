@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue</title>
+<script src="vue.min.js"></script> 
+<style type="text/css">
+.col{color:blue;}
+.isB{font-weight: bold;}
+.C3{font-size: 24px}
+</style>
+</head>
+<body>
+
+<div id="app">  
+	
+	 <div :class="[class1,{isB:ok}]" :style="{textIndent:B+'em',float:R}" >a:{{ a }},b:{{b}}</div>
+     <template v-if="okc">
+     <p :class="[class1,isB ? isB : classC]">{{ fullname }}</p>
+     </template>
+     <p :style="[sobj]" v-show="okc">娃哈哈</p><!--如果okc为假 不显示 -->
+     <p v-for="ar in arr">{{ ar }}</p>
+</div>
+
+<script>   
+window.onload=function(){ 
+	const vm=new Vue({
+	  el: '#app',
+	  data:{
+	  	a:21,
+	  	firstname:"wei",
+	  	lastname:"海涛",
+	  	class1:"col",
+	  	classC:"C3",
+	  	isB:'',
+	  	ok:true,
+	  	okc:false,
+	  	arr:["a","b","c","d","e","f","g"],
+	  	B:"2",
+	  	R:"right",
+	  	sobj:{
+	  		transform:'rotate(45deg)',
+	  		width:'100px',
+	  		height:'20px'
+	  	}
+	  },
+	  computed:{
+			b:function(){
+			   return this.a+21;//里面的this指代vm
+			},
+			fullname:{
+              get:function(){
+                 return this.firstname+ " "+this.lastname;
+              },
+              set:function(fullname){
+                 var names=fullname.split(" ");
+                 this.firstname=names[0];
+                 this.lastname=names[names.length-1];
+              }
+
+			}
+	  }
+
+	});
+
+	setTimeout(function(){
+        Vue.set(vm.arr,0,"魏海涛");//设置第一个数组的值
+        vm.arr.splice(4);//删除数组索引4以后的值
+		vm.a=2;
+		vm.fullname="Hillvy Hitao";
+	},2000)
+}	
+
+</script>
+</body>
+</html>

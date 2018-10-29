@@ -1,0 +1,173 @@
+﻿var b = new Date(); //获取当前时间 
+
+b.getTime() //获取时间戳 
+b.getFullYear() //获取年份 
+b.getMonth()+1; //获取月份 
+b.getDate() //获取天 
+b.getHours() //获取小时 
+b.getMinutes() //获取分钟 
+b.getSeconds() //获取秒数 
+b.getDay() //获取星期几 
+b.getMilliseconds() //获取毫秒
+2.递归
+公园里有一堆桃子，猴子每天吃掉一半，挑出一个坏的扔掉，第6天的时候发现还剩1个桃子，问原来有多少个桃子 
+var sl; 
+function shuliang (n) { 
+    if(n==6) { 
+         sl=1; 
+    }else{ 
+           sl=(shuliang(n+1)+1)*2; 
+   } 
+           return sl; 
+    } 
+   alert( shuliang(0));//190
+1.箭头函数
+ //例如： 
+    [1,2,3].map(x => x + 1) 
+    
+//等同于： 
+    [1,2,3].map((function(x){ 
+        return x + 1 
+    }).bind(this))
+
+ 当你的函数有且仅有一个参数的时候，是可以省略掉括号的。当你函数返回有且仅有一个表达式的时候可以省略{} 和 return；例如: 
+
+    var people = name => 'hello' + name
+
+    var people = (name, age) => { 
+        const fullName = 'hello' + name 
+        return fullName 
+    } 
+    //如果缺少()或者{}就会报错
+
+5.更方便的数据访问--解构 
+ES5我们提取对象中的信息形式如下： 
+
+    const people = { 
+        name: 'lux', 
+        age: 20 
+    } 
+    const name = people.name 
+    const age = people.age 
+    console.log(name + ' --- ' + age) 
+是不是觉得很熟悉，没错，在ES6之前我们就是这样获取对象信息的，一个一个获取。现在，解构能让我们从对象或者数组里取出数据存为变量，例如 
+
+    //对象 
+    const people = { 
+        name: 'lux', 
+        age: 20 
+    } 
+    const { name, age } = people 
+    console.log(`${name} --- ${age}`) 
+    //数组 
+    const color = ['red', 'blue'] 
+    const [first, second] = color 
+    console.log(first) //'red' 
+    console.log(second) //'blue'
+6.es6的”…”三个点号功能
+//数组 
+    const number = [1,2,3,4,5] 
+    const [first, ...rest] = number 
+    console.log(rest) //2,3,4,5 
+    //对象 
+    const user = { 
+        username: 'lux', 
+        gender: 'female', 
+        age: 19, 
+        address: 'peking' 
+    } 
+    const { username, ...rest } = user 
+    console.log(rest) //{"address": "peking", "age": 19, "gender": "female" 
+} 
+
+7.import 和 export 
+
+import导入模块、export导出模块 
+
+//全部导入 
+import people from './example' 
+
+//有一种特殊情况，即允许你将整个模块当作单一对象进行导入 
+//该模块的所有导出都会作为对象的属性存在 
+import * as example from "./example.js" 
+console.log(example.name) 
+console.log(example.age) 
+console.log(example.getName()) 
+
+//导入部分 
+import {name, age} from './example' 
+
+// 导出默认, 有且只有一个默认 
+export default App 
+
+// 部分导出 
+export class App extend Component {}; 
+
+3.Promise 
+在promise之前代码过多的回调或者嵌套，可读性差、耦合度高、扩展性低。通过Promise机制，扁平化的代码机构，大大提高了代码可读性；用同步编程的方式来编写异步代码，保存线性的代码逻辑，极大的降低了代码耦合性而提高了程序的可扩展性。 
+说白了就是用同步的方式去写异步代码。 
+
+setTimeout(function() { 
+      console.log(1) 
+    }, 0); 
+    new Promise(function executor(resolve) { 
+      console.log(2); 
+      for( var i=0 ; i<10000 ; i++ ) { 
+        i == 9999 && resolve(); 
+      } 
+      console.log(3); 
+    }).then(function() { 
+      console.log(4); 
+    }); 
+    console.log(5);
+
+//2 3 5 4 1
+
+ resolve，reject，分别表示异步操作执行成功后的回调函数和异步操作执行失败后的回调函数
+
+function runAsync(){ 
+    var p = new Promise(function(resolve, reject){ 
+        //做一些异步操作 
+        setTimeout(function(){ 
+            console.log('执行完成'); 
+            resolve('随便什么数据'); 
+        }, 2000); 
+    }); 
+    return p;            
+}
+
+runAsync().then(function(data){ 
+    console.log(data); 
+    //后面可以用传过来的数据做些其他操作 
+    //...... 
+}); 
+
+打印结果:
+执行完成 
+随便什么数据
+ function getNumber(){ 
+    var p = new Promise(function(resolve, reject){ 
+        //做一些异步操作 
+        setTimeout(function(){ 
+            var num = Math.ceil(Math.random()*10); //生成1-10的随机数 
+            if(num<=5){ 
+                resolve(num); 
+            } 
+            else{ 
+                reject('数字太大了'); 
+            } 
+        }, 2000); 
+    }); 
+    return p;            
+} 
+getNumber() 
+.then(function(data){ 
+    console.log('resolved'); //成功
+    console.log(data); 
+}) 
+.catch(function(reason){ 
+    console.log('rejected'); //失败
+    console.log(reason); 
+});
+
+

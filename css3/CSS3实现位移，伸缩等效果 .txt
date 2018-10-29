@@ -1,0 +1,53 @@
+<style type="text/css">
+div{
+	-webkit-transition:all 0.5s ease;
+	-moz-transition:all 0.5s ease;
+
+	width:100px;
+	height:100px;
+	line-height:100px;
+	text-align:center;
+	background:#ccc;
+	margin-bottom:10px;
+}
+.d1:hover {
+	-webkit-transform:translate(30px, 0);
+	-moz-transform:translate(30px, 0);
+}
+.d2:hover {
+	-webkit-transform:translate(0, 30px);
+	-moz-transform:translate(0, 30px);
+}
+.d3:hover {
+	-webkit-transform:translate(30px, 30px);
+	-moz-transform:translate(30px, 30px);
+}
+.d4:hover {
+	-webkit-transform:skew(30deg, 30deg);
+	-moz-transform:skew(30deg, 30deg);
+}
+.d5:hover {
+	-webkit-transform:rotate(30deg);
+	-moz-transform:rotate(30deg);
+}
+.d6:hover {
+	-webkit-transform:scale(2, 2);
+	-moz-transform:scale(2, 2);
+}
+.d7:hover {
+	height:200px;
+	line-height:200px;
+}
+.d8:hover {
+	width:200px;
+}
+</style>
+<p>动画若不流畅请先刷新一下页面，是代码运行框的程序问题</p>
+<div class="d1">水平移动</div>
+<div class="d2">垂直移动</div>
+<div class="d3">倾斜移动</div>
+<div class="d4">倾斜扭曲</div>
+<div class="d5">旋转</div>
+<div class="d6">缩放</div>
+<div class="d7">高度</div>
+<div class="d8">宽度</div>

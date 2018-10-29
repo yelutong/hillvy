@@ -1,0 +1,14 @@
+1.组件系统是vue.js另一个重要的概念，因为它提供了一种抽象，让我们可以独立复用的小组件来构建大型应用。
+2.实际上，一个典型的用vue.js构建的大型应用将形成一个组件树。
+
+一个假想的例子，看看使用了组件的应用模板是什么样的：
+  <div id="app">
+  <app-nav></app-nav>
+  <app-view>
+   <app-sidebar></app-sidebar>
+   <app-content></app-content>
+  </app-view>
+
+组件系统：
+1.vue.js组件非常类似于自定义元素，它是web组件规范的一部分，其组件语法参考了web组件规范。
+2.组件系统是用vue.js构建大型应用的基础。

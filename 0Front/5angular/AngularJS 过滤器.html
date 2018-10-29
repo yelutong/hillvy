@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script>
+var app=angular.module('myApp', []);
+app.controller('namesCtrl', function($scope) {
+    $scope.names = [
+        {name:'Jani',country:'Norway',time:147256591383,peice:99},
+        {name:'Hege',country:'Sweden',time:137256591383,peice:99.4},
+        {name:'Kai',country:'Denmark',time:146256591383,peice:99.1}
+    ];
+    // 控制器中使用  
+});
+</script>
+</head>
+
+<body>
+currency	格式化数字为货币格式。<br/>
+filter	从数组项中选择一个子集。<br/>
+lowercase	格式化字符串为小写。<br/>
+orderBy	根据某个表达式排列数组。<br/>
+uppercase	格式化字符串为大写。<br/>
+currency(货币)、date(日期)、filter(子串匹配)、json(格式化json对象)、limitTo(限制个数)、lowercase(小写)、uppercase(大写)、number(数字)、orderBy(排序)。
+<div ng-app="myApp" ng-controller="namesCtrl">
+
+<p>输入过滤:</p>
+
+<p><input type="text" ng-model="test"></p>
+
+<ul>
+  <li ng-repeat="x in names | filter:test | orderBy:'country'">
+    {{ (x.name | uppercase) + ', ' +(x.peice | currency) +","+ x.country +','+(x.time | date:"yyyy年MM月dd日 HH:mm:ss")}}
+  </li>
+</ul>
+
+</div>
+
+</body>
+</html>

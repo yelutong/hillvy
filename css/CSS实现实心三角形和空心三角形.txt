@@ -1,0 +1,41 @@
+1.给一个div，宽和高都为0的时候，盒子什么都没有看起来。为空白
+
+2.给一个宽高为0的盒子给一遍像素给100px的上边，下边和右边，
+.jiao{
+  position: relative;
+  //box-sizing: border-box;
+  height: 0px;
+  width: 0px;
+  //border: 10px solid red;
+  border-top: 90px solid red;
+  border-right: 100px solid black;
+  border-bottom: 100px solid blue;
+}
+这样左边没有，就会缩成一个点
+
+这是当把上下边颜色都设置为透明色，就是一个实心定位三角形
+
+
+
+
+.jiao{
+  position: relative;
+  height: 0px;
+  width: 0px;
+  border-top: 90px solid transparent;
+  border-right: 100px solid black;
+  border-bottom: 100px solid transparent;
+}
+
+这样一个实心的三角新就出来了，
+
+空心的三角形呢同理，在当前的三角形后面添加一个一个实心三角形，然后将这个三角形绝对定位到当前三角行的位置切割
+.jiao:after{
+  content: '';
+  position: absolute;
+  top: -89px;
+  left: 2px;
+  border-top: 89px solid transparent;
+  border-right: 99px solid #FFFFFF;
+  border-bottom: 99px solid transparent;
+}

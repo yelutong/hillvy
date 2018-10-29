@@ -1,0 +1,53 @@
+1.从node.js官网下载并安装node，安装过程很简单，一路“下一步”就可以了（傻瓜式安装）。
+安装完成之后，打开命令行工具，输入 node -v，如下图，如果出现相应的版本号，则说明安装成功。
+
+假如安装在d:/nodejs  用cmd命令行进入nodejs下 输入node -v，出现版本号就证明安装成功
+
+2.安装淘宝镜像：在当前nodejs命令行下，输入命令
+npm install -g cnpm --registry=https://registry.npm.taobao.org 
+
+ps.如果报错就降低版本 npm install npm@4.6.1 -g
+3.安装vue-cli脚手架构建工具
+
+在当前nodejs命令行下运行命令 npm install -g vue-cli ，然后等待安装完成。
+
+通过以上三部，我们需要准备的环境和工具都准备好了，接下来就开始使用vue-cli来构建项目
+4.用vue-cli构建项目
+
+要创建项目，首先我们要选定目录，然后再命令行中把目录转到选定的目录。
+在这里，我选择d:/vuejs来存放新建的项目，则我们需要先把目录cd到d:/vuejs，
+在d:/vuejs命令行中运行命令 vue init webpack firstVue   (注：firstVue是自定义名称)
+
+此致环境的搭建基本完成
+
+5.要安装依赖包，首先cd到项目文件夹（firstVue文件夹）
+  然后在d:/vuejs/firstVue下运行命令 cnpm install
+
+6.在d:/vuejs/firstVue下运行项目 npm run dev 
+
+1）安装路由模块和网络请求模块（如果没安装的话）
+cnpm install vue-router --save、cnpm install vue-resource --save
+或者一起安装
+cnpm install vue-router vue-resource --save
+2）安装vue-resource
+npm install vue-resource --save-dev
+
+3）更新最新版本vue
+npm update -g  (安装最新版本npm)
+npm update vue-cli (安装最新版本vue-cli)
+npm view vue-cli (查看全局vue-cli版本)
+4）安装babel-runtime
+cnpm install babel-helpers --save-dev
+
+
+
+npm install  vuex  --save-dev
+npm install  node-sass  --save-dev
+
+1.安装cnpm（https://npm.taobao.org/）
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install --save-dev node-sass
+1.当转到一个新的页面时，定位到最顶端
+npm install vue-scroll-behavior --save
+2.vue-infinite-loading是一个基于vue.js 用在移动端的无限滚动插件
+npm install vue-infinite-loading --save

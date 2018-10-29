@@ -1,0 +1,777 @@
+@media screen and (max-width: 1025px){
+	@font-face{
+	  font-family: 'gothamrounded-book';
+	  src:url('../fonts/GothamRounded-Book.otf');
+	}
+	@font-face{
+	  font-family: 'gothamrounded-light';
+	  src:url('../fonts/gotham-rounded-light.woff.ttf');
+	}
+	@font-face{
+	  font-family: 'Futura';
+	  src:url('../fonts/Futura.ttf');
+	}
+	ul,body,p{
+		padding:0px;
+		margin: 0px;
+		font-family: PingFang SC;
+	}
+	/***********Index************/
+	.MobileIndex{
+		width: 100%;
+		max-width: 1025px;
+		font-size: 1em;
+	}
+	#app::-webkit-scrollbar{
+        display: none;
+    }
+	.MobileIndex .mobileNav{
+		background-color: #000000;
+		color: #ffffff;
+		width: 100%;
+		position: fixed;
+		top:0px;
+		left: 0px;
+		z-index: 9;
+	}
+	.MobileIndex .mobileNav .mainNav{
+		list-style: none;
+		width: 96%;
+		margin: auto;
+	}
+	.MobileIndex .mobileNav .mainNav li{
+		display: inline-block;
+		vertical-align: middle;
+		text-align: center;
+		width: 100%;
+		line-height: 2.8em;
+	}
+	.MobileIndex .mobileNav .mainNav li.left{
+		width: 8%;
+		font-size: 0px;
+	}
+	.MobileIndex .mobileNav .mainNav li.left img{
+		width: 70%;
+	}
+	.MobileIndex .mobileNav .mainNav li.left span{
+		display: block;
+		width: 70%;
+		margin: auto;
+		height: 2px;
+		background-color: #ffffff;
+	}
+	.MobileIndex .mobileNav .mainNav li.left span.middle{
+		margin: 0.3em auto;
+	}
+	.MobileIndex .mobileNav .mainNav li.middle{
+		width: 84%;
+	}
+	.MobileIndex .mobileNav .mainNav li.right{
+		width: 8%;
+		font-size: 0px;
+	}
+	.MobileIndex .mobileNav .mainNav li.right img{
+		width:70%; 
+	}
+	.MobileIndex .IndexTop{
+		background:url(../images/home_bg@2x.png); 
+		background-repeat:no-repeat; 
+		background-size:100% 100%;
+		-moz-background-size:100% 100%;
+		color: #ffffff;
+		margin-top: 2.7em;
+		width: 100%;
+		max-width: 1025px;
+		position: relative;
+	}
+	.mianTop .homeh5_bg img{
+		visibility: hidden;
+		width:100%
+	}
+	.MobileIndex .IndexTop .mianTop{
+		overflow: hidden;
+	}
+	.MobileIndex .IndexTop .ojk{
+        position: absolute;
+	    bottom: -18.7%;
+	    left: 3%;
+	    width: 45%;
+	}
+	.MobileIndex .IndexTop .left,.MobileIndex .IndexTop .right{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.MobileIndex .IndexTop .left{
+		width: 68%;
+		position: absolute;
+		top:50%;
+		left: 0;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+	} 
+	.MobileIndex .IndexTop .left p{
+		width: 90%;
+		margin: auto;
+	}
+	.MobileIndex .IndexTop .left .title{
+		font-weight: bold;
+		font-size: 1em;
+		white-space: nowrap;
+		font-family: Futura, Century Gothic, AppleGothic, sans-serif;
+	}
+	.MobileIndex .IndexTop .left .slogan{
+		font-family: gothamrounded-light;
+		color: #ffffff;
+		opacity:0.8;
+		font-size: 0.8em;
+		margin-top: 1em;
+	}
+	.MobileIndex .IndexTop .right{
+		width: 32%;
+		font-size: 0px;
+	}
+	.MobileIndex .IndexTop .right img{
+		width: 90%;
+		margin: auto;
+		margin-top: 10%;
+	}
+	.MobileIndex .mainErea{
+		overflow:hidden;
+		background-color: #F6F6F6;
+	}
+	.MobileIndex .mainErea .titles{
+		font-family: Futura, Century Gothic, AppleGothic, sans-serif;
+		font-weight: bold;
+		color: #212529;
+		font-size: 1.2em;
+		text-align: center;
+		margin-top: 1em;
+		position: relative;
+	}
+	.MobileIndex .mainErea .titles:after{
+		content: '';
+		display: block;
+		position: absolute;
+		width: 1em;
+		height: 2px;
+		bottom: -0.5em;
+		left: 50%;
+		margin-left: -0.5em;
+		background-color: #42B2FD;
+	}
+	.MobileIndex .mainErea .mobild-swiper-container .box{
+		width: 100%;
+		margin: auto;
+		box-shadow:0px 5px 25px 0px rgba(90,97,105,0.1),0px 12px 15px 0px rgba(90,97,105,0.1),0px 1px 5px 0px rgba(90,97,105,0.12),0px 1px 1px 0px rgba(90,97,105,0.11);
+		border-radius:12px;
+		padding: 18% 8% 20% 8%;
+		font-family: gothamrounded-book;
+		color:#212529;
+		box-sizing: border-box;
+		transition: all 0.5s;
+		-moz-transition: all 0.5s;
+		-webkit-transition: all 0.5s;
+		line-height: 1.1em;
+		font-size: 1.1em;
+	}
+	.MobileIndex .mainErea .advantageDesc{
+		font-family: gothamrounded-light;
+		color: #5A6169;
+		font-size: 0.9em;
+		line-height: 1.2em;
+		margin-top: 12%;
+	}
+	.mainIndex .swiper-slide .box{
+		-webkit-transform: scale(0.8,0.8)!important;
+		-moz-transform: scale(0.8,0.8)!important;
+		transform: scale(0.8,0.8)!important;
+	}
+	.mainIndex .swiper-slide.swiper-slide-active .box{
+	    -webkit-transform: scale(1,1)!important;
+		-moz-transform: scale(1,1)!important;
+		transform: scale(1,1)!important;
+	}
+	.mobild-swiper-container .box img{
+		margin-bottom: 15%;
+	}
+	.mobild-swiper-container .box .advantage1{
+		width: 35%;
+		margin-top: 12%;
+	}
+	.mobild-swiper-container .box .advantage2{
+		width: 82%;
+		margin-top: 5%;
+	}
+	.mobild-swiper-container .box .advantage3{
+		width: 50%;
+	}
+	.mobild-swiper-container {
+	  width: 68%;
+	  text-align: center;
+	}
+	.pagination {
+	  margin-top: 1em;
+	  position: relative;
+	}
+	.swiper-pagination-switch {
+	  display: inline-block;
+	  border-radius: 50%;
+	  margin-right: 8px;
+	  opacity: 0.8;
+	  cursor: pointer;
+	  display: inline-block;
+	  vertical-align: middle;
+	}
+	.mainIndex .swiper-pagination-switch{
+		background: #BFC8CE;
+		width: 7px;
+	  	height: 7px;
+	}
+	.mainIndex .swiper-active-switch{
+		background: #42B2FD;
+		width: 9px;
+	  	height: 9px;
+	}
+	.Loan .swiper-pagination-switch{
+		background: #D8D8D8;
+		width: 9px;
+	  	height: 9px;
+	}
+	.Loan .swiper-active-switch{
+		background: #F2C146;
+		width: 9px;
+	  	height: 9px;
+	}
+	/* ===============================================================
+	Basic Swiper Styles 
+	================================================================*/
+	.mobild-swiper-container {
+		margin:2em auto;
+		position:relative;
+		direction:ltr;
+		-webkit-backface-visibility:hidden;
+		-moz-backface-visibility:hidden;
+		-ms-backface-visibility:hidden;
+		-o-backface-visibility:hidden;
+		backface-visibility:hidden;
+		/* Fix of Webkit flickering */
+		z-index:1;
+	}
+	.MobileIndex .bottom{
+		width: 100%;
+		background-color: #212529;
+		color: rgba(255,255,255,0.5);
+	}
+	.MobileIndex .bottom .titles{
+		color: #ffffff;
+	}
+	.MobileIndex .bottom .main{
+		list-style: none;
+		font-size: 0.9em;
+		width: 98%;
+		margin: 1em auto 0em auto;
+	}
+	.MobileIndex .bottom .main{
+		font-family: gothamrounded-book;
+		display: inline-block;
+		vertical-align: top;
+		box-sizing: border-box;
+		padding-left: 2%;
+		font-size: 0.8em;
+		line-height: 1.45em;
+	}
+	.MobileIndex .bottom p.shareIcon{
+		text-align: left;
+		margin-top: 0.35em!important;
+	}
+	.MobileIndex .bottom .shareIcon img{
+		width: 9%;
+	}
+	.MobileIndex .bottom .main .t{
+		font-weight: bold;
+		font-size: 1.1em;
+		margin-bottom: 0.5em;
+		font-family: gothamrounded-book;
+		font-weight: bold;
+	}
+	.MobileIndex .bottom .main p{
+		margin-top: 0em;
+	}
+	.MobileIndex .bottom .main p a{
+		color: rgba(255,255,255,0.5);
+		text-decoration: none;
+	}
+	.MobileIndex .bottom .main.bottomLeft{
+		width: 60%;
+	}
+	.MobileIndex .bottom .main p{
+		width: 90%;
+	}
+	.MobileIndex .bottom .copyRight{
+		color: #868E96;
+		font-family: gothamrounded-book;
+		font-size: 0.7em;
+		background-color: #fff;
+		text-align: center;
+		padding: 2em 4%;
+	}
+	.MobileIndex .bottom .phoneBottom span{
+		display: inline-block;
+		vertical-align: top;
+	}
+	.MobileIndex .bottom .phoneBottom .phoneL{
+		width: 3.6em;
+	}
+	.MobileIndex .bottom .phoneBottom .phoneR{
+		width: 80%;
+	}
+	.MobileIndex .bottom .phoneBottom .phoneR a{
+		display: block;
+	}
+
+	/***********loan*************/
+	.MobileIndex .Loan{
+		font-family: Futura, Century Gothic, AppleGothic, sans-serif;
+	}
+	.MobileIndex .Loan .topBanner{
+		background-color: rgba(33,37,41,0.3);
+		color: #ffffff;
+		font-size: 1.3em;
+		line-height: 1.4em;	
+		margin-top: 2.1em;
+		text-align: center;
+		overflow: hidden;
+		position: relative;
+		font-weight: bold;
+		padding: 19% 0px;
+	}
+	.MobileIndex .Loan .loanTopBg{
+		position: absolute;
+		top:0px;
+		left: 0px;
+		width: 100%;
+		z-index: -1;
+	}
+	.MobileIndex .Loan .chooseAmount{
+		background-color: #F6F6F6;
+		padding: 4%;
+		box-sizing: border-box;
+	}
+	.MobileIndex .Loan .chooseAmount .main{
+		background-color: #ffffff;
+		width: 100%;
+		box-sizing: border-box;
+		padding:12% 6%;
+		text-align: center;
+	}
+	.User_ratings .ratings_bars{
+		width: 94%;
+		margin: auto;
+	}
+	.grade_warp{
+		margin-bottom: 3em;
+	}
+	.MobileIndex .Loan .chooseAmount .main .title{
+		font-size: 0.85em;
+		line-height: 1em;
+		font-family: gothamrounded-book;
+		color: #5A6169;
+	}
+	.MobileIndex .Loan .chooseAmount .main .mobileApplyAmount{
+		font-size: 1.7em;
+		line-height: 1.7em;
+		margin: 0.4em 0em 1em 0em;
+		font-weight: bold;
+		color: #212529;
+	}
+	.MobileIndex .Loan .chooseTerm{
+		list-style: none;
+		margin-top: 1em;
+		position: relative;
+	}
+	.MobileIndex .Loan .chooseTerm:after{
+		content: '';
+		display: block;
+		position: absolute;
+		height: 1px;
+		width: 80%;
+		background-color: rgba(66,178,253,0.2);
+		bottom: -2em;
+		left: 10%;
+	}
+	.MobileIndex .Loan .chooseTerm li{
+		display: inline-block;
+		background-color: #DCF1FE;
+		color: #ABB9C7;
+		width: 38%;
+		padding: 0.3em 0em;
+		cursor: pointer;
+	}
+	.MobileIndex .Loan .chooseTerm li:last-child{
+		margin-left: 10%;
+	}
+	.MobileIndex .Loan .chooseTerm li.active{
+		background-color: #42B2FD;
+		color: #ffffff;
+	}
+	.MobileIndex .Loan .chooseTerm li p.term{
+		font-weight: bold;
+		font-size: 1em;
+		line-height: 1.4em;
+	}
+	.MobileIndex .Loan .chooseTerm li p.day{
+		font-family: gothamrounded-light;
+		font-size: 0.8em;
+		line-height: 0.8em;
+	}
+	.MobileIndex .Loan .down{
+		background-color: #42B2FD;
+		color: #ffffff;
+		font-size: 1em;
+		line-height: 1.2em;
+		padding: 0.6em 0em;
+		width: 55%;
+		margin: auto;
+		margin-top: 4em;
+	}
+	.MobileIndex .howToApply{
+		background-color: #ffffff;
+	}
+	.MobileIndex .howToApply .mobild-swiper-container{
+		width: 100%;
+		overflow: hidden;
+		margin-top: 0px;
+		position: relative;
+	}
+	.MobileIndex .howToApply .swiper-slide{
+		position: relative;
+		overflow: hidden;
+	}
+	.MobileIndex .howToApply .swiper-slide:after{
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: 0%;
+		background-color: #ffffff;
+		left: -10%;
+		height: 28%;
+		width: 120%;
+		transform:rotate(7deg);
+		z-index: 1;
+		box-shadow:0px -3px 10px 0px rgba(0,0,0,0.05);
+	}
+	.MobileIndex .howToApply .swiper-slide .phone{
+		width: 95%;
+	}
+	.MobileIndex .howToApply .swiper-slide .phoneImg{
+		position: absolute;
+		width: 55%;
+    	top: 17%;
+    	left: 23%;
+	}
+	.MobileIndex .howToApply .swiper-slide .phoneCover{
+		width: 80%;
+		margin: auto;
+		position: absolute;
+		top: 35%;
+		left: 10%;
+	}
+	.MobileIndex .howToApply .pagination{
+		margin-top: -40%!important;
+    	position: absolute;
+    	width: 100%;
+    	z-index: 6;
+	}
+	.MobileIndex .howToApply .text{
+		position: relative;
+		z-index: 8;
+		width: 90%;
+		margin: auto;
+	    margin-top: -30%;
+	    color: #868E96;
+	    font-family: PingFang SC;
+	    font-size: 0.8em;
+	    line-height: 1.4em;
+	}
+	.MobileIndex .howToApply .text .phoneTitle{
+		color: #212529;
+		font-size: 1.3em!important;
+		line-height: 1.3em!important;
+	}
+	.MobileIndex .applyMember{
+		background-color: #ffffff;
+		text-align: center;
+		position: relative;
+		font-family: gothamrounded-book;
+	}
+	.MobileIndex .applyMember:before{
+		position: absolute;
+		content: '';
+		display: block;
+		background-color: #F6F6F6;
+		width: 100%;
+		height: 2.5%;
+		left: 0px;
+	}
+	.MobileIndex .applyMember .titles{
+		width: 90%;
+		margin: 2em auto 0em auto;
+	}
+	.MobileIndex .applyMember .applyImg{
+		width: 100%;
+		margin-top:3em;
+	}
+	.MobileIndex .applyMember ul{
+		list-style: none;
+		padding: 2em 0em;
+	}
+	.MobileIndex .applyMember ul li{
+		display: inline-block;
+		width: 33.3%;
+		text-align: center;
+		color: #212529;
+		font-size: 0.9em;
+		line-height: 1.2em;
+		vertical-align: top;
+	}
+
+	/***********intro***********/
+	.MobileIndex .intro{
+		background-color: #F6F6F6;
+		margin-top:2.7em;
+		font-family: gothamrounded-light;
+		padding-bottom: 5%;
+	}
+	.MobileIndex .intro .ojbk{
+		font-size: 0.7em;
+		position: relative;
+		margin-top: 4em;
+	}
+	.MobileIndex .intro .ojbk span{
+		position: absolute;
+		top:-1.6em;
+		line-height: 1.2em;
+		left: 0px;
+		font-family: 'Microsoft YaHei';
+	}
+	.MobileIndex .intro .main{
+		width: 94%;
+		margin: auto;
+		background-color: #ffffff;
+		border-radius: 10px;
+		font-size: 0.9em;
+		color: #5A6169;
+		line-height: 1.5em;
+		box-sizing: border-box;
+		padding: 5%;
+		margin: 4% auto;
+		box-shadow:0px 4px 22px 0px rgba(90,97,105,0.1),0px 10px 13px 0px rgba(90,97,105,0.1),0px 1px 4px 0px rgba(90,97,105,0.12),0px 1px 1px 0px rgba(90,97,105,0.11);
+	}
+	.MobileIndex .intro .main p{
+		margin-top: 0.5em;
+		font-family: gothamrounded-light;
+	}
+	.MobileIndex .intro .title{
+		font-family: Futura, Century Gothic, AppleGothic, sans-serif!important;
+		font-weight: bold;
+		font-size: 1.2em!important;
+		color: #5A6169!important;
+		line-height: 1.3em!important;
+		text-align: center;
+		margin: 4% 0%;
+	}
+	.MobileIndex .intro img{
+		width: 100%;
+	}
+	.MobileIndex .intro .yellowTitle{
+		color: #F2C146;
+		font-weight: bold;
+		padding-left: 4%;
+		margin: 5% 0%;
+		font-size: 1.25em;
+		line-height: 1.4em;
+		font-family: PingFang SC;
+	}
+	.MobileIndex .intro .announce{
+		list-style: none;
+		margin: auto;
+	}
+	.MobileIndex .intro .announce li{
+		position: relative;
+	}
+	.MobileIndex .intro .announce li:after{
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		width: 100%;
+		height: 1px;
+		background-color: #f2f2f2;
+	}
+	.MobileIndex .intro .announce li p{
+		display: inline-block;
+		vertical-align: middle;
+		line-height: 2.5em;
+	}
+	.MobileIndex .intro .announce li p.name{
+		width: 70%;
+		overflow: hidden;
+		white-space: nowrap;
+	    text-overflow: ellipsis;
+		color: #528AB7;
+		font-size: 1.1em;
+		position: relative;
+		box-sizing: border-box;
+		padding-left: 0.5em;
+	}
+	.MobileIndex .helpCenter .announce li p.name{
+		line-height: 2.8em;
+	}
+	.MobileIndex .helpCenter .announce li p{
+		margin-top: 0px!important;
+		line-height: 1.4em;
+	}
+	.MobileIndex .intro .announce li p.name:before{
+		content: '';
+		position: absolute;
+		display: block;
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+		background-color: #17C671;
+	    top: 1em;
+    	left: 0em;
+	}
+	.MobileIndex .intro .announce li p.time{
+		width: 30%;
+		text-align: right;
+		font-size: 0.7em;
+		line-height: 2em;
+		color: #999999;
+		font-family: PingFang SC;
+	}
+	.MobileIndex .intro .announce li .detail p{
+		line-height: 1.3em!important;
+	}
+	/**********helpCenter*********/
+	.MobileIndex .helpCenter .showItem p{
+		display: block;
+		width: 100%!important;
+	}
+	.MobileIndex .helpCenter .showItem .name{
+		font-weight: bold;
+		padding-left: 0px!important;
+		line-height: 1.2em;
+	}
+	.MobileIndex .helpCenter .announce .showItem p.name:before{
+		display: none!important;
+	}
+	.MobileIndex .helpCenter .showItem .detailTitle{
+		color: #528AB7!important;
+		line-height: 1em!important;
+		padding-bottom: 1em;
+	}
+
+
+	/******下拉遮盖层******/
+	.mobileNav .moreNav{
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		left: 0px;
+		top:0px;
+		background-color: #000000;
+		z-index: 99;
+		font-family: PingFang SC;
+	}
+	.mobileNav .moreNav .close div{
+		transform:rotate(45deg);
+		transform-origin:50% 50%;
+	}
+	.mobileNav .moreNav .close span:first-child{
+		transform:rotate(0deg);
+		transform-origin:50% 1px;
+	}
+	.mobileNav .moreNav .close span:last-child{
+		transform:rotate(90deg);
+		transform-origin:50% 1px;
+		margin-top: -1px!important;
+	}
+	.mobileNav .moreNav .navTitle{
+		color: #ffffff;
+		font-size: 1.2em;
+		position: relative;
+		padding-left: 4%;
+	}
+	.mobileNav .moreNav .navTitle:after{
+		content: '';
+		display: block;
+		position: absolute;
+		height: 0px;
+		width: 96%;
+		border-bottom: 1px solid rgba(255,255,255,0.4);
+		bottom: 0px;
+		left: 2%;
+	}
+	.mobileNav .moreNav .navTitle:bafore{
+
+	}
+	.mobileNav .moreNav .navTitle .name{
+		line-height: 2.8em;
+	}
+	.mobileNav .moreNav .navTitle .hasSec{
+		position: relative;
+	}
+	.mobileNav .moreNav .navTitle .hasSec:before{
+		content: '';
+		display: block;
+		position: absolute;
+		background: url('../images/moreMenu.png');
+		background-size: cover;
+		width: 0.8em;
+		height: 0.8em;
+		bottom: 1em;
+		right: 1em;
+		transition: all 0.2s;
+		-moz-transition: all 0.2s;
+		-webkit-transition: all 0.2s;
+	}
+	.mobileNav .moreNav .navTitle .active:before{
+		transform:rotate(45deg);
+	}
+	.mobileNav .moreNav .sec{
+		line-height: 2.3em;
+		font-size: 0.8em;
+		padding-left: 1.5em;
+	}
+	.mobileNav .moreNav .link{
+		color: #ffffff!important;
+		text-decoration: none;
+		display: block;
+	}
+	.mobileNav .moreNav .sec .link{
+		opacity:0.8;
+	}
+	.mainNav .close{
+		margin-top: 1em;
+	}
+	.mobileNav .moreNav .mobildlan{
+		height: 2.8em;
+		line-height: 2.8em;
+	}
+	.mobileNav .moreNav .mobildlan img{
+		width: 2em;
+		vertical-align: middle;
+		margin-right: 0.5em;
+	}
+	.mobileNav .moreNav .language img{
+		vertical-align: middle;
+		width: 1.4em;
+	}
+	.mobileNav .moreNav .language span{
+		color: #ffffff;
+		opacity: 0.8;
+		margin-left: 0.5em;
+	}
+}

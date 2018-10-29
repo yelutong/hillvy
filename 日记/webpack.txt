@@ -1,0 +1,66 @@
+const path = require('path');
+const htmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');  
+module.exports = {
+    entry :  './src/js/entry.js',//入口文件
+    output : {//输出文件
+        filename : 'src/js/index.[hash:8].js',//输出文件名 .[hash:8]
+        path : __dirname + '/dist',//输出文件路径
+        publicPath: "/"//css中img的路径会出现问题，通过设置publicPath 解决，采用绝对路径
+    }, 
+    mode: 'development',
+    module : {
+        rules: [
+            {
+            	test: /.js$/, 
+            	use: ['babel-loader']
+            },
+            {
+            	test: /.css$/,
+                use: ExtractTextPlugin.extract({
+                  fallback: "style-loader",
+                  use: ['css-loader']
+                }) 
+            },/*解析css, 并把css添加到html的style标签里*/
+            //{test: /.css$/, use: ExtractTextPlugin.extract({fallback: 'style-loader',use: 'css-loader'})},/*解析css, 并把css变成文件通过link标签引入*/
+            {
+            	test: /.(jpg|png|gif|svg)$/, 
+            	use: [{
+            		loader:'url-loader',
+            		options: {
+                         limit: 8192,//8k以下的转义为base64
+                         name:'src/img/[name].[hash:8].[ext]'
+                    }
+            	}]//'url-loader?limit=8192&name=./[name].[ext]'
+            },/*解析图片*/
+            {
+            	test: /.less$/, 
+            	use: ['style-loader', 'css-loader', 'less-loader']
+            },/*解析less, 把less解析成浏览器可以识别的css语言*/
+            {
+                test: /\.html$/,
+                use: 'html-loader',
+            }
+        ]
+    },
+    resolve:{ 
+       extensions: ['.ts', '.tsx', '.jsx', '.js', '*']
+    },
+    plugins: [ 
+        new ExtractTextPlugin({
+            filename: 'src/css/index.[hash:8].css'
+        }),
+        new htmlWebpackPlugin({
+            filename: "index.html",  //打包后的文件名
+            template: path.join(__dirname , "./index.html")  //要打包文件的路径
+        })
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, '/'),  //启动路径
+        host:'localhost',  //域名
+        port: 8888,  //端口号
+    },
+    externals: {
+       "jquery": "jQuery"
+    }
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/vue.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+	<ul>
+		<li v-for="(value,key,index) in object">
+			{{index}}:{{key}}->{{value}}
+			
+		</li>
+	</ul>
+	
+</div>
+
+
+</body>
+</html>
+<script>
+new Vue({
+  el:"#app",
+  data:{
+	object:{
+		name:"wei",
+		age:25,
+		addr:"深圳"	
+	}
+}	
+
+})	
+
+</script>

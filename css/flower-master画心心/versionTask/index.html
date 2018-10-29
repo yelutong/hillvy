@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flower</title>
+</head>
+
+<body>
+    <canvas id="cc" style="width:100%;height:600px;"></canvas>
+    <script type="text/javascript" src="lib/task.min.js"></script>
+    <script type="text/javascript" src="js/flower.js"></script>
+    <script type="text/javascript">
+        var canvas = document.getElementById("cc");
+            
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+        var ctx = canvas.getContext("2d");
+        
+
+        var heart = new Flower.Heart(500, 250, 16,ctx);
+        
+        setTimeout(function(){
+          heart.draw(ctx);    
+        },1500)
+        
+        canvas.addEventListener('click',function(ex){
+            new Flower.Flower(ex.offsetX,ex.offsetY,ctx).draw();
+        });
+    </script>
+</body>
+
+</html>

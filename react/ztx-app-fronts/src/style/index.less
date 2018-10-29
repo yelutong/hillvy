@@ -1,0 +1,748 @@
+@import "base.less";
+@import "ant.less";
+@import "main.less";
+
+#app, body, html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family:PingFang SC, Microsoft YaHei;
+  font-size:1em;
+  margin: auto;
+  color:#333333;
+  background-color: #ffffff;
+  word-wrap: break-word;
+} 
+#app::-webkit-scrollbar {
+    display: none;
+}
+.warningTips{
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 8px;
+  line-height: 1em;
+  padding: 0.5em 0em;
+  width: 14em;
+  position: fixed;
+  text-align: center;
+  left:50%;
+  margin-left: -7em;
+  top:50%;
+  display: none;
+  color: #ffffff;
+}
+p{
+  padding:0em;
+  margin:0em;
+  line-height: 1.2em;
+}
+ul{
+  list-style: none;
+  padding:0em;
+  margin:0em;
+}
+li{
+  display: inline-block;
+}
+.padding20{
+  padding:4%;
+}
+.padding10{
+  padding:3%;
+}
+.marginTop1{
+  margin-top: 1em;
+}
+.align-center{
+  text-align: center;
+}
+
+/******************helpCenter*********************/
+.helpCenter .title{
+  margin:3% 0 0 0;
+  font-size:1.5em;
+  font-weight: bold;
+  padding-bottom: 3%;
+  text-shadow: 0px 0px 0px #333333;
+}
+.headIcon ul{
+  margin-bottom: 4%;
+  -moz-box-sizing: border-box; /*Firefox3.5+*/
+  -webkit-box-sizing: border-box; /*Safari3.2+*/
+  -o-box-sizing: border-box; /*Opera9.6*/
+  -ms-box-sizing: border-box; /*IE8*/
+  padding: 0% 3%;
+}
+.headIcon:after{
+  content: '';
+  display: block;
+  height: 0.9em;
+  background-color: #f6f6f6;
+  width: 100%;
+}
+.headIcon li{
+  width:50%;
+  text-align: center;
+  font-size: 0.88em;
+  vertical-align: top;
+  -moz-box-sizing: border-box; /*Firefox3.5+*/
+  -webkit-box-sizing: border-box; /*Safari3.2+*/
+  -o-box-sizing: border-box; /*Opera9.6*/
+  -ms-box-sizing: border-box; /*IE8*/
+  padding: 2.7% 2.7%;
+}
+.headIcon li a{
+  display: block;
+  width: 100%;
+  margin: auto;
+  -moz-box-sizing: border-box; /*Firefox3.5+*/
+  -webkit-box-sizing: border-box; /*Safari3.2+*/
+  -o-box-sizing: border-box; /*Opera9.6*/
+  -ms-box-sizing: border-box; /*IE8*/
+  padding: 1em 0.5em;
+  /*border: 1px solid rgba(230,233,240,0.5);*/
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px 5px rgba(230,233,240,0.4);
+}
+.headIcon li a.morePadding{
+  padding: 1.55em 0.5em;
+}
+.headIcon .link{
+  color:#333333;
+  text-decoration:none;
+}
+.headIcon .link p{
+  word-wrap: normal;
+}
+.FAQ .link{
+  color:#666666;
+  text-decoration:none;
+}
+.headIcon li img{
+  height:1.7em;
+}
+.headIcon li p{
+  line-height: 1.35em;
+  width: 67%;
+  text-align: left;
+}
+.headIcon li span{
+  width: 33%;
+  height:1.7em;
+  -moz-box-sizing: border-box; /*Firefox3.5+*/
+  -webkit-box-sizing: border-box; /*Safari3.2+*/
+  -o-box-sizing: border-box; /*Opera9.6*/
+  -ms-box-sizing: border-box; /*IE8*/
+  padding-left: 3%;
+  text-align: left;
+  margin-top: -2%;
+}
+.headIcon li span.iconMiddle{
+  padding-left: 1.2%;
+}
+.headIcon li span,.headIcon li p{
+  display: inline-block;
+  vertical-align: middle;
+}
+.FAQ{
+  background-color: #ffffff;
+  margin-bottom: 4.5em;
+}
+.FAQ li{
+  display: block;
+}
+.FAQ .title{
+  font-size:1.2em;
+  font-weight: bold;
+  margin:3% 0% 4% 0%;
+}
+.FAQ .quesTitle{
+  padding:1.2em 0em;
+  line-height: 1.4em;
+  color: #666666;
+  font-size: 0.9em;
+  width: 93%;
+  position: relative;
+}
+.FAQ .quesTitle:after{
+  content: '';
+  display: block;
+  height: 0.6em;
+  width: 0.6em;
+  border-width: 0.15em 0.15em 0em 0em;
+  border-color:#c7c7c7;
+  border-style:solid;
+  transform: rotate(45deg);
+  background-color: #ffffff;
+  position: absolute;
+  right:-7%;
+  top:40%;
+}
+.FAQ .quesTitle span{
+  display: block;
+  width: 85%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.questionDetail{
+  color:#666666;
+}
+.questionDetailT{
+  font-size: 1.1em;
+  color: #333333;
+  font-weight: bold;
+  margin: 0.3em 0em 0.5em 0em;
+  line-height: 1.5em;
+}
+.descriptionText p img{
+  height: 1em;
+}
+.descriptionText p a{
+  text-decoration: none;
+}
+.descriptionText{
+  line-height: 1.5em;
+}
+
+/*how to pay*/
+.howToPay{
+  background-color: #ffffff;
+  width:92%;
+  margin:auto;
+  position: relative;
+}
+.line.howToPay:after{
+  position: absolute;
+  bottom: 0em;
+  content: '';
+  display: block;
+  border-bottom: 1px solid #E5E5E5;
+  height: 0em;
+  width: 100%;
+}
+.mainHowToPay{
+  margin-top: 2em;
+}
+.mainHowToPay .mgErea{
+  height:1em;
+  width: 100%;
+  background-color: #f6f6f6;
+}
+.howToPay .payQuestion{
+  margin:0.6em auto 1em auto;
+}
+.howToPay .title{
+  font-size: 1.05em;
+  color:#333333;
+  font-weight: bold;
+  margin-bottom: 0.6em;
+  line-height: 1.1em;
+}
+.howToPay .desc{
+  font-size: 0.8em;
+  color:#666666;
+  line-height: 1.4em;
+}
+.howToPay .desc .left,.howToPay .desc .right{
+  display: inline-block;
+  vertical-align: top;
+}
+.howToPay .desc .left{
+  width:5%;
+}
+.howToPay .desc .right{
+  width:94%;
+}
+.swiper-container img{
+  width: 82%;
+}
+.preView img{
+  width: 100%;
+}
+.mainHowToPay .pinch-zoom-container{
+  overflow: visible!important;
+}
+/*.mainHowToPay .swiper-zoom-container{
+  height:auto!important;
+}*/
+.mainHowToPay .preView{
+  overflow: hidden;
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  display: none;
+  height:100%;
+  top:-16%;
+}
+.mainHowToPay .swiper-slide{
+  padding-bottom: 0.8em;
+}
+.preView .swiper-wrapper{
+  z-index:99;
+}
+.mainHowToPay .grayBg{
+  background-color: rgba(0,0,0,1);
+  position: fixed;
+  width: 100%;
+  height:100%;
+  z-index: 2;
+  top:0;
+  left: 0;
+  display: none;
+}
+.swiper-container.swiper-container-horizontal>.swiper-pagination-bullets{
+  top: 64%!important;
+}
+.preView.swiper-container-horizontal>.swiper-pagination-bullets{
+  bottom: 23%!important;
+  position: absolute;
+  text-align: center;
+}
+.swiper-container .swiper-pagination-bullet-active.swiper-pagination-bullet{
+  background-color: rgba(95,107,108,1)!important;
+}
+.swiper-container .swiper-pagination-bullet{
+  background-color: rgba(95,107,108,0.7)!important;
+}
+.preView .swiper-pagination-bullet-active.swiper-pagination-bullet{
+  background-color: rgba(250,250,250,1)!important;
+}
+.preView .swiper-pagination-bullet{
+  background-color: rgba(250,250,250,0.5)!important;
+}
+.mainHowToPay .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
+  margin: 0 2px;
+}
+.mainHowToPay .swiper-slide{
+  z-index: 99;
+}
+.mainHowToPay .slipeDesc{
+  text-align: center;
+  width: 96%;
+  margin: auto;
+  margin-top: 1.3em;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+.swiper-container .slipeDesc{
+  color:#666666;
+}
+.preView .slipeDesc{
+  color:#ffffff;
+  margin-top: -5.8em;
+  font-size: 0.9em;
+}
+
+/*aboutUs*/
+.aboutUs{
+  background-color: #ffffff;
+}
+.aboutUs .firstTitle{
+  font-weight: bold;
+  color:#333333;
+  font-size: 1.2em;
+  padding-left: 0.8em;
+  position: relative;
+  line-height: 1em;
+  height:1em;
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+}
+.aboutUs .firstTitle:before{
+  display: block;
+  content: '';
+  position: absolute;
+  top:0px;
+  left:0px;
+  background-color: #FBCB58;
+  width: 3px;
+  height: 0.8em;
+  margin-top: 0.025em;
+}
+.aboutUs .mainDesc{
+  color: #666666;
+  font-size: 1em;
+  line-height: 1.4em;
+}
+.aboutUs .secondTitle{
+  color:#508CEE;
+  font-size: 1em;
+  line-height: 1.4em;
+}
+.aboutUs .thisFeatures{
+  margin-bottom: 1.4em;
+}
+.aboutUs .companyIntro .mainDesc{
+  margin-bottom: 1em;
+}
+.aboutUs .companyIntro{
+  padding-top: 9%;
+  position: relative;
+  padding-bottom: 5%;
+  border-bottom: 1px solid #f1f1f1;
+}
+.aboutUs .companyIntro:before{
+  content: '';
+  display:block;
+  height: 1em;
+  position: absolute;
+  background-color: #f6f6f6;
+  top: 0%;
+  left: -4%;
+  width: 108%;
+}
+.aboutUs .productIntro{
+  padding-bottom: 1em;
+}
+.aboutUs .productIntro,.aboutUs .companyIntro{
+  margin: 0% 4%;
+}
+.aboutUs .aboutUsImg{
+  width: 100%;
+}
+.aboutUs .bottomLogo{
+  width: 78%;
+  display: block;
+  margin: auto;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+/***************privacyService************/
+.privacyService{
+  font-size: 0.8em;
+  line-height: 1.2em;
+  color: #666666;
+  min-width: 300px;
+}
+.privacyService .firstTitle{
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 1.4em;
+  color: #333333;
+  margin-top: 0.5em;
+}
+.privacyService .secondTitle{
+  text-align: center;
+  margin-top: 0.3em;
+  line-height: 1.2em;
+}
+.privacyService .serviceDetail{
+  margin-top: 2%;
+}
+.privacyService .serviceDetail p{
+  margin-top: 2%;
+}
+.privacyService .serviceDetail div .num,.privacyService .serviceDetail div .text,.privacyService .serviceDetail div .argument{
+  display:inline-block;
+  vertical-align: top;
+}
+.privacyService .textRight .lastNum{
+  display: block;
+}
+.privacyService .serviceDetail .textRight .num{
+  width: 11%;
+}
+.privacyService .serviceDetail .textRight .text{
+  width: 89%;
+}
+.privacyService .serviceDetail .textRight .lastNum .num{
+  width: 6%;
+}
+.privacyService .serviceDetail .textRight .lastNum .text{
+  width: 94%;
+}
+.privacyService .serviceDetail .secondNum .num{
+  width: 8%;
+  letter-spacing: -1px;
+}
+.privacyService .serviceDetail .secondNum .text{
+  width: 92%;
+}
+.privacyService .serviceDetail .lendingAgreement .secondNum .num{
+  width: 5%!important;
+  letter-spacing: -1px;
+}
+.privacyService .serviceDetail .lendingAgreement .secondNum .text{
+  width: 95%!important;
+}
+.privacyService .serviceDetail .threeEara .secondNum .num{
+  width: 8%;
+  letter-spacing: -1px;
+}
+.privacyService .serviceDetail .threeEara .secondNum .text{
+  width: 62%;
+}
+.privacyService .serviceDetail .threeEara .secondNum .argument{
+  width: 30%;
+}
+.privacyService .serviceDetail .lessNum .num{
+  width: 6%;
+}
+.privacyService .serviceDetail div .num{
+  width: 8%;
+}
+.privacyService .serviceDetail div .text{
+  width: 92%;
+}
+.privacyService .serviceDetail .lessNum .text{
+  width: 94%;
+}
+.privacyService .serviceDetail p .numDouble{
+  width: 8%;
+}
+.privacyService .serviceDetail p .textDouble{
+  width: 92%;
+}
+.privacyService .serviceDetail div .textRight{
+  padding-left: 8%;
+  margin: 2% 0%;
+  display: block;
+}
+.privacyService .serviceDetail div .lessLeft{
+  padding-left: 6%;
+}
+.privacyService .thirstTitle{
+  margin: 0% 0% 2% 0%;
+  color: #333333;
+}
+.privacyService b{
+  color: #000000;
+}
+.privacyService .topest{
+  text-align: center;
+}
+.privacyService .valueKey .left,.privacyService .valueKey .right{
+  display: inline-block;
+  vertical-align: top;
+}
+.privacyService .valueKey .left{
+  width: 16%;
+}
+.privacyService .valueKey .right{
+  width: 84%;
+}
+.privacyService .bottomEare{
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+.privacyService .bottomEare .key{
+  margin-bottom: 1em;
+}
+.privacyService .bottomEare .left,.bottomEare .right{
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+}
+.privacyService .bottomEare .left{
+  text-align: left;
+  padding-right: 1%;
+}
+.privacyService .bottomEare .right{
+  text-align: right;
+  padding-left: 1%;
+}
+.privacyService .form{
+  border: 1px solid #e2e2e2;
+  margin-bottom: 2em;
+}
+.privacyService .form ul{
+  padding: 0px;
+  margin: 0px;
+  white-space: nowrap;
+  border-bottom: 1px solid #e2e2e2;
+}
+.privacyService .form ul:last-child{
+  border-bottom: none;
+}
+.privacyService .form ul li{
+  display: inline-block;
+  width: 49%;
+  white-space: normal;
+  vertical-align: top;
+  padding-left: 1%;
+}
+.privacyService .form ul li:first-child{
+  border-right: 1px solid #e2e2e2;
+}
+
+/***************notification**************/
+.notification .nav{
+  border-bottom: 1px solid #f2f2f2;
+  position: fixed;
+  top:0px;
+  left:0px;
+  width: 100%;
+  background-color: #ffffff;
+}
+.notification .nav li{
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  color: #999999;
+  line-height: 2.8em;
+  height: 2.8em;
+}
+.notification .nav li.active{
+  color: #333333;
+  font-weight: bold;
+}
+.notification .nav li span{
+  position: relative;
+  display: inline-block;
+}
+.notification .nav li.active span:after{
+  content: '';
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background-color: #FBCB58;
+}
+.notification .Pengumuman .product img,.notification .Peringatan .product img{
+  width: 56%;
+}
+.notification .Pengumuman .product li,.notification .Peringatan .product li{
+  vertical-align: middle;
+}
+.notification .Pengumuman .product,.notification .Peringatan .product{
+  background-color: #F8F8F8;
+  margin-top: 2.8em;
+}
+.notification .Pengumuman .product .left,.notification .Peringatan .product .left{
+  width: 19%;
+  text-align: center;
+  font-size: 0px;
+}
+.notification .Pengumuman .product .right,.notification .Peringatan .product .right{
+  width: 81%;
+  overflow: hidden;
+  display: inline-block;
+  padding:1.2em 0em 1em 0em;
+  border-bottom: 1px solid #e8e8e8;
+}
+.notification .Pengumuman .product .time,.notification .Peringatan .product .time{
+  color:#999999;
+  font-size: 0.8em;
+  margin-bottom: 0.35em;
+}
+.notification .Pengumuman .product .title,.notification .Peringatan .product .title{
+  color:#333333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 90%;
+}
+.notification .tips{
+  position: fixed;
+  bottom: 1em;
+  text-align: center;
+  width: 40%;
+  left:30%;
+  font-size: 0.75em;
+  color: #999999;
+}
+.notification .none{
+  position: fixed;
+  top:35%;
+  width: 30%;
+  left: 35%;
+  font-size: 0.85em;
+  color:#999999;
+  text-align: center;
+}
+.notification .none img{
+  width: 60%;
+  display: block;
+  margin: auto;
+  margin-bottom: 1em;
+}
+.notification .notiDetail{
+  padding:2em 1em 1em 1em;
+}
+.notification .notiDetail .title{
+  color: #333333;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1em;
+}
+.notification .notiDetail .time{
+  color: #999999;
+  font-size: 0.75em;
+  text-align: center;
+  margin-top: 1em;
+}
+.notification .mainDetail{
+  margin-top: 1.8em;
+  font-size: 0.9em;
+  color: #666666;
+  line-height: 1.5em;
+}
+.detail span{
+  display: inline-block;
+  vertical-align: top;
+}
+.detail span.num{
+  width:6%;
+}
+.detail span.text{
+  width:94%;
+}
+
+/***************bottom*******************/
+.phone{
+  color:#999999;
+  text-decoration: none;
+}
+.bottom span{
+  display: inline-block;
+  vertical-align: top;
+}
+.bottom .phoneL{
+  width: 65%;
+  max-width: 16.5em;
+}
+.bottom .phoneR{
+  width: 35%;
+  text-align: left;
+  line-height: 1.5em;
+}
+.bottom .phone{
+  display: block;
+}
+.bottom .main{
+  display: table-cell;
+  vertical-align: middle;
+}
+.bottom{
+  bottom: 0%;
+  height: 5.5em;
+  display: table;
+  background-color: #ffffff;
+  position: fixed;
+  text-align: center;
+  font-size: 0.8em;
+  color:#999999;
+  width: 100%;
+  left:50%;
+  margin-left: -50%;
+  border-top: 1px solid #f1f1f1;
+  /*box-shadow: 0 -1px 7px #E6E9F0;*/
+}
+@media screen and (max-width: 900px) {
+.bottom{
+  height: 5.5em;
+}
+}
+@media screen and (min-width: 900px) {
+.bottom{
+  height: 3em;
+}
+}

@@ -1,0 +1,11 @@
+* { touch-action: none; }
+
+
+<wrapper-component :tag='tagName'>
+....
+</wrapper-component>
+
+
+data () {
+      return {
+        tagName:this.$UA().android?"scroller":"article",

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+/*	
+ES6很有意思的一部分就是函数的快捷写法。也就是箭头函数。
+
+箭头函数最直观的三个特点。
+
+不需要function关键字来创建函数
+省略return关键字
+继承当前上下文的 this 关键字
+*/
+	 
+//例如：
+let list1 =[1,2,3].map( x => x + 1 )
+console.log( list1 );//[2,3,4]
+	
+//等同于：
+let list2=[1,2,3].map((function(x){
+	return x + 1
+}).bind(this))
+console.log( list2 );//[2,3,4]
+	
+
+	
+//当你的函数有且仅有一个参数的时候，是可以省略掉括号的。当你函数返回有且仅有一个表达式的时候可以省略{}；例如:
+
+var people = name => 'hello ' + name;
+console.log(people("hilvy"));
+//参数name就没有括号
+//作为参考
+
+var people1 = (name, age) => {
+	const fullName = 'hi ' + name + age;
+	return fullName;
+} 
+console.log(people1("hillvy",26));
+//如果缺少()或者{}就会报错
+ 	
+
+</script>	
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <style>
+      .mainload{
+        background-color: rgba(0,0,0,0.5);
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        -moz-border-radius: 5px;
+        width:100px;
+        height:100px;
+        padding:10px;
+        margin: auto;
+        margin-top: 15%;
+        position: absolute;
+        left:50%;
+        margin-left: -60px;
+        z-index: 9999;
+      }
+      .loadEffect{
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin: 0 auto;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -o-border-radius: 5px;
+            -moz-border-radius: 5px;
+            transform:scale(0.3);
+        }
+        .loadEffect span{
+            display: inline-block;
+            width: 7px;
+            height: 26px;
+            border-radius: 8px;
+            background: #ffffff;
+            position: absolute;
+            -webkit-animation: load 0.6s ease infinite;
+        }
+        @-webkit-keyframes load{
+            0%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0.2;
+            }
+        }
+        .loadEffect span:nth-child(1){
+            left: 50%;
+            -webkit-animation-delay:0.05s;
+        }
+        .loadEffect span:nth-child(2){
+            left: 68%;
+            top: 4%;
+            transform:rotate(30deg);
+            -webkit-animation-delay:0.10s;
+        }
+        .loadEffect span:nth-child(3){
+            left: 82%;
+            top: 18%;
+            transform:rotate(60deg);
+            -webkit-animation-delay:0.15s;
+        }
+        .loadEffect span:nth-child(4){
+            left: 88%;
+            top: 36%;
+            transform:rotate(90deg);
+            -webkit-animation-delay:0.20s;
+        }
+        .loadEffect span:nth-child(5){
+            left: 82%;
+            top: 53%;
+            transform:rotate(120deg);
+            -webkit-animation-delay:0.25s;
+        }
+        .loadEffect span:nth-child(6){
+            left: 68%;
+            top: 68%;
+            transform:rotate(150deg);
+            -webkit-animation-delay:0.30s;
+        }
+        .loadEffect span:nth-child(7){
+            bottom: 0;
+            left: 50%;
+            transform:rotate(180deg);
+            -webkit-animation-delay:0.35s;
+        }
+        .loadEffect span:nth-child(8){
+            left: 32%;
+            top: 68%;
+            transform:rotate(210deg);
+            -webkit-animation-delay:0.40s;
+        }
+        .loadEffect span:nth-child(9){
+            left: 17%;
+            top: 53%;
+            transform:rotate(240deg);
+            -webkit-animation-delay:0.45s;
+        }
+        .loadEffect span:nth-child(10){
+            left: 10%;
+            top: 36%;
+            transform:rotate(270deg);
+            -webkit-animation-delay:0.50s;
+        }
+        .loadEffect span:nth-child(11){
+            left: 17%;
+            top: 16%;
+            transform:rotate(300deg);
+            -webkit-animation-delay:0.55s;
+        }
+        .loadEffect span:nth-child(12){
+            left: 32%;
+            top: 4%;
+            transform:rotate(330deg);
+            -webkit-animation-delay:0.60s;
+        }
+    </style>
+  </head>
+  <body>
+    <!--loading-->
+      <div class="mainload">
+        <div class="loadEffect">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+      </div>
+
+    <div id="app"></div>
+    <script src="bundle.js"></script>
+  </body>
+</html>

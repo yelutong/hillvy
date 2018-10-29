@@ -1,0 +1,32 @@
+.coupon .nav li{
+  width:33.3%;
+  text-align: center;
+  color:#999999;
+  font-size: 1rem;
+}
+.coupon .nav li.on{
+  color:#333333;
+  font-weight: bold;
+}
+.coupon .nav li.on:after{
+  width: 3.81rem;
+  height: 0.19rem;
+  background-color: #FBCB58;
+  content: '';
+  display: block;
+  margin: auto;
+  margin-top: -0.19rem;
+  animation:myNavOn 1s;
+  -webkit-animation:myNavOn 1s; /*Safari and Chrome*/
+}
+@keyframes myNavOn
+{
+  from {width:0rem;}
+  to {left:3.81rem;}
+}
+
+@-webkit-keyframes myNavOn /*Safari and Chrome*/
+{
+  from {width:0rem;}
+  to {left:3.81rem;}
+}

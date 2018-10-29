@@ -1,0 +1,37 @@
+1.根据项目所在路径盘安装webpack
+
+2.全局安装：输入npm install webpack -g  回车 
+ 
+
+3.路径找到之后 输入  npm  init  回车 开始配置文件
+3.1安装依赖
+npm install webpack --save-dev
+4.webpack loader加载器
+npm install babel-loader babel babel-core css-loader style-loader  url-loader file-loader less-loader less  --save-dev 
+
+
+5.命令后执行webpack完成打包
+webpack
+ 
+webpack或者webpack -w命令, 查看index.html
+
+
+配置：
+  "scripts": {   
+    "start": "webpack --mode development",
+    "build": "webpack --mode production",
+    "server": "webpack-dev-server --devtool eval-source-map --progress --colors",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+ 
+6.启动webpack内置服务器环境
+
+安装：npm install webpack-dev-server --save-dev
+启动：npm run server
+
+
+
+
+安装css/sass/less loader加载器
+
+cnpm install file-loader css-loader style-loader sass-loader ejs-loader html-loader jsx-loader image-webpack-loader --save-dev

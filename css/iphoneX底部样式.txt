@@ -1,0 +1,5 @@
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-radio: 3) {
+
+写css样式即可解决
+
+}

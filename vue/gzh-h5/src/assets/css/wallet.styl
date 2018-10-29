@@ -1,0 +1,45 @@
+.page-wallet {
+  .lay-action {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 87px;
+
+    .btn-submit {
+      width: 147.5px;
+      height: 32.5px;
+      line-height: 32.5px;
+      border-radius: 5px;
+    }
+  }
+
+  .lay-detail {
+    .row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 44px;
+      padding: 0 17.5px;
+      bd-line(bottom, 1px, #eaeaea);
+
+      &:last-child:after {
+        display: none;
+      }
+
+      .tag {
+        font-size: 14px;
+        color: #828282;
+        text-align: center;
+      }
+
+      .tag-1, .tag-3 {
+        width: 90px;
+      }
+
+      .tag-2 {
+        flex: 1;
+      }
+    }
+  }
+}

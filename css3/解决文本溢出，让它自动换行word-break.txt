@@ -1,0 +1,30 @@
+我使用的是 word-break:break-all来实现文本的换行，因为我们字符是中文导致换行会出现问题。使用overflow会出滚动条
+
+
+1，word-break 属性规定自动换行的处理方法。
+word-break: normal|break-all|keep-all;
+值	描述
+normal	使用浏览器默认的换行规则。
+break-all	允许在单词内换行。
+keep-all	只能在半角空格或连字符处换行。
+
+
+
+overflow 属性规定当内容溢出元素框时发生的事情。
+值	描述
+visible	默认值。内容不会被修剪，会呈现在元素框之外。
+hidden	内容会被修剪，并且其余内容是不可见的。
+scroll	内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。
+auto	如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。
+inherit	规定应该从父元素继承 overflow 属性的值。
+
+
+，white-space 属性设置如何处理元素内的空白。
+
+值	描述
+normal	默认。空白会被浏览器忽略。
+pre	空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签。
+nowrap	文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。
+pre-wrap	保留空白符序列，但是正常地进行换行。
+pre-line	合并空白符序列，但是保留换行符。
+inherit	规定应该从父元素继承 white-space 属性的值。

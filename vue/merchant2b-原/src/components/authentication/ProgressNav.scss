@@ -1,0 +1,65 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.auth-nav-box {
+  @extend .bg-white;
+  font-size: .24rem;
+  padding: .48rem 0 .40rem;
+
+  > div {
+    @extend .flex1;
+    @extend .txt-center;
+
+    &:first-of-type {
+      .auth-states-line:first-of-type {
+        border: none !important;
+      }
+    }
+    &:last-of-type {
+      .auth-states-line:last-of-type {
+        border: none !important;
+      }
+    }
+  }
+
+  &, .auth-status-labels {
+    @extend .horizontal-view, .justify-content-space-between, .align-items-center;
+
+  }
+  @at-root .auth-status-labels {
+    height: .18rem;
+    margin-bottom: .24rem;
+    @at-root .auth-states-line {
+      border-top: .04rem solid #E5E5E5;
+
+    }
+
+    @at-root .auth-states-icon {
+      position: relative;
+      width: .16rem;
+      height: .16rem;
+      border: .04rem solid #ccc;
+      border-radius: 100%;
+    }
+    @at-root .auth-states-border-active {
+      border-color: #b2daff;
+    }
+    .auth-states-border-active2 {
+      border-color: $color_blue_defualt;
+    }
+    @at-root .auth-states-icon-active {
+      width: .26rem;
+      height: .26rem;
+      border-color: $color_blue_defualt;
+      border-radius: 100%;
+    }
+    @at-root .auth-states-text {
+      color: rgb(153, 153, 153);
+    }
+    @at-root .auth-states-text-active {
+      color: #333;
+    }
+  }
+
+}
+

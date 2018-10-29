@@ -1,0 +1,85 @@
+class HelloMessage extends React.Component {
+  
+render (){
+    
+let userMessage;
+    
+if (this.props.loggedIn) {
+      
+userMessage = (
+        
+<span>
+          
+<h2>{ `Welcome Back ${ this.props.name }` }</h2>
+          
+<p>You can visit settings to reset your password</p>
+        
+</span>
+     
+)
+    
+} else {
+      
+userMessage = (
+        
+<h2>Hey man! Sign in to see this section</h2>
+      
+)
+    
+}
+    
+return(
+      
+<div>
+        
+<h1>My Super React App</h1>
+        
+{userMessage}
+
+</div>
+    
+)
+  
+}
+}
+
+
+
+
+三元操作表达式：
+
+React.render(<div id={condition ? 'msg' : ''}>Hello World!</div>, mountNode);
+
+当三元操作表达式不够健壮，你也可以使用 if 语句来决定应该渲染那个组件。
+var loginButton;
+if (loggedIn) {
+  loginButton = <LogoutButton />;
+} else {
+  loginButton = <LoginButton />;
+}
+ 
+return (
+  <nav>
+    <Home />
+    {loginButton}
+  </nav>
+)
+
+
+if(rp==0){
+      rpContent=(
+        <div className="rp0 center">Sementara kosong</div>
+        )
+      }else{
+      rpContent=(
+        <div>//被一个div包围 否则不能显示完整
+        <Item multipleLine extra={paySucc}>
+          Rp1.004.900<Brief>10:00 22-May-2018</Brief>
+        </Item>
+        <Item multipleLine extra={paySucc}>
+          Rp1.004.900<Brief>10:00 22-May-2018</Brief>
+        </Item>
+        </div>
+        )
+      }
+

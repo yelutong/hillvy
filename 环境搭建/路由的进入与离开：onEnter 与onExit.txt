@@ -1,0 +1,20 @@
+路由的进入与离开：onEnter 与onExit
+$stateProvider.state('index', {
+url: "/index",
+views: {
+'': defaulMenu.defaul,
+'menuLeft@index': defaulMenu.left,
+'content@index': {
+params: {
+'data': "111"
+},
+controller: "contr_weizhijiankong",
+templateUrl: 'basicInfo/basic.html'
+}
+},
+onEnter: function($log) {
+$log.debug('Entering the classrooms state');
+},
+onExit: function($log) {
+$log.debug('Existing the classrooms state');
+}

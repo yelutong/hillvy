@@ -1,0 +1,184 @@
+.activity{
+  margin: auto;
+  min-width: 320px;
+  font-family: PingFang-SC;
+  background: url('../images/bg.png');
+  width: 100%;
+  padding-top: 50%;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+.activity .timeErea{
+  text-align: center;
+}
+.activity .time{
+  background-color: #FFFAE6;
+  color: #333333;
+  font-size: 0.81rem;
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  margin: auto;
+  text-align: center;
+  border-radius: 1.03rem;
+}
+.activity .time img{
+  height: 1.38rem;
+  font-size: 0rem;
+  vertical-align: middle;
+  display: inline-block;
+}
+.activity .time label{
+  height: 1.38rem;
+  line-height: 1.38rem;
+  vertical-align: middle;
+  margin-left: 0.35rem;
+  display: inline-block;
+}
+.activity .activityDetail{
+  width: 88%;
+  margin: auto;
+  margin-top: 1rem;
+}
+.activity .activityDetail .title img{
+  width: 100%;
+}
+.activity .activityDetail .title{
+  text-align: center;
+  position: relative;
+  font-size: 0px;
+  min-height: 60px;
+}
+.activity .activityDetail .title:before{
+  content: 'Detail Promosi';
+  display: block;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top:26%;
+  color: #4D4D4D;
+  font-weight: bold;
+  font-size: 0.94rem;
+}
+.activity .activityDetail .main{
+  color: #4D4D4D;
+  font-size: 0.88rem;
+  background-color: #ffffff;
+  box-shadow:0rem 0.13rem 0.94rem -0.12rem rgba(51,51,51,0.4);
+  border-bottom-left-radius:0.63rem;
+  border-bottom-right-radius:0.63rem;
+  padding-bottom: 1.2rem;
+}
+.activity .activityDetail .main .desc{
+  margin-top: -0.5rem;
+  margin-bottom: 1.6rem;
+}
+.activity .activityDetail .main .mainDetail{
+  width: 82%;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+  line-height: 1.25rem;
+}
+.activity .activityDetail .main .descTitle{
+  margin-bottom: 0.1rem;
+}
+.activity .activityDetail .ruleGrid{
+  box-shadow:0rem 0.13rem 0.94rem -0.12rem rgba(51,51,51,0.4);
+  border-radius:0.5rem;
+  background-color: #FFFFFF;
+  margin-top: 2rem;
+}
+.activity .activityDetail .ruleGrid ul{
+  width: 100%;
+  margin: auto;
+  border-bottom: 1px solid #F1F1F1;
+}
+.activity .activityDetail .ruleGrid li{
+  font-size: 0.6rem;
+  text-align: center;
+  position: relative;
+  vertical-align: middle;
+}
+.activity .activityDetail .ruleGrid li:before{
+  border-left:1px solid #F1F1F1;
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 0px;
+  height: 100%;
+}
+.activity .activityDetail .ruleGrid li:first-child:before{
+  border-left:none;
+}
+.activity .activityDetail .ruleGrid li p{
+  padding: 1rem 0rem;
+  border-bottom: 1px solid #F1F1F1;
+}
+.activity .activityDetail .ruleGrid li p:last-child{
+  border-bottom: none;
+}
+.activity .activityDetail .ruleGrid .letterSpace{
+  letter-spacing: -0.02rem;
+}
+.activity .activityDetail .ruleGrid li.l{
+  width: 25%;
+}
+.activity .activityDetail .ruleGrid li.l span{
+  display: block;
+  width: 90%;
+  margin: auto;
+  line-height: 0.95rem;
+}
+.activity .activityDetail .ruleGrid li.m{
+  width: 50%;
+}
+.activity .activityDetail .ruleGrid li.r{
+  width: 25%;
+}
+.activity .activityDetail .ruleGrid li.gridTitle{
+  font-size: 0.69rem;
+  font-weight: bold;
+  white-space: nowrap;
+  padding: 1rem 0rem;
+}
+.activity .otherInfomation{
+  margin: 1.1rem 0rem 1.3rem 0rem;
+}
+.activity .otherInfomation .handleInfo{
+  color: #3CB2FF;
+  font-size: 0.81rem;
+  text-align: center;
+}
+.activity .otherInfomation .otherTitle{
+  color: #4D4D4D;
+  font-size: 0.9rem;
+  line-height: 1.32rem;
+  font-weight: bold;
+  margin:2rem auto 1rem auto;
+  text-align: center;
+}
+.activity .otherInfomation .otherList{
+  font-size:0.75rem;
+  color: #333333;
+  line-height:1.06rem;
+  width: 90%;
+  margin-left: 10%;
+}
+.activity .otherInfomation .otherList .otherItem{
+  margin-top: 0.5rem;
+  position: relative;
+}
+.activity .otherInfomation .otherList .otherItem:before{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0.56rem;
+  height: 0.56rem;
+  left: -1.4rem;
+  top:0.25rem;
+  border-radius: 50%;
+  -webkit-border-radius:50%;
+  background-color: #FFD600;
+}

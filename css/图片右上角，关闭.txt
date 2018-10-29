@@ -1,0 +1,17 @@
+#picShow .delPic {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    color: #fff;
+    background: rgba(255, 7, 7, 0.8);
+    z-index: 99;
+}
+
+
+<span data-v-472c3188="" time="1531893473286" class="delPic">X</span>

@@ -1,0 +1,98 @@
+//@import "../../assets/scss/variables";
+//@import "../../assets/scss/base";
+
+
+
+.item-bank{
+  @extend .horizontal-view,.justify-content-space-between;
+  border: 1px solid #ccc;
+  margin: .4rem;
+  padding: .25rem .2rem;
+  font-size: .26rem;
+  @at-root .icon-add{
+    width: .3rem;
+    height: .3rem;
+    background: url("../../assets/images/add.png") no-repeat center;
+    background-size: 100%;
+    margin: 0 .1rem;
+  }
+}
+.item-arrow{
+  background: url("../../assets/images/forward.png") no-repeat right center;
+  background-size: auto .08rem;
+}
+.bank-box-list{
+  padding: .4rem 0 .2rem;
+}
+.bank-box{
+  @extend .horizontal-view,.justify-content-space-between,.align-items-start;
+  &:visited,&:link,&:hover{
+    color: #fff;
+  }
+  overflow: hidden;
+  position: relative;
+  margin: 0 .4rem .2rem .4rem;
+  padding: .46rem .35rem;
+  border-radius: .1rem .1rem 0 0 ;
+  color: #fff;
+  @at-root .bank-tips{
+    position: absolute;
+    z-index: 99;
+    top:0;
+    right: 0;
+    border-radius: 0 .1rem  0 .1rem;
+    padding: .1rem  .18rem;
+    background: #f2475a;
+    font-size: .22rem;
+    line-height: 1;
+  }
+  @at-root .bank-icon{
+    @extend .horizontal-view,.justify-content-center,.align-items-center;
+    background: #fff;
+    border-radius: 100%;
+    width: .7rem;
+    height: .7rem;
+    overflow: hidden;
+    >img{
+      width: 92%;
+      height: 92%;
+      display: block;
+    }
+  }
+  @at-root .bank-info{
+    @extend .flex1;
+    padding: 0 .2rem;
+    line-height: 1;
+    h2{font-size: .32rem;}
+    h3{font-size: .32rem;margin-top: .3rem;}
+  }
+  @at-root .bank-mark{
+    font-size: .24rem;
+  }
+  @at-root .bank-bind{
+    margin-top: .26rem;
+  }
+
+}
+.bank-box-red{
+  background: linear-gradient(left,#f2475a,#fa6d4b);
+  background: -webkit-linear-gradient(left,#f2475a,#fa6d4b);
+}
+.bank-box-blue{
+  background: linear-gradient(left,#3d5cb9,#47a3d6);
+  background: -webkit-linear-gradient(left,#3d5cb9,#47a3d6);
+}
+.bank-box-green{
+  background: linear-gradient(left,#23b689,#2fb8cd);
+  background: -webkit-linear-gradient(left,#23b689,#2fb8cd);
+}
+.bank-box-yellow{
+  background: linear-gradient(left,#f59b00,#f8c300);
+  background: -webkit-linear-gradient(left,#f59b00,#f8c300);
+}
+.btn-white{
+  color: $color_dark;
+  background: #fff!important;
+  border: none;
+}
+

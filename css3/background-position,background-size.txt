@@ -1,0 +1,10 @@
+/* 两个值: 第一个值指定图片的宽度，第二个值指定图片的高度 */
+background-size: 50% auto
+background-size: 3em 25%
+background-size: auto 6px
+background-size: auto auto
+
+
+background-position: -25px -1px;
+background: url(images/sprite.png) no-repeat;
+background-size: 300px auto;

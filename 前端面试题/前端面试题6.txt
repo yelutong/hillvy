@@ -1,0 +1,36 @@
+﻿p:first-of-type 选择属于其父元素的首个 <p> 元素的每个 <p> 元素。 
+p:last-of-type  选择属于其父元素的最后 <p> 元素的每个 <p> 元素。 
+p:only-of-type  选择属于其父元素唯一的 <p> 元素的每个 <p> 元素。 
+p:only-child    选择属于其父元素的唯一子元素的每个 <p> 元素。 
+p:nth-child(2)  选择属于其父元素的第二个子元素的每个 <p> 元素。 
+:enabled  :disabled 控制表单控件的禁用状态。 
+:checked        单选框或复选框被选中。
+
+2.事件委托
+Event对象提供了一个属性叫target，可以返回事件的目标节点，我们成为事件源，也就是说，target就可以表示为当前的事件操作的dom，但是不是真正操作dom，当然，这个是有兼容性的，标准浏览器用ev.target，IE浏览器用event.srcElement，此时只是获取了当前节点的位置，并不知道是什么节点名称，这里我们用nodeName来获取具体是什么标签名，这个返回的是一个大写的，我们需要转成小写再做比较（习惯问题）：
+window.onload = function(){
+　　var oUl = document.getElementById("ul1");
+　　oUl.onclick = function(ev){
+　　　　var ev = ev || window.event;
+　　　　var target = ev.target || ev.srcElement;
+　　　　if(target.nodeName.toLowerCase() == 'li'){
+　 　　alert(123);
+　　     alert(target.innerHTML);.
+            alert(target.attributes["linkId"].nodeValue);
+　　　　}
+　　}
+}
+2.原型链继承
+function A(){  
+   this.name="李可可";   
+   this.age=21; 
+ }  
+A.prototype.eat=function(){ 
+console.log("I can eat") 
+}  
+function B(){
+}  
+B.prototype=new A;//B继承了A    
+var cc=new B;  
+cc.eat();//I can eat  
+cc.name;//"李可可"

@@ -1,0 +1,82 @@
+.login{
+  .login-pic{font-size:0}
+    .login-pic img{
+      width: 100%;
+      height: 3.8rem
+    }
+    .login-content{
+      padding: 0 .3rem
+    }
+    .login-content .vux-flexbox{
+      width: 100%;
+      height: 1.1rem
+    }
+    .login-content .vux-flexbox .vux-x-input{
+      height: 1.1rem;
+      flex: 1;
+      padding:0 .2rem 0 .2rem;
+    }
+    .login-content .verbtn .vux-x-input{
+      padding:0 0 0 .2rem!important;
+    }
+    .common-bg-icon{
+      width: .34rem;
+      height: .42rem;
+      background: url("../assets/images/login-420x420.png") no-repeat;
+      background-size: 4.2rem;
+      display: block
+    }
+    .user-phone{
+      background-position: -.86rem -.01rem
+    }
+    .user-ver{
+      background-position: -2.57rem -.01rem
+    }
+    .user-phoneor{
+      background-position: -2.15rem -.01rem
+    }
+    .user-pwd{
+      background-position: -.08rem -.01rem
+    }
+    .user-code{
+      background-position: -.46rem -.01rem
+    }
+    .is-show-pwd{
+      background-position: -1.27rem -.01rem
+    }
+    .show-ok{
+      background-position: -1.71rem -.01rem!important
+    }
+}
+.loginBg{
+  min-height: 100%;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background:#FFF
+}
+.mrgintop20{margin-top:.3rem}
+.login-button{padding: 0 .3rem;box-sizing:border-box}
+.login-btn{margin-top:.6rem;height:0.9rem}
+.loginout-btn{margin-top:.2rem;height:1.1rem;background-color:#fff;color:#1c8bf3}
+.loginout-btn:active{background-color:#fff!important;color:#1c8bf3!important}
+.login-bottom{margin-top:.3rem;}
+/* vux样式修改 */
+.weui-btn_primary{background:#FFF;padding: 0 0 0 .61em}
+.weui-btn_primary:not(.weui-btn_disabled):active {
+  background-color: #FFF;
+}
+.weui-btn:after{border:none}
+.weui-toast{min-height:2em!important}
+.weui-icon-success-circle{font-size:20px}
+.weui-cells{margin-top:0}
+.agreeBtn{padding:15px;position:fixed;bottom:0;left:0;background:#fff;width:100%;box-sizing:border-box}
+.weui-cell{padding-bottom:80px}
+/* 账户安全 */
+.accountSe .weui-cell{
+  padding:0!important;
+  height:1.1rem
+}
+.mt30{margin-top:.3rem;padding:0 .3rem}
+.loginout-button.weui-btn_disabled.weui-btn_warn{background-color: #fff!important;}

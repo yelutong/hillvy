@@ -1,0 +1,6 @@
+.sfcouponList .commonCouponList .sfcoupon-right .show-coupon .blow-up{
+   font-size:12px;-webkit-transform-origin-x:50%;-webkit-transform: scale(0.80);
+}
+.sfcouponList .commonCouponList .sfcoupon-right .show-coupon .small-font{
+   font-size:9.6px;
+}

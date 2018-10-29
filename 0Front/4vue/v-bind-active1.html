@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="js/vue.min.js"></script>
+<style>
+.active {
+	width: 100px;
+	height: 100px;
+	background: green;
+}
+.text-danger {
+	background: red;
+}
+.wei{
+	background:yellow;
+}	
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="static"
+     v-bind:class="{ active: isAc, 'text-danger': hasError,'wei':ok }">
+  </div>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+        isAc: true,
+	hasError: true,
+	      ok: false
+  }
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+//第一个用途，基本的字符串格式化。将表达式嵌入字符串中进行拼接。用${}来界定	
+ //es5 
+var name1 = 'lux';
+console.log('hello' + name1)
+//es6
+let name = 'lux21';//常量
+console.log(`hello ${name}`) //hello lux
+
+
+//第二个用途，在ES5时我们通过反斜杠(\)来做多行字符串或者字符串一行行拼接。ES6反引号(``)直接搞定。
+
+// es5
+var msg = "Hi \man!";
+// es6
+const template = `<div><span>
+hello world</span></div>`;
+console.log(msg);
+console.log(template);
+	
+//对于字符串es6当然也提供了很多厉害的方法。说几个常用的
+	
+// 1.includes：判断是否包含然后直接返回布尔值
+let str = 'hahay'
+console.log(str.includes('y')) // true
+// 2.repeat(n): 获取字符串 重复打印n次
+let s = 'he'
+console.log(s.repeat(3)) // 'hehehe'
+//如果你带入小数, Math.floor(num) 来处理 	
+</script>	
+</head>
+
+<body>
+</body>
+</html>

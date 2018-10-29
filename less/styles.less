@@ -1,0 +1,26 @@
+//申明
+.classA(@radius:5px){
+    width:200px;
+    height:200px;
+    border:1px solid red;
+    border-radius:@radius;
+    -webkit-border-radius:@radius;
+    -moz-border-radius:@radius;
+    color:blue
+}
+
+//调用
+.classB{
+    font-size:18px;
+    //默认5px
+    .classA;
+}
+
+.classC{
+    //传参数 10px
+    .classA(10px);
+}
+.classD{
+    //传参数 20px
+    .classA(20px);
+}

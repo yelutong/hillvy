@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/vue.js" type="text/javascript"></script>
+</head> 
+<body>
+<div class="app"> <!--用id也行 ，那么下面就用#-->
+	<p>{{ message }}</p>
+</div>
+
+</body>
+</html>
+<script>
+new Vue({//这里的v要大写
+	el:".app",
+	data:{
+		message:"hello world"
+	}
+	
+})
+</script>

@@ -1,0 +1,306 @@
+body,html{
+    width:100%;
+    height:auto; 
+}
+img{
+	width: 100%; 
+} 
+.levelCenter{
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+}
+.verticalCenter{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+}
+.levelAndverticalCenter{
+	position: absolute;
+	left: 50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+}
+.clearfix:after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.ico{
+    background: url(images/sprite.png) no-repeat;
+    background-size:300px auto;
+}
+
+.introduceContent{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.introduceContent .header{
+	position: relative;
+}
+.bg{
+	background-size: 100% 100%;
+}
+.introduceContent .header .sun{
+	top: 0;
+	width: 189px;
+	height: 92px;
+    animation: change 2s infinite;
+    -moz-animation: change 2s infinite;    
+    -webkit-animation: change 2s infinite;
+    animation-direction:alternate;
+	-webkit-animation-direction:alternate;
+}
+@keyframes change{
+    from {width: 95px;height: 46px;opacity: 1;}
+    to {width: 189px;height: 92px;opacity: 1;}
+}
+@-webkit-keyframes change{
+	from {width: 95px;height: 46px;opacity: 1;}
+    to {width: 189px;height: 92px;opacity: 1;}
+}
+.introduceContent .header .text1{
+	animation: fade-in;
+    animation-duration: 1.5s;
+    -webkit-animation:fade-in 1.5s;
+	top: 98px;
+	width: 257px;
+	height: 38px;
+}
+@keyframes fade-in {  
+    0% {opacity: 0;top: 0;}
+    40% {opacity: 0;top:20px;}
+    100% {opacity: 1;top: 98px;}
+}  
+@-webkit-keyframes fade-in {
+    0% {opacity: 0;top: 0;}
+    40% {opacity: 0;top:20px;}
+    100% {opacity: 1;top: 98px;}
+}  
+.introduceContent .header .text2{
+	animation: Twofade-in;/*动画名称*/  
+    animation-duration: 3s;/*动画持续时间*/  
+    -webkit-animation:Twofade-in 3s;/*针对webkit内核*/ 
+	top: 140px;
+	width: 254px;
+	height: 20px;
+}
+@keyframes Twofade-in {  
+    0% {opacity: 0;top: 0px;}/*初始状态 透明度为0*/  
+    40% {opacity: 0;top:98px;}/*过渡状态 透明度为0*/  
+    100% {opacity: 1;top: 140px;}/*结束状态 透明度为1*/  
+}  
+@-webkit-keyframes Twofade-in {
+    0% {opacity: 0;top: 0px;}
+    40% {opacity: 0;top:98px;}
+    100% {opacity: 1;top: 140px;}
+}  
+.introduceContent .header .child{
+	position: absolute;
+	left: 60%;
+	bottom: 20px;
+	width: 81px;
+	height: 97px;
+	animation: appear 6s;
+    -moz-animation: appear 6s;    
+    -webkit-animation: appear 6s;
+}
+@keyframes appear{
+	0% {opacity: 0.5;-webkit-transform: translateX(0);left: 0;}
+	25% {opacity: 0.8;-webkit-transform: translateX(20%);left: 20%;}
+	50% {opacity: 1;-webkit-transform: translateX(40%);left: 40%;}	
+	100%{opacity: 1;-webkit-transform: translateX(60%);left: 60%;}
+	from {width: 20px;height: 24px;opacity: 0;}
+    to {width: 81px;height: 97px;opacity: 1;}
+}
+@-webkit-keyframes appear{
+	0% {opacity: 0.5;-webkit-transform: translateX(0);left: 0;}
+	25% {opacity: 0.8;-webkit-transform: translateX(20%);left: 20%;}
+	50% {opacity: 1;-webkit-transform: translateX(40%);left: 40%;}	
+	100%{opacity: 1;-webkit-transform: translateX(60%);left: 60%;}
+	from {width: 20px;height: 24px;opacity: 0;}
+    to {width: 81px;height: 97px;opacity: 1;}
+}
+.introduceContent .header .balloon{
+	position: absolute;
+	top: 36px;
+	left: 17px;
+	width: 15px;
+	height: 22px;
+	background-position: -4px -5px;
+	animation: container 2s infinite;
+    -moz-animation: container 2s infinite;    
+    -webkit-animation: container 2s infinite;
+    animation-direction:alternate;
+	-webkit-animation-direction:alternate;
+}
+@keyframes container{
+    0% {-webkit-transform: translateX(5px) rotate(5deg);}
+    100%{-webkit-transform: translateX(-5px) rotate(-5deg);}
+}
+@-webkit-keyframes container{
+	0%{-webkit-transform: translateX(5px) rotate(5deg);}
+	100%{-webkit-transform: translateX(-5px) rotate(-5deg);}
+}
+.introduceContent .header .smallBalloon{
+	position: absolute;
+	top: 59px;
+	left: 28px;
+	width: 25px;
+	height: 37px;
+	background-position: -25px -1px;
+	animation: container 2s infinite;
+    -moz-animation: container 2s infinite;    
+    -webkit-animation: container 2s infinite;
+    animation-direction:alternate;
+	-webkit-animation-direction:alternate;
+}
+.introduceContent .header .bigBalloon{
+	position: absolute;
+	top: 59px;
+	right: 28px;
+	width: 28px;
+	height: 35px;
+	background-position: -57px -2px;
+	animation: container 2s infinite;
+    -moz-animation: container 2s infinite;    
+    -webkit-animation: container 2s infinite;
+    animation-direction:alternate;
+	-webkit-animation-direction:alternate;
+}  
+.content{
+	padding-top: 50px;
+}
+.content .ico{
+	margin: 0 auto;
+	width: 299px;
+	height: 60px;
+	background-position: -1px -49px;
+}
+.content .courseOne .version{
+	margin: 0 20px 0 15px;
+	text-indent: 22px;
+	font-size: 13px;
+	line-height: 20px;
+}
+.content .courseTwo{
+	padding-top: 25px;
+}
+.content .courseTwo .info{
+	margin-bottom: 10px;
+	background-position: -1px -112px;
+}
+.content .courseTwo .list{
+	position: relative;
+	margin: 0 auto;
+	width: 245px;
+	height: 100%;
+}
+.content .courseTwo .list li{
+	margin-bottom:13px;
+	float: left;
+	width: 245px;
+	height: 28px;
+	background-color: #f8de65;
+	text-align: center;
+	line-height: 28px;
+}
+.content .courseTwo .list li span{
+	font-size: 17px;
+	color: #e83a31;
+	font-weight: bold;
+}
+.content .courseThree .info{
+	background-position: -2px -175px;
+}
+.content .courseThree .Carousel ul{
+	margin: 0 auto;
+	width: 248px;
+	height: 100%;
+	overflow: hidden;
+}
+.content .courseThree .Carousel ul li{
+	float: left;
+	width: 123px;
+	height: 162px;
+}
+.content .courseThree .version{
+	margin: 16px 35px 28px 30px;
+	line-height: 20px;
+} 
+.content .courseThree{
+	padding-top: 30px;
+	height: 100%;
+	position: relative;
+}
+.content .courseFour{
+	margin-bottom: 80px;
+	position: relative;
+}
+.content .courseFour .info{
+	background-position: -3px -237px;
+}
+.content .courseFour .message{
+	margin-left: 28px;
+}
+.content .courseFour .message li{
+	margin-bottom: 8px;
+}
+.content .courseFour .message li span{
+	font-weight: bold;
+}
+.content .courseFour .message li .num{
+	color: #02b4f0;
+	font-weight: 100;
+}
+.content .courseFour .code{
+	position: absolute;
+	right: 15px;
+	bottom: -25px;
+	text-align: center;
+}
+.content .courseFour .code img{
+	width: 75px;
+	height: 75px;
+}
+.footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	border-top: 1px solid #000;
+	background-color: #dcdddd;
+}
+.footer li{
+	position: relative;
+	float: left;
+	width: 25%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.footer li.select{
+	color: #008cd6;
+}
+.footer li:after{
+	content: " ";
+	position: absolute;
+	top: 10px;
+	right: 0px;
+	width: 1px;
+	height: 25px;
+	background-color: #ababaa;
+}
+.footer li:last-child:after{
+	width: 0px;
+	height: 0p
+}

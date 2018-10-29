@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script> 
+//遍历Map结构
+const m1 = new Map();//键/值对的集合 集合中的键和值可以是任何类型。如果使用现有密钥向集合添加值，则新值会替换旧值。
+m1.set('first', 'hello');
+m1.set('second', 'world');
+
+for (let [key, value] of m1) {
+  console.log(key + " is " + value);
+}
+
+
+
+var m = new Map();
+m.set(1, "black");//添加一个新建元素到映射。
+m.set(2, "red");
+m.set("colors", 2);
+m.set({x:1}, 3);
+
+m.forEach(function (item, key, mapObj) {//value key 集合   forEach对映射中的每个元素执行指定操作;get 返回映射中的指定元素。
+    document.write(item.toString() + "<br />");//返回映射的字符串表示形式
+});
+
+document.write("<br />");
+document.write(m.get(2));
+
+
+let jsonData = {
+  id: 42,
+  status: "OK",
+  data: [867, 5309]
+};
+
+let { id, status, data: number } = jsonData;
+
+console.log(id, status, number);
+// 42, "OK", [867, 5309]
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

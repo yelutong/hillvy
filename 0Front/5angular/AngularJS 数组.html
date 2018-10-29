@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="angular.min.js"></script>
+</head>
+
+<body>
+<div ng-app="" ng-init="points=[1,15,19,2,40]">
+
+<p>第三个值为 {{ points[2] }}</p>
+<p>第三个值为 <span ng-bind="points[2]"></span></p><!-- 使用ng-bind -->
+</div>
+</body>
+</html>

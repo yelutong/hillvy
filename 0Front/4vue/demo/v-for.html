@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="demo.css" />
+    </head>
+
+    <body>
+        <div id="app">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Sex</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="person in people"><!-- people是一个数组，person是当前被遍历的数组元素。 -->
+                        <td>{{ person.name  }}</td>
+                        <td>{{ person.age  }}</td>
+                        <td>{{ person.sex  }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                people: [{
+                    name: 'Jack',
+                    age: 30,
+                    sex: 'Male'
+                }, {
+                    name: 'Bill',
+                    age: 26,
+                    sex: 'Male'
+                }, {
+                    name: 'Tracy',
+                    age: 22,
+                    sex: 'Female'
+                }, {
+                    name: 'Chris',
+                    age: 36,
+                    sex: 'Male'
+                }]
+            }
+        })
+    </script>
+
+</html>

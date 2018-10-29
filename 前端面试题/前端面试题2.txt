@@ -1,0 +1,112 @@
+﻿8.请描述一下 cookies，sessionStorage 和 localStorage 的区别？
+
+cookie在浏览器和服务器间来回传递。 sessionStorage和localStorage不会sessionStorage和localStorage的存储空间更大；sessionStorage和localStorage有更多丰富易用的接口；sessionStorage和localStorage各自独立的存储空间；
+
+2. 
+function A(name){
+
+    this.name = name;
+
+    this.sayHello = function(){
+        alert(this.name+” say Hello!”);
+    };
+
+}
+
+function B(name,id){
+
+    this.temp = A;
+
+    this.temp(name);        //相当于new A();
+
+    delete this.temp;       
+
+     this.id = id;   
+
+    this.checkId = function(ID){alert(this.id==ID)};
+
+}
+3. 你有哪些性能优化的方法？
+
+（1） 减少http请求次数：CSS Sprites, JS、CSS源码压缩、图片大小控制合适；网页Gzip，CDN托管，data缓存 ，图片服务器。
+（2）前端模板 JS+数据，减少由于HTML标签导致的带宽浪费，前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数
+（3） 用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。
+（4） 当需要设置的样式很多时设置className而不是直接操作style。
+（5） 少用全局变量、缓存DOM节点查找的结果。减少IO读取操作。
+（6） 避免使用CSS Expression（css表达式)又称Dynamic properties(动态属性)。
+（7） 图片预加载，将样式表放在顶部，将脚本放在底部 加上时间戳。
+（8） 避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示div+css布局慢。对普通的网站有一个统一的思路，就是尽量向前端优化、减少数据库操作、减少磁盘IO。向前端优化指的是，在不影响功能和体验的情况下，能在浏览器执行的不要在服务端执行，能在缓存服务器上直接返回的不要到应用服务器，程序能直接取得的结果不要到外部取得，本机内能取得的数据不要到远程取，内存能取到的不要到磁盘取，缓存中有的不要去数据库查询。减少数据库操作指减少更新次数、缓存结果减少查询次数、将数据库执行的操作尽可能的让你的程序完成（例如join查询），减少磁盘IO指尽量不使用文件系统作为缓存、减少读写文件次数等。程序优化永远要优化慢的部分，换语言是无法“优化”的。
+
+4.一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好）
+
+查找浏览器缓存
+DNS解析、查找该域名对应的IP地址、重定向（301）、发出第二个GET请求
+进行HTTP协议会话
+客户端发送报头(请求报头)
+文档开始下载
+文档树建立，根据标记请求所需指定MIME类型的文件
+文件显示
+浏览器这边做的工作大致分为以下几步：
+加载：根据请求的URL进行域名解析，向服务器发起请求，接收文件（HTML、JS、CSS、图象等）。
+解析：对加载到的资源（HTML、JS、CSS等）进行语法解析，建议相应的内部数据结构（比如HTML的DOM树，JS的（对象）属性表，CSS的样式规则等等）
+8.请详细说下你对vue生命周期的理解？
+
+答：总共分为8个阶段创建前/后，载入前/后，更新前/后，销毁前/后。
+
+创建前/后： 在beforeCreated阶段，vue实例的挂载元素$el和数据对象data都为undefined，还未初始化。在created阶段，vue实例的数据对象data有了，$el还没有。
+
+载入前/后：在beforeMount阶段，vue实例的$el和data都初始化了，但还是挂载之前为虚拟的dom节点，data.message还未替换。在mounted阶段，vue实例挂载完成，data.message成功渲染。
+
+更新前/后：当data变化时，会触发beforeUpdate和updated方法。
+
+销毁前/后：在执行destroy方法后，对data的改变不会再触发周期函数，说明此时vue实例已经解除了事件监听以及和dom的绑定，但是dom结构依然存在
+
+3.数组去重
+
+方法一：
+
+var arr = [0,2,3,4,4,0,2]; var obj = {}; var tmp = [];
+ for(var i = 0 ;i< arr.length;i++){ 
+
+if( !obj[arr[i]] ){ 
+obj[arr[i]] = 1;
+ tmp.push(arr[i]); 
+} } 
+console.log(tmp);
+
+结果如下： [0, 2, 3, 4]
+
+ 方法二：
+
+var arr = [2,3,4,4,5,2,3,6], arr2 = [];
+ for(var i = 0;i< arr.length;i++){ if(arr2.indexOf(arr[i]) < 0){
+ arr2.push(arr[i]); 
+} } 
+console.log(arr2);
+
+结果为：[2, 3, 4, 5, 6]
+
+一、请描述 cookies、sessionStorage 和 localStorage 的区别。
+软件编程希望通过一些手段来持久化的存储一些有用的数据。对于网络化编程，一般将这项任务交给了服务器端的数据库或者浏览器端的cookie。随着HTML5的出现，web开发又有了两种选择：Web Storage和Web SQL Database.
+WebStorage有两种形式：LocalStorage（本地存储）和sessionStorage（会话存储）。这两种方式都允许开发者使用js设置的键值对进行操作，在在重新加载不同的页面的时候读出它们。这一点与cookie类似。
+1:cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。
+2:存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
+3:数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。
+4:作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。
+5:Web Storage 支持事件通知机制，可以将数据更新的通知发送给监听者。
+6:Web Storage 的 api 接口使用更方便。
+二、请解释 <script>、<script async> 和 <script defer> 的区别。
+
+向html页面中插入javascript代码的主要方法就是通过script标签。其中包括两种形式，第一种直接在script标签之间插入js代码，第二种即是通过src属性引入外部js文件。由于解释器在解析执行js代码期间会阻塞页面其余部分的渲染，对于存在大量js代码的页面来说会导致浏览器出现长时间的空白和延迟，为了避免这个问题，建议把全部的js引用放在</body>标签之前。
+
+script标签存在两个属性，defer和async，因此script标签的使用分为三种情况：
+
+1.<script src="example.js"></script>
+没有defer或async属性，浏览器会立即加载并执行相应的脚本。也就是说在渲染script标签之后的文档之前，不等待后续加载的文档元素，读到就开始加载和执行，此举会阻塞后续文档的加载；
+
+2.<script async src="example.js"></script>
+有了async属性，表示后续文档的加载和渲染与js脚本的加载和执行是并行进行的，即异步执行；
+
+3.<script defer src="example.js"></script>
+有了defer属性，加载后续文档的过程和js脚本的加载(此时仅加载不执行)是并行进行的(异步)，js脚本的执行需要等到文档所有元素解析完成之后，DOMContentLoaded事件触发执行之前。
+

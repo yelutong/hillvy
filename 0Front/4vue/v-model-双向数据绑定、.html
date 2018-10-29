@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <p>input 元素：</p>
+  <input v-model="message" placeholder="编辑我……">
+  <p>消息是: {{ message }}</p>
+	
+  <p>textarea 元素：</p>
+  <p style="white-space: pre">{{ message2 }}</p>
+  <textarea v-model="message2" placeholder="多行文本输入……"></textarea>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Runoob',
+	message2: '菜鸟教程\r\nhttp://www.runoob.com'
+  }
+})
+</script>
+</body>
+</html>

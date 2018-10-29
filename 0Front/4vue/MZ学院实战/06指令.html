@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue</title>
+<script src="vue.min.js"></script> 
+</head>
+<body>
+<div id="app"> 
+  <div :class="valueClass" :name="'okb-'+id" v-if="gretting">大家好，我叫 {{ name | uppercase }},我今年 {{ id+15 | filterA('arg1') }} 岁了。我是真的</div>
+  <div :class="valueClass" :name="'okb-'+id" v-else>大家好，我叫 {{ name | uppercase }},我今年 {{ id+15 | filterA('arg1') }} 岁了。我是假的</div>
+</div>
+
+<script>
+window.onload=function(){
+	let dataObj={
+		gretting:false,
+		name:"hillvy",
+		id:10,
+		valueClass:"face",
+		message:"大家好，欢迎来到<i style='color:red'>麦子学院</i>"
+	}
+	 
+	new Vue({
+	  el: '#app',
+	  data:dataObj,
+	  filters: {
+		  uppercase: function (value) {
+		    if (!value){
+		    	return ''
+		    }else{
+              value = value.toString()
+		      return value.charAt(0).toUpperCase() + value.slice(1);
+		      //charAt() 方法可返回指定位置的字符。slice(1)从第一个开始返回元素
+		    } 
+		    
+		  },
+		  filterA:function(a,b){ 
+		  	if(typeof(b) == 'string'){
+                a=a+b;
+                return a;
+		  	}else{
+		  		console.log("呵呵");
+		  	}
+		  }
+		}
+
+
+	})
+}	
+
+</script>
+</body>
+</html>

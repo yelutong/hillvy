@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>顺丰企业金融</title>
+</head>
+<body>
+<div></div>
+<script>
+const person = {
+  sayName() {
+     return '/iPhone/i.test(ua)'
+  }
+}
+console.log(person.sayName())
+
+
+// Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）
+
+const target = { a: 1 };
+
+const source1 = { b: 2 };
+const source2 = { c: 3 , a: 11};
+
+Object.assign(target, source1, source2);//把对象合并，重复的覆盖
+console.log(target)
+
+
+// 克隆对象
+const origin = {
+  'dd':'/iPhone/i.test(ua)'
+}
+function clone(obj) {
+  return Object.assign({}, obj);
+}
+console.log(clone(origin))
+
+// good
+const arr = [1, 2, 3, 4];
+const [first,b, second] = arr;
+console.log(second)
+</script>
+</body>
+</html>

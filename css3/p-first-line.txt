@@ -1,0 +1,9 @@
+//给p标签的第一行加上颜色
+
+p:first-line
+  {
+  color:#ff0000;
+  font-variant:small-caps;
+  }
+
+<p>sdsdsdsd<br/>dsssds</p>

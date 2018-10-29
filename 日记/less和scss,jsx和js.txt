@@ -1,0 +1,15 @@
+less和scss几乎没啥区别，都有@import引入和作用域编译，
+只是目前项目已经装了less-loader，就没必要再装sass-loader了。
+
+
+JSX:即JavaScript XML——一种在React组建内部构建标签的类XML语法。
+(增强React程序组件的可读性)
+
+
+jsx文件会自动触发编辑器以jsx的模式解析当前的文件，所以可以更不会出错
+JSX语法，
+像是在Javascript代码里直接写XML的语法，实质上这只是一个语法糖，
+每一个XML标签都会被JSX转换工具转换成纯Javascript代码，
+
+React 官方推荐使用JSX， 当然你想直接使用纯Javascript代码写也是可以的，
+只是使用JSX，组件的结构和组件之间的关系看上去更加清晰。

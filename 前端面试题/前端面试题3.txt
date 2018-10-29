@@ -1,0 +1,142 @@
+﻿3. 数据与服务器之间的交互方式
+
+· cookie的数据会自动的传递到服务器，服务器端也可以写cookie到客户端
+
+· sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。
+3.不定高度，上下居中
+    margin:0 auto;
+    top: 50%; 
+    -webkit-transform: translateY(-50%); 
+    transform: translateY(-50%);
+
+2.http的code码
+ 100  Continue  继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息 
+200  OK   正常返回信息 
+201  Created  请求成功并且服务器创建了新的资源 
+202  Accepted  服务器已接受请求，但尚未处理 
+301  Moved Permanently  请求的网页已永久移动到新位置。 
+302 Found  临时性重定向。 
+303 See Other  临时性重定向，且总是使用 GET 请求新的 URI。 
+304  Not Modified  自从上次请求后，请求的网页未修改过。 
+
+400 Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。 
+401 Unauthorized  请求未授权。 
+403 Forbidden  禁止访问。 
+404 Not Found  找不到如何与 URI 相匹配的资源。 
+
+500 Internal Server Error  最常见的服务器端错误。 
+503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。
+
+三、为什么通常推荐将 CSS <link> 放置在 <head></head> 之间，而将 JS <script> 放置在 </body> 之前？你知道有哪些例外吗？
+
+如果把javascript放在head里的话，则先被解析,但这时候body还没有解析。（常规html结构都是head在前，body在后）如果head的js代码是需要传入一个参数（在body中调用该方法时，才会传入参数），并需调用该参数进行一系列的操作，那么这时候肯定就会报错，因为函数该参数未定义（undefined）。
+而为什么我们经常看到有很多的人把js脚本放到head里面都不担心出问题？因为通常把javascript放在head里的话，一般都会绑定一个监听，当全部的html文档解析完之后，再执行代码
+
+Q：如何判断一个变量是对象还是数组？
+
+判断数组和对象分别都有好几种方法，其中用prototype.toString.call()兼容性最好。
+
+function isObjArr(variable){
+     if (Object.prototype.toString.call(value) === "[object Array]") {
+            console.log('value是数组');
+       }else if(Object.prototype.toString.call(value)==='[object Object]'){//这个方法兼容性好一点
+            console.log('value是对象');
+      }else{
+          console.log('value不是数组也不是对象')
+      }
+}
+ps：千万不能使用typeof来判断对象和数组，因为这两种类型都会返回"object"。
+
+ES5的继承和ES6的继承有什么区别？
+
+ES5的继承时通过prototype或构造函数机制来实现。ES5的继承实质上是先创建子类的实例对象，然后再将父类的方法添加到this上（Parent.apply(this)）。
+
+ES6的继承机制完全不同，实质上是先创建父类的实例对象this（所以必须先调用父类的super()方法），然后再用子类的构造函数修改this。
+
+具体的：ES6通过class关键字定义类，里面有构造方法，类之间通过extends关键字实现继承。子类必须在constructor方法中调用super方法，否则新建实例报错。因为子类没有自己的this对象，而是继承了父类的this对象，然后对其进行加工。如果不调用super方法，子类得不到this对象。
+
+ps：super关键字指代父类的实例，即父类的this对象。在子类构造函数中，调用super后，才可使用this关键字，否则报错。
+
+2.axios的特点有哪些
+
+axios是一个基于promise的HTTP库,支持promise的所有API
+它可以拦截请求和响应
+它可以转换请求数据和响应数据,并对响应回来的内容自动转换为json类型的数据
+它安全性更高,客户端支持防御XSRF
+7.简述DIV元素和span元素的区别
+
+div是一个块级元素，span是内嵌元素。块元素相当于内嵌元素在前后各加了一个换行。其实，块元素和行内元素也不是一成不变的，只要给块元素定义display：inline，块元素就变成了内嵌元素，同样的，给内嵌元素定义了display：block就变成了块元素了。
+
+12.举例说明一下什么是事件委托?
+
+事件委托就是利用冒泡的原理，把事件加到父元素或祖先元素上，触发执行效果
+    <ul id="ul1">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+    </ul>
+    <script>
+        window.onload = function () { 
+                var oUl = document.getElementById('ul1');
+                oUl.onclick = function (ev) {
+                        var ev = ev || window.event;
+                        var target = ev.target || ev.srcElement;
+                        if(target.nodeName.toLowerCase() == 'li') {
+                                alert(target.innerHTML)
+                        }
+                }
+        }
+    </script>
+2.父级div定义 overflow:hidden
+
+原理：必须定义width或zoom:1，同时不能定义height，使用overflow:hidden时，浏览器会自动检查浮动区域的高度 
+优点：简单、代码少、浏览器支持好
+
+4. 结尾处加空div标签 clear:both
+
+原理：添加一个空div，利用css提高的clear:both清除浮动，让父级div能自动获取到高度 
+优点：简单、代码少、浏览器支持好、不容易出现怪问题
+
+缺点：不少初学者不理解原理；如果页面浮动布局多，就要增加很多空div，让人感觉很不好
+6. 如何用原生js给一个按钮绑定两个onclick事件？
+Var  btn=document.getElementById(‘btn’);
+//事件监听 绑定多个事件
+var btn4 = document.getElementById("btn4");
+btn4.addEventListener("click",hello1);
+btn4.addEventListener("click",hello2);
+function hello1(){
+ alert("hello 1");
+}
+function hello2(){
+ alert("hello 2");
+}
+
+8.var arr = ['abc','abcd','sss','2','d','t','2','ss','f','22','d'];
+
+//定义一个新的数组
+
+var s = [];
+
+//遍历数组
+
+for(var i = 0;i<arr.length;i++){
+
+    if(s.indexOf(arr[i]) == -1){  //判断在s数组中是否存在，不存在则push到s数组中
+
+        s.push(arr[i]);
+
+    }
+
+}
+
+console.log(s);
+
+//输出结果：["abc", "abcd", "sss", "2", "d", "t", "ss", "f", "22"]
+6.动态创建script
+<script> 
+var script=document.createElement("script"); 
+script.type="text/javascript"; 
+script.src="file.js"; 
+document.getElementsByTagName("head")[0].appendChild(script); 
+</script>

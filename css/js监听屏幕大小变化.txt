@@ -1,0 +1,7 @@
+$(window).resize(function(){ //监听屏幕大小变化
+  let autoWidth = $(window).width();
+  console.log(Width);
+    if(Width!=autoWidth){
+      console.log(1)
+    }
+  })

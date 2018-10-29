@@ -1,0 +1,88 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+@at-root .forward-arrow{
+  background: url("../../assets/images/forward.png") no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  width: .15rem;
+  height: .4rem;
+}
+.item-box {
+  @extend .horizontal-view, .align-items-center, .justify-content-space-between ,.bg-white,.box-padding;
+  border-bottom: 1px solid #ececec;
+  &:last-of-type {
+    border: none !important;
+  }
+  font-size: .24rem;
+  .icon-gtgs {
+    width: .54rem;
+    margin: 0 .52rem 0 .32rem;
+    height: 1rem;
+    background: url("../../assets/images/gtgs@2x.png") no-repeat center;
+    background-size: 100% auto;
+  }
+  .icon-qysh {
+    @extend .icon-gtgs;
+    background-image: url("../../assets/images/qysh@2x.png");
+    background-size: .55rem .55rem;
+  }
+  @at-root .auth-item-info-box {
+    @extend .flex1;
+    padding: 0 .2rem 0 .3rem;
+    border-left: 1px solid $color_light;
+    color: $color_black;
+    @at-root .auth-item-title{
+      font-size: .32rem;
+      margin-bottom: .20rem;
+      line-height: 1;
+    }
+    @at-root .auth-item-info {
+      color: $color_dark;
+
+    }
+    .auth-correct{
+      margin-top: .2rem;
+      padding: .1rem .3rem .1rem .2rem;
+      border-bottom: none;
+      background:linear-gradient(left,rgb(234,245,250) 60%,#fff);
+      background:-webkit-linear-gradient(left,rgb(234,245,250) 60%,#fff);
+      .correct-icon{
+        margin-right: .1rem;
+      }
+    }
+  }
+}
+.auth-item-title-no{
+  color: $color_red;
+}
+.sub-box-btn{
+  padding-top: .6rem!important;
+  padding-bottom: .6rem!important;
+}
+.correct-icon{
+  width: .26rem;
+  height: .26rem;
+  margin-right: .2rem;
+  background:  url("../../assets/images/tips@2x.png") no-repeat center;
+  background-size: .26rem;
+}
+.auth-correct{
+  @extend .horizontal-view, .align-items-center, .justify-content-start ,.border-bottom,.bg-white,.box-padding;
+  font-size: .24rem;
+  padding: .2rem .4rem .2rem .72rem;
+  background:rgb(234,245,250);
+
+  color:rgb(51,51,51);
+
+}
+.img-box{
+  padding: .4rem .4rem .3rem .4rem;
+  //&~.img-box{
+  //  padding-top: .1rem;
+  //}
+}
+
+.tab-class{
+  font-size: .24rem;
+}

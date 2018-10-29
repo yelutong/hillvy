@@ -1,0 +1,561 @@
+1、正方形（square）：
+
+CSS Code:
+
+		.square {
+			width: 100px;
+			height:100px;
+			background: #E5C3B2;
+		}
+	
+上面的方法是，设置宽度和高度一致就可以实现正方形的效果，下面展示一种boder制作正方形的效果：
+
+		.square {
+			width:0;
+			height:0;
+			border: 50px solid  #E5C3B2;/*边框大小等于正方形宽度（或高度）的一半*/
+		}
+	
+效果：
+
+
+
+2、平行四边形（parallelogram）
+
+CSS Code:
+
+		.parallelogram {
+			width: 100px;
+			height: 70px;
+			-webkit-transform: skew(20deg);
+			-moz-transform: skew(20deg);
+			-o-transform: skew(20deg);
+			-ms-transform: skew(20deg);
+			transform: skew(20deg);
+			background: #E5C3B2;
+		}
+	
+效果：
+
+
+
+我们可以通过“skew”的值大小来控制角度，如果其值为负值，将会改变扭曲方向：
+
+		.parallelogram2 {
+			width: 100px;
+			height: 70px;
+			-webkit-transform: skew(-20deg);
+			-moz-transform: skew(-20deg);
+			-o-transform: skew(-20deg);
+			-ms-transform: skew(-20deg);
+			transform: skew(-20deg);
+			background: #E5C3B2;
+		}
+	
+效果：
+
+
+
+3、菱形(diamond)
+
+CSS Code:
+
+		.diamond {
+			width: 80px;
+			height: 80px;
+			margin: 40px 0 0 40px;
+			-webkit-transform-origin: 0 100%;
+			-moz-transform-origin: 0 100%;
+			-o-transform-origin: 0 100%;
+			-ms-transform-origin: 0 100%;
+			transform-origin: 0 100%;
+			-webkit-transform:rotate(-45deg);
+			-moz-transform:rotate(-45deg);
+			-o-transform:rotate(-45deg);
+			-ms-transform:rotate(-45deg);
+			transform:rotate(-45deg);
+			background: #E5C3B2;
+		}
+	
+效果：
+
+
+
+4、长方形（）
+
+CSS Code:
+
+		.rectangle {
+			width: 100px;
+			height: 50px;
+			background: #E5C3B2;
+		}
+	
+效果：
+
+
+
+5、梯形（trapezoid）
+
+梯形一
+
+CSS Code:
+
+		.trapezoid-1 {
+			height: 0;
+			width: 100px;
+			border-bottom: 100px solid #e5c3b2;
+			border-left: 60px solid transparent;
+			border-right: 60px solid transparent;
+		}
+	
+效果：
+
+
+
+梯形二
+
+CSS Code:
+
+		.trapezoid-2 {
+			height: 0;
+			width: 100px;
+			border-top: 100px solid #e5c3b2;
+			border-left: 60px solid transparent;
+			border-right: 60px solid transparent;
+		}
+	
+效果：
+
+
+
+梯形三
+
+CSS Code:
+
+		.trapezoid-3 {
+			height: 100px;
+			width: 0;
+			border-right: 100px solid #e5c3b2;
+			border-top: 60px solid transparent;
+			border-bottom: 60px solid transparent;
+		}
+	
+效果：
+
+
+
+梯形四
+
+CSS Code:
+
+		.trapezoid-4 {
+			height: 100px;
+			width: 0;
+			border-left: 100px solid #e5c3b2;
+			border-top: 60px solid transparent;
+			border-bottom: 60px solid transparent;
+		}
+	
+效果：
+
+
+
+6、三角形（triangle）
+
+三角形朝上
+
+CSS Code:
+
+		.triangle-up {
+			height: 0;
+			width: 0;			
+			border: 50px solid #e5c3b2;
+			border-color: transparent transparent #e5c3b2 transparent;
+		}		
+	
+效果：
+
+
+
+三角朝右
+
+CSS Code:
+
+		.triangle-rihgt {
+			height: 0;
+			width: 0;
+			border: 50px solid #e5c3b2;
+			border-color: transparent  transparent transparent #e5c3b2;
+		}		
+	
+效果：
+
+
+
+三角朝下
+
+CSS Code:
+
+		.triangle-down {
+			height: 0;
+			width: 0;
+			border: 50px solid #e5c3b2;
+			border-color: #e5c3b2 transparent  transparent transparent;
+		}		
+	
+效果：
+
+
+
+三角朝左
+
+CSS Code:
+
+		.triangle-left {
+			height: 0;
+			width: 0;
+			border: 50px solid #e5c3b2;
+			border-color:  transparent #e5c3b2 transparent transparent;
+		}
+	
+效果：
+
+
+
+7、半圆（semicircle）
+
+上半圆
+
+CSS Code:
+
+		.semicircle-top {
+			background: #e5c3b2;
+			height: 25px;
+			width: 50px;			
+			-moz-border-radius: 50px 50px 0 0;
+			-webkit-border-radius: 50px 50px 0 0;
+			border-radius: 50px 50px 0 0;
+		}		
+	
+效果：
+
+
+
+右半圆
+
+CSS Code:
+
+		.semicircle-right {
+			background: #e5c3b2;
+			height: 50px;
+			width: 25px;			
+			-moz-border-radius: 0 0px 50px 0;
+			-webkit-border-radius:0 50px 50px 0;
+			border-radius:0 50px 50px 0;
+		}		
+	
+效果：
+
+
+
+下半圆
+
+CSS Code:
+
+		.semicircle-down {
+			background: #e5c3b2;
+			height: 25px;
+			width: 50px;			
+			-moz-border-radius:0 0 50px 50px;
+			-webkit-border-radius:0 0 50px 50px;
+			border-radius:0 0 50px 50px;
+		}		
+	
+效果：
+
+
+
+左半圆
+
+CSS Code:
+
+		.semicircle-left {
+			background: #e5c3b2;
+			height: 50px;
+			width: 25px;			
+			-moz-border-radius:50px 0 0 50px;
+			-webkit-border-radius:50px 0 0 50px;
+			border-radius:50px 0 0 50px;
+		}		
+	
+效果：
+
+
+
+8、圆（circle）
+
+CSS Code:
+
+		.circle {
+			background: #e5c3b2;
+			height: 50px;
+			width: 50px;			
+			-moz-border-radius: 25px;
+			-webkit-border-radius:25px;
+			border-radius: 25px;
+		}		
+	
+效果：
+
+
+
+9、椭圆（oval）
+
+水平椭圆
+
+CSS Code:
+
+		.ovalHor {
+			background: #e5c3b2;
+			height: 40px;
+			width: 80px;			
+			-moz-border-radius: 40px/20px;
+			-webkit-border-radius:40px/20px;
+			border-radius: 40px/20px;
+		}		
+	
+效果：
+
+
+
+垂直椭圆
+
+CSS Code:
+
+		.ovalVert {
+			background: #e5c3b2;
+			height: 80px;
+			width: 40px;			
+			-moz-border-radius: 20px/40px;
+			-webkit-border-radius:20px/40px;
+			border-radius: 20px/40px;
+		}		
+	
+效果：
+
+
+
+10、表图（chartColorful）
+
+CSS Code:
+
+		.chartColorful {
+			height: 0px;
+			width: 0px;
+			border: 50px solid red;
+			border-color: purple red yellow orange;
+			-moz-border-radius: 50px;
+			-webkit-border-radius:50px;
+			border-radius: 50px;
+		}		
+	
+效果：
+
+
+
+11、四分之一圆（quarterCircle）
+
+四分之一圆（上）
+
+CSS Code:
+
+		.quarterCircleTop {
+			background: #e5c3b2;
+			height: 50px;
+			width: 50px;			
+			-moz-border-radius: 50px 0 0 0;
+			-webkit-border-radius: 50px 0 0 0;
+			border-radius: 50px 0 0 0;
+		}		
+	
+效果：
+
+
+
+四分之一圆（右）
+
+CSS Code:
+
+		.quarterCircleRight {
+			background: #e5c3b2;
+			height: 50px;
+			width: 50px;			
+			-moz-border-radius: 0 50px 0 0;
+			-webkit-border-radius: 0 50px 0 0;
+			border-radius:0 50px 0 0;
+		}			
+	
+效果：
+
+
+
+四分之一圆（下）
+
+CSS Code:
+
+		.quarterCircleBottom {
+			background: #e5c3b2;
+			height: 50px;
+			width: 50px;			
+			-moz-border-radius: 0  0 50px 0;
+			-webkit-border-radius: 0  0 50px 0;
+			border-radius:0  0 50px 0;
+		}			
+	
+效果：
+
+
+
+四分之一圆（左）
+
+CSS Code:
+
+		.quarterCircleLeft {
+			background: #e5c3b2;
+			height: 50px;
+			width: 50px;			
+			-moz-border-radius: 0  0 0 50px;
+			-webkit-border-radius: 0  0 0 50px;
+			border-radius:0  0 0 50px;
+		}			
+	
+效果：
+
+
+
+12、Chart（quarterCircle）
+
+Chart（上）
+
+CSS Code:
+
+		.chartTop {
+			height: 0px;
+			width: 0px;
+			border:50px solid #e5c3b2;
+			border-top-color: transparent;
+			-moz-border-radius: 50px;
+			-webkit-border-radius: 50px;
+			border-radius: 50px;
+		}		
+	
+效果：
+
+
+
+Chart（右）
+
+CSS Code:
+
+		.chartRight{
+			height: 0px;
+			width: 0px;
+			border:50px solid #e5c3b2;
+			border-right-color: transparent;			
+			-moz-border-radius: 50px;
+			-webkit-border-radius: 50px;
+			border-radius: 50px;
+		}			
+	
+效果：
+
+
+
+Chart（下）
+
+CSS Code:
+
+		.chartBottom {
+			height: 0px;
+			width: 0px;
+			border:50px solid #e5c3b2;
+			border-bottom-color: transparent;		
+			-moz-border-radius: 50px;
+			-webkit-border-radius: 50px;
+			border-radius: 50px;
+		}			
+	
+效果：
+
+
+
+Chart（左）
+
+CSS Code:
+
+		.chartLeft {
+			height: 0px;
+			width: 0px;
+			border:50px solid #e5c3b2;
+			border-left-color: transparent;			
+			-moz-border-radius: 50px;
+			-webkit-border-radius: 50px;
+			border-radius: 50px;
+		}			
+	
+效果：
+
+
+
+13、心形（heart）
+
+左心形
+
+CSS Code
+
+		.heartLeft{
+			width: 0;
+			height: 0;
+			border-color: red;
+			border-style: dotted;
+			border-width: 0 40px 40px 0;
+		}
+	
+效果：
+
+
+
+右心形
+
+CSS Code
+
+		.heartRight{
+			width: 0;
+			height: 0;
+			border-color: red;
+			border-style: dotted;
+			border-width: 0  0 40px 40px;
+		}
+	
+效果：
+
+
+
+14、彩带（ribbon）
+
+CSS Code
+
+		.ribbon {
+			width: 0;
+			height: 100px;
+			border-left: 50px solid red;
+			border-right: 50px solid red;
+			border-bottom: 35px solid transparent
+		}
+	
+效果：
+
+
+
+上面就用CSS制作的32种图形效果，当然大家还可以发挥你的想像和创造，制作一些更精美的图形。

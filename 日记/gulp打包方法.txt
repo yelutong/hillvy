@@ -1,0 +1,52 @@
+1.进入wwwwwwGulp 运行命令 npm install
+D:\UED组\前端\wwwGulp>npm install
+
+2.如果被提示更新npm 
+D:\UED组\前端\wwwGulp>npm i -g npm
+
+3.再次 运行命令 npm install 因为刚刚没装包成功
+D:\UED组\前端\wwwGulp>npm install
+
+4.运行命令 gulp buildSIT （打包）
+D:\UED组\前端\wwwGulp>ls    (这一步骤是如果下面的命令出错我时候，先执行这个)
+D:\UED组\前端\wwwGulp>gulp buildSIT
+
+不成功
+
+5.再次安装依赖包
+D:\UED组\前端\wwwGulp>npm install
+
+6.安装全局的gulp
+D:\UED组\前端\wwwGulp>npm install gulp -g
+
+
+7.再次运行命令 gulp buildSIT （打包）
+D:\UED组\前端\wwwGulp>gulp buildSIT    (  生产就叫 gulp buildPRO  ）
+
+成功
+
+
+
+1）拷贝wwwGulp到目录（例如D:\UED组\前端\wwwGulp>）
+2）把最新的www文件拷贝到当前目录下，执行命令gulp buildSIT  (生产就执行gulp buildPRO）
+3）执行成功会生成dist\www文件
+   D:\UED组\前端\wwwGulp>gulp buildSIT    (  生产就叫 gulp buildPRO  ）
+   -------D:\UED组\前端\wwwGulp\dist\www   这里就是新生成的包
+
+http://10.118.239.170:38080/sfpay-hybrid-admin/
+
+4）-------上传生成的 dist下的 www文件 到上面的网址命名例如SIT_201804271755或PRO_201804271717 
+   会生成两个压缩包，下载压缩包放到wwwGulp\dist\www目录下，改名安卓和ios的加后缀_app
+5）把sit或者pro最近的代码里的两个json包（安卓hybrid_support_urls_android.json和ios）拷贝到dist/ www文件 修改(编辑)版本号，改版本+1
+6）在release目录（pro生产、sit测试）下，按照日期新建一个
+
+一：sit cdn 服务器账号
+Https://10.118.213.9  sftp登陆进去wealth/cdn/www  删掉 再把最新的release/sit/日期/1/www包拉进来
+二：sit 服务器账号相关 
+10.118.236.33         sftp登陆进去html/www 删掉 再把最新的release/sit/日期/1/www包拉进来
+
+三：
+5 登录xshell的33服务器host: '10.118.236.56',username: 'nginx',password: 'tomcat@123',
+6.切换用户，su - ，输入密码：sfpay123!@# ( !@#即[shift键]+123  )
+7. 切换到目录：cd /usr/local/nginx/sbin
+8. 执行命令 ： ./nginx -s reload   后，发布完成

@@ -1,0 +1,20 @@
+<span class="close"></span>
+1
+css²¿·Ö
+.close{
+    display: inline-block;
+    width: 14px;
+    height: 1px;
+    background: #95835e;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.suClose:after {
+    content: '';
+    display: block;
+    width: 14px;
+    height: 1px;
+    background: #95835e;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+}

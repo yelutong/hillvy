@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  {{ message | capitalize }}
+</div>
+	
+<script>
+new Vue({
+  el: '#app',
+  data: {
+	message: 'runoob'
+  },
+  filters: {
+    capitalize: function (value) {
+      if (!value) {
+		  return '';
+	  }
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1);//表示从1开始截取到最后
+    }
+  }
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+outline:medium;
+
+
+.search input[type='search']{
+    background:no-repeat 0 0 scroll #EEEEEE;
+    border:none;
+    outline:medium;
+}

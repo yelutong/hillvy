@@ -1,0 +1,18 @@
+.introduceContent .header .sun{
+	top: 0;
+	width: 189px;
+	height: 92px;
+    animation: change 2s infinite;
+    -moz-animation: change 2s infinite;    
+    -webkit-animation: change 2s infinite;
+    animation-direction:alternate;
+	-webkit-animation-direction:alternate;
+}
+@keyframes change{
+    from {width: 95px;height: 46px;opacity: 1;}
+    to {width: 189px;height: 92px;opacity: 1;}
+}
+@-webkit-keyframes change{
+	from {width: 95px;height: 46px;opacity: 1;}
+    to {width: 189px;height: 92px;opacity: 1;}
+}

@@ -1,0 +1,16 @@
+.sfcouponList .sfcoupon-left-bg{
+  height:120px; 
+  background:#FFF url(../img/coupon/sfcoupon_bg_left_block.png) no-repeat;  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-right:20px;  
+  color:#FFF!important;
+}
+
+
+.sfcouponList .lose-efficacy .sfcoupon-left-bg{
+  filter: url(../img/coupon/gray.svg#grayscale);/*Õº∆¨ª“÷√*/
+  opacity: 0.5;filter: Alpha(Opacity=50);-moz-opacity:0.5;
+}

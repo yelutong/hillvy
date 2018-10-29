@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue</title>
+<script src="vue.min.js"></script> 
+</head>
+<body>
+<div id="app">
+  <label><input type="radio" name="one" value="face" v-model="valueClass,id">微笑</label>
+  <label><input type="radio" name="one" value="notface" v-model="valueClass,id">不微笑</label>
+  <div v-html="message" :class="valueClass" :name="'okb-'+id"></div>
+</div>
+
+<script>
+window.onload=function(){
+	let dataObj={
+		id:0,
+		valueClass:"face",
+		message:"大家好，欢迎来到<i style='color:red'>麦子学院</i>"
+	}
+	 
+	new Vue({
+	  el: '#app',
+	  data:dataObj  
+	})
+}	
+
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+
+<style type="text/css">
+.abc {
+background-color: #CCC;
+width: 200px;
+overflow:hidden;
+text-overflow:ellipsis;/*文字溢出的部分隐藏并用省略号代替*/
+white-space:nowrap;/*文本不自动换行，如果可以换行，应设置几行的高度，这个就去掉，不影响省略号*/
+</style>
+<a class="abc" title="我是标题，我很长，很长，真的很长，已经长的令人无法接受了！！！">我是标题，我很长，很长，真的很长，已经长的令人无法接受了！！！</a> 
+
+</body>
+</html>
+下面这个可以实现两行的溢出
+
+text-overflow: -o-ellipsis-lastline;
+overflow: hidden;
+text-overflow: ellipsis;display:
+ -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;

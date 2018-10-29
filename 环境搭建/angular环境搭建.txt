@@ -1,0 +1,89 @@
+1.安装nodejs  https://nodejs.org/en/
+  在命令行中输入：node -v 和 npm -v 验证版本
+2.进入node安装目录 安装cnmp    
+   npm install -g cnpm –registry=https://registry.npm.taobao.org
+
+
+    npm config get registry  //检查淘宝镜像是否安装成功
+    或 npm info express
+
+
+
+3.安装Angular Cli 
+   之前电脑上如果安装过angular cli老版本的话建议先卸载，然后重新安装。
+
+卸载老版本： 
+npm uninstall -g @angular/cli  //卸载angular/cli
+
+npm uninstall –save-dev angular-cli 
+卸载新版本： 
+npm uninstall -g @angular/cli 
+清除下缓存 
+npm cache clean
+
+然后开始安装，记住，要用cnpm 
+cnpm install -g @angular/cli@latest 或者 npm install npm -g 要记住全局更新
+
+若没安装过，直接cnpm install -g @angular/cli
+
+  ng -v  //查看版本能否正常显示
+4.创建项目
+  ng new angular01  //angular01是项目名称
+  进入所建目录启动服务  
+   cd angular01
+   cnpm install     //安装依赖 或者 npm install
+
+   ng serve --open  //启动服务
+   或者
+
+   npm start 启动
+
+
+5.目录结构
+├── README.md 
+├── e2e 
+│ ├── app.e2e-spec.ts 
+│ ├── app.po.ts 
+│ └── tsconfig.e2e.json 
+├── karma.conf.js 
+├── package.json 
+├── protractor.conf.js 
+├── src //主目录 
+│ ├── app 
+│ │ ├── app.component.css 
+│ │ ├── app.component.html 
+│ │ ├── app.component.spec.ts 
+│ │ ├── app.component.ts //组件 
+│ │ └── app.module.ts //根模块 
+│ ├── assets 
+│ ├── environments 
+│ │ ├── environment.prod.ts 
+│ │ └── environment.ts 
+│ ├── favicon.ico 
+│ ├── index.html 
+│ ├── main.ts 
+│ ├── polyfills.ts 
+│ ├── styles.css 
+│ ├── test.ts 
+│ ├── tsconfig.app.json 
+│ ├── tsconfig.spec.json 
+│ └── typings.d.ts 
+├── tsconfig.json 
+└── tslint.json
+
+
+ng generate class my-new-class              // 新建 class
+ng generate component my-new-component      // 新建组件
+ng generate directive my-new-directive      // 新建指令
+ng generate enum my-new-enum                // 新建枚举
+ng generate module my-new-module            // 新建模块
+ng generate pipe my-new-pipe                // 新建管道
+ng generate service my-new-service          // 新建服务
+
+ng g cl my-new-class        // 新建 class
+ng g c my-new-component     // 新建组件
+ng g d my-new-directive     // 新建指令
+ng g e my-new-enum          // 新建枚举
+ng g m my-new-module        // 新建模块
+ng g p my-new-pipe          // 新建管道
+ng g s my-new-service       // 新建服务

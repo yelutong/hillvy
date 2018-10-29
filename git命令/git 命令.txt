@@ -1,0 +1,114 @@
+使用git pull命令从主分支拉最新的代码
+然后你每次修改代码之前，记得先git pull一下哈，把最新的代码先拉下来再修改，不然的话也容易造成冲突的
+一般都是在dev开发的嘛，就dev改代码之前git pull一下就行了。
+
+不过一般，你切换到sit和master的时候，git会提醒你git pull一下的。看着办就好~哈哈
+如果以后也是在合并sit或者master的时候有冲突的话，在当前分支解决修改完之后，提交一下再合并一次到dev哈。这样才可以保证dev的分支和修改后的sit/master代码一致。
+
+不然就容易出现今天的冲突。昨天提交完master的时候，我们好像忘记合并到dev了，直接切换到dev去改
+
+拉取指定分支的git命令 dev-1113为分支名称 
+git clone -b dev-1113 http://git.kreditplusteknologi.id/apply-online/kpt-apply-front.git
+
+
+git add .
+git commit -m "说明"
+git push origin
+一般是这三步提交
+你是在dev分支上面开发的吗？
+一般是dev是开发分支的哈
+master是生产分支
+
+切换到 git checkout xxx // xxx代表可以是 dev master sit
+
+在sit下执行这个操作，代表意思是把dev的代码合并到sit
+ git merge dev
+
+master是最后上线的时候才合并过去的。不然很容易有冲突，不能保证master就是现在线上的最新代码
+你如果现在改的是master分支的话，就执行 git checkout dev
+切换到dev，再去提交吧
+
+git merge master dev合并到主干master
+
+git stash //拉取删除的，但是不会把文件夹生成，只能在文件夹内去拉取
+
+1、打开git hash命令窗口；
+2、使用git checkout xxx进入主分支下（xxx为分支名称，如develop）；中腾信 git checkout dev
+
+3、使用git pull命令从主分支拉最新的代码；出现如下显示，表示pull完成
+4、pull完成之后，再使用git checkout xxx进入自己的分支下，以免下次直接提交到master主分支
+5、提交代码的时候，使用"git add ." 命令提交全部文件（使用git status 查看要提交的内容）
+6、git add .完成之后，使用 git commit -m '注释' 提交代码
+7、最后使用git push将代码推送到当前分支上
+
+你下次合并到master的时候，从sit合并过去哈。切换到master分支之后，就是git merge sit。
+虽然代码一样的话，直接git merge dev也没什么问题。不过最好是一层层去合吧~
+待会你提交之后，如果可以正常打开浏览的话，那应该是没什么冲突的了
+
+
+
+Git 常用命令
+
+git branch 查看本地所有分支
+git status 查看当前状态 
+git commit 提交 
+git branch -a 查看所有的分支
+git branch -r 查看本地所有分支
+git commit -am "init" 提交并且加注释 
+git remote add origin git@192.168.1.119:ndshow
+git push origin master 将文件给推到服务器上 
+git remote show origin 显示远程库origin里的资源 
+git push origin master:develop
+git push origin master:hb-dev 将本地库与服务器上的库进行关联 
+git checkout --track origin/dev 切换到远程dev分支
+git branch -D master develop 删除本地库develop
+git checkout -b dev 建立一个新的本地分支dev
+git merge origin/dev 将分支dev与当前分支进行合并
+git checkout dev 切换到本地dev分支
+git remote show 查看远程库
+git add .
+git rm 文件名(包括路径) 从git中删除指定文件
+git clone git://github.com/schacon/grit.git 从服务器上将代码给拉下来
+git config --list 看所有用户
+git ls-files 看已经被提交的
+git rm [file name] 删除一个文件
+git commit -a 提交当前repos的所有的改变
+git add [file name] 添加一个文件到git index
+git commit -v 当你用－v参数的时候可以看commit的差异
+git commit -m "This is the message describing the commit" 添加commit信息
+git commit -a -a是代表add，把所有的change加到git index里然后再commit
+git commit -a -v 一般提交命令
+git log 看你commit的日志
+git diff 查看尚未暂存的更新
+git rm a.a 移除文件(从暂存区和工作区中删除)
+git rm --cached a.a 移除文件(只从暂存区中删除)
+git commit -m "remove" 移除文件(从Git中删除)
+git rm -f a.a 强行移除修改后文件(从暂存区和工作区中删除)
+git diff --cached 或 $ git diff --staged 查看尚未提交的更新
+git stash push 将文件给push到一个临时空间中
+git stash pop 将文件从临时空间pop下来
+---------------------------------------------------------
+git remote add origin git@github.com:username/Hello-World.git
+git push origin master 将本地项目给提交到服务器中
+-----------------------------------------------------------
+git pull 本地与服务器端同步
+-----------------------------------------------------------------
+git push (远程仓库名) (分支名) 将本地分支推送到服务器上去。
+git push origin serverfix:awesomebranch
+------------------------------------------------------------------
+git fetch 相当于是从远程获取最新版本到本地，不会自动merge
+git commit -a -m "log_message" (-a是提交所有改动，-m是加入log信息) 本地修改同步至服务器端 ：
+git branch branch_0.1 master 从主分支master创建branch_0.1分支
+git branch -m branch_0.1 branch_1.0 将branch_0.1重命名为branch_1.0
+git checkout branch_1.0/master 切换到branch_1.0/master分支
+du -hs
+
+-----------------------------------------------------------
+mkdir WebApp
+cd WebApp
+git init
+touch README
+git add README
+git commit -m 'first commit'
+git remote add origin git@github.com:daixu/WebApp.git
+git push -u origin master

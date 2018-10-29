@@ -1,0 +1,42 @@
+main.js
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  }
+  console.log('to,from')
+  console.log(to,from)
+  switch (to.name){
+    case 'identity':
+      if(from.name === 'audit'){
+        router.replace("/mine")
+      }
+      break;
+    case "bankInfo":
+      if(from.name==="bankResult"){
+        router.replace("/mine")
+      }
+      break;
+  }
+
+  const toDepth = to.path.split('/').length
+  const fromDepth = from.path.split('/').length
+
+
+  if ((to.path === '/' || to.path === '/service' || to.path === '/mine') && (from.path === '/' || from.path === '/service' || from.path === '/mine')) {
+    store.commit('updateAni', {name: 'transitionName', value:''});
+    store.commit('updateAni', {name: 'cvShow', value:true});
+  } else {
+    if (to.path === '/' || to.path === '/service' || to.path === '/mine') {
+     store.commit('updateAni', {name: 'transitionName', value:'vux-pop-out'});
+      setTimeout(function () {
+        store.commit('updateAni', {name: 'cvShow', value:true});
+      }, 500)
+    } else {
+      store.commit('updateAni', {name: 'transitionName', value:toDepth < fromDepth ? 'vux-pop-out' : 'vux-pop-in'});
+      store.commit('updateAni', {name: 'cvShow', value:false});
+    }
+  }
+
+  next()
+});

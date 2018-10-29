@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="MyController"   ng-app="MyApp">       
+<h1>Hello {{ clock.now }}!</h1>    
+</div>     
+<script type="text/javascript">
+var MyApp = angular.module('MyApp', []);//angular.module()方法来声明模块 第一个是模块的名称，第二个是依赖列表
+MyApp.controller("MyController", function ($scope) {
+    var updateClock;
+    if($scope) {
+        $scope.clock = {
+            now : new Date()
+        }
+        updateClock = function(){
+            $scope.clock.now = new Date();
+        };
+        setInterval(function(){
+            $scope.$apply(updateClock);
+        }, 1000);
+        updateClock();
+    }
+});
+ </script> 
+</body>
+</html>

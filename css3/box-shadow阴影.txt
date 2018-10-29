@@ -1,0 +1,4 @@
+box-shadow: -2px 0 0 green, //左边阴影
+   0 -2px 0 blue, //顶部阴影
+   0 2px 0 red, //底部阴影
+   0 0 0 yellow; //右边阴影

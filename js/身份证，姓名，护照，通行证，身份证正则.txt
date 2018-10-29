@@ -1,0 +1,47 @@
+if($scope.vc.certTypeSelect.value != '外国护照'){
+                $scope.vc.custname = $scope.vc.custname.replace(/\s/g,"");
+                var reg = /^(([\u4e00-\u9fa5]+[·\?])*[\u4e00-\u9fa5]+)$/;
+                 if(!(reg.test($scope.vc.custname))){
+                   UtilsService.showMessage('姓名格式错误，请核对后重试');
+                   return;
+                 }
+                 if($scope.vc.certTypeSelect.value == '身份证'){
+                    var regIdNo = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;  
+                    if(!regIdNo.test($scope.vc.certNo)){  
+                        UtilsService.showMessage('证件类型与证件号码不符，请核对后重试');  
+                        return false;  
+                    }  
+                 }else if($scope.vc.certTypeSelect.value == '台湾居民往来大陆通行证'){
+                    var re1 = /^[0-9]{8}$/;
+                    var re2 = /^[0-9]{10}$/;
+                    if(!(re1.test($scope.vc.certNo)|| re2.test($scope.vc.certNo))){
+                       UtilsService.showMessage('证件类型与证件号码不符，请核对后重试');  
+                       return false;
+                    }
+                 }else if($scope.vc.certTypeSelect.value == '港澳居民往来内地通行证(香港)'){
+                   var re = /^[Hh]{1}([0-9]{10})$/;
+                   if(!re.test($scope.vc.certNo)){  
+                        UtilsService.showMessage('证件类型与证件号码不符，请核对后重试');  
+                        return false;  
+                    } 
+                 }else{
+                   var re = /^[Mm]{1}([0-9]{10})$/;
+                   if(!re.test($scope.vc.certNo)){  
+                        UtilsService.showMessage('证件类型与证件号码不符，请核对后重试');  
+                        return false;  
+                    } 
+                 }
+            }else{ 
+               var regEn =/[@#\$%\^&\*.\'[\]\,"\?+\<>\:!]+/g;
+               var regEn1 = /[a-zA-Z]/i;
+               var regEn2 =/[\u4e00-\u9fa5]+/;//含汉字
+               var regEn3 = /[0-9]/;
+               var name = $scope.vc.custname;
+               if(regEn2.test(name)||regEn3.test(name)){
+                 UtilsService.showMessage('姓名格式错误，请核对后重试');
+                 return;
+               }else if(!(regEn.test(name)||regEn1.test(name))) {
+                   UtilsService.showMessage('姓名格式错误，请核对后重试');
+                   return;
+               }
+            } 

@@ -1,0 +1,8 @@
+	.rotate:hover {
+				transform: rotate(360deg);
+				-moz-transform: rotate(360deg);
+				-webkit-transform: rotate(360deg);
+				transition: transform 1.0s ease all;
+				-moz-transition: -moz-transform 1.0s ease all;
+				-webkit-transition: -webkit-transform 1.0s ease all;
+			}

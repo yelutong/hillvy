@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <button v-on:click="say('hi')">Say hi</button>
+  <button v-on:click="say('what')">Say what</button>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  methods: {
+    say: function (message) {
+      alert(message)
+    }
+  }
+})
+</script>
+</body>
+</html>

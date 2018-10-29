@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue</title>
+<script src="vue.min.js"></script> 
+</head>
+<body> 
+<div id="app"> 
+<span style="color:#006600;"><div id="app">  
+    <input type="text" v-model:value="childrens.name" />  
+    <input type="text" v-model:value="lastName" />  
+</div>  
+  
+<script type="text/javascript">     
+    var vm = new Vue( {  
+        el: '#app',  
+        data: {  
+            childrens: {  
+                name: '小强',  
+                age: 20,  
+                sex: '男'  
+            },  
+            tdArray:["1","2"],  
+            lastName:"张三"  
+        },  
+        watch:{ //监听属性变化
+            childrens:{  
+                handler:function(val,oldval){  
+                    console.log(val.name)  
+                },  
+                deep:true//对象内部的属性监听，也叫深度监听  
+            },  
+            'childrens.name':function(val,oldval){  
+                console.log(val+"aaa")  
+            },//键路径必须加上引号  
+            lastName:function(val,oldval){  
+                console.log(this.lastName)  
+            }  
+        },//以V-model绑定数据时使用的数据变化监测  
+    } );  
+    vm.$watch("lastName",function(val,oldval){  
+        console.log(val)  
+    })//主动调用$watch方法来进行数据监测</span>  
+</script>  
+</body>  
+</html>

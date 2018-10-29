@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue</title>
+<script src="vue.min.js"></script> 
+</head>
+<body>
+<div id="app"> 
+  <div :class="valueClass" :name="'okb-'+id">大家好，我叫 {{ name }},我今年 {{ id+15 }}岁了。</div>
+</div>
+
+<script>
+window.onload=function(){
+	let dataObj={
+		name:"hillvy",
+		id:10,
+		valueClass:"face",
+		message:"大家好，欢迎来到<i style='color:red'>麦子学院</i>"
+	}
+	 
+	new Vue({
+	  el: '#app',
+	  data:dataObj  
+	})
+}	
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+.footer{
+  @extend .horizontal-view ,.justify-content-center,.align-items-center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: .4rem  .4rem;
+  background: #f2f2f2;
+  font-size: .24rem;
+  @at-root .protect-icon{
+    width: .26rem;
+    height: .26rem;
+    margin-right: .04rem;
+    background: url("../../assets/images/anquan.png") no-repeat center;
+    background-size: 100%;
+
+  }
+}
+.content-box{
+  font-size: .24rem;
+}

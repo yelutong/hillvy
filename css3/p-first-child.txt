@@ -1,0 +1,14 @@
+<html>
+<head>
+<style type="text/css">
+p:first-child {
+  color: red;
+  } 
+</style>
+</head>
+
+<body>
+<p>some text</p>//这一行变色了
+<p>some text</p>
+</body>
+</html>

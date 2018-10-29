@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+.model-14 section {
+  float: left;
+  min-width: 150px;
+  width: 33.33%;
+  padding: 25px 0;
+  min-height: 100px;
+}
+
+/*=====================*/
+.model-14 .checkbox {
+  position: relative;
+  display: inline-block;
+}
+.model-14 .checkbox:after, .checkbox:before {
+  font-family: FontAwesome;
+  -webkit-font-feature-settings: normal;
+     -moz-font-feature-settings: normal;
+          font-feature-settings: normal;
+  -webkit-font-kerning: auto;
+     -moz-font-kerning: auto;
+          font-kerning: auto;
+  -webkit-font-language-override: normal;
+     -moz-font-language-override: normal;
+          font-language-override: normal;
+  font-stretch: normal;
+  font-style: normal;
+  font-synthesis: weight style;
+  font-variant: normal;
+  font-weight: normal;
+  text-rendering: auto;
+}
+.model-14 .checkbox label {
+  width: 90px;
+  height: 42px;
+  background: #ccc;
+  position: relative;
+  display: inline-block;
+  border-radius: 46px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.model-14 .checkbox label:after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  left: 0;
+  top: -5px;
+  z-index: 2;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.model-14 .checkbox input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+.model-14 .checkbox input:hover + label:after {
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+}
+.model-14 .checkbox input:checked + label:after {
+  left: 40px;
+}
+
+.model-14{
+	float: left;
+    min-width: 150px;
+    width: 33.33%;
+    padding: 25px 0;
+    min-height: 100px;
+	}
+.model-14 .checkbox {
+    position: relative;
+    display: inline-block;
+} 
+.model-14 .checkbox input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+}
+.model-14 .checkbox label {
+    width: 90px;
+    height: 42px;
+    background: #ccc;
+    position: relative;
+    display: inline-block;
+    border-radius: 46px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+.model-14 .checkbox:after, .model-14 .checkbox:before {
+  content: 'OFF';
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 12px;
+  color: #90201F;
+}
+.model-14 .checkbox:before {
+  content: 'ON';
+  left: -40px;
+  z-index: 1;
+  text-align:center;
+  color: #256c32;
+}
+.model-14 .checkbox label {
+  background: #fff;
+  height: 32px;
+  border-radius: 0;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+.model-14 .checkbox label:after {
+  background: #90201F;
+  border-radius: 0;
+  box-shadow: none !important;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  top: 0;
+  width: 40px;
+  height: 32px;
+}
+.model-14 .checkbox input:checked + label:after {
+  background: #4BD865;
+  left: 50px;
+}
+</style>
+</head>
+
+<body>
+<section class="model-14">
+			                <div class="checkbox">
+			                   <input type="checkbox">
+			                     <label></label>
+			                </div></section>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="angular.min.js"></script>
+</head> 
+<body>
+<div ng-app="" ng-init="firstName='wei'">
+<!--
+ng-app 指令初始化一个 AngularJS 应用程
+ng-init 指令初始化应用程序数据。
+ng-model 指令把元素值（比如输入域的值）绑定到应用程序。
+序-->
+<p>请输入你的名字</p>
+<p>名字<input  type="text" ng-model="firstName"/></p>
+<p>你的名字是：{{firstName}}</p>
+</div>
+
+</body>
+</html>

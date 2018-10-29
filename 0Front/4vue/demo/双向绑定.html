@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title> 
+    <script src="vue.js"></script> 
+    </head>
+
+    <body>
+        <!--这是我们的View-->
+        <div id="app">
+           <p>{{ message }}</p>
+           <input type="text" v-model="message"/>
+        </div> 
+    </body>
+</html>
+<script>
+new Vue({
+	el:"#app",
+	data:{
+		message:"wei21"
+	}
+	
+})
+
+</script>

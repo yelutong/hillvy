@@ -1,0 +1,1 @@
+.page-loading-anim{height: 172px;width: 172px;display: inline-block;background:url(../images/loading.png) 0 0 no-repeat;background-size:172px auto;margin:0;-webkit-animation:loading-anim 2s linear infinite;-moz-animation:loading-anim 2s linear infinite;-o-animation:loading-anim 2s linear infinite;-ms-animation:loading-anim 2s linear infinite;}

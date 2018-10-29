@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="js/vue.min.js"></script>
+<style>
+.list-1{color:red}
+</style>
+</head>
+<body>
+<div id="app">
+	{{5+5}}<br>
+	{{ ok ? 'YES' : 'NO' }}<br>
+	{{ message.split(' ').reverse().join('+') }}<!--reverse() 方法用于颠倒数组中元素的顺序。-->
+	<div v-bind:class="'list-' + id">菜鸟教程</div>
+</div>
+	
+<script>
+new Vue({
+  el: '#app',
+  data: {
+	ok: true,
+    message: 'RUN OOB',
+	id : 1
+  }
+})
+</script>
+</body>
+</html>

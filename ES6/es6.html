@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, viewport-fit=cover">
+<title>顺丰金融</title> 
+</head>
+<body>
+<div>
+  <p class="classD">111</p>
+  <p class="classB">222</p>
+  <p class="classC">333</p>
+</div> 
+</body>
+</html>
+<script>
+  let a = 12;
+  console.log(a)
+  const b = 'Tab';
+  console.log(b);
+
+    var name = 'Datura';
+    var age = 18;
+    var sex = '其它';
+    var hobby = '敲代码';
+    var str1 = `我是${name}，今年${age}岁，性别${sex}的了，爱好${hobby}`; //注意此处有两个“ `` ”
+    console.log(str1);
+
+    
+    let [a1,b1,c1] = [12,5,8];
+    console.log(a1,b1,c1);  //12 5 8
+
+
+    let {a2,b2,c2} = {a2:12,b2:5,c2:8};
+console.log(a2,b2,c2);   //12  5  8
+//数组里面嵌套数组
+let [a3,[b3,c3],d3] = [12,[1,3],8];
+console.log(a3,b3,c3,d3);   // 12  1  3  8
+
+let json = {
+        q:"aaa",
+        p:false,
+        s:["aaa云主机","爱奇艺vip免费试用","啊aaaaaaaa视频","aaaa","爱奇艺","aaa电池","工商银行","aaai","aaa短信轰炸机"]
+    };
+ 
+    let {s,q,f} = json;
+    console.log(s,q,f);  //s为那组数组的数据，q为字符串aaa
+
+let {time=1000,id=0} = {};
+console.log(time,id);   //  1000   0
+
+var arr = [12,5,8];
+    arr2 =arr;
+    arr2.pop();// 删除末尾
+console.log(arr);  // 12 5
+
+
+    var arr4 = [12,5,8];
+    var arr5 = Array.from(arr4);
+    arr5.pop();
+    console.log(arr5);  // 12  5 
+    console.log(arr4);   // 12  5  8
+
+    var arr6=[12,5,8];
+    var arr7 = [...arr6];
+    //神奇的三个点
+    arr7.pop();
+    console.log(arr7);//12 5
+    console.log("arr6",arr6);  //12 5 8
+
+let map = new Map();
+    map.set('a','apple');
+    map.set('b','banana');
+    console.log(map); //   Map {"a" => "apple", "b" => "banana"}
+    console.log(map.size);  //2
+    console.log(map.get('b'));  //banana
+    console.log(map.entries());
+
+    for(let name of map){
+        console.log(name);  //["a", "apple"]  ["b", "banana"]
+    }
+    //循环出来的是以数组套键值对的方式
+
+    for(let val of map.values()){
+        console.log(val);   //apple   banana
+    }
+    for(let key of map.keys()){
+        console.log(key);  // a  b
+    }
+    for(let [key,value] of map.entries()){
+        console.log(key,value);   //a apple     b banana
+    }
+    for(let i in arr){
+        console.log(i);      //0 1  2
+        console.log(arr[i]);  //12  5  8
+    }
+    let arr9 = [12,5,8];
+    for(let n4 in arr9){ // for ..in
+        console.log(n4);  //12  5  8
+        console.log(arr9[n4]);  //12  5  8
+    }
+    //循环json数据
+    let json1 = {a8:12,b8:5,c8:8};
+    for(let name1 in json1){
+        console.log(name1);  //a  b c
+        console.log(json1[name1]);  //12 5 8
+    }
+
+    delete json1.a8; //删除
+    console.log(json1);  // b:
+
+    const show = () =>{
+        alert(12);    
+    };
+    show();  // 12
+    
+    let sum = (a,b) => {
+        return a+b;
+    }
+    alert(sum(12,5));
+    
+
+    function getPromise(n) {
+      return new Promise((resovle, reject) => {
+        if(n <= 100) {
+          resovle(n)
+        } else {
+          reject('请传入100以内的数值！')
+        }
+      })
+    }  
+    getPromise(991).then((value) => {
+      console.log(value)
+    }).catch((error) => {
+      console.log(error)
+    })
+    var p = [1, 11, 33].map((time) => {
+      return getPromise(time)
+    })
+    Promise.all(p).then((arrs) => {
+      console.log(arrs)
+    })
+    // 结果：[1,2,3]
+</script>
