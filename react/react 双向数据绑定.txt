@@ -1,0 +1,7 @@
+3. 双向数据绑定
+
+通过 state 传递数据加上事件处理程序便能实现数据的双向绑定，其背后的思想是（以 input 为例）：初始化时将 state 中预定义的 state a 赋值给 input，当 input 的 value 发生改变时，触发事件处理程序，将改变后的 value 赋值给状态 a ，React 监测到 state 改变时重新调用 render() 方法，即重新渲染组件，达到双向绑定的目的。
+
+?1234567891011121314151617181920212223242526 class App extends Component {  constructor(props) {   super(props);   this.state = {    inputValue: "test",   };   this.changeInput = this.changeInput.bind(this);  }    changeInput(e) {   // 将改变后的 input 值赋值给 inputValue，通过事件对象 $event.target.value 实现   this.setState({    inputValue: e.target.value   });  }    render() {   // input 改变时触发 changeInput   return (    <div className="App">     <input value={this.state.inputValue} onChange={this.changeInput} />     <p>{this.state.inputValue}</p>    </div>   );  } } 
+这里用到了事件对象，React 的事件对象和 JS 原生事件对象保持一致。
+

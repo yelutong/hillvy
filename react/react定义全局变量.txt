@@ -1,0 +1,30 @@
+class RepaymentBill extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      repayPlan:{}// this.state.repayPlan,
+      Lunas:{}
+    }
+   // this.routerTo = this.routerTo.bind(this)
+  }
+
+if(listData.body && listData.body.repayPlan){
+  this.state.repayPlan = listData.body.repayPlan;// this.state.repayPlan
+}
+
+routerTo(currenList) {
+    /*this.setState({
+      repayPlan: this.state.repayPlan,
+      Lunas: this.state.Lunas
+    });*/
+    this.props.router.push({
+    pathname:"/LendDtail/"+currenList.contractNo,
+    state: { 
+      currenList:currenList,
+      repayPlan: this.state.repayPlan,// this.state.repayPlan
+      Lunas: this.state.Lunas
+    }
+    });//“¿¿µReact-Router3.X∞Ê±æ
+  }   
+
+

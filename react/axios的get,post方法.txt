@@ -1,0 +1,42 @@
+axios的get,post方法
+学习vue和nodejs的过程当中,涉及到了axios,今天为了测试,写了get和post两个方法来跟node服务端交互,结果因为header和参数弄了好久,在此记录一下,同时分享;
+
+由于刚接触axios,在测试方法中,写的都是很简单的东西,不过能够实现基础功能,大神看到的话..非常欢迎指导..
+
+//GET方法
+
+axios.get(url, {
+　　params: { 'key': 'value' }
+}).then(function (response) {
+　　alert(''.concat(response.data, '\r\n', response.status, '\r\n', response.statusText, '\r\n', response.headers, '\r\n', response.config));
+}).catch(function (error) {
+　　alert(error);
+});
+
+//对应服务端获取数据 
+
+const urlModule = require('url');
+let params = urlModule.parse(request.url, true).query;//解析数据 获得Json对象
+let value = params.key;//通过参数名称获得参数值
+ 
+
+//POST方法
+
+var params = new URLSearchParams();
+params.append('key', 'value');
+axios.post(url, params).then(function (response) {
+　　alert(''.concat(response.data, '\r\n', response.status, '\r\n', response.statusText, '\r\n', response.headers, '\r\n', response.config));
+}).catch(function (error) {
+　　alert(error);
+});
+
+//对应服务端获取数据
+
+const queryStringModule = require('querystring');
+let postData = '';
+request.on('data', function (chunk) {
+　　postData += chunk;//接收数据
+});
+let params = queryStringModule.parse(postData);//解析数据 获得Json对象
+let value = params.key;//通过参数名称获得参数值
+此种写法猜测应该只是一种比较简单的实现,希望能够帮到其他人,同时希望高手指教;
