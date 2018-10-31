@@ -1,0 +1,17 @@
+1.
+constructor(props) {
+    super(props)
+    this.state = {
+      listData:[],
+    }
+  }
+
+2.
+this.setState({ listData: listData2 });
+
+3.
+(this.state.listData&&this.state.listData.length>0)?
+            this.state.listData.map((item,i) => {
+             return (
+                //
+             ):""

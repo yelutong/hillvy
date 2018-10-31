@@ -5,7 +5,7 @@ const httpConfigArry = [];
 const httpConfig = [{
 	host: 'localhost',
 	protocol: 'http',
-    domainP1: '10.3.31.221:8084',
+    domainP1: '10.3.32.232:8081',
     domainApply: 'sit-apply.qude369.com',
     path: 'kpt-invest',
     pathApply: 'kpt-apply',

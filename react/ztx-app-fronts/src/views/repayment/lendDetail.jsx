@@ -19,7 +19,15 @@ class LendDtail extends React.Component {
   componentDidMount() {
 
   }
-
+  constructor(props, context) {
+      super(props, context);
+      this.state = {
+      currenList:this.props.location.state.currenList,
+      Lunas:this.props.location.state.repayPlan,
+      repayPlan:this.props.location.state.repayPlan
+      }
+      console.log(this.props.location.state);
+  }
   render() {
     $(window).scroll(function(){
       if(document.title == 'Pusat Bantuan' || document.title == 'LendDtail'){
@@ -31,7 +39,7 @@ class LendDtail extends React.Component {
           document.title = 'LendDtail';
         }
       }
-    })
+    }) 
     let accDetail=(
       <div className="lendDt">
           <Item extra={'22-May-2018'}>Tanggal Diterima</Item>
@@ -63,12 +71,16 @@ class LendDtail extends React.Component {
         </div>
         )
       }
+
+    setTimeout(function(){
+       $(".pad1 .am-accordion-header").append(`<div class="accExtra">${rpValue}</div>`);
+    },0)
     return (
       <div className="LendDtail">
         <div className="vertical-view" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
         
         <div className="vertical-view billList flex1">
-        <Item><Brief>Nomor Perjanjian : 13523438158</Brief></Item>
+        <Item><Brief>Nomor Perjanjian : {this.state.currenList.contractNo}</Brief></Item>
         <div className="noLine">
          <Item
           thumb={lend01}
@@ -90,7 +102,7 @@ class LendDtail extends React.Component {
          <Accordion.Panel header="Daftar Pembayaran" className="pad1">
            {rpContent}
          </Accordion.Panel>
-          <Accordion.Panel header={rpValue} className="accExtra"></Accordion.Panel>
+
           <Accordion.Panel header="Detail pinjaman" className="pad2">
             {accDetail}
           </Accordion.Panel>

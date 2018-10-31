@@ -67,7 +67,7 @@ const LoanDetailExplain  = (location, cb) => {
 const LoanStageDetail  = (location, cb) => {
   require.ensure([], require => {cb(null, require('../views/loanDetail/stage'));}, 'LoanStageDetail');
 };
-//还款列表
+//还款计划表
 const RepaymentList  = (location, cb) => {
   require.ensure([], require => {cb(null, require('../views/largeCash/repaymentList'));}, 'RepaymentList');
 }; 
