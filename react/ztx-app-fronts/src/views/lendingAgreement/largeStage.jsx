@@ -32,7 +32,7 @@ class LargeStageAgree extends React.Component {
         <Result
           img={myImg('https://gw.alipayobjects.com/zos/rmsportal/pdFARIqkrKEGVVEwotFe.svg')}
           title="验证成功"
-          message="还款计划表"
+          message="大额借款协议"
         />
       </div>
     );

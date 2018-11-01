@@ -14,6 +14,13 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 class LoanStageDetail extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      largestAmt:this.props.location.query&&this.props.location.query.largestAmt?this.props.location.query.largestAmt:'',
+      term:this.props.location.query&&this.props.location.query.term?this.props.location.query.term:'',
+    }
+  }
   state = {languga:'Indonesian'};
   componentWillMount() {
     var languga = this.props.location.query.languga || 'Indonesian';
@@ -45,11 +52,11 @@ class LoanStageDetail extends React.Component {
           <i className="TopPic2"><img src={TopPic2}/></i>
           <div className="vux-1px-r ct1 center flex1 justify-content-center">
             <h3 className="txt-gray fsize-normal">Hingga</h3>
-            <h3 className="txt-ztx fsize-normal"><i className="rt5">RP</i><i>6.000.000</i></h3>
+            <h3 className="txt-ztx fsize-normal"><i>{this.state.largestAmt}</i></h3>
           </div>
           <div className="ct1 center flex1 justify-content-center">
             <h3 className="txt-gray fsize-normal">Tenor</h3>
-            <h3 className="txt-ztx fsize-normal"><i className="rt5">3</i>bulan</h3>
+            <h3 className="txt-ztx fsize-normal"><i>{this.state.term}</i></h3>
           </div>
         </div>
         

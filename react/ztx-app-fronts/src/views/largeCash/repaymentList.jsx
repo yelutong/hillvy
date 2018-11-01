@@ -1,19 +1,50 @@
 import React from 'react'; 
 import axios from 'axios';
+import {  Toast } from 'antd-mobile';
 import DateApi from '../../js/dateFormat.js';
 
 class RepaymentList extends React.Component {
-  state = {languga:'Indonesian'};
+  constructor(props) {
+    super(props);
+    this.state = {
+      listInfo:[],
+      contractNo:this.props.location.query&&this.props.location.query.contractNo?this.props.location.query.contractNo:'',
+      token:this.props.location.query&&this.props.location.query.token?this.props.location.query.token:localStorage.getItem('token'),
+    }
+    localStorage.setItem('token',this.state.token);
+    this.getListInfo();
+    console.log(this.props.location.query);
+  }
   componentWillMount() {
     var languga = this.props.location.query.languga || 'Indonesian';
     console.log(languga);
     this.setState({languga:languga});
   }
-
+  
   componentDidMount() {
 
   }
-
+  getListInfo= () => {
+    axios.get('http://10.3.32.232:8081/kpt-apply/apply/repay/v1/plan',{params:{"contractNo":this.state.contractNo}}).then((res) => {
+        if(App){
+          App.showLoading(false);
+        }
+        if(res.data.code == '0000'){
+          console.log(res); 
+          var listInfo = res.data;
+          if(listInfo.body && listInfo.body.length > 0){
+              var repayPlan = listInfo.body;
+              for(let i=0;i < repayPlan.length;i++){
+                var date = repayPlan[i].returnDate ? Date.parse(new Date(repayPlan[i].returnDate)) : '';
+                repayPlan[i].returnDate = DateApi.format2(date);
+              }
+              this.setState({ listInfo: repayPlan });
+            }
+        }
+    }).catch(function (error) {
+　　    Toast.info(String(error));
+    });
+  }
   render() {
     $(window).scroll(function(){
       if(document.title == 'Pusat Bantuan' || document.title == 'RepaymentList'){
@@ -25,73 +56,7 @@ class RepaymentList extends React.Component {
           document.title = 'RepaymentList';
         }
       }
-    })
-
-  /*  axios.get('http://10.3.32.232:8081/kpt-apply/apply/repay/v1/plan',{params:{"contractNo":"A2018101901000055","token":"8439096e96794349b2bdd5ff4603cfe7"}}).then((res) => {
-        if(App){
-          App.showLoading(false);
-        }
-        if(res.data.code == '0000'){
-          console.log(res); 
-          let listInfo = res.data;
-        }
-    }).catch(function (error) {
-　　    alert(error);
-    });*/
-let listInfo={
-  "code": "0000",
-  "msg": "成功",
-  "body": [
-    {
-      "contractNo": "CN20181019000025",
-      "curPeriod": 1,
-      "period": 3,
-      "returnDate": "2018-11-26 00:00:00",
-      "returnAmt": 6031722,
-      "principal": 4531722,
-      "interest": 1500000
-    },
-    {
-      "contractNo": "CN20181019000025",
-      "curPeriod": 2,
-      "period": 3,
-      "returnDate": "2018-12-26 00:00:00",
-      "returnAmt": 6031722,
-      "principal": 4984894,
-      "interest": 1046828
-    },
-    {
-      "contractNo": "CN20181019000025",
-      "curPeriod": 3,
-      "period": 3,
-      "returnDate": "2019-01-26 00:00:00",
-      "returnAmt": 6031722,
-      "principal": 5483384,
-      "interest": 548338
-    }
-  ]
-}
-
-
-  console.log(listInfo);
-
-if(listInfo.body && listInfo.body.length > 0){
-  var repayPlan = listInfo.body;
-  var listVal = [];
-  for(let i=0;i < repayPlan.length;i++){
-    var date = repayPlan[i].returnDate ? Date.parse(new Date(repayPlan[i].returnDate)) : '';
-    var returnDate = DateApi.format2(date);
-    console.log(returnDate);
-    listVal.push(
-        <li className="horizontal-view vux-1px-t" key={i}>
-          <span className="flexg1 flex1">{repayPlan[i].curPeriod}</span>
-          <span className="flexg2 flex1">{returnDate}</span>
-          <span className="flexg2 flex1">Rp {DateApi.addDot(repayPlan[i].returnAmt)}</span>
-        </li>
-        );
-  }
-}
-
+    })  
     return (
       <div className="RepaymentList">
       <div>
@@ -104,7 +69,20 @@ if(listInfo.body && listInfo.body.length > 0){
           <span className="flexg2 flex1">Nominal Pembayaran</span>
         </div>
         <ul className="listUl">
-        {listVal}
+          { (this.state.listInfo&&this.state.listInfo.length>0)?
+            this.state.listInfo.map((item,i) => {
+             return (
+              <li className="horizontal-view vux-1px-t" key={i}>
+                <span className="flexg1 flex1">{item.curPeriod}</span>
+                <span className="flexg2 flex1">{item.returnDate}</span>
+                <span className="flexg2 flex1">Rp {DateApi.addDot(item.returnAmt)}</span>
+              </li>
+              )
+            }):
+            <li className="horizontal-view vux-1px-t">
+                <span className="flexg1 flex1 center">暂无数据</span>
+            </li>
+          }
         </ul>   
       </div>
     );

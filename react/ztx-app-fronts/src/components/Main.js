@@ -55,10 +55,6 @@ const Event  = (location, cb) => {
 const CouponRule  = (location, cb) => {
   require.ensure([], require => {cb(null, require('../views/couponRule/index'));}, 'CouponRule');
 };
-//预授信拒绝页
-const PreCreditRefuse  = (location, cb) => {
-  require.ensure([], require => {cb(null, require('../views/preCredit/refuse'));}, 'PreCreditRefuse');
-};
 //小额现金贷介绍页
 const LoanDetailExplain  = (location, cb) => {
   require.ensure([], require => {cb(null, require('../views/loanDetail/explain'));}, 'LoanDetailExplain');
@@ -110,7 +106,6 @@ const routes = (
           <Route path="loanAgreement" getComponent={LoanAgreement}/>
           <Route path="privacyService" getComponent={PrivacyService}/>
           <Route path="lendingAgreement" getComponent={LendingAgreement}/>
-          <Route path="preCreditRefuse" getComponent={PreCreditRefuse}/>
           <Route path="LoanDetailExplain" getComponent={LoanDetailExplain}/>
           <Route path="LoanStageDetail" getComponent={LoanStageDetail}/>
           <Route path="RepaymentList" getComponent={RepaymentList}/>
@@ -125,7 +120,7 @@ const routes = (
 
 class App extends React.Component {
   state = {};
-
+  
   // 页面加载前调用
   componentWillMount() {
     this.setFontSize();

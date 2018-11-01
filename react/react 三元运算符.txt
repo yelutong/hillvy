@@ -1,0 +1,1 @@
+<div className={(item.status=="REJECTED"||item.status=="FAILED")?'flex1 txt-red2 listLeft':'flex1 txt-blue listLeft'}>{DateApi.getResult(item.status)}</div>

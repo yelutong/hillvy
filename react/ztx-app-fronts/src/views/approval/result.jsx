@@ -12,6 +12,8 @@ class ApprovalResult extends React.Component {
     var languga = this.props.location.query.languga || 'Indonesian';
     console.log(languga);
     this.setState({languga:languga});
+
+    console.log(this.props.location.query.PAGE);
   }
 
   componentDidMount() {
@@ -30,7 +32,25 @@ class ApprovalResult extends React.Component {
         }
       }
     })
-    let result=3,rPic,rTtile,eMess;
+    var result;
+    if(this.props.location.query.PAGE=="APPROVE_WAITING"){
+      result=0
+    }else if(this.props.location.query.PAGE=="LOAN_WAITING"){
+      result=1
+    }else if(this.props.location.query.PAGE=="APPLY_REJECT"){
+      result=2
+    }else{
+      result=3
+    }
+    if(this.props.location.query.LoadAmt&&this.props.location.query.Term){
+      var amtShow=(
+        <div>
+          <Item extra={this.props.location.query.LoadAmt}>Nominal Pinjaman</Item>
+          <Item extra={this.props.location.query.Term}>Tenor</Item>
+        </div>
+        )
+    }
+    let rPic,rTtile,eMess;
     if(result==0){//审批中
       rPic=wait;
       rTtile="Dalam Proses Verifik";
@@ -44,7 +64,11 @@ class ApprovalResult extends React.Component {
       rPic=wait;
       rTtile="Sedang Dicairkan";
       eMess="Pinjaman Anda telah lolos verifikasi dan diperkirakan 1 – 3 hari kerja untuk sampai ke rekening bank Anda";
-    }else{//被拒绝
+    }else if(result==2){//预授信拒绝
+      rPic=refuse;
+      rTtile="Mohon maaf";
+      eMess="Berdasarkan hasil verifikasi informasi Anda, pengajuan ini dinyatakan tidak lolos verifikasi. Silahkan ajukan kembali besok.Terima kasih.";
+    }else{//审批被拒绝
       rPic=refuse;
       rTtile="Gagal Terverifikasi";
       eMess="Mohon maaf. Berdasarkan hasil verifikasi informasi Anda, pengajuan ini dinyatakan tidak lolos verifikasi. Silahkan ajukan kembali pada 11 Oktober 2018. Terima kasih";
@@ -58,8 +82,7 @@ class ApprovalResult extends React.Component {
           message={eMess}
         />
         <WhiteSpace />
-        <Item extra={'Rp925.000'}>Nominal Pinjaman</Item>
-        <Item extra={'7hari'}>Tenor</Item>
+        {amtShow}
       </div>
     );
  }

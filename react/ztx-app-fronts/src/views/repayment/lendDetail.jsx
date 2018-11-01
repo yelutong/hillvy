@@ -1,5 +1,6 @@
 import React from 'react';
-import {  Button, List, Accordion } from 'antd-mobile';
+import {  Toast, Button, List, Accordion } from 'antd-mobile';
+import DateApi from '../../js/dateFormat.js';
 import lend01 from '../../images/loan/bill01.png';
 import lend02 from '../../images/loan/bill02.png';
 import lend03 from '../../images/loan/bill03.png';
@@ -13,9 +14,6 @@ class LendDtail extends React.Component {
     console.log(languga);
     this.setState({languga:languga});
   }
-  onChange = (key) => {
-    console.log(key);
-  }
   componentDidMount() {
 
   }
@@ -23,10 +21,23 @@ class LendDtail extends React.Component {
       super(props, context);
       this.state = {
       currenList:this.props.location.state.currenList,
-      Lunas:this.props.location.state.repayPlan,
-      repayPlan:this.props.location.state.repayPlan
+      Lunas:this.props.location.state.Lunas,
+      repayVal:this.props.location.state.repayVal,
+      paid:0
       }
       console.log(this.props.location.state);
+  }
+  routerToAgree(){
+    this.props.router.push({
+      pathname:"/LargeStageAgree"
+    })
+  }
+  closeApp(){
+    if(App){
+      App.finish();
+    }else{
+      Toast.info('请在APP中打开'); 
+    }
   }
   render() {
     $(window).scroll(function(){
@@ -40,41 +51,75 @@ class LendDtail extends React.Component {
         }
       }
     }) 
+    if(this.props.location.state.repayVal.repayInfo.loanDate){
+      var dateInfo = Date.parse(new Date(this.props.location.state.repayVal.repayInfo.loanDate));
+      var loanDate = DateApi.format2(dateInfo);
+    }
+    if(this.props.location.state.repayVal.repayInfo.termType=="MONTH"){
+      var termType = "个月"
+    }
     let accDetail=(
       <div className="lendDt">
-          <Item extra={'22-May-2018'}>Tanggal Diterima</Item>
-          <Item extra={'22-May-2018'}>Nominal Pinjaman</Item>
-          <Item extra={'22-May-2018'}>Tenor</Item>
-          <Item extra={'22-May-2018'}>Nominal Diterima</Item>
-          <Item extra={'22-May-2018'}>Nominal Pembayaran</Item>
-          <Item onClick={() => {}} className="accLineBttom">Baca Perjanjian Pemberian Pinjaman</Item>
+          <Item extra={loanDate}>Tanggal Diterima</Item>
+          <Item extra={'RP '+DateApi.addDot(this.props.location.state.repayVal.repayInfo.contractAmt)}>Nominal Pinjaman</Item>
+          <Item extra={this.props.location.state.repayVal.repayInfo.term+termType}>Tenor</Item>
+          <Item extra={'RP '+DateApi.addDot(this.props.location.state.repayVal.repayInfo.loanAmount)}>Nominal Diterima</Item>
+          <Item extra={'RP '+DateApi.addDot(this.props.location.state.repayVal.repayInfo.balance)}>Nominal Pembayaran</Item>
+          <Item onClick={() =>{this.routerToAgree()}} className="accLineBttom">Baca Perjanjian Pemberian Pinjaman</Item>
       </div>
-      )/*accLineBttom点击查看借款协议*/
-    let rpContent,rp=100.000;
-    let rpValue="RP "+100.000;
-    let paySucc=(
-       <div className="paySucc">Telah lunas</div>
-      );
-    if(rp==0){
-      rpContent=(
-        <div className="rp0 center">Sementara kosong</div>
-        )
-      }else{
-      rpContent=(
-        <div className="rp1">
-        <Item multipleLine extra={paySucc}>
-          Rp1.004.900<Brief>10:00 22-May-2018</Brief>
-        </Item>
-        <Item multipleLine extra={paySucc}>
-          Rp1.004.900<Brief>10:00 22-May-2018</Brief>
-        </Item>
-        </div>
-        )
-      }
+    )
 
+   if(this.props.location.state.repayVal && this.props.location.state.repayVal.repayDetail){
+     var listPlan = [];
+     for(let i=0;i < this.props.location.state.repayVal.repayDetail.length;i++){
+          var flagClass="";
+          //结清
+          if(this.props.location.state.repayVal.repayDetail[i].status == "e_settle" || this.props.location.state.repayVal.repayDetail[i].status == "settle"){
+            flagClass="horizontal-view vux-1px-t";
+            this.state.paid = this.props.location.state.repayVal.repayDetail[i].balance;
+          }else{
+            flagClass="horizontal-view vux-1px-t listActive";
+            this.state.paid = 0;
+          }
+          listPlan.push(
+             <li className={flagClass} key={i}>
+                <span className="flex1">{this.props.location.state.repayVal.repayDetail[i].returnDate}</span>
+                <span className="flex1">RP {DateApi.addDot(this.props.location.state.repayVal.repayDetail[i].balance)}</span>
+                <span className="flex1">RP {DateApi.addDot(this.state.paid)}</span>
+             </li>
+          );
+     }
+     
+   }
+    if(this.props.location.state.Lunas){
+        let rp=0,lunasItem=[];
+        let paySucc=(
+           <div className="paySucc">Telah lunas</div>
+        );
+        for(let i=0;i<this.props.location.state.Lunas.length;i++){
+          rp=rp+this.props.location.state.Lunas[i].balance;
+          lunasItem.push(
+            <Item multipleLine extra={paySucc} key={i}>
+              Rp {DateApi.addDot(this.props.location.state.Lunas[i].balance)}<Brief>{this.props.location.state.Lunas[i].returnDate1}</Brief>
+            </Item>
+          )
+        }
+        var rpValue="RP "+DateApi.addDot(rp);
+        var rpContent=(
+            <div className="rp1">
+            {lunasItem}
+            </div>
+        )
+    }else{
+    var rpValue="RP 0";
+    var rpContent=(
+       <div className="rp0 center">Sementara kosong</div>
+      )
+    }
     setTimeout(function(){
        $(".pad1 .am-accordion-header").append(`<div class="accExtra">${rpValue}</div>`);
     },0)
+
     return (
       <div className="LendDtail">
         <div className="vertical-view" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
@@ -84,21 +129,21 @@ class LendDtail extends React.Component {
         <div className="noLine">
          <Item
           thumb={lend01}
-        >Sisa Pembayaran：Rp 1.000.000</Item>
+        >Sisa Pembayaran：Rp {DateApi.addDot(this.state.currenList.balance)}</Item>
         <Item
           thumb={lend02}
         >
-          Durasi Pinjaman：14ha
+          Durasi Pinjaman：{this.props.location.state.currenList.returnDate}
         </Item>
         <Item
           thumb={lend03}
         >
-          Sisa Tenor：1
+          Sisa Tenor：{this.props.location.state.currenList.period-this.props.location.state.Lunas.length}
         </Item>
         </div>
         </div>
         
-        <Accordion className="my-accordion lendList" onChange={this.onChange}>
+        <Accordion className="my-accordion lendList">
          <Accordion.Panel header="Daftar Pembayaran" className="pad1">
            {rpContent}
          </Accordion.Panel>
@@ -114,26 +159,12 @@ class LendDtail extends React.Component {
               <span className="flex1">Telah Luna</span>
             </div>
             <ul className="listUl">
-              <li className="horizontal-view vux-1px-t">
-                <span className="flex1">26-Oct-2018</span>
-                <span className="flex1">RP 10.000</span>
-                <span className="flex1">RP 10.000</span>
-              </li>
-              <li className="horizontal-view vux-1px-t">
-                <span className="flex1">25-May-2018</span>
-                <span className="flex1">RP 10.000</span>
-                <span className="flex1">RP 10.000</span>
-              </li>
-              <li className="horizontal-view vux-1px-t listActive">
-                <span className="flex1">25-May-2018</span>
-                <span className="flex1">RP 10.000</span>
-                <span className="flex1">RP 0</span>
-              </li>
+               {listPlan}
             </ul>
           </Accordion.Panel>
         </Accordion>
 
-        <Button type="primary" onClick={()=>{alert('点击了我')}}>Bayar</Button>
+        <Button type="primary" onClick={()=>{ this.closeApp() }}>Bayar</Button>
       </div> 
       </div>
     );
@@ -144,6 +175,3 @@ LendDtail.defaultProps = {
 };
 
 export default LendDtail;
-
-   //<List className="accExtra"> <Item>Rp 0 </Item></List>
-

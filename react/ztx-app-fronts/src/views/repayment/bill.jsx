@@ -1,5 +1,6 @@
 import React from 'react';
-import {  Result, Button, List, Tabs, WhiteSpace, Badge } from 'antd-mobile';
+import axios from 'axios';
+import {  Toast, Result, Button, List, Tabs, WhiteSpace, Badge } from 'antd-mobile';
 import DateApi from '../../js/dateFormat.js';
 import bill01 from '../../images/loan/bill01.png';
 import bill02 from '../../images/loan/bill02.png';
@@ -17,10 +18,15 @@ class RepaymentBill extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      repayPlan:{},
-      Lunas:{}
+      Lunas:[],
+      repayVal:{},
+      paynot:[],
+      applyId:this.props.location.query&&this.props.location.query.applyId?this.props.location.query.applyId:'',
+      token:this.props.location.query&&this.props.location.query.token?this.props.location.query.token:localStorage.getItem('token'),
     }
-   // this.routerTo = this.routerTo.bind(this)
+    localStorage.setItem('token',this.state.token);
+    console.log(this.props.location.query);
+    this.getBill();
   }
 
   state = {languga:'Indonesian'};
@@ -31,47 +37,32 @@ class RepaymentBill extends React.Component {
   }
 
   componentDidMount() {
-
+    
   }
   routerTo(currenList) {
-    /*this.setState({
-      repayPlan: this.state.repayPlan,
-      Lunas: this.state.Lunas
-    });*/
     this.props.router.push({
     pathname:"/LendDtail/"+currenList.contractNo,
     state: { 
-      currenList:currenList,
-      repayPlan: this.state.repayPlan,
-      Lunas: this.state.Lunas
+      currenList: currenList,
+      Lunas: this.state.Lunas,
+      repayVal: this.state.repayVal
     }
     });//依赖React-Router3.X版本
-  }   
-  render() {
-    $(window).scroll(function(){
-      if(document.title == 'Pusat Bantuan' || document.title == 'RepaymentBill'){
-        var scrollTop =  $(window).scrollTop() ;
-        var topHeight = $('.RepaymentBill .title').outerHeight();
-        if(scrollTop>topHeight){
-          document.title = 'Pusat Bantuan';
-        }else{
-          document.title = 'RepaymentBill';
-        }
-      }
-    })
+  }
 
-     /*  axios.get('http://10.3.32.232:8081/kpt-apply/apply/repay/plans',{params:{"applyId":"A2018101901000055","token":"8439096e96794349b2bdd5ff4603cfe7"}}).then((res) => {
+  getBill = () => {
+    if(App){
+      App.showLoading(false);
+    }
+   axios.get('http://10.3.32.232:8081/kpt-apply/apply/auth/v3/history',{params:{"registId":"109981"}}).then((res) => {
         if(App){
           App.showLoading(false);
         }
         if(res.data.code == '0000'){
           console.log(res); 
-          let listData = res.data;
-        }
-    }).catch(function (error) {
-　　    alert(error);
-    });*/
-let listData = {
+          let listData2 = res.data;
+          
+          let listData = {
 "code": "0000",
 "msg": "成功",
 "body": {
@@ -218,7 +209,7 @@ let listData = {
 "balance": 6031722,
 "principal": 5483384,
 "interest": 548338,
-"overdueDays": 0,
+"overdueDays": 10,
 "overdueAmt": null,
 "fixedAmt": null,
 "defaultAmt": null,
@@ -267,7 +258,7 @@ let listData = {
 "term": 3,//借款期数 
 "termType": "MONTH",//月
 "curPeriod": 1,
-"loanDate": null,//放款日期
+"loanDate": "2018-10-26 00:00:00",//放款日期
 "loanAmount": 1176000,//到账金额
 "principal": 4531722,
 "productCode": null,
@@ -276,7 +267,7 @@ let listData = {
 "returnDate": "2018-11-26 00:00:00",
 "remainPrincipal": 15000000,
 "returnAmt": 6031722,
-"balance": null,//应还金额
+"balance": 12222222,//应还金额
 "interest": 1500000,
 "delinquentAmount": null,
 "delinquentDays": 0,
@@ -289,63 +280,124 @@ let listData = {
 
 }
 }
-  console.log(listData);
-if(listData.body && listData.body.repayPlan){
-  this.state.repayPlan = listData.body.repayPlan;
+
+if(listData.body && listData.body.repayList){
+  var repayList = listData.body.repayList[0];
+  this.setState({ repayVal : repayList });
 }
 if(listData.body && listData.body.repayList && listData.body.repayList[0].repayDetail && listData.body.repayList[0].repayDetail.length > 0){
-  var repayInfo = listData.body.repayList[0].repayInfo ? listData.body.repayList[0].repayInfo:'';
   var repayDetail = listData.body.repayList[0].repayDetail;
-  var listPend = [],Lunas=[];
-  
+  var paynot=[],Lunas=[];
   for(let i=0;i < repayDetail.length;i++){
     var date = repayDetail[i].returnDate ? Date.parse(new Date(repayDetail[i].returnDate)) : '';
-    var returnDate = DateApi.format2(date);
+    repayDetail[i].returnDate = DateApi.format2(date);
+    repayDetail[i].returnDate1 = DateApi.format3(date);
     //正常还款或者逾期
     if(repayDetail[i].status == "repayment" || repayDetail[i].status == "overdue"){
       if(repayDetail[i].status == "repayment"){
-         var DateDiff = DateApi.DateDiff(date); 
-         var termDay=( <div className="flex1 txt-blue listLeft">{DateDiff} hari lagi</div> );//剩余三天到期
-        }else{
-         var termDay=( <div className="flex1 txt-orange listLeft">Terlambat {repayDetail[i].overdueDays} hari</div> );//逾期天数
-        }
-
-      listPend.push(
-      <div className="vertical-view billList flex1" key={i}>
-        <p className="bg-gray lh-30 pb5 txt-gray center">Tanggal Pengajuan 24:00 22-may-2018</p>
-        <Item arrow="horizontal" onClick={()=>{this.routerTo(repayDetail[i],repayInfo)}}><Brief>Nomor Perjanjian : {repayDetail[i].contractNo}</Brief></Item>
-        
-        <div className="noLine">
-         <Item
-          thumb={bill01}
-        >Sisa Pembayaran：Rp {DateApi.addDot(repayDetail[i].balance)}</Item>
-        <Item
-          thumb={bill02}
-        >
-          Tanggal Pembayaran：{returnDate}
-        </Item>
-        </div>
-
-          <div className="horizontal-view align-items-center">
-            {termDay}
-            <div className="flex1 txt-right"><Button onClick={()=>{alert('点击了我')}} type="primary" inline style={{ marginRight: '20px' }}>Bayar</Button></div>
-          </div>
-        </div>
-      )
+      repayDetail[i].DateDiff = DateApi.DateDiff(date);//剩余多少天到期
+      }
+      paynot.push(repayDetail[i]);
     }
     //提前结清或者结清
     else if(repayDetail[i].status == "e_settle" || repayDetail[i].status == "settle"){
-      Lunas.push();
-      this.state.Lunas={ad:"dd"}
+    Lunas.push(repayDetail[i]);
     }
-
   }
-}
-    let billConent;
-    if(listPend.length==0){
-        billConent=(
-          <div>
-          <Result
+  if(App){
+    (paynot&&paynot.length>0)?App.redViewShow(true):App.redViewShow(false);
+  }
+  this.setState({ paynot : paynot });
+  this.setState({ Lunas : Lunas });
+ }  
+}    
+
+    }).catch(function (error) {
+　　    Toast.info(String(error)); 
+    });
+  }
+  render() {
+    $(window).scroll(function(){
+      if(document.title == 'Pusat Bantuan' || document.title == 'RepaymentBill'){
+        var scrollTop =  $(window).scrollTop() ;
+        var topHeight = $('.RepaymentBill .title').outerHeight();
+        if(scrollTop>topHeight){
+          document.title = 'Pusat Bantuan';
+        }else{
+          document.title = 'RepaymentBill';
+        }
+      }
+    }) 
+    return (
+      <div className="RepaymentBill">
+         <Tabs tabs={tabs}
+      initialPage={0}
+      tabBarActiveTextColor="#333"
+      tabBarInactiveTextColor="#999"
+    >
+
+      <div className="vertical-view" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
+        
+         { (this.state.paynot&&this.state.paynot.length>0)?
+            this.state.paynot.map((item,i) => {
+             return (
+                <div className="vertical-view billList flex1" key={i}>
+                <p className="bg-gray lh-30 pb5 txt-gray center">Tanggal Pengajuan 24:00 22-may-2018</p>
+                <Item arrow="horizontal" onClick={()=>{this.routerTo(item)}}><Brief>Nomor Perjanjian : {item.contractNo}</Brief></Item>
+                
+                <div className="noLine">
+                 <Item
+                  thumb={bill01}
+                >Sisa Pembayaran：Rp {DateApi.addDot(item.balance)}</Item>
+                <Item
+                  thumb={bill02}
+                >
+                  Tanggal Pembayaran：{item.returnDate}
+                </Item>
+                </div>
+
+                <div className="horizontal-view align-items-center">
+                  <div className={item.status == "repayment"?"flex1 txt-blue listLeft":"flex1 txt-orange listLeft"}>{item.status == "repayment"? item.DateDiff +" hari lagi":"Terlambat "+item.overdueDays+" hari"}</div>
+                    <div className="flex1 txt-right"><Button onClick={()=>{window.location.href="https://www.baidu.com"}} type="primary" inline style={{ marginRight: '20px' }}>Bayar</Button></div>
+                  </div>
+                </div>
+              )
+             }):
+            <Result
+                img={myImg(noLoan)}
+                message={(
+                  <div>
+                  <p>Daftar pinjaman Anda kosong.</p>
+                  <p>Ayo ajukan pinjaman sekarang di Pinjam Gampang !</p>
+                  </div>
+                )}
+             />
+          }
+      </div>
+      <div className="Lunas" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
+        { (this.state.Lunas&&this.state.Lunas.length>0)?
+            this.state.Lunas.map((item,k) => {
+             return (
+          <div className="vertical-view billList flex1" key={k}>
+        <p className="bg-gray lh-30 pb5 txt-gray center">Tanggal Pengajuan 24:00 22-may-2018</p>
+        <Item arrow="horizontal" onClick={()=>{this.routerTo(item)}}><Brief>Nomor Perjanjian : {item.contractNo}</Brief></Item>
+        <div className="noLine">
+         <Item
+          thumb={bill01}
+        >Sisa Pembayaran：Rp {DateApi.addDot(item.balance)}</Item>
+        <Item
+          thumb={bill02}
+        >
+          Tanggal Pembayaran：{item.returnDate}
+        </Item>
+        </div>
+          <div className="horizontal-view align-items-center">
+            <div className="flex1 txt-black listLeft lh-36 h36">Telah lunas</div>
+          </div>
+        </div>
+         )
+        }):
+       <Result
           img={myImg(noLoan)}
           message={(
             <div>
@@ -353,54 +405,8 @@ if(listData.body && listData.body.repayList && listData.body.repayList[0].repayD
             <p>Ayo ajukan pinjaman sekarang di Pinjam Gampang !</p>
             </div>
           )}
-          />
-          </div>
-        )
-      }else{
-        billConent=(
-        <div>
-        {listPend}
-        </div>
-        )
-      }
-    return (
-      <div className="RepaymentBill">
-         <Tabs tabs={tabs}
-      initialPage={0}
-      tabBarActiveTextColor="#333"
-      tabBarInactiveTextColor="#999"
-      onChange={(tab, index) => { console.log('onChange', index, tab); }}
-      onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
-    >
-
-      <div className="vertical-view" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
-        
-        {billConent}
-
-      </div>
-      <div className="Lunas" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
-        
-
-        <div className="vertical-view billList flex1">
-        <p className="bg-gray lh-30 pb5 txt-gray center">Tanggal Pengajuan 24:00 22-may-2018</p>
-        <Item arrow="horizontal" onClick={()=>{this.routerTo(repayDetail[i].contractNo)}}><Brief>Nomor Perjanjian : 13523438158</Brief></Item>
-        <div className="noLine">
-         <Item
-          thumb={bill01}
-        >Sisa Pembayaran：Rp 1.000.000</Item>
-        <Item
-          thumb={bill02}
-        >
-          Tanggal Pembayaran：14hari
-        </Item>
-        </div>
-          <div className="horizontal-view align-items-center">
-            <div className="flex1 txt-black listLeft lh-36 h36">Telah lunas</div>
-          </div>
-        </div>
-
-
-
+       />
+       }
       </div>
     </Tabs>
       </div>
