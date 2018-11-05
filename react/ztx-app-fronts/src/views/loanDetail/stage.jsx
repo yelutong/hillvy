@@ -33,17 +33,6 @@ class LoanStageDetail extends React.Component {
   }
 
   render() {
-    $(window).scroll(function(){
-      if(document.title == 'Pusat Bantuan' || document.title == 'LoanDetailExplain'){
-        var scrollTop =  $(window).scrollTop() ;
-        var topHeight = $('.LoanStageDetail .title').outerHeight();
-        if(scrollTop>topHeight){
-          document.title = 'Pusat Bantuan';
-        }else{
-          document.title = 'LoanDetailExplain';
-        }
-      }
-    })
     return (
       <div className="LoanDetailExplain LoanStageDetail">
       <div className="topPic"><img className="topPic1" src={TopPic1}/></div>

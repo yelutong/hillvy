@@ -58,11 +58,15 @@ axios.interceptors.response.use(function (response) {
     }else{
       //失败
       if(App){
-        App.showToast('Tidak ada koneksi jaringan'+'('+response.data.code+')');
-        App.showLoading(false);
         if(response.data.code == '1001'){//token过期
-         App.showToast('token过期');
+          App.tokenInvalid();
+         //App.showToast('token过期');
+        }else{
+         App.showToast('Tidak ada koneksi jaringan'+'('+response.data.code+')');
+         App.showLoading(false);
         }
+      }else{
+        alert(response.data.msg);
       }
     }
     return response;

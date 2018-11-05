@@ -12,8 +12,14 @@
     <meta http-equiv="Cache" content="no-cache">
     <script>
       var App;
-      if(App){
-        App.showLoading(true);
+      /*
+      *@ 获取页面url，如果是RepaymentBill的话，就无需添加loading
+      */
+      console.log(window.location.hash.indexOf('RepaymentBill'));
+      if(window.location.hash.indexOf('RepaymentBill')<0){
+        if(App){
+          App.showLoading(true);
+        }
       }
       //捕捉页面关闭是调用 
       window.onbeforeunload = function(event) {

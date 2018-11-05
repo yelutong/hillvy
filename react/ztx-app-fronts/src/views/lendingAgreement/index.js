@@ -60,8 +60,8 @@ class LendingAgreement extends React.Component {
             <span className="num">1.</span>
             <span className="text">
               [<b>nama Pemberi Pinjaman</b>], suatu perseroan terbatas yang didirikan berdasarkan hukum di [•] berkedudukan di [•] dan beralamat di [•], dalam hal ini diwakili oleh [nama Pihak yang sah mewakili Pemberi Pinjaman] selaku [•] dari dan oleh karenanya sah bertindak bertindak untuk dan atas nama [xxx], selanjutnya disebut <b>Pemberi Pinjaman</b>.
-              <span style={{'display':'block','margin-top':'0.2em'}}><b>Jika orang perseroangan</b></span>
-              <span style={{'display':'block','margin-top':'0.2em'}}>[<b>nama Pemberi Pinjaman</b>], warga negara [<b>warga negara Pemberi Pinjaman</b>], pemegang kartu tanda pengenal [{this.state.contractData.lenderName?this.state.contractData.lenderName:'xxxx'}] dengan No. [{this.state.contractData.lenderIdNum?this.state.contractData.lenderIdNum:'xxx'}], beralamat di [xxxx], dalam hal ini bertindak untuk dan atas nama dirinya, selanjutnya disebut <b>Pemberi Pinjaman</b>.</span>
+              <span style={{'display':'block','marginTop':'0.2em'}}><b>Jika orang perseroangan</b></span>
+              <span style={{'display':'block','marginTop':'0.2em'}}>[<b>nama Pemberi Pinjaman</b>], warga negara [<b>warga negara Pemberi Pinjaman</b>], pemegang kartu tanda pengenal [{this.state.contractData.lenderName?this.state.contractData.lenderName:'xxxx'}] dengan No. [{this.state.contractData.lenderIdNum?this.state.contractData.lenderIdNum:'xxx'}], beralamat di [xxxx], dalam hal ini bertindak untuk dan atas nama dirinya, selanjutnya disebut <b>Pemberi Pinjaman</b>.</span>
             </span>
           </div>
           <div className="lessNum">
@@ -612,8 +612,8 @@ class LendingAgreement extends React.Component {
           <div>
             <div className="textRight lessLeft lendingAgreement">
               <div>Pemberitahuan yang diperlukan atau yang diperbolehkan oleh Perjanjian ini harus secara tertulis dan dapat diserahkan langsung atau dapat dikirim melalui teleks, e-mail, faksimili, atau surat tercatat dibayar di muka yang dialamatkan ke pihak-pihak, sebagai berikut:</div>
-              <div style={{'margin-top':'1em'}}>
-                <b style={{'text-decoration':'underline'}}>Kepada Penyelenggara Layanan</b>
+              <div style={{'marginTop':'1em'}}>
+                <b style={{'textDecoration':'underline'}}>Kepada Penyelenggara Layanan</b>
                 <div>
                   <b>PT Kredit Plus Teknologi</b>
                 </div>
@@ -639,8 +639,8 @@ class LendingAgreement extends React.Component {
                 </div>
               </div>
 
-              <div style={{'margin-top':'1em'}}>
-                <b style={{'text-decoration':'underline'}}>Kepada Pemberi Pinjaman</b>
+              <div style={{'marginTop':'1em'}}>
+                <b style={{'textDecoration':'underline'}}>Kepada Pemberi Pinjaman</b>
                 <div className="valueKey">
                   <div className="left">Nama</div>
                   <div className="right">: [{this.state.contractData.borrowerName?this.state.contractData.borrowerName:'nama PIC'}]</div>
@@ -733,38 +733,38 @@ class LendingAgreement extends React.Component {
 
         <div className="bottomEare">
           <div className="left">
-            <div className="key" style={{'margin-bottom':'0px'}}>Penyelenggara Layanan</div>
+            <div className="key" style={{'marginBottom':'0px'}}>Penyelenggara Layanan</div>
             <div><b>PT KREDIT PLUS TEKNOLOGI</b></div>
           </div>
-          <div className="right" style={{'text-align':'left'}}>
-            <div className="key" style={{'margin-bottom':'0px'}}>Pemberi Pinjaman</div>
+          <div className="right" style={{'textAlign':'left'}}>
+            <div className="key" style={{'marginBottom':'0px'}}>Pemberi Pinjaman</div>
             <div><b>[{this.state.contractData.borrowerName?this.state.contractData.borrowerName:'xxxxx'}]</b></div>
           </div>
         </div>
 
         <div className="bottomEare">
           <div className="left">
-            <div className="key" style={{'margin-bottom':'0px'}}><b style={{'text-decoration':'underline'}}>Nama</b></div>
+            <div className="key" style={{'marginBottom':'0px'}}><b style={{'textDecoration':'underline'}}>Nama</b></div>
             <div>Jabatan</div>
           </div>
-          <div className="right" style={{'text-align':'left'}}>
-            <div className="key" style={{'margin-bottom':'0px'}}><b style={{'text-decoration':'underline'}}>Nama</b></div>
+          <div className="right" style={{'textAlign':'left'}}>
+            <div className="key" style={{'marginBottom':'0px'}}><b style={{'textDecoration':'underline'}}>Nama</b></div>
             <div>Jabatan</div>
           </div>
         </div>
 
         {/*给客户的邮寄单*/}
-        <div style={{'margin-top':'4em'}}>
+        <div style={{'marginTop':'4em'}}>
           <div className="secondTitle">[KOP SURAT DALAM HAL PEMBERI PINJAMAN MERUPAKAN BADAN HUKUM]</div>
           <div className="secondTitle"><b>SURAT KUASA</b></div>
           <div className="serviceDetail">Yang bertandantangan dibawah ini,</div>
           <div className="serviceDetail">[xxx], suatu perseroan terbatas yang didirikan berdasarkan hokum di [xxx] berkedudukan di [xxxx] dan beralamat di [xxxx], dalam hal ini diwakili oleh [xxxx] selaku [xxxx], dari dan oleh karenanya sah bertindak bertindak untuk dan atas nama [xxx], selanjutnya disebut <b>Pemberi Pinjaman</b>.</div>
-          <div className="serviceDetail"><b style={{'text-decoration':'underline'}}>Jika orang perseroangan</b></div>
+          <div className="serviceDetail"><b style={{'textDecoration':'underline'}}>Jika orang perseroangan</b></div>
           <div className="serviceDetail">[xxxx], warga negara [xxxx], pemegang kartu tanda pengenal [xxxx] dengan No. [xxx], beralamat di [xxxx], dalam hal ini bertindak untuk dan atas nama dirinya, selanjutnya disebut <b>Pemberi Kuasa</b></div>
           <div className="serviceDetail">Dengan ini memberikan kuasa baik kepada</div>
           <div className="serviceDetail"><b>PT Kredit Plus Teknologi</b>, suatu perseroan terbatas yang didirikan di Indonesia beramat di The Prominence Office Tower Unit E Jl. Jalur Sutera Barat No. 15, Alam Sutera Tangerang-Banten sebagai penyelenggara Fintech P2P Lending dengan situs www.kreditplusteknologi.co.id , dalam hal ini diwakili oleh Tian Jingjing selaku Direktur, dan oleh karenanya sah bertindak untuk dan atas nama <b>PT Kredit Plus Teknologi</b> selanjutnya disebut <b>Penerima Kuasa</b>
           </div>
-          <div className="serviceDetail" style={{'text-align':'center','margin':'1em 0em'}}><b>------------------KHUSUS------------------</b></div>
+          <div className="serviceDetail" style={{'textAlign':'center','margin':'1em 0em'}}><b>------------------KHUSUS------------------</b></div>
 
           <div className="serviceDetail">
             <div>Bertindak untuk dan atas nama <b>Pemberi Kuasa</b>, untuk menyalurkan Pinjaman milik <b>Pemberi Kuasa</b> termasuk namun tidak terbatas pada </div>
@@ -811,11 +811,11 @@ class LendingAgreement extends React.Component {
           </ul>
           <ul>
             <li>
-              <p><b style={{'text-decoration':'underline'}}>Nama</b></p>
+              <p><b style={{'textDecoration':'underline'}}>Nama</b></p>
               <p>Jabatan</p>
             </li>
             <li>
-              <p><b style={{'text-decoration':'underline'}}>Nama</b></p>
+              <p><b style={{'textDecoration':'underline'}}>Nama</b></p>
               <p>Jabatan</p>
             </li>
           </ul>

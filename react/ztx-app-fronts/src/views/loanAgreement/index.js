@@ -591,22 +591,22 @@ class LoanAgreement extends React.Component {
                 </span>
               </span>
               <span className="secondNum">
-                <span className="num" style={{'margin-left':'-2%','width':'10%'}}>11.10</span>
+                <span className="num" style={{'marginLeft':'-2%','width':'10%'}}>11.10</span>
                 <span className="text">Dengan menandatangani dan menyetujui formulir aplikasi ini, Debitur sebagai pemohon menyatakan bahwa data telekomunikasi yang Debitur berikan dalam formulir aplikasi pemanfaatan produk Kreditur adalah yang sebenar-benarnya; dalam hal ini Kreditur dapat melakukan kegiatan verifikasi data telekomunikasi Debitur yang dibagikan di dalam formulir aplikasi Debitur.
                 </span>
               </span>
               <span className="secondNum">
-                <span className="num" style={{'margin-left':'-2%','width':'10%'}}>11.11</span>
+                <span className="num" style={{'marginLeft':'-2%','width':'10%'}}>11.11</span>
                 <span className="text">Debitur memberikan persetujuan kepada Kreditur untuk mendapatkan informasi data telekomunikasi Debitur dari sumber lainnya dimana informasi terkait tidak dapat ditarik kembali.
                 </span>
               </span>
               <span className="secondNum">
-                <span className="num" style={{'margin-left':'-2%','width':'10%'}}>11.12</span>
+                <span className="num" style={{'marginLeft':'-2%','width':'10%'}}>11.12</span>
                 <span className="text">Debitur telah memahami syarat dan ketentuan dari permohonan aplikasi ini serta tujuan dan konsekuensi dari pengolahan data telekomunikasi kepada pihak lain di luar badan hukum Kreditur (Dengan ini Debitur telah menyetujui untuk terikat dengan setiap masing-masing Syarat dan Ketentuan yang terkandung dalam perjanjian ini dan dengan tegas diartikan bahwa Debitur telah membaca secara seksama Perjanjian ini).
                 </span>
               </span>
               <span className="secondNum">
-                <span className="num" style={{'margin-left':'-2%','width':'10%'}}>11.13</span>
+                <span className="num" style={{'marginLeft':'-2%','width':'10%'}}>11.13</span>
                 <span className="text">Mengenai Perjanjian, Debitur dan Kreditur dengan ini melepaskan haknya berdasarkan Pasal 1266 KUHPerdata sepanjang yang mengatur tentang tata cara menghentikan/mengakhiri sesuatu perjanjian.
                 </span>
               </span>

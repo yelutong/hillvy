@@ -57,18 +57,6 @@ class ApplyRecord extends React.Component {
     });
   }
   render() {
-    $(window).scroll(function(){
-      if(document.title == 'Pusat Bantuan' || document.title == 'ApplyRecord'){
-        var scrollTop =  $(window).scrollTop() ;
-        var topHeight = $('.ApplyRecord .title').outerHeight();
-        if(scrollTop>topHeight){
-          document.title = 'Pusat Bantuan';
-        }else{
-          document.title = 'ApplyRecord';
-        }
-      }
-    })
-    
     return ( 
       <div className="ApplyRecord">
          <div className="vertical-view" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>

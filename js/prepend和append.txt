@@ -1,0 +1,17 @@
+prepend() 方法在被选元素的开头（仍位于内部）插入指定内容。
+prepend() 语法：$(selector).prepend(content) 或 $(selector).prepend(function(index,html))
+
+prependTo() 语法：$(content).prependTo(selector)
+
+提示：prepend() 和 prependTo() 方法作用相同。
+差异在于语法：内容和选择器的位置，以及 prependTo() 无法使用函数来插入内容。
+
+ 
+
+
+append() 方法在被选元素的结尾（仍然在内部）插入指定内容。
+append() 语法：$(selector).append(content)
+
+appendTo() 语法：$(content).appendTo(selector)
+
+提示：append() 和 appendTo() 方法执行的任务相同。不同之处在于：内容的位置和选择器。
