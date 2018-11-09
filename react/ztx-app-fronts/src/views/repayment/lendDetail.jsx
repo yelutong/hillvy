@@ -46,61 +46,9 @@ class LendDtail extends React.Component {
         if(App){
           App.showLoading(false);
         }
-        if(res.data.code == '9006'){
+        if(res.data.code == '0000'){
        console.log(res); 
-       let listData2 = res.data;
-       let listData =  {
-  "code": "0000",
-  "msg": "成功",
-  "body": {
-    "toRepayList": [ ],//待还款详情
-  
-    "loanDetial": {  // 借款明细目录
-      "period": "3MONTH" ,// 借款周期,
-      "receiveTotalAmount": 12112,// 应还金额 ,
-      "contractAmt": 3333,// 合同金额,
-      "loanDate": "2018-11-26 00:00:00",// 放款日期,
-      "loanAmt": 1176000,//  放款金额（实际收到金额）
-    },
-  
-    "termSettles": [{  //已还目录
-        "status":"settle",//已结清  为空就是未结清
-        "receiveDate":"2018-11-26 00:00:00",
-        "receiveAmt":3433443,//还款金额，
-        "term":3
-    },{
-        "status":"settle",//已结清  为空就是未结清
-        "receiveDate":"2018-11-26 00:00:00",
-        "receiveAmt":23323232,
-        "term":3,
-        }
-    ],
-  
-    "repayDetails": [//还款详情目录
-      {
-        "returnDate": "2018-11-26 00:00:00",  //应还日期,
-        "term": 1, //期数,
-        "returnAmt": 6031722 , //应还金额,
-        "receiveAmt": 5445554, //已还金额,
-        "status": "settle"  //还款状态
-      },
-      {
-        "returnDate": "2018-12-26 00:00:00",
-        "term": 2,
-        "returnAmt": 6031722,
-        "receiveAmt": 33333,
-        "status": "settle"
-      },
-      {
-        "returnDate": "2019-01-26 00:00:00",
-        "term": 3,
-        "returnAmt": 6031722,
-        "receiveAmt": 23323232,
-        "status": "settle"
-      }
-    ]
-  }
-}
+       let listData = res.data; 
       console.log(listData);
       if(listData.body && listData.body.termSettles&& listData.body.termSettles.length>0){//已还 数组
        var Lunas = listData.body.termSettles;
@@ -133,9 +81,10 @@ class LendDtail extends React.Component {
       pathname:"/LargeStageAgree"
     })
   }
-  closeApp(){
+  goToApp(contractNo,balance){
+    console.log(contractNo,balance);
     if(App){
-      App.repay();
+      App.repay(contractNo,balance);
       //App.finish();
     }else{
       Toast.info('请在APP中打开'); 
@@ -151,10 +100,10 @@ class LendDtail extends React.Component {
         var accDetail=(
           <div className="lendDt">
               <Item extra={loanDate}>Tanggal Diterima</Item>
-              <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.contractAmt)}>Nominal Pinjaman</Item>
-              <Item extra={this.props.location.state.loanDetial.period}>Tenor</Item>
-              <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.loanAmt)}>Nominal Diterima</Item>
-              <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.receiveTotalAmount)}>Nominal Pembayaran</Item>
+              <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.contractAmt||0)}>Nominal Pinjaman</Item>
+              <Item extra={this.props.location.state.loanDetial.period||0}>Tenor</Item>
+              <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.loanAmt||0)}>Nominal Diterima</Item>
+              <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.receiveTotalAmount||0)}>Nominal Pembayaran</Item>
               <Item onClick={() =>{this.routerToAgree()}} className="accLineBttom">Baca Perjanjian Pemberian Pinjaman</Item>
           </div>
         )
@@ -182,7 +131,7 @@ class LendDtail extends React.Component {
        if(this.props.location.state.Lunas && this.props.location.state.Lunas.length>0){
           let rp=0,lunasItem=[];
           let paySucc=(
-             <div className="paySucc">Telah lunas</div>
+             <div className="paySucc fs-14">Telah lunas</div>
           );
           for(let i=0;i<this.props.location.state.Lunas.length;i++){
             rp=rp+this.props.location.state.Lunas[i].receiveAmt;
@@ -216,10 +165,10 @@ class LendDtail extends React.Component {
             var accDetail=(
               <div className="lendDt">
                   <Item extra={loanDate}>Tanggal Diterima</Item>
-                  <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.contractAmt)}>Nominal Pinjaman</Item>
-                  <Item extra={this.state.loanDetial.period}>Tenor</Item>
-                  <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.loanAmt)}>Nominal Diterima</Item>
-                  <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.receiveTotalAmount)}>Nominal Pembayaran</Item>
+                  <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.contractAmt||0)}>Nominal Pinjaman</Item>
+                  <Item extra={this.state.loanDetial.period||0}>Tenor</Item>
+                  <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.loanAmt||0)}>Nominal Diterima</Item>
+                  <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.receiveTotalAmount||0)}>Nominal Pembayaran</Item>
                   <Item onClick={() =>{this.routerToAgree()}} className="accLineBttom">Baca Perjanjian Pemberian Pinjaman</Item>
               </div>
             )
@@ -247,7 +196,7 @@ class LendDtail extends React.Component {
            if(this.state.Lunas && this.state.Lunas.length>0){
               let rp1=0,lunasItem=[];
               let paySucc=(
-                 <div className="paySucc">Telah lunas</div>
+                 <div className="paySucc fs-14">Telah lunas</div>
               );
               for(let i=0;i<this.state.Lunas.length;i++){
                 rp1=rp1+this.state.Lunas[i].receiveAmt;
@@ -292,7 +241,7 @@ class LendDtail extends React.Component {
         <Item
           thumb={lend02}
         >
-          Durasi Pinjaman：{this.props.location.state.isPaid == 0 ? this.props.location.state.currenList.returnDate :  this.state.currenList.receiveDate}
+          Durasi Pinjaman：{this.props.location.state.isPaid == 0 ? this.props.location.state.currenList.receiveDate :  this.state.currenList.receiveDate}
         </Item>
         <Item
           thumb={lend03}
@@ -323,7 +272,7 @@ class LendDtail extends React.Component {
           </Accordion.Panel>
         </Accordion>
 
-        <Button className={this.props.location.state.isPaid == 1 ?'hide':''} type="primary" onClick={()=>{ this.closeApp() }}>Bayar</Button>
+        <Button className={this.props.location.state.isPaid == 1 ?'hide':''} type="primary" onClick={()=>{ this.goToApp(this.state.currenList.contractNo,this.state.currenList.balance)}}  disabled={this.state.currenList.notClick?true:false}>Bayar</Button>
       </div> 
       </div>
     );

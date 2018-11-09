@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, List  } from 'antd-mobile';
+import { Toast, Button, Card, List  } from 'antd-mobile';
 import TopPic1 from '../../images/loan/LoanStage01.png';
 import TopPic2 from '../../images/loan/loanDetail02.png';
 import loan01 from '../../images/loan/loan01.png';
@@ -31,7 +31,13 @@ class LoanStageDetail extends React.Component {
   componentDidMount() {
 
   }
+  goToApply = () => {
+    if(App){
 
+    }else{
+     Toast.info('请在APP中打开');
+    }
+  }
   render() {
     return (
       <div className="LoanDetailExplain LoanStageDetail">
@@ -56,7 +62,7 @@ class LoanStageDetail extends React.Component {
           />
         <Item
           thumb={loan02}
-        >Warga negara Indones</Item>
+        >Warga negara Indonesia</Item>
         <Item
           thumb={loan03}
         >
@@ -65,7 +71,7 @@ class LoanStageDetail extends React.Component {
         <Item
           thumb={loan04}
         >
-          Berpenghasilan stabi
+          Berpenghasilan stabil
         </Item>
         <Item align="top" wrap="true"
           thumb={loan05}
@@ -88,7 +94,7 @@ class LoanStageDetail extends React.Component {
         <Item  wrap="true" thumb={loan08} multipleLine>
           Dokumen Lainnya <Brief>(untuk meningkatkan skor kredit)</Brief>
         </Item>
-        <Button type="primary" className="EXpBtn">Ajukan</Button>
+        <Button type="primary" className="EXpBtn" onClick={()=>{ this.goToApply()}}>Ajukan</Button>
       </div>
     );
  }

@@ -8,7 +8,7 @@ const DateApi = {
     /**
      * 把时间戳毫秒 格式化 如 2018-08-09 12:00:09
      */
-    format(date) {
+    format(date) {//这里的date必须是数字类型，不要使用字符串类型
        date = new Date(date);
         var y=date.getFullYear();
         var m=date.getMonth()+1;
@@ -106,19 +106,27 @@ const DateApi = {
         if (str.indexOf(".") == -1) {
             for (var i = str.length - 1; i >= 0; i--) {
                 if (count % 3 == 0 && count != 0) {
-                    newStr = str.charAt(i) + "." + newStr;//这里用 点号连接
+                    newStr = str.charAt(i) + "," + newStr;//这里用 点号连接
                 } else {
                     newStr = str.charAt(i) + newStr;//charAt位置,由高到低即从最右边的个位开始遍历
                 }
                 count++;
             }
             str = newStr + ""; //去掉自动补小数点后两位 '.00'
-            return str;
         }
         // 当数字带有小数  不处理
         else {
-            return str;
+            for (var i = str.indexOf(".") - 1; i >= 0; i--) {
+                if (count % 3 == 0 && count != 0) {
+                    newStr = str.charAt(i) + "," + newStr;
+                } else {
+                    newStr = str.charAt(i) + newStr; //逐个字符相接起来
+                }
+                count++;
+            }
+            str = newStr + (str + "00").substr((str + "00").indexOf("."), 0);
         } 
+      return str;
     },
     /**
      * 审批状态

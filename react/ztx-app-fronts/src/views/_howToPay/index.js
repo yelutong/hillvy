@@ -3,16 +3,29 @@ import './style/index.css';
 
 class CouponRule extends React.Component {
   state = {
-    DOKUList:[],
-    BNIList:[],
+    wayList:[]
   };
 
   componentWillMount() {
+    var bankCode = this.props.location.query.bankCode || '';
+    document.title = bankCode == '008'?'Tata Cara Pembayaran Mandiri':bankCode == '009'?'Tata Cara Pembayaran BNI':'Bagaimana cara pembayaran';
   }
 
   componentDidMount() {
-    var bank = this.props.location.query.bank || '';
-    var DOKU = [{
+    /*
+    *BRI("002", "BRI", R.drawable.bri),
+    CIMB("022", "CIMB", R.drawable.cimb),
+    MANDIRI("008", "Mandiri", R.drawable.mandiri),
+    BCA("014", "BCA", R.drawable.bca),
+    BNI("009", "BNI", R.drawable.bni),
+    DANAMON("011", "Danamon", R.drawable.danamon),
+    PERMATA("013", "Permata Bank", R.drawable.permata),
+    MEGA("other", "Bank Mega", R.drawable.mega),
+    BTN("200", "BTN", R.drawable.other),
+    PANIN("019", "Panin Bank", R.drawable.other),
+    */
+    var bankCode = this.props.location.query.bankCode || '';
+    var MANDIRI = [{
         title:'Mandiri ATM',
         detail:'<p>1. Masukkan kartu ATM Mandiri, lalu masukkan PIN ATM.</p>'+
         '<p>2. Pilih menu "Bayar/Beli"</p>'+
@@ -131,10 +144,19 @@ class CouponRule extends React.Component {
         '<p>6. Konfirmasi rincian Anda akan tampil di layar, cek dan apabila sudah sesuai silahkan lanjutkan transaksi sampai dengan selesai</p>'+
         '<p>7. Transaksi Berhasil</p>'
       }];
-    this.setState({
-      DOKUList:DOKU,
-      BNIList:BNI
-    })
+    if(bankCode == '008'){
+      this.setState({
+        wayList:MANDIRI
+      })
+    }else if(bankCode == '009'){
+      this.setState({
+        wayList:BNI
+      })
+    }else{
+      this.setState({
+        wayList:MANDIRI
+      })
+    }
   }
 
   showMoreDetail = (index,e) => {
@@ -147,9 +169,8 @@ class CouponRule extends React.Component {
     return (
       <div className="couponRule">
         <div className="ruleList">
-          <div className="bankTitle">Tata Cara Pembayaran Mandiri</div>
           {
-            this.state.DOKUList.map((item,index) => {
+            this.state.wayList.map((item,index) => {
               return (
                 <div className="ruleItem" key={index}>
                   <div className="ruleTitle" onClick={this.showMoreDetail.bind(this,index)}>
@@ -157,23 +178,6 @@ class CouponRule extends React.Component {
                     <span className="icon more"></span>
                   </div>
                   <div className={'ruleDetail detai-'+index} style={{'display':'none'}} dangerouslySetInnerHTML = {{__html:item.detail}}>
-                  </div>
-                </div>
-              )
-            })
-          }
-        </div>
-        <div className="ruleList">
-          <div className="bankTitle" style={{'marginTop':'1rem'}}>Tata Cara Pembayaran BNI</div>
-          {
-            this.state.BNIList.map((item,index) => {
-              return (
-                <div className="ruleItem" key={index}>
-                  <div className="ruleTitle" onClick={this.showMoreDetail.bind(this,('a'+index))}>
-                    <span className="titleText">{item.title}</span>
-                    <span className="icon more"></span>
-                  </div>
-                  <div className={'ruleDetail detai-a'+index} style={{'display':'none'}} dangerouslySetInnerHTML = {{__html:item.detail}}>
                   </div>
                 </div>
               )

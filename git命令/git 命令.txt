@@ -30,7 +30,8 @@ master是最后上线的时候才合并过去的。不然很容易有冲突，不能保证master就是现在线上
 
 git merge master dev合并到主干master
 
-git stash //拉取删除的，但是不会把文件夹生成，只能在文件夹内去拉取
+切记要去对应目录下拉取，否则会把改动的覆盖！！！！！
+git stash //拉取删除的，但是不会把文件夹生成，只能在文件夹内去拉取,
 
 1、打开git hash命令窗口；
 2、使用git checkout xxx进入主分支下（xxx为分支名称，如develop）；中腾信 git checkout dev
