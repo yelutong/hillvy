@@ -64,7 +64,7 @@ class ApplyRecord extends React.Component {
         this.state.listData.map((item,i) => {
          return (
            <div className="vertical-view billList flex1" key={i}>
-           <p className="bg-gray lh-30 pb5 txt-gray center fs-12">Tanggal Pengajuan {DateApi.format3(item.applyTime)}</p>
+           <div className="bg-gray lh-30 pb5 txt-gray center"><span className="fs-10">Tanggal Pengajuan {DateApi.format3(item.applyTime)}</span></div>
            <Item className="fs-13"><Brief>Nomor : {item.contractNo}</Brief></Item>
            <div className="noLine">
            <Item

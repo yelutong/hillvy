@@ -155,13 +155,13 @@ render() {
       this.state.paynot.map((item,i) => {
        return (
         <div className="vertical-view billList flex1" key={i}>
-        <p className="bg-gray lh-30 pb5 txt-gray center fs-12">Tanggal Pengajuan {item.applyTime}</p>
+        <div className="bg-gray lh-30 pb5 txt-gray center"><span className="fs-10">Tanggal Pengajuan {item.applyTime}</span></div>
         <Item arrow="horizontal" onClick={()=>{this.routerTo(item)}}><Brief>Nomor Perjanjian : {item.contractNo}</Brief></Item>
 
         <div className="noLine">
         <Item
         thumb={bill01}
-        >Sisa Pembayaran：Rp {DateApi.addDot(item.balance)}</Item>
+        >Sisa Pembayaran：Rp {DateApi.addDot(item.balance||0)}</Item>
         <Item
         thumb={bill02}
         >
@@ -197,12 +197,12 @@ render() {
       this.state.settle.map((item,k) => {
        return (
         <div className="vertical-view billList flex1" key={k}>
-        <p className="bg-gray lh-30 pb5 txt-gray center">Tanggal Pengajuan {item.settleDate}</p>
+        <div className="bg-gray lh-30 pb5 txt-gray center"><span className="fs-10">Tanggal Pengajuan {item.settleDate}</span></div>
         <Item arrow="horizontal" onClick={()=>{this.routerToPaid(item)}}><Brief>Nomor Perjanjian : {item.contractNo}</Brief></Item>
         <div className="noLine">
         <Item
         thumb={bill01}
-        >Sisa Pembayaran：Rp {DateApi.addDot(item.balance)}</Item>
+        >Sisa Pembayaran：Rp {DateApi.addDot(item.balance||0)}</Item>
         <Item
         thumb={bill02}
         >

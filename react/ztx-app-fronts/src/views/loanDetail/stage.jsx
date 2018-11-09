@@ -30,10 +30,12 @@ class LoanStageDetail extends React.Component {
 
   componentDidMount() {
 
-  }
-  goToApply = () => {
-    if(App){
+  } 
 
+  goToApply = (type,isReload,isAllowApply,applyId) => {
+    console.log(type,isReload,isAllowApply,applyId);
+    if(App){
+      App.applyNow(type,isReload,isAllowApply,applyId);
     }else{
      Toast.info('请在APP中打开');
     }
@@ -46,12 +48,12 @@ class LoanStageDetail extends React.Component {
         <div className="horizontal-view expTop">
           <i className="TopPic2"><img src={TopPic2}/></i>
           <div className="vux-1px-r ct1 center flex1 justify-content-center">
-            <h3 className="txt-gray fsize-normal">Hingga</h3>
-            <h3 className="txt-ztx fsize-normal"><i>{this.state.largestAmt}</i></h3>
+            <h3 className="txt-gray fsize-normal fs-16">Hingga</h3>
+            <h3 className="txt-ztx fsize-normal fs-16"><i>{this.state.largestAmt}</i></h3>
           </div>
           <div className="ct1 center flex1 justify-content-center">
-            <h3 className="txt-gray fsize-normal">Tenor</h3>
-            <h3 className="txt-ztx fsize-normal"><i>{this.state.term}</i></h3>
+            <h3 className="txt-gray fsize-normal fs-16">Tenor</h3>
+            <h3 className="txt-ztx fsize-normal fs-16"><i>{this.state.term}</i></h3>
           </div>
         </div>
         
@@ -76,11 +78,11 @@ class LoanStageDetail extends React.Component {
         <Item align="top" wrap="true"
           thumb={loan05}
         >
-          Memiliki akun sosial media,e-commerce,provider nomor dan BPJS  
+          Memiliki BPJS, akun provider nomor, akun e-commerce dan sosial media
         </Item>
         </div>
       </div>
-
+      <div className="mg15">
        <Card.Header
             title="Dokumen Persyaratan"
             thumb={loan01}
@@ -94,7 +96,8 @@ class LoanStageDetail extends React.Component {
         <Item  wrap="true" thumb={loan08} multipleLine>
           Dokumen Lainnya <Brief>(untuk meningkatkan skor kredit)</Brief>
         </Item>
-        <Button type="primary" className="EXpBtn" onClick={()=>{ this.goToApply()}}>Ajukan</Button>
+        </div>
+        <Button type="primary" className="EXpBtn" onClick={()=>{ this.goToApply(this.props.location.query.type,this.props.location.query.isReload,this.props.location.query.isAllowApply,this.props.location.query.applyId)}}>Ajukan</Button>
       </div>
     );
  }

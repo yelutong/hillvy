@@ -1,0 +1,1 @@
+在 开始 运行 输入 Shutdown.exe -s -t 3600

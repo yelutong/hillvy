@@ -18,6 +18,7 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
+    publicPath: path.join(__dirname, './dist'), // 必填项
     filename:"js/[name].bundle.js",
     sourceMapFilename: 'js/[file].map',
     chunkFilename: 'js/[name].[chunkhash:5].chunk.js'

@@ -8,11 +8,11 @@
 .LoanDetailExplain .TopPic2 {
   position: absolute;
   right: 8px;
-  top: -6px;
+  top: -5px;
 }
 .LoanDetailExplain .TopPic2 img {
-  width: 35px;
-  height: 37px;
+  width: 25px;
+  height: 27px;
 }
 .LoanDetailExplain .topPic {
   background: url('../images/loan/loanDetail01.png') no-repeat;
@@ -26,14 +26,16 @@
   margin: -50px 15px 14px 15px;
   background: #FFF;
   z-index: 1;
-  box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 5px #999;
 }
 .LoanDetailExplain .content .ct1 {
   margin: 30px 0;
 }
 .LoanDetailExplain .content .ct1 h3 {
-  line-height: 30px;
   margin: 0;
+}
+.LoanDetailExplain .content .ct1 h3:first-child{
+ margin-bottom:12px!important;
 }
 .LoanDetailExplain .am-list-item .am-list-line {
   border: none!important;
@@ -67,7 +69,16 @@
 }
 .LoanDetailExplain .am-list-item .am-list-line .am-list-brief {
   white-space: normal!important;
-  font-size: 12px;
+  font-size:22px;
+  width: 200%;
+  -o-transform-origin-x:0%;
+  -moz-transform-origin-x:0%;
+  transform-origin-x:0%;
+  -webkit-transform-origin-x:0%;
+  transform: scale(0.50);
+  -moz-transform: scale(0.50);
+  -o-transform: scale(0.50);
+  -webkit-transform: scale(0.50);/*缩小一半*/
 }
 .LoanDetailExplain .am-list-item-top .am-list-thumb {
   width: 22px;
@@ -106,9 +117,9 @@
   background-color: #ffb03b!important;
   border-radius: 30px!important;
   border: 1px solid transparent!important;
-  height: 32px;
-  line-height: 32px;
-  width: 84px;
+  height: 30px;
+  line-height: 30px;
+  width: 80px;
   font-size:14px;
 }
 .RepaymentBill .am-button-primary.am-button-active {
@@ -335,3 +346,22 @@
 .RepaymentBill .noLine{
   padding-top:10px;
 } 
+.am-card-header-content img{
+  width:14px;
+  height: 14px;
+  margin-left:3px;
+}
+.LoanDetailExplain .am-list-item img,.LoanStageDetail .am-list-item img{
+  width: 20px!important;
+  height: 20px!important;
+}
+.LoanDetailExplain .mg15 .am-list-item img,.LoanStageDetail .mg15 .am-list-item img{
+  width: 30px!important;
+  height: 30px!important;
+}
+.mg15 .am-list-item .am-list-thumb:first-child{
+  margin: 0 -10px 0 10px!important;
+}
+.LoanDetailExplain .am-list-item .am-list-line .am-list-brief,.LoanStageDetail .am-list-item .am-list-line .am-list-brief{
+  margin-top: -8px!important;
+}

@@ -147,29 +147,37 @@ class App extends React.Component {
     })(document, window);
   }
 
+  /*
+  *替换title
+  */
+  changeTitle = () => {
+    const href = location.href;
+    const titles = views.filter((item) => href.indexOf(item.pathName)>=0);
+    const languga = href.indexOf('English')>=0?'English':'Indonesian';
+    if(titles.length>0){
+      if(href.indexOf(titles[0].pathName)>=0){
+        //设置页面标题
+        if(languga == 'Indonesian'){
+          document.title = titles[0].IndonesianTitle;
+        }else{
+          document.title = titles[0].title;
+        }
+      }else{
+        //设置页面标题
+        document.title = ' ';
+      }
+    }else{
+      //document.title = ' ';
+    }
+  }
+
   render() {
     /*
     *监听路由的变化
     */
+    this.changeTitle();//首次打开路由无变化，先执行一次changeTitle
     hashHistory.listen(()=>{
-      const href = location.href;
-      const titles = views.filter((item) => href.indexOf(item.pathName)>=0);
-      const languga = href.indexOf('English')>=0?'English':'Indonesian';
-      if(titles.length>0){
-        if(href.indexOf(titles[0].pathName)>=0){
-          //设置页面标题
-          if(languga == 'Indonesian'){
-            document.title = titles[0].IndonesianTitle;
-          }else{
-            document.title = titles[0].title;
-          }
-        }else{
-          //设置页面标题
-          document.title = ' ';
-        }
-      }else{
-        //document.title = ' ';
-      }
+      this.changeTitle();
     })
     return (
       <Router history={hashHistory} routes={routes} />

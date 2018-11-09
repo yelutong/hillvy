@@ -1,4 +1,5 @@
 .sfcouponList .commonCouponList .sfcoupon-right .show-coupon .blow-up{
+    display: inline-block;/*重要 一定要加*/
    font-size:12px;-webkit-transform-origin-x:50%;-webkit-transform: scale(0.80);
 }
 .sfcouponList .commonCouponList .sfcoupon-right .show-coupon .small-font{

@@ -55,7 +55,7 @@ class ApprovalResult extends React.Component {
     let rPic,rTtile,eMess;
     if(result==0){//审批中
       rPic=wait;
-      rTtile="Dalam Proses Verifik";
+      rTtile="Dalam Proses Verifikasi";
       eMess=(
         <div>
         <p>Diperkirakan 1 – 5 hari kerja</p>
