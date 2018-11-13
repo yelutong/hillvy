@@ -1,5 +1,6 @@
 import React from 'react'; 
 import axios from 'axios';
+import config from '../../config/base';
 import {  Toast } from 'antd-mobile';
 import DateApi from '../../js/dateFormat.js';
 
@@ -8,10 +9,8 @@ class RepaymentList extends React.Component {
     super(props);
     this.state = {
       listInfo:[],
-      applyId:this.props.location.query&&this.props.location.query.applyId?this.props.location.query.applyId:'',
-      token:this.props.location.query&&this.props.location.query.token?this.props.location.query.token:localStorage.getItem('token'),
     }
-    localStorage.setItem('token',this.state.token);
+    localStorage.setItem('token',this.props.location.query.token||localStorage.getItem('token'));
     this.getListInfo();
     console.log(this.props.location.query);
   }
@@ -25,7 +24,8 @@ class RepaymentList extends React.Component {
 
   }
   getListInfo= () => {
-    axios.get('http://10.3.32.232:8081/kpt-apply/apply/v3/plans',{params:{"applyId":this.state.applyId}}).then((res) => {
+    let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/v3/plans';
+    axios.get(url,{params:{"applyId":this.props.location.query.applyId}}).then((res) => {
       if(App){
         App.showLoading(false);
       }
@@ -41,15 +41,15 @@ class RepaymentList extends React.Component {
         }
       }
       }).catch(function (error) {
-        　　    Toast.info(String(error));
-        });
+        Toast.info(String(error));
+      });
     }
     render() { 
       return (
         <div className="RepaymentList">
-        <div className="fs-12">
-        <p className="txt-gray txt-red2">Berikut contoh rencana pengembalian dengan asumsi hari ini adalah tanggal pembayaran.</p>
-        <p className="txt-gray txt-red2">Untuk rencana pengembalian didasarkan pada yang tertera di aplikasi setelah lolos verifikasi</p>
+        <div className="fs-14 pdb12 bg-gray">
+        <p className="txt-red2">Berikut contoh rencana pengembalian dengan asumsi hari ini adalah tanggal pembayaran.</p>
+        <p className="txt-red2">Untuk rencana pengembalian didasarkan pada yang tertera di aplikasi setelah lolos verifikasi</p>
         </div>
         <div className="fs-12 horizontal-view listHead align-items-center">
         <span className="flexg1 flex1">Tenor</span>

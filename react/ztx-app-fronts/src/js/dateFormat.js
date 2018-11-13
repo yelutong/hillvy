@@ -145,7 +145,7 @@ const DateApi = {
         break;
     case 'REJECTED':
         result = "Persetujuan menolak";//审批拒绝
-        break;
+        break;   
     default:
         result = "Pinjaman gagal";//放款失败                
    }

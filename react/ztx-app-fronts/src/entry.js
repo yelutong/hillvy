@@ -11,7 +11,7 @@ import axios from 'axios';
 //require('es6-promise');
 require('babel-polyfill');
 require('jquery/jquery.min');
-
+import { Toast } from 'antd-mobile';
 /**
  * CANNOT use `import` to import `react` or `react-dom`,
  * because `import` will run `react` before `require('es5-shim')`.
@@ -33,6 +33,9 @@ axios.interceptors.request.use(function (config) {
     }else{
       token = '';
     }*/
+    if(window.location.hash.indexOf('RepaymentBill')<0){
+      App?App.showLoading(true):Toast.loading('Loading...', 1);//1秒后自动关闭
+    }
     config.headers['X-Sso-Token'] = token;
     return config;
   }, function (error) {
@@ -44,7 +47,9 @@ axios.interceptors.request.use(function (config) {
       }
     },2000);*/
     if(App){
-      App.showToast('Tidak ada koneksi jaringan');
+      if(window.location.hash.indexOf('RepaymentBill')<0){
+        App.showToast('Tidak ada koneksi jaringan');
+      }
       App.showLoading(false);
     }
     return Promise.reject(error);
@@ -55,6 +60,9 @@ axios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
     if(response.data.code == '0000'){ //0000的时候才是成功
       //成功
+      if(window.location.hash.indexOf('RepaymentBill')<0){
+        App?App.showLoading(false):Toast.loading('Loading...', 0.1);//0.1秒后自动关闭
+      }
     }else{
       //失败
       if(App){
@@ -62,11 +70,13 @@ axios.interceptors.response.use(function (response) {
           App.tokenInvalid();
          //App.showToast('token过期');
         }else{
-         App.showToast('Tidak ada koneksi jaringan'+'('+response.data.code+')');
+          if(window.location.hash.indexOf('RepaymentBill')<0){
+             App.showToast('Tidak ada koneksi jaringan'+'('+response.data.code+')');
+          }
          App.showLoading(false);
         }
       }else{
-        alert(response.data.msg);
+        console.log(response.data.msg);
       }
     }
     return response;
@@ -74,7 +84,9 @@ axios.interceptors.response.use(function (response) {
     // 对响应错误做点什么
     //失败app弹窗
     if(App){
-      App.showToast('Tidak ada koneksi jaringan');
+      if(window.location.hash.indexOf('RepaymentBill')<0){
+        App.showToast('Tidak ada koneksi jaringan');
+      }
       App.showLoading(false);
     }
     //$('.warningTips').show().html('Tidak ada koneksi jaringan');

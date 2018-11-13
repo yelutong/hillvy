@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import config from '../../config/base';
 import {  Toast, Result, Button, List, Tabs, WhiteSpace, Badge } from 'antd-mobile';
 import DateApi from '../../js/dateFormat.js';
 import bill01 from '../../images/loan/bill01.png';
@@ -24,10 +25,8 @@ class RepaymentBill extends React.Component {
       paynot:[],
       settle:[],
       repayDetails: [],
-      applyId:this.props.location.query&&this.props.location.query.applyId?this.props.location.query.applyId:'',
-      token:this.props.location.query&&this.props.location.query.token?this.props.location.query.token:localStorage.getItem('token'),
     }
-    localStorage.setItem('token',this.state.token);//this.state.token);
+    localStorage.setItem('token',this.props.location.query.token||localStorage.getItem('token'));//this.state.token);
     console.log(this.props.location.query);
     this.getBill();
   }
@@ -73,71 +72,80 @@ class RepaymentBill extends React.Component {
     if(App){
       App.showLoading(false);
     }
-    axios.get('http://10.3.32.232:8081/kpt-apply/apply/v3/bill',{params:{"applyId":this.state.applyId}}).then((res) => {
-      if(App){
-        App.showLoading(false);
-      }
-      if(res.data.code == '0000'){
+  let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/v3/bill';
+  axios.get(url,{params:{"applyId":this.props.location.query.applyId}}).then((res) => {
+    if(res.data.code == '0000'){
         console.log(res); 
         let listData = res.data; 
         console.log(listData);
-if(listData.body && listData.body.termSettles&& listData.body.termSettles.length>0){//已还 数组
- var Lunas = listData.body.termSettles;
- for(let i=0;i<Lunas.length;i++){
-  let date = Lunas[i].receiveDate ? Date.parse(new Date(Lunas[i].receiveDate)) : '';
-  let settleDate = Lunas[i].settleDate ? Date.parse(new Date(Lunas[i].settleDate)) : '';
-  Lunas[i].receiveDate = DateApi.format3(date);
-  Lunas[i].settleDate = DateApi.format3(settleDate);
+    if(listData.body && listData.body.termSettles&& listData.body.termSettles.length>0){//已还 数组
+     var Lunas = listData.body.termSettles;
+     for(let i=0;i<Lunas.length;i++){
+      let date = Lunas[i].receiveDate ? Date.parse(new Date(Lunas[i].receiveDate)) : '';
+      let settleDate = Lunas[i].settleDate ? Date.parse(new Date(Lunas[i].settleDate)) : '';
+      Lunas[i].receiveDate = DateApi.format3(date);
+      Lunas[i].settleDate = DateApi.format3(settleDate);
 
-}
-this.setState({ Lunas : Lunas });
-}
-if(listData.body && listData.body.settle&& listData.body.settle.length>0){//已还 数组
- var settle = listData.body.settle;
- for(let i=0;i<settle.length;i++){
-  let date = settle[i].receiveDate ? Date.parse(new Date(settle[i].receiveDate)) : '';
-  let settleDate = settle[i].settleDate ? Date.parse(new Date(settle[i].settleDate)) : '';
-  settle[i].receiveDate = DateApi.format3(date);
-  settle[i].settleDate = DateApi.format3(settleDate);
-}
-this.setState({ settle : settle });
-} 
-if(listData.body && listData.body.loanDetial){
-  var loanDetial = listData.body.loanDetial;
-  this.setState({ loanDetial : loanDetial });
-}
-if(listData.body && listData.body.repayDetails && listData.body.repayDetails.length > 0){
-  var repayDetails = listData.body.repayDetails;
-  for(let i=0;i < repayDetails.length;i++){
-   var date = repayDetails[i].returnDate ? Date.parse(new Date(repayDetails[i].returnDate)) : '';
-   repayDetails[i].returnDate = DateApi.format2(date);
- }
- this.setState({ repayDetails : repayDetails });
-}
-if(listData.body && listData.body.toRepayList&&listData.body.toRepayList.length>0){//待还
-  var paynot = listData.body.toRepayList;
-  for(let i=0;i < paynot.length;i++){
-    var date = paynot[i].receiveDate ? Date.parse(new Date(paynot[i].receiveDate)) : '';
-    var dateApply = paynot[i].applyTime ? Date.parse(new Date(paynot[i].applyTime)) : '';
-    if(paynot[i].status == "repayment"){
-      paynot[i].DateDiff = DateApi.DateDiff(date);//剩余多少天到期
     }
-    if(i>0){
-      paynot[i].notClick = true;
+    this.setState({ Lunas : Lunas });
     }
-    paynot[i].receiveDate = DateApi.format2(date);
-    paynot[i].returnDate1 = DateApi.format3(date);
-    paynot[i].applyTime = DateApi.format3(dateApply);
-  }
-  this.setState({ paynot : paynot });
-  if(App){
-   (paynot&&paynot.length>0)?App.redViewShow(true):App.redViewShow(false);
- }
-}
+    if(listData.body && listData.body.settle&& listData.body.settle.length>0){//已还 数组
+     var settle = listData.body.settle;
+     for(let i=0;i<settle.length;i++){
+      let date = settle[i].receiveDate ? Date.parse(new Date(settle[i].receiveDate)) : '';
+      let settleDate = settle[i].settleDate ? Date.parse(new Date(settle[i].settleDate)) : '';
+      settle[i].receiveDate = DateApi.format2(date);
+      settle[i].settleDate = DateApi.format3(settleDate);
+    }
+    this.setState({ settle : settle });
+    } 
+    if(listData.body && listData.body.loanDetial){
+      var loanDetial = listData.body.loanDetial;
+      this.setState({ loanDetial : loanDetial });
+    }
+    if(listData.body && listData.body.repayDetails && listData.body.repayDetails.length > 0){
+      var repayDetails = listData.body.repayDetails;
+      for(let i=0;i < repayDetails.length;i++){
+       var date = repayDetails[i].returnDate ? Date.parse(new Date(repayDetails[i].returnDate)) : '';
+       if(date){
+        repayDetails[i].returnDate = DateApi.format2(date);
+       }
+      }
+      console.log(repayDetails);
+     this.setState({ repayDetails : repayDetails });
+    }
+    if(listData.body && listData.body.toRepayList&&listData.body.toRepayList.length>0){//待还
+      var paynot = listData.body.toRepayList; 
+      if(!(paynot&&paynot.length>0)){
+        $('.RepaymentBill .am-result').height(document.body.clientHeight);
+      }
+      for(let i=0;i < paynot.length;i++){
+        var date = paynot[i].receiveDate ? Date.parse(new Date(paynot[i].receiveDate)) : '';
+        var dateApply = paynot[i].applyTime ? Date.parse(new Date(paynot[i].applyTime)) : '';
+        if(paynot[i].status == "repayment"){
+          paynot[i].DateDiff = DateApi.DateDiff(date);//剩余多少天到期
+        }
+        if(i>0){
+          paynot[i].notClick = true;
+        }
+        paynot[i].receiveDate = DateApi.format2(date);
+        paynot[i].returnDate1 = DateApi.format3(date);
+        paynot[i].applyTime = DateApi.format3(dateApply);
+      }
+      this.setState({ paynot : paynot });
+      if(App){
+       (paynot&&paynot.length>0)?App.redViewShow(true):App.redViewShow(false);
+     }
+    }
 
-}  
+    }else{
+      $('.RepaymentBill .am-result').height(document.body.clientHeight-44);
+      //$('body').css('background-color','#fff');
+    }
 }).catch(function (error) {
-  　Toast.info(String(error)); 
+  　//Toast.info(String(error)); 
+    $('.RepaymentBill .am-result').height(document.body.clientHeight-44);
+    console.log(error);
   });
 }
 render() {
@@ -186,12 +194,16 @@ render() {
       message={(
         <div>
         <p>Daftar pinjaman Anda kosong.</p>
-        <p>Ayo ajukan pinjaman sekarang di Pinjam Gampang !</p>
+        <p>Ayo ajukan pinjaman sekarang</p>
+        <p>di Pinjam Gampang !</p>
         </div>
         )}
       />
     }
     </div>
+
+
+
     <div className="Lunas vertical-view" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
     { (this.state.settle&&this.state.settle.length>0)?
       this.state.settle.map((item,k) => {
@@ -220,7 +232,8 @@ render() {
       message={(
         <div>
         <p>Daftar pinjaman Anda kosong.</p>
-        <p>Ayo ajukan pinjaman sekarang di Pinjam Gampang !</p>
+        <p>Ayo ajukan pinjaman sekarang</p>
+        <p>di Pinjam Gampang !</p>
         </div>
         )}
       />

@@ -19,12 +19,11 @@ class ApprovalResult extends React.Component {
     var languga = this.props.location.query.languga || 'Indonesian';
     console.log(languga);
     this.setState({languga:languga});
-
     console.log(this.props.location.query);
   }
 
   componentDidMount() {
-
+  
   }
 
   render() {

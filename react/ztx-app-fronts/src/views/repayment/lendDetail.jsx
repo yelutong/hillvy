@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import config from '../../config/base';
 import {  Toast, Button, List, Accordion } from 'antd-mobile';
 import DateApi from '../../js/dateFormat.js';
 import lend01 from '../../images/loan/bill01.png';
@@ -42,11 +43,9 @@ class LendDtail extends React.Component {
       console.log(this.props.location.state);
   }
   getPaid = () => {
-     axios.get('http://10.3.32.232:8081/kpt-apply/apply/v3/historyBill',{params:{"contractNo":this.props.location.state.currentItems.contractNo}}).then((res) => {
-        if(App){
-          App.showLoading(false);
-        }
-        if(res.data.code == '0000'){
+    let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/v3/historyBill';
+    axios.get(url,{params:{"contractNo":this.props.location.state.currentItems.contractNo}}).then((res) => {
+    if(res.data.code == '0000'){
        console.log(res); 
        let listData = res.data; 
       console.log(listData);
@@ -101,10 +100,10 @@ class LendDtail extends React.Component {
           <div className="lendDt">
               <Item extra={loanDate}>Tanggal Diterima</Item>
               <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.contractAmt||0)}>Nominal Pinjaman</Item>
-              <Item extra={this.props.location.state.loanDetial.period||0}>Tenor</Item>
+              <Item extra={this.props.location.state.loanDetial.period?(this.props.location.state.loanDetial.period.indexOf('DAY')>=0?this.props.location.state.loanDetial.period.replace("DAY"," hari"):this.props.location.state.loanDetial.period.replace("MONTH"," bulan")):0}>Tenor</Item>
               <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.loanAmt||0)}>Nominal Diterima</Item>
               <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.receiveTotalAmount||0)}>Nominal Pembayaran</Item>
-              <Item onClick={() =>{this.routerToAgree()}} className="accLineBttom">Baca Perjanjian Pemberian Pinjaman</Item>
+              <Item onClick={() =>{this.routerToAgree()}} className="accLineBttom fs-13">Baca Perjanjian Pemberian Pinjaman</Item>
           </div>
         )
        if(this.props.location.state.repayDetails && this.props.location.state.repayDetails.length>0){
@@ -120,9 +119,9 @@ class LendDtail extends React.Component {
                   }
                   listPlan.push(
                      <li className={flagClass} key={i}>
-                        <span className="flex1">{this.props.location.state.repayDetails[i].returnDate}</span>
-                        <span className="flex1">RP {DateApi.addDot(this.props.location.state.repayDetails[i].returnAmt)}</span>
-                        <span className="flex1">RP {DateApi.addDot(this.state.paid)}</span>
+                        <span className="flex1 fs-12">{this.props.location.state.repayDetails[i].returnDate?this.props.location.state.repayDetails[i].returnDate:''}</span>
+                        <span className="flex1 fs-14">RP {DateApi.addDot(this.props.location.state.repayDetails[i].returnAmt)}</span>
+                        <span className="flex1 fs-14">RP {DateApi.addDot(this.state.paid)}</span>
                      </li>
                   );
                 }
@@ -166,7 +165,7 @@ class LendDtail extends React.Component {
               <div className="lendDt">
                   <Item extra={loanDate}>Tanggal Diterima</Item>
                   <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.contractAmt||0)}>Nominal Pinjaman</Item>
-                  <Item extra={this.state.loanDetial.period||0}>Tenor</Item>
+                  <Item extra={this.state.loanDetial.period?(this.state.loanDetial.period.indexOf('DAY')>=0?this.state.loanDetial.period.replace("DAY"," hari"):this.state.loanDetial.period.replace("MONTH"," bulan")):0}>Tenor</Item>
                   <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.loanAmt||0)}>Nominal Diterima</Item>
                   <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.receiveTotalAmount||0)}>Nominal Pembayaran</Item>
                   <Item onClick={() =>{this.routerToAgree()}} className="accLineBttom">Baca Perjanjian Pemberian Pinjaman</Item>
@@ -185,9 +184,9 @@ class LendDtail extends React.Component {
                 }
                 listPlan.push(
                    <li className={flagClass} key={i}>
-                      <span className="flex1">{this.state.repayDetails[i].returnDate}</span>
-                      <span className="flex1">RP {DateApi.addDot(this.state.repayDetails[i].returnAmt)}</span>
-                      <span className="flex1">RP {DateApi.addDot(this.state.paid)}</span>
+                      <span className="flex1 fs-12">{this.state.repayDetails[i].returnDate}</span>
+                      <span className="flex1 fs-14">RP {DateApi.addDot(this.state.repayDetails[i].returnAmt)}</span>
+                      <span className="flex1 fs-14">RP {DateApi.addDot(this.state.paid)}</span>
                    </li>
                 );
               }
@@ -237,7 +236,7 @@ class LendDtail extends React.Component {
         <div className="noLine">
          <Item
           thumb={lend01}
-        >Sisa Pembayaran：Rp {DateApi.addDot(this.state.currenList.balance)}</Item>
+        >Sisa Pembayaran：Rp {DateApi.addDot(this.state.currenList.balance?this.state.currenList.balance:0)}</Item>
         <Item
           thumb={lend02}
         >
@@ -262,9 +261,9 @@ class LendDtail extends React.Component {
           <Accordion.Panel header="Jadwal Pembayaran" className="pad3">
             
             <div className="horizontal-view listHead align-items-center">
-              <span className="flex1">Tanggal Pembayaran</span>
-              <span className="flex1">Nominal Pembayaran</span>
-              <span className="flex1">Telah Luna</span>
+              <span className="flex1 fs-12">Tanggal Pembayaran</span>
+              <span className="flex1 fs-12">Nominal Pembayaran</span>
+              <span className="flex1 fs-12">Telah Luna</span>
             </div>
             <ul className="listUl">
                {listPlan}

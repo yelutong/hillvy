@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../../config/base';
 import {  Toast, Result, Button, List, Tabs, WhiteSpace, Badge } from 'antd-mobile';
 import bill01 from '../../images/loan/bill01.png';
 import bill02 from '../../images/loan/bill02.png';
@@ -15,17 +16,14 @@ const tabs = [
 ];
 
 class ApplyRecord extends React.Component {
-  
   constructor(props) {
     super(props);
-    this.state = {
+    this.statApplyRecorde = {
       listData:[],
       getResult:'',
-      token:this.props.location.query&&this.props.location.query.token?this.props.location.query.token:localStorage.getItem('token'),
-      registId:this.props.location.query&&this.props.location.query.registId?this.props.location.query.registId:null,//"109981"
     };
     console.log(this.props.location.query);
-    localStorage.setItem('token',this.state.token);//"8439096e96794349b2bdd5ff4603cfe7"
+    localStorage.setItem('token',this.props.location.query.token||localStorage.getItem('token'));//"8439096e96794349b2bdd5ff4603cfe7"
     this.getRecordContent();
   }
   state = {languga:'Indonesian'};
@@ -35,24 +33,31 @@ class ApplyRecord extends React.Component {
     this.setState({languga:languga});
   } 
   componentDidMount() {
-
+    
   }
   routerTo(v) {
     console.log(`/LendDtail/${v}`);
     this.props.router.push(`/LendDtail/${v}`);//依赖React-Router3.X版本
   }
   getRecordContent = () => {
-   var listShow=[],recordContent; 
-   axios.get('http://10.3.32.232:8081/kpt-apply/apply/auth/v3/history',{params:{"registId":this.state.registId}}).then((res) => {
+   let listShow=[],recordContent; 
+   let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/auth/v3/history';
+   axios.get(url,{params:{"registId":this.props.location.query.registId}}).then((res) => {
     if(App){
       App.showLoading(false);
     }
     if(res.data.code == '0000'){
       console.log(res); 
       var listData = res.data.body;
+      if(!(listData&&listData.length>0)){
+        $('.RepaymentBill .am-result').height(document.body.clientHeight-44);
+      }
       this.setState({ listData: listData });
+    }else{
+      $('.RepaymentBill .am-result').height(document.body.clientHeight-44);
     }
     }).catch(function (error) {
+      $('.RepaymentBill .am-result').height(document.body.clientHeight-44);
       Toast.info(String(error));
       });
   }
@@ -65,7 +70,7 @@ class ApplyRecord extends React.Component {
          return (
            <div className="vertical-view billList flex1" key={i}>
            <div className="bg-gray lh-30 pb5 txt-gray center"><span className="fs-10">Tanggal Pengajuan {DateApi.format3(item.applyTime)}</span></div>
-           <Item className="fs-13"><Brief>Nomor : {item.contractNo}</Brief></Item>
+           <Item className="fs-13 mb2"><Brief>Nomor : {item.contractNo}</Brief></Item>
            <div className="noLine">
            <Item
            thumb={bill01}
@@ -82,7 +87,7 @@ class ApplyRecord extends React.Component {
            </div>
            )
          }):
-        <Result
+        <Result className="h100"
         img={myImg(noLoan)}
         message={(
           <div>
