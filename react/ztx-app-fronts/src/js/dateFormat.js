@@ -58,7 +58,7 @@ const DateApi = {
         var aDate,iDays;
         aDate = new Date(date);
         iDays = new Date();
-        iDays = parseInt(Math.abs(aDate - iDays) / 1000 / 60 / 60 / 24); //把相差的毫秒数转换为天数
+        iDays = parseInt(Math.abs(aDate - iDays) / 1000 / 60 / 60 / 24)+1; //把相差的毫秒数转换为天数
         return iDays;  //返回相差天数
     },
     /**

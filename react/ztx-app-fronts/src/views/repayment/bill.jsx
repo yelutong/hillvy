@@ -12,7 +12,7 @@ const Brief = Item.Brief;
 const myImg = src => <img src={src} className="imgc spe am-icon am-icon-md" alt="" />;
 //http://10.3.78.177:8086/#/RepaymentBill?token=8439096e96794349b2bdd5ff4603cfe7&applyId=A2018101901000055
 const tabs = [
-{ title: <Badge>Pending</Badge> },
+{ title: <Badge>Belum Lunas</Badge> },
 { title: <Badge>Lunas</Badge> },
 ];
 
@@ -69,9 +69,6 @@ class RepaymentBill extends React.Component {
     }
   }
   getBill = () => {
-    if(App){
-      App.showLoading(false);
-    }
   let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/v3/bill';
   axios.get(url,{params:{"applyId":this.props.location.query.applyId}}).then((res) => {
     if(res.data.code == '0000'){
@@ -122,7 +119,7 @@ class RepaymentBill extends React.Component {
       for(let i=0;i < paynot.length;i++){
         var date = paynot[i].receiveDate ? Date.parse(new Date(paynot[i].receiveDate)) : '';
         var dateApply = paynot[i].applyTime ? Date.parse(new Date(paynot[i].applyTime)) : '';
-        if(paynot[i].status == "repayment"){
+        if(paynot[i].isStaging == false){
           paynot[i].DateDiff = DateApi.DateDiff(date);//剩余多少天到期
         }
         if(i>0){
@@ -134,7 +131,7 @@ class RepaymentBill extends React.Component {
       }
       this.setState({ paynot : paynot });
       if(App){
-       (paynot&&paynot.length>0)?App.redViewShow(true):App.redViewShow(false);
+       (paynot&&paynot.length>0&&paynot[0].isStaging==true)?App.redViewShow(true):App.redViewShow(false);
      }
     }
 
@@ -153,10 +150,12 @@ render() {
     <div className="RepaymentBill">
     <Tabs tabs={tabs}
     initialPage={0}
+    animated={false} 
+    useOnPan={false}
+    swipeable={false}
     tabBarActiveTextColor="#333"
     tabBarInactiveTextColor="#999"
     >
-
     <div className="vertical-view" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
     
     { (this.state.paynot&&this.state.paynot.length>0)?

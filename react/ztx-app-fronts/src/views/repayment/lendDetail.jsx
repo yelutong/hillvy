@@ -245,7 +245,7 @@ class LendDtail extends React.Component {
         <Item
           thumb={lend03}
         >
-          Sisa Tenor：{this.props.location.state.isPaid == 0 ? this.props.location.state.currenList.lavePeriod : 0}
+          Sisa Tenor：{this.props.location.state.isPaid == 0 ? (this.props.location.state.currenList.lavePeriod||0) : 0}
         </Item>
         </div>
         </div>
