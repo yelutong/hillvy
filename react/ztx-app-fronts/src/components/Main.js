@@ -43,6 +43,10 @@ const HowToRepay  = (location, cb) => {
 const Activity  = (location, cb) => {
   require.ensure([], require => {cb(null, require('../views/activity/index'));}, 'Activity');
 };
+//活动
+const ActivityNew  = (location, callback) => {
+  require.ensure([], require => {callback(null, require('../views/activityNew/index'));}, 'ActivityNew');
+};
 //优惠券
 const Coupon  = (location, cb) => {
   require.ensure([], require => {cb(null, require('../views/coupon/index'));}, 'Coupon');
@@ -97,6 +101,7 @@ const routes = (
           <Route path="CouponRule" getComponent={CouponRule}/>
           <Route path="Event" getComponent={Event}/>
           <Route path="activity" getComponent={Activity}/>
+          <Route path="activityNew" getComponent={ActivityNew}/>{/**Activity 活动页面*/}
           <Route path="HelpCenter" getComponent={HelpCenter}/>
           <Route path="SecondHC/:name" getComponent={SecondHelpCenter}/>
           <Route path="aboutUs" getComponent={AboutUs}/>

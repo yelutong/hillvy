@@ -11,38 +11,25 @@ class RepaymentList extends React.Component {
       listInfo:[],
     }
     localStorage.setItem('token',this.props.location.query.token||localStorage.getItem('token'));
-    this.getListInfo();
     console.log(this.props.location.query);
+    console.log(JSON.parse(this.props.location.query.repaymentPlan));
   }
   componentWillMount() {
     var languga = this.props.location.query.languga || 'Indonesian';
     console.log(languga);
     this.setState({languga:languga});
+    this.getListInfo();
   }
   
   componentDidMount() {
 
   }
   getListInfo= () => {
-    let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/v3/plans';
-    axios.get(url,{params:{"applyId":this.props.location.query.applyId}}).then((res) => {
-      if(App){
-        App.showLoading(false);
+      var listInfo;
+      if(this.props.location.query.repaymentPlan&&JSON.parse(this.props.location.query.repaymentPlan).length>0){
+        listInfo = JSON.parse(this.props.location.query.repaymentPlan)
+        this.setState({ listInfo: listInfo });
       }
-      if(res.data.code == '0000'){
-        console.log(res); 
-        var listInfo = res.data.body.repayPlan;
-        if(listInfo && listInfo.length > 0){
-          for(let i=0;i < listInfo.length;i++){
-            var date = listInfo[i].returnDate ? Date.parse(new Date(listInfo[i].returnDate)) : '';
-            listInfo[i].returnDate = DateApi.format2(date);
-          }
-          this.setState({ listInfo: listInfo });
-        }
-      }
-      }).catch(function (error) {
-        Toast.info(String(error));
-      });
     }
     render() { 
       return (
@@ -60,14 +47,14 @@ class RepaymentList extends React.Component {
         { (this.state.listInfo&&this.state.listInfo.length>0)?
           this.state.listInfo.map((item,i) => {
            return (
-            <li className="horizontal-view vux-1px-t" key={i}>
-            <span className="flexg1 flex1">{item.period}</span>
-            <span className="flexg2 flex1">{item.returnDate}</span>
-            <span className="flexg2 flex1">Rp {DateApi.addDot(item.returnAmt)}</span>
+            <li className="horizontal-view vux-1px-t fs-14" key={i}>
+            <span className="flexg1 flex1">{item.curPeriod}</span>
+            <span className="flexg2 flex1">{item.planDate}</span>
+            <span className="flexg2 flex1">Rp {DateApi.addDot(item.dueAmount)}</span>
             </li>
             )
            }):
-          <li className="horizontal-view vux-1px-t">
+          <li className="horizontal-view vux-1px-t fs-14">
           <span className="flexg1 flex1 center">暂无数据</span>
           </li>
         }

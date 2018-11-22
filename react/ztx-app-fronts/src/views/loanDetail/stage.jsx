@@ -43,7 +43,7 @@ class LoanStageDetail extends React.Component {
   render() {
     return (
       <div className="LoanDetailExplain LoanStageDetail">
-      <div className="topPic"><img className="topPic1" src={TopPic1}/></div>
+      <div className="topPicE"><img className="topPic1" src={TopPic1}/></div>
       <div className="vertical-view bradius-px5 content justify-content-center">
         <div className="horizontal-view expTop">
           <i className="TopPic2"><img src={TopPic2}/></i>

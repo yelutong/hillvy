@@ -1,9 +1,20 @@
 import React from 'react';
-import { Result, Icon, WhiteSpace } from 'antd-mobile';
+import axios from 'axios';
+import config from '../../config/base';
+import DateApi from '../../js/dateFormat.js';
+import { Toast } from 'antd-mobile';
 
 const myImg = src => <img src={src} className="imgc spe am-icon am-icon-md" alt="" />;
 
 class LargeStageAgree extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      amtData:{}
+    }
+    localStorage.setItem('token',this.props.location.query.token||localStorage.getItem('token'));
+    this.getAmtVaule();
+  }
   state = {languga:'Indonesian'};
   componentWillMount() {
     var languga = this.props.location.query.languga || 'Indonesian';
@@ -14,7 +25,24 @@ class LargeStageAgree extends React.Component {
   componentDidMount() {
 
   }
-
+  
+  getAmtVaule = () => {
+    let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/agreement';
+    axios.get(url,{params:{"contractNo":this.props.location.query.contractNo}}).then((res) => {
+    if(res.data.code == '0000'){
+       console.log(res); 
+       let amtData = res.data.body; 
+       console.log(amtData); 
+       var dateInfo = Date.parse(new Date(amtData.loanDate));
+       var returnDate = Date.parse(new Date(amtData.returnDate));
+       amtData.loanDate = DateApi.format2(dateInfo);
+       amtData.returnDate = DateApi.format2(returnDate);
+       this.setState({amtData:amtData});
+        } 
+      }).catch(function (error) {
+　　    Toast.info(String(error)); 
+     });
+  }
   render() {
     return (
       <div className="LargeStageAgree padding20 privacyService">
@@ -24,13 +52,13 @@ class LargeStageAgree extends React.Component {
           <b>PERJANJIAN PEMBERIAN PINJAMAN</b>
         </div>
         <div className="secondTitle">
-          <b>Nomor Perjanjian: []</b>
+          <b>Nomor Perjanjian: [{this.state.amtData.contractNo}]</b>
         </div>
         <div className="secondTitle mt25">
           <b>ANTARA</b>
         </div>
         <div className="secondTitle">
-          <b>Pemberi Pinjaman ID []</b>
+          <b>Pemberi Pinjaman ID [{this.state.amtData.lenderIdNum}]</b>
         </div>
         <div className="secondTitle">
           <b>Sebagai Pemberi Pinjaman</b>
@@ -39,25 +67,25 @@ class LargeStageAgree extends React.Component {
           <b>dan</b>
         </div>
         <div className="secondTitle mt25">
-          <b>Penerima Pinjaman ID []</b>
+          <b>Penerima Pinjaman ID [{this.state.amtData.borrowerIdNum}]</b>
         </div>
         <div className="secondTitle">
           <b>Sebagai Penerima Pinjaman</b>
         </div> 
         <div className="serviceDetail mt25">
-          <p>Pada hari <b>[]</b>, tanggal <b>[]</b> tahun <b>[]</b> telah ditandatangani Perjanjian Pemberian Pinjaman Pribadi <b>(“Perjanjian”)</b> dibuat oleh:</p>
+          <p>Pada tanggal <b>[{this.state.amtData.loanDate}]</b> telah ditandatangani Perjanjian Pemberian Pinjaman Pribadi <b>(“Perjanjian”)</b> dibuat oleh:</p>
         </div>
         <div className="serviceDetail mt25">
           <div className="lessNum">
             <span className="num">1)</span>
             <span className="text">
-              Pemberi Pinjaman, dengan nomor ID Pemberi Pinjaman [], dengan identitas dan informasi pribadi yang tersimpan dalam basis data aplikasi Pinjam Gampang, selanjutnya disebut Pemberi Pinjaman
+              Pemberi Pinjaman, dengan nomor ID Pemberi Pinjaman [{this.state.amtData.lenderIdNum}], dengan identitas dan informasi pribadi yang tersimpan dalam basis data aplikasi Pinjam Gampang, selanjutnya disebut Pemberi Pinjaman
             </span>
           </div>
           <div className="lessNum">
             <span className="num">2)</span>
             <span className="text">
-              Penerima Pinjaman, dengan nomor ID Penerima Pinjaman[], dengan identitas dan informasi pribadi yang tersimpan dalam basis data aplikasi Pinjam Gampang, selanjutnya disebut Penerima Pinjaman
+              Penerima Pinjaman, dengan nomor ID Penerima Pinjaman [{this.state.amtData.borrowerIdNum}], dengan identitas dan informasi pribadi yang tersimpan dalam basis data aplikasi Pinjam Gampang, selanjutnya disebut Penerima Pinjaman
             </span>
           </div>
         </div>
@@ -120,13 +148,13 @@ class LargeStageAgree extends React.Component {
           <div>
              <table>
              <tbody>
-               <tr><td><span className="num">a.</span><span className="text">umlah Pokok Pinjaman</span></td><td>:</td><td>Rp[●]</td></tr>
-               <tr><td><span className="num">b.</span><span className="text">Biaya Jasa (biaya terkait) yang dibebankan dan dipotong di muka</span></td><td>:</td><td>Rp[●]</td></tr>
-               <tr><td><span className="num">c.</span><span className="text">Bunga dibayar di muka</span></td><td>:</td><td>Rp[●]</td></tr>
-               <tr><td><span className="num">d.</span><span className="text">Jumlah yang akan diterima</span></td><td>:</td><td>Rp[●]</td></tr>
-               <tr><td><span className="num">e.</span><span className="text">Tanggal Efektif Pinjaman</span></td><td>:</td><td>[●] saat sejumlah nominal sebagaimana huruf d diterima di rekening bank Penerima Pinjaman</td></tr>
-               <tr><td><span className="num">f.</span><span className="text">Jangka Waktu Pinjaman</span></td><td>:</td><td>[●] bulan sejak Tanggal Efektif Pinjaman</td></tr>
-               <tr><td><span className="num">g.</span><span className="text">Jumlah Cicilan</span></td><td>:</td><td>Xxxxx per bulan</td></tr>
+               <tr><td><span className="num">a.</span><span className="text">umlah Pokok Pinjaman</span></td><td>:</td><td>Rp[{DateApi.addDot(this.state.amtData.contractAmt||0)}]</td></tr>
+               <tr><td><span className="num">b.</span><span className="text">Biaya Jasa (biaya terkait) yang dibebankan dan dipotong di muka</span></td><td>:</td><td>Rp[{DateApi.addDot(this.state.amtData.serviceAmt||0)}]</td></tr>
+               <tr><td><span className="num">c.</span><span className="text">Bunga dibayar di muka</span></td><td>:</td><td>Rp[{DateApi.addDot(this.state.amtData.preInterest||0)}]</td></tr>
+               <tr><td><span className="num">d.</span><span className="text">Jumlah yang akan diterima</span></td><td>:</td><td>Rp[{DateApi.addDot(this.state.amtData.loanAmount||0)}]</td></tr>
+               <tr><td><span className="num">e.</span><span className="text">Tanggal Efektif Pinjaman</span></td><td>:</td><td>[{this.state.amtData.returnDate}] saat sejumlah nominal sebagaimana huruf d diterima di rekening bank Penerima Pinjaman</td></tr>
+               <tr><td><span className="num">f.</span><span className="text">Jangka Waktu Pinjaman</span></td><td>:</td><td>[{this.state.amtData.term}] {this.state.amtData.termType&&this.state.amtData.termType=='DAY'?'hari':'bulan'} sejak Tanggal Efektif Pinjaman</td></tr>
+               <tr><td><span className="num">g.</span><span className="text">Jumlah Cicilan</span></td><td>:</td><td>[{this.state.amtData.loanDate}]</td></tr>
              </tbody>
              </table>
           </div>
@@ -142,8 +170,8 @@ class LargeStageAgree extends React.Component {
           <div>
              <table>
              <tbody>
-               <tr><td><span className="num">a.</span><span className="text">Tanggal Jatuh Tempo Cicilan</span></td><td>:</td><td>Tanggal [●] per bulan</td></tr>
-               <tr><td><span className="num">b.</span><span className="text">Jumlah yang harus dibayarkan saat Tanggal Jatuh Tempo</span></td><td>:</td><td>Rp[●]</td></tr>
+               <tr><td><span className="num">a.</span><span className="text">Tanggal Jatuh Tempo Cicilan</span></td><td>:</td><td>[{this.state.amtData.returnDate}]</td></tr>
+               <tr><td><span className="num">b.</span><span className="text">Jumlah yang harus dibayarkan saat Tanggal Jatuh Tempo</span></td><td>:</td><td>Rp[{DateApi.addDot(this.state.amtData.returnAmt||0)}]</td></tr>
                <tr><td><span className="num">c.</span><span className="text">Pembayaran Pinjaman</span></td><td>:</td><td>dilakukan ke virtual account yang disampaikan kepada Penerima Pinjaman oleh Layanan Pinjam Gampang</td></tr>
              </tbody>             
              </table>
@@ -521,10 +549,10 @@ class LargeStageAgree extends React.Component {
              <div className="key"><b>Pinjaman</b></div>
             </div>
             <div className="left">
-              <div><b>[•]</b></div>
+              <div><b>[{this.state.amtData.lenderIdNum}]</b></div>
             </div>
             <div className="right">
-             <div><b>[•]</b></div>
+             <div><b>[{this.state.amtData.borrowerIdNum}]</b></div>
             </div>
           </div>
       </div>

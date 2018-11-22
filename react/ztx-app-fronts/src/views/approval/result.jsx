@@ -46,7 +46,7 @@ class ApprovalResult extends React.Component {
     if(flag==true&&this.props.location.query.LoadAmt&&this.props.location.query.Term){
       var amtShow=(
         <div>
-        <Item extra={this.props.location.query.LoadAmt}>Nominal Pinjaman</Item>
+        <Item extra={this.props.location.query.LoadAmt}>Nominal Diterima</Item>
         <Item extra={this.props.location.query.Term}>Tenor</Item>
         </div>
         )

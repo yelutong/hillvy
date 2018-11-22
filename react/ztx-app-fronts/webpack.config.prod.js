@@ -28,7 +28,7 @@ module.exports = new WebpackConfig.Config().extend('webpack.config.js').merge({
         ],
     },
     output:{
-        publicPath:'./'
+        publicPath:'/'
     },
      module: {
         loaders: [

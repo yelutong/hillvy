@@ -4,13 +4,21 @@
 <meta charset="utf-8">
 <title>无标题文档</title>
 <script> 
-var myArray=[1,2,3,4,5]	
-function f(){ 
-	for (var value of myArray) {
-        document.write(value+" ")
+var myArray1=[1,2,3,4,5]	
+const myArray = new Map([['one', 1], ['two', 2]]);
+function f2(){ 
+	for (var [key, value]  of myArray) {
+        document.write(value+" "+key+',')//1 one,2 two
     } 
+	for (let value of myArray1) {
+        document.write(value+" ")//1 2 3 4 5
+    } 
+  // 向控制台输出对象的可枚举属性
+  for (let key of Object.keys(myArray1)) {
+        document.write(key + ": " + myArray1[key]+",");//0: 1,1: 2,2: 3,3: 4,4: 5,
+  }  
 }	 
-f();
+f2();
 </script>
 </head>
 

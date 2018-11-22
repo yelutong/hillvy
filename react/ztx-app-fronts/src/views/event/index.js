@@ -6,7 +6,7 @@ import restStore from './store';
 import format from '../../custom/format.js';
 import './style/event.css';
 
-import eventImg from './images/event.png';
+import eventImg from './images/list.png';
 
 const httpUrl = location.protocol+'//'+config.domainApply+'/'+config.pathApply+'/';
 class Event extends React.Component {
@@ -81,7 +81,24 @@ class Event extends React.Component {
               return (
                 <Link className="eventLink" to={item.htmlUrl?(item.htmlUrl.split('#')[1]):'/activity'} onClick={this.clickEventList.bind(this,item.id)}>
                   <img className="img" src={httpUrl+item.listImage} />
-                  <span className="eventDate">{format.timestampToTime(item.startDate)}  sampai  {format.timestampToTime(item.endDate)}</span>
+                  <span className="timeDate startDate">
+                    <label className="left">
+                      <label>{format.timestampToTime(item.startDate,'day')}</label>
+                    </label>
+                    <label className="right">
+                      <label>{format.timestampToTime(item.startDate,'month')}</label>
+                      <label>{format.timestampToTime(item.startDate,'year')}</label>
+                    </label>
+                  </span>
+                  <span className="timeDate endDate">
+                    <label className="left">
+                      <label>{format.timestampToTime(item.endDate,'day')}</label>
+                    </label>
+                    <label className="right">
+                      <label>{format.timestampToTime(item.endDate,'month')}</label>
+                      <label>{format.timestampToTime(item.endDate,'year')}</label>
+                    </label>
+                  </span>
                 </Link>
               )
             })

@@ -9,6 +9,7 @@ const views = [
 	{pathName:'#/loanAgreement',title:'PERJANJIAN PEMBERIAN PINJAMAN',IndonesianTitle:'PERJANJIAN PEMBERIAN PINJAMAN'},//loanAgreement 借款协议
 	{pathName:'#/lendingAgreement',title:'PERJANJIAN KERJASAMA LAYANAN',IndonesianTitle:'PERJANJIAN KERJASAMA LAYANAN'},//loanAgreement 出借协议
 	{pathName:'#/activity',title:'Detail Promosi',IndonesianTitle:'Detail Promosi'},//活动
+	{pathName:'#/activityNew',title:'Detail Promosi',IndonesianTitle:'Detail Promosi'},//活动
 	{pathName:'#/Coupon',title:'Kupon saya',IndonesianTitle:'Kupon saya'},//优惠券
 	{pathName:'#/Event',title:'Kegiatan saya',IndonesianTitle:'Kegiatan saya'},//活动列表
 	{pathName:'#/CouponRule',title:'Peraturan penggunaan kupon',IndonesianTitle:' Peraturan penggunaan kupon'},//活动列表

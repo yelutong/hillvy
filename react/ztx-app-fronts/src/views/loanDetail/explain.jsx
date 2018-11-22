@@ -1,7 +1,7 @@
 import React from 'react';
 import { Toast, Button, Card, List  } from 'antd-mobile';
-import TopPic1 from '../../images/loan/loanDetail01.png';
-import TopPic2 from '../../images/loan/loanDetail02.png';
+import TopPicE1 from '../../images/loan/loanDetail01.png';
+import TopPicE2 from '../../images/loan/loanDetail02.png';
 import loan01 from '../../images/loan/loan01.png';
 import loan02 from '../../images/loan/loan02.png';
 import loan03 from '../../images/loan/loan03.png';
@@ -42,10 +42,10 @@ class LoanDetailExplain extends React.Component {
   render() {
     return (
       <div className="LoanDetailExplain">
-      <div className="topPic"><img className="topPic1" src={TopPic1}/></div>
+      <div className="topPic"><img className="topPic1" src={TopPicE1}/></div>
       <div className="vertical-view bradius-px5 content justify-content-center">
         <div className="horizontal-view expTop">
-          <i className="TopPic2"><img src={TopPic2}/></i>
+          <i className="TopPic2"><img src={TopPicE2}/></i>
           <div className="vux-1px-r ct1 center flex1 justify-content-center">
             <h3 className="txt-gray fsize-normal fs-16">Hingga</h3>
             <h3 className="txt-ztx fsize-normal fs-16"><i>{this.state.largestAmt}</i></h3>

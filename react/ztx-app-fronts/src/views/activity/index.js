@@ -6,6 +6,7 @@ import format from '../../custom/format.js';
 import ruleBg from './images/ruleBg.png';
 import restStore from './store';
 console.log('restStore:'+ JSON.stringify(restStore) );
+
 class Activity extends React.Component {
   state = {
     activityInfo:{}

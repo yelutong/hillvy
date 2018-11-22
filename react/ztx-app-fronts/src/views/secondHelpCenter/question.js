@@ -67,7 +67,7 @@ const question = [
 			},
 			{
 				title:'Apa syarat pengajuan pinjaman melalui Pinjam Gampang',
-				description:'a. Warga Negara Indonesia ||| b. Berusia 21 tahun atau lebih. ||| c. Memiliki Kartu Tanda Penduduk ||| d. Telah bekerja, memiliki penghasilan stabil, dan memiliki kartu identitas perusahaan |||e. Memiliki rekening bank atas nama sendiri ||| f. Berdomisili di Jabodetabek, Bandung, Surabaya, Manado, Semarang, Sidoarjo, Batam, Padang, Denpasar, Yogyakarta, Gresik, Malang, Bontang, Makassar, Palembang, Kediri'
+				description:'a. Warga Negara Indonesia ||| b. Berusia 21 tahun atau lebih. ||| c. Memiliki Kartu Tanda Penduduk ||| d. Telah bekerja, memiliki penghasilan stabil, dan memiliki kartu identitas perusahaan |||e. Memiliki rekening bank atas nama sendiri ||| f. Berdomisili di Pulau Jawa dan Manado, Batam, Padang, Bali, Bontang, Makassar, Palembang.'
 			},
 			{
 				title:'Berapa jumlah pinjaman dan tenor yang dapat saya ajukan',
@@ -75,7 +75,7 @@ const question = [
 			},
 			{
 				title:'Kota mana saja yang termasuk dalam area jangkauan Pinjam Gampang',
-				description:'Hingga saat ini, Pinjam Gampang telah tersedia di 20 (dua puluh) wilayah berikut – Jabodetabek, Bandung, Surabaya, Manado, Semarang, Sidoarjo, Batam, Padang, Denpasar, Yogyakarta, Gresik, Malang, Bontang, Makassar, Palembang, Kediri.||| Cek website www.kreditplusteknologi.id dan akun sosial media (Facebook, Instagram, LinkedIn) untuk perkembangan lebih lanjut !'
+				description:'Hingga saat ini, Pinjam Gampang telah tersedia di Pulau Jawa dan Manado, Batam, Padang, Bali, Bontang, Makassar, Palembang.||| Cek website  www.kreditplusteknologi.id dan akun sosial media (Facebook, Instagram, LinkedIn) untuk perkembangan lebih lanjut !'
 			},
 			{
 				title:'Apakah jumlah pinjaman yang saya ajukan merupakan jumlah yang akan saya terima',
@@ -123,7 +123,7 @@ const question = [
 		IndonesianQuestion:[
 			{
 				title:'Apa syarat pengajuan pinjaman melalui Pinjam Gampang',
-				description:'a. Warga Negara Indonesia ||| b. Berusia 21 tahun atau lebih. ||| c. Memiliki Kartu Tanda Penduduk ||| d. Telah bekerja, memiliki penghasilan stabil, dan memiliki kartu identitas perusahaan |||e. Memiliki rekening bank atas nama sendiri ||| f. Berdomisili di Jabodetabek, Bandung, Surabaya, Manado, Semarang, Sidoarjo, Batam, Padang, Denpasar, Yogyakarta, Gresik, Malang, Bontang, Makassar, Palembang, Kediri'
+				description:'a. Warga Negara Indonesia ||| b. Berusia 21 tahun atau lebih. ||| c. Memiliki Kartu Tanda Penduduk ||| d. Telah bekerja, memiliki penghasilan stabil, dan memiliki kartu identitas perusahaan |||e. Memiliki rekening bank atas nama sendiri ||| f. Berdomisili di Pulau Jawa dan Manado, Batam, Padang, Bali, Bontang, Makassar, Palembang.'
 			},
 			{
 				title:'Berapa jumlah pinjaman dan tenor yang dapat saya ajukan',
@@ -131,7 +131,7 @@ const question = [
 			},
 			{
 				title:'Kota mana saja yang termasuk dalam area jangkauan Pinjam Gampang',
-				description:'Hingga saat ini, Pinjam Gampang telah tersedia di 20 (dua puluh) wilayah berikut – Jabodetabek, Bandung, Surabaya, Manado, Semarang, Sidoarjo, Batam, Padang, Denpasar, Yogyakarta, Gresik, Malang, Bontang, Makassar, Palembang, Kediri.||| Cek website www.kreditplusteknologi.id dan akun sosial media (Facebook, Instagram, LinkedIn) untuk perkembangan lebih lanjut !'
+				description:'Hingga saat ini, Pinjam Gampang telah tersedia di Pulau Jawa dan Manado, Batam, Padang, Bali, Bontang, Makassar, Palembang.||| Cek website  www.kreditplusteknologi.id dan akun sosial media (Facebook, Instagram, LinkedIn) untuk perkembangan lebih lanjut !'
 			},
 			{
 				title:'Bank mana saja yang dapat digunakan untuk pengiriman dana pinjaman',

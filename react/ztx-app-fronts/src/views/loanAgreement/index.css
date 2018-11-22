@@ -1,0 +1,20 @@
+.aggrementForm .threeEara{
+	border: 1px solid #e2e2e2;
+	padding-left: 0px!important;
+}
+.aggrementForm ul{
+	white-space: nowrap;
+	border-bottom: 1px solid #e2e2e2;
+}
+.aggrementForm ul li{
+	width: 48%;
+	vertical-align: middle;
+	white-space: normal;
+	padding:2% 1% 
+}
+.V2 .title{
+	margin-top: 1rem;
+}
+.privacyService .serviceDetail .textRight .num{
+	white-space: nowrap;
+}

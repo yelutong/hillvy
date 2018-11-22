@@ -69,14 +69,14 @@ class CouponRule extends React.Component {
         '<p>13. Selesai dan Simpan Bukti Pembayaran Anda</p>'
       },{
         title:'Alfa Group',
-        detail:'<p>1. Catat kode pembayaran di atas dan datang ke gerai Alfamart, Alfa Midi, Alfa Express, Lawson atau DAN+DAN terdekat</p>'+
-        '<p>2. Beritahukan ke kasir bahwa anda ingin melakukan pembayaran DOKU</p>'+
-        '<p>3. Jika kasir tidak mengetahui mengenai pembayaran DOKU, informasikan ke kasir untuk membuka terminal e-transaction, pilih ”no. 2 menu Pembayaran”</p>'+
-        '<p>4. Minta kasir untuk menekan “Shift” dan “?” lalu ketik DOKU, setelah itu klik OK</p>'+
-        '<p>5. Minta kasir untuk pilih “no.1 DOKU – Pembayaran Merchant Doku”</p>'+
-        '<p>6. Kasir akan menanyakan kode pembayaran. Berikan kode pembayaran anda xxxx xxxx xxxx xxxx. Kasir akan melakukan konfirmasi data konsumen berupa Nama Merchant, Nama Konsumen, dan Nominal. Lakukan pembayaran ke kasir sejumlah nominal yang disebutkan.</p>'+
-        '<p>7.Terima struk sebagai bukti pembayaran sudah sukses dilakukan. Notifikasi pembayaran akan langsung diterima oleh Merchant</p>'+
-        '<p>8. Selesai</p>'
+        detail:'<p>1. Catat kode VA pembayaran dan datang ke gerai Alfamart, Alfa Midi, Alfa Express, Lawson atau DAN+DAN terdekat</p>'+
+        '<p>2. Informasikan ke kasir bahwa ingin melakukan pembayaran Pinjam Gampang</p>'+
+        '<p>3. Jika kasir tidak mengetahui pembayaran Pinjam Gampang, informasikan ke kasir untuk membuka terminal e-transaction dan pilih “No. 2 Menu Pembayaran” atau cari pada menu search</p>'+
+        '<p>4. Minta kasir untuk menekan “Shift” dan “?” lalu ketik “Pinjam Gampang”, setelah itu klik OK</p>'+
+        '<p>5. Minta kasir untuk pilih “No. 1 Pinjam Gampang - Pembayaran Pinjam Gampang”</p>'+
+        '<p>6. Kasir akan menanyakan kode VA pembayaran dan berikan kode VA Anda 88888xxxxxxxxxx</p>'+
+        '<p>7. Kasir akan konfirmasi data seperti pembayaran Pinjam Gampang, nama lengkap Anda dan nominal pembayaran. Silahkan lakukan pembayaran ke kasir sejumlah nominal yang disebutkan/p>'+
+        '<p>8. Terima struk sebagai bukti pembayaran telah sukses dilakukan dan Anda juga akan menerima notifikasi dari Pinjam Gampang. Selesai.</p>'
       }];
     var BNI = [{
         title:'Melalui ATM BNI',

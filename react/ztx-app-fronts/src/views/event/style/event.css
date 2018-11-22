@@ -12,14 +12,47 @@
   width: 100%;
   margin-top: 1em;
 }
-.event .eventDate{
+.event .timeDate{
   color:#AB6600;
-  font-size: 0.7rem;
   text-transform: none;
   position: absolute;
-  top:59%;
-  left: 4.5%;
+  top:63%;
+  display: block;
+  width: 20%;
   font-family:PingFang-SC;
+}
+.event .startDate{
+  left: 6.2%;
+}
+.event .endDate{
+  left: 23.7%;
+}
+.event .timeDate .left{
+  font-size: 0.9rem;
+  width: 28%;
+  position: relative;
+}
+.event .timeDate .left:before{
+  position: absolute;
+  width: 0%;
+  content: '';
+  display: block;
+  border-right:1px dashed #c47d2a;
+  bottom: 15%;
+  height: 70%;
+  right: 6%;
+}
+.event .timeDate .left,.event .timeDate .right{
+  display: inline-block;
+  vertical-align: middle;
+}
+.event .timeDate .right label{
+  display: block;
+}
+.event .timeDate .right{
+  line-height: 0.58rem;
+  font-size: 0.38rem;
+  color: #764d9f;
 }
 .event .emptyTip{
   color: #999999;

@@ -135,19 +135,19 @@ const DateApi = {
    var result;
    switch (val) {
     case 'APPROVE':
-        result = "Dalam persetujuan";//审批中
+        result = "Sedang Diverifikasi";//审批中
         break;
     case 'LOAN':
-        result = "Dalam pinjaman.";//放款中
+        result = "Sedang Dicairkan";//放款中
         break;
     case 'REPAY':
-        result = "Berhasil pinjaman";//放款成功
+        result = "Berhasil Dicairkan";//放款成功
         break;
     case 'REJECTED':
-        result = "Persetujuan menolak";//审批拒绝
+        result = "Gagal Terverifikasi";//审批拒绝
         break;   
     default:
-        result = "Pinjaman gagal";//放款失败                
+        result = "Gagal Dicairkan";//放款失败                
    }
    return result;
   }

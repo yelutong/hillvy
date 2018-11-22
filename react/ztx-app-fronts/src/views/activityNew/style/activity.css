@@ -1,0 +1,151 @@
+.activity{
+  margin: auto;
+  min-width: 350px;
+  font-family: PingFang-SC;
+  width: 100%;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+.activity .banner{
+  font-size: 0px;
+}
+.activity .banner img{
+  width: 100%;
+}
+.activity .banner .timeErea{
+  position: relative;
+}
+.activity .banner .timeErea span{
+  font-size: 0.85rem;
+  position: absolute;
+  display: block;
+  width: 23.5%;
+}
+.activity .banner .timeErea span.benginTime{
+  left: 23.5%;
+  bottom: 2%;
+}
+.activity .banner .timeErea span.endTime{
+  right: 15%;
+  bottom: 2%;
+}
+.activity .banner .timeErea .timing .left,.activity .banner .timeErea .timing .right{
+  display: inline-block;
+  line-height: 0.9rem;
+  vertical-align: middle;
+}
+.activity .banner .timeErea .timing .left{
+  font-size: 1.4rem;
+  width: 40%;
+  line-height: 1.4rem;
+  color: #c47d2a;
+  position: relative;
+}
+.activity .banner .timeErea .timing .left:before{
+  display: block;
+  content: '';
+  position: absolute;
+  border:1px dashed #c47d2a;
+  width: 0px;
+  right:12%;
+  bottom: 0px;
+  height: 100%;
+}
+.activity .banner .timeErea .timing .right{
+  width: 45%;
+  color: #764d9f;
+}
+.activity .banner .timeErea .timing .right label{
+  display: block;
+}
+.activity .activityDesc{
+  margin: auto;
+  min-width: 320px;
+  font-family: PingFang-SC;
+  background: url('../images/yellow.png');
+  width: 100%;
+  padding-top: 5%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.activity .activityDesc .detail{
+  margin: auto;
+  width: 100%;
+  padding-top: 52%;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  font-size: 0px;
+}
+.activity .activityDesc .detailTop{
+  background-image: url('../images/bg1.png');
+}
+.activity .activityDesc .detailBottom{
+  padding-top: 1%;
+  width: 92.6%;
+  background-image: url('../images/bg2.png');
+  margin-top: -1%;
+}
+.activity .activityDesc .detailTop ul{
+  width: 90%;
+  margin: auto;
+  padding-bottom: 1.5%;
+}
+.activity .activityDesc .detail ul:first-child{
+  padding-bottom: 2.5%;
+}
+.activity .activityDesc .detail ul li{
+  display: inline-block;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #231f20;
+  vertical-align: middle;
+  line-height: 0.95rem;
+}
+.activity .activityDesc .detail ul li.left span{
+  width: 75%;
+  text-align: left;
+  margin: auto;
+}
+.activity .activityDesc .detail ul li.left{
+  width: 60%;
+}
+.activity .activityDesc .detail ul li.right{
+  width: 40%;
+}
+.activity .activityDesc .detail .detailText{
+  font-size: 0.75rem;
+  width: 90%;
+  margin: auto;
+  margin-top: 3%;
+  padding-bottom: 10%;
+}
+
+
+
+.activity .otherInfomation{
+  padding: 1.1rem 0rem 1.1rem 0rem;
+}
+.activity .otherInfomation .handleInfo{
+  color: #3CB2FF;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.activity .otherInfomation .otherTitle{
+  color: #4D4D4D;
+  font-size: 0.9rem;
+  line-height: 1.32rem;
+  font-weight: bold;
+  margin:2rem auto 1rem auto;
+  text-align: center;
+}
+.activity .otherInfomation .otherList{
+  font-size:0.75rem;
+  color: #333333;
+  line-height:1.06rem;
+  width: 90%;
+  margin:auto;
+}
+.activity .otherInfomation .otherList .otherItem{
+  margin-top: 0.5rem;
+  position: relative;
+}

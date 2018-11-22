@@ -1,11 +1,13 @@
 'use strict';
 import config from '../../config/base';
 const httpUrl = location.protocol+'//'+config.domainApply+'/'+config.pathApply;
-//const httpUrl = config.protocol+'://'+config.domainP1;
 const restStore = {
 
-	//获取合同
-	contractData:httpUrl+'/apply/agreement'
+	//获取活动列表
+	getPubActivityInfo:httpUrl+'/pubActivity/activityInfo',
+
+	//埋点接口
+	statistics:httpUrl+'/pubActivity/statisticalActivity'
 
 };
 

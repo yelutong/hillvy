@@ -74,11 +74,11 @@ class ApplyRecord extends React.Component {
            <div className="noLine">
            <Item
            thumb={bill01}
-           >Sisa Pembayaran：Rp {DateApi.addDot(item.loanAmt)}</Item>
+           >Nominal Diterima：Rp {DateApi.addDot(item.loanAmt)}</Item>
            <Item
            thumb={bill02}
            >
-           Tanggal Pembayaran：{item.productTerm}{item.productTermType=="DAY"?"hari":"bulan"}
+           Tenor：{item.productTerm}{item.productTermType=="DAY"?"hari":"bulan"}
            </Item>
            </div> 
            <div className="horizontal-view align-items-center ht-44">

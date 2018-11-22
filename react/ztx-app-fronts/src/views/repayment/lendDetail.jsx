@@ -51,9 +51,9 @@ class LendDtail extends React.Component {
       console.log(listData);
       if(listData.body && listData.body.termSettles&& listData.body.termSettles.length>0){//已还 数组
        var Lunas = listData.body.termSettles;
-       for(let i=0;i<Lunas.length;i++){
-          var date = Lunas[i].receiveDate ? Date.parse(new Date(Lunas[i].receiveDate)) : '';
-          Lunas[i].receiveDate = DateApi.format3(date);
+       for(let value of Lunas){
+          var date = value.receiveDate ? Date.parse(new Date(value.receiveDate)) : '';
+          value.receiveDate = DateApi.format3(date);
        }
         this.setState({ Lunas : Lunas });
       }
@@ -75,9 +75,10 @@ class LendDtail extends React.Component {
 　　    Toast.info(String(error)); 
      });
   }
-  routerToAgree(){
+  routerToAgree(contractNo){
     this.props.router.push({
-      pathname:"/LargeStageAgree"
+      pathname:"/LargeStageAgree",
+      query: {contractNo:contractNo}
     })
   }
   goToApp(contractNo,balance){
@@ -103,7 +104,7 @@ class LendDtail extends React.Component {
               <Item extra={this.props.location.state.loanDetial.period?(this.props.location.state.loanDetial.period.indexOf('DAY')>=0?this.props.location.state.loanDetial.period.replace("DAY"," hari"):this.props.location.state.loanDetial.period.replace("MONTH"," bulan")):0}>Tenor</Item>
               <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.loanAmt||0)}>Nominal Diterima</Item>
               <Item extra={'RP '+DateApi.addDot(this.props.location.state.loanDetial.receiveTotalAmount||0)}>Nominal Pembayaran</Item>
-              <Item onClick={() =>{this.routerToAgree()}} className="accLineBttom fs-13">Baca Perjanjian Pemberian Pinjaman</Item>
+              <Item onClick={() =>{this.routerToAgree(this.state.currenList.contractNo)}} className="accLineBttom fs-13">Baca Perjanjian Pemberian Pinjaman</Item>
           </div>
         )
        if(this.props.location.state.repayDetails && this.props.location.state.repayDetails.length>0){
@@ -168,7 +169,7 @@ class LendDtail extends React.Component {
                   <Item extra={this.state.loanDetial.period?(this.state.loanDetial.period.indexOf('DAY')>=0?this.state.loanDetial.period.replace("DAY"," hari"):this.state.loanDetial.period.replace("MONTH"," bulan")):0}>Tenor</Item>
                   <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.loanAmt||0)}>Nominal Diterima</Item>
                   <Item extra={'RP '+DateApi.addDot(this.state.loanDetial.receiveTotalAmount||0)}>Nominal Pembayaran</Item>
-                  <Item onClick={() =>{this.routerToAgree()}} className="accLineBttom">Baca Perjanjian Pemberian Pinjaman</Item>
+                  <Item onClick={() =>{this.routerToAgree(this.state.currenList.contractNo)}} className="accLineBttom">Baca Perjanjian Pemberian Pinjaman</Item>
               </div>
             )
            if(this.state.repayDetails && this.state.repayDetails.length>0){

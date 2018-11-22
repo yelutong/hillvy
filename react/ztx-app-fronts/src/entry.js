@@ -21,7 +21,7 @@ import { Toast } from 'antd-mobile';
 
 const React = require('react');
 const ReactDOM = require('react-dom');
-const Appmain = require('./components/main');
+const Appmain = require('./components/Main');
 
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
@@ -33,9 +33,9 @@ axios.interceptors.request.use(function (config) {
     }else{
       token = '';
     }*/
-    if(window.location.hash.indexOf('RepaymentBill')<0){
+    if(window.location.hash.indexOf('RepaymentBill')<0||window.location.hash.indexOf('LargeStageAgree')<0){
       App?App.showLoading(true):Toast.loading('Loading...', 1);//1秒后自动关闭
-    }
+     }
     config.headers['X-Sso-Token'] = token;
     return config;
   }, function (error) {
@@ -60,7 +60,7 @@ axios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
     if(response.data.code == '0000'){ //0000的时候才是成功
       //成功
-      if(window.location.hash.indexOf('RepaymentBill')<0){
+      if(window.location.hash.indexOf('RepaymentBill')<0||window.location.hash.indexOf('LargeStageAgree')<0){
         App?App.showLoading(false):Toast.loading('Loading...', 0.1);//0.1秒后自动关闭
       }
     }else{
@@ -70,13 +70,13 @@ axios.interceptors.response.use(function (response) {
           App.tokenInvalid();
          //App.showToast('token过期');
         }else{
-          if(window.location.hash.indexOf('RepaymentBill')<0){
+          if(window.location.hash.indexOf('RepaymentBill')<0||window.location.hash.indexOf('LargeStageAgree')<0){
              App.showToast('Tidak ada koneksi jaringan'+'('+response.data.code+')');
           }
          App.showLoading(false);
         }
       }else{
-        console.log(response.data.msg);
+        Toast.info(String(response.data.msg));
       }
     }
     return response;
@@ -84,7 +84,7 @@ axios.interceptors.response.use(function (response) {
     // 对响应错误做点什么
     //失败app弹窗
     if(App){
-      if(window.location.hash.indexOf('RepaymentBill')<0){
+      if(window.location.hash.indexOf('RepaymentBill')<0||window.location.hash.indexOf('LargeStageAgree')<0){
         App.showToast('Tidak ada koneksi jaringan');
       }
       App.showLoading(false);

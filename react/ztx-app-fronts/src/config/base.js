@@ -30,10 +30,10 @@ const httpConfig = [{
     envCode: 'SIT',
     isDefault: false
 },{
-    host: '10.3.31.216',
+    host: 'localhost',
     protocol: 'http',
     domainP1: '10.3.31.221:8084',
-    domainApply: '10.3.31.221:8081',
+    domainApply: 'sit-apply.qude369.com',
     path: 'kpt-invest',
     pathApply: 'kpt-apply',
     envCode: 'SIT',
