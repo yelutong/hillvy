@@ -50,14 +50,14 @@ class ApplyRecord extends React.Component {
       console.log(res); 
       var listData = res.data.body;
       if(!(listData&&listData.length>0)){
-        $('.RepaymentBill .am-result').height(document.body.clientHeight-44);
+        $('.ApplyRecord .am-result').height(document.body.clientHeight-51);
       }
       this.setState({ listData: listData });
     }else{
-      $('.RepaymentBill .am-result').height(document.body.clientHeight-44);
+      $('.ApplyRecord .am-result').height(document.body.clientHeight-51);
     }
     }).catch(function (error) {
-      $('.RepaymentBill .am-result').height(document.body.clientHeight-44);
+      $('.ApplyRecord .am-result').height(document.body.clientHeight-51);
       Toast.info(String(error));
       });
   }
@@ -69,7 +69,7 @@ class ApplyRecord extends React.Component {
         this.state.listData.map((item,i) => {
          return (
            <div className="vertical-view billList flex1" key={i}>
-           <div className="bg-gray lh-30 pb5 txt-gray center"><span className="fs-10">Tanggal Pengajuan {DateApi.format3(item.applyTime)}</span></div>
+           <div className="bg-gray lh-51 pb5 txt-gray center"><span className="fs-10">Tanggal Pengajuan {DateApi.format3(item.applyTime)}</span></div>
            <Item className="fs-13 mb2"><Brief>Nomor : {item.contractNo}</Brief></Item>
            <div className="noLine">
            <Item
@@ -81,13 +81,13 @@ class ApplyRecord extends React.Component {
            Tenor：{item.productTerm}{item.productTermType=="DAY"?"hari":"bulan"}
            </Item>
            </div> 
-           <div className="horizontal-view align-items-center ht-44">
-           <div className={(item.status=="REJECTED"||item.status=="FAILED")?'flex1 txt-red2 listLeft':'flex1 txt-blue listLeft'}>{DateApi.getResult(item.status)}</div>
+           <div className="horizontal-view align-items-center ht-51">
+           <div className={(item.status=="REJECTED"||item.status=="FAILED")?'flex1 txt-red2 listLeft fs-14':'flex1 txt-blue listLeft fs-14'}>{DateApi.getResult(item.status)}</div>
            </div>
            </div>
            )
          }):
-        <Result className="h100"
+        <Result
         img={myImg(noLoan)}
         message={(
           <div>

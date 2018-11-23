@@ -10,7 +10,7 @@ const httpConfig = [{
     path: 'kpt-invest',
     pathApply: 'kpt-apply',
     envCode: 'SIT',
-    isDefault: true
+    isDefault: false
 },{
     host: '10.3.79.72',
     protocol: 'http',
@@ -33,20 +33,20 @@ const httpConfig = [{
     host: 'localhost',
     protocol: 'http',
     domainP1: '10.3.31.221:8084',
-    domainApply: 'sit-apply.qude369.com',
+    domainApply: '10.3.31.221:8081',
     path: 'kpt-invest',
     pathApply: 'kpt-apply',
     envCode: 'SIT',
     isDefault: false
 },{
 	host: 'sit-apply.qude369.com',
-	protocol: 'http',
+	protocol: 'https',
     domainP1: 'sit-invest.qude369.com',
     domainApply: 'sit-apply.qude369.com',
     path: 'kpt-invest',
     pathApply: 'kpt-apply',
     envCode: 'SIT',
-    isDefault: false
+    isDefault: true
 },{
 	host: 'apply.kreditplusteknologi.id',
 	protocol: 'https',

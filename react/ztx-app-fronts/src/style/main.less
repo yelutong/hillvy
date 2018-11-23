@@ -110,7 +110,12 @@
 .RepaymentBill .am-tabs-default-bar-tab-active .am-badge {
   border-bottom: 2px solid #fbcb58!important;
 }
-.RepaymentBill .billList, .LendDtail .billList {
+.RepaymentBill .billList{
+  margin: 48px 10px 15px 10px;
+  background: #FFF;
+  padding-bottom: 12px
+}
+.LendDtail .billList{
   margin: 15px 10px;
   background: #FFF;
   padding-bottom: 12px
@@ -119,7 +124,7 @@
   height: 0!important;
 }
 .RepaymentBill .listLeft, .ApplyRecord .listLeft {
-  margin-left: 47px;
+  margin-left: 34px;
 }
 .RepaymentBill .am-button-primary {
   background-color: #ffb03b!important;
@@ -195,8 +200,8 @@
   color: #999;
   font-size: 14px;
   line-height: 1.5;
-  height: 44px;
-  line-height: 44px;
+  height: 50px;
+  line-height: 50px;
   z-index: 9999999;
   top: 0;
 }
@@ -247,6 +252,7 @@
 }
 .LendDtail .am-accordion .am-accordion-item .am-accordion-content .am-accordion-content-box {
   padding: 0 15px!important;
+  min-height: 40px!important;
 }
 .LendDtail .am-list-item .am-list-line-multiple .am-list-content {
   color: #999!important;
@@ -257,9 +263,6 @@
   color: #999!important;
   font-weight: 400!important;
   font-size:13px;
-}
-.LendDtail .lendDt .am-list-item {
-  min-height: 44px!important;
 }
 .LendDtail .lendDt .am-list-item:not(:last-child)::after {
   content: '';
@@ -347,6 +350,7 @@
 }
 .LendDtail .listHead {
   color: #999;
+  height: 50px;
 }
 .LendDtail .listUl .listActive {
   color: #666!important;
@@ -440,4 +444,18 @@
 }
 .privacyService .serviceDetail .lessLeft{
    padding-left: 6%;
+}
+.LargeStageAgree .serviceDetail .lessNum .num{
+  width:auto!important;
+  margin-right:5px;
+}
+.LargeStageAgree .serviceDetail .lessNum .text {
+  width: auto!important;
+}
+.LendDtail .am-accordion-item .am-accordion-header,.LendDtail .lendDt .am-list-item{
+  height: 50px!important;
+  line-height: 50px!important;
+}
+.LendDtail .lendList .am-accordion-item .am-accordion-header i{
+  top:18px!important;
 }

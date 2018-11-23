@@ -243,11 +243,12 @@ class LendDtail extends React.Component {
         >
           Durasi Pinjaman：{this.props.location.state.isPaid == 0 ? this.props.location.state.currenList.receiveDate :  this.state.currenList.receiveDate}
         </Item>
+        {this.state.currenList.lavePeriod?
         <Item
           thumb={lend03}
         >
-          Sisa Tenor：{this.props.location.state.isPaid == 0 ? (this.props.location.state.currenList.lavePeriod||0) : 0}
-        </Item>
+          Sisa Tenor：{this.state.currenList.lavePeriod}
+        </Item>:''}
         </div>
         </div>
         
@@ -259,6 +260,8 @@ class LendDtail extends React.Component {
           <Accordion.Panel header="Detail pinjaman" className="pad2">
             {accDetail}
           </Accordion.Panel>
+         
+          {this.state.currenList.lavePeriod?
           <Accordion.Panel header="Jadwal Pembayaran" className="pad3">
             
             <div className="horizontal-view listHead align-items-center">
@@ -269,7 +272,7 @@ class LendDtail extends React.Component {
             <ul className="listUl">
                {listPlan}
             </ul>
-          </Accordion.Panel>
+          </Accordion.Panel>:''}
         </Accordion>
 
         <Button className={this.props.location.state.isPaid == 1 ?'hide':''} type="primary" onClick={()=>{ this.goToApp(this.state.currenList.contractNo,this.state.currenList.balance)}}  disabled={this.state.currenList.notClick?true:false}>Bayar</Button>

@@ -25,14 +25,15 @@ class RepaymentBill extends React.Component {
       paynot:[],
       settle:[],
       repayDetails: [],
-    }
+      navIndex: localStorage.getItem('navIndex')||0,
+    } 
     localStorage.setItem('token',this.props.location.query.token||localStorage.getItem('token'));//this.state.token);
     console.log(this.props.location.query);
     this.getBill();
   }
 
   componentWillMount() {
-
+    
   }
 
   componentDidMount() {
@@ -58,6 +59,8 @@ class RepaymentBill extends React.Component {
         currentItems: currentItems,
       }
       })
+    this.setState({ navIndex : '1' });
+    console.log(localStorage.getItem('navIndex'))
   }
   toApp = (contractNo,balance) => {
     console.log(contractNo+" "+balance)
@@ -85,6 +88,8 @@ class RepaymentBill extends React.Component {
 
     }
     this.setState({ Lunas : Lunas });
+    }else{
+     $('.RepaymentBill .Lunas .am-result').height(document.body.clientHeight-51);
     }
     if(listData.body && listData.body.settle&& listData.body.settle.length>0){//已还 数组
      var settle = listData.body.settle;
@@ -97,13 +102,13 @@ class RepaymentBill extends React.Component {
     this.setState({ settle : settle });
     } 
     if(listData.body && listData.body.loanDetial){
-      var loanDetial = listData.body.loanDetial;
+      let loanDetial = listData.body.loanDetial;
       this.setState({ loanDetial : loanDetial });
     }
     if(listData.body && listData.body.repayDetails && listData.body.repayDetails.length > 0){
-      var repayDetails = listData.body.repayDetails;
+      let repayDetails = listData.body.repayDetails;
       for(let i=0;i < repayDetails.length;i++){
-       var date = repayDetails[i].returnDate ? Date.parse(new Date(repayDetails[i].returnDate)) : '';
+       let date = repayDetails[i].returnDate ? Date.parse(new Date(repayDetails[i].returnDate)) : '';
        if(date){
         repayDetails[i].returnDate = DateApi.format2(date);
        }
@@ -113,9 +118,6 @@ class RepaymentBill extends React.Component {
     }
     if(listData.body && listData.body.toRepayList&&listData.body.toRepayList.length>0){//待还
       var paynot = listData.body.toRepayList; 
-      if(!(paynot&&paynot.length>0)){
-        $('.RepaymentBill .am-result').height(document.body.clientHeight);
-      }
       for(let i=0;i < paynot.length;i++){
         var date = paynot[i].receiveDate ? Date.parse(new Date(paynot[i].receiveDate)) : '';
         var dateApply = paynot[i].applyTime ? Date.parse(new Date(paynot[i].applyTime)) : '';
@@ -133,15 +135,15 @@ class RepaymentBill extends React.Component {
       if(App){
        (paynot&&paynot.length>0&&paynot[0].isStaging==true)?App.redViewShow(true):App.redViewShow(false);
      }
+    }else{
+      $('.RepaymentBill .paynot .am-result').height(document.body.clientHeight-51);
     }
 
     }else{
-      $('.RepaymentBill .am-result').height(document.body.clientHeight-44);
-      //$('body').css('background-color','#fff');
+      $('.RepaymentBill .am-result').height(document.body.clientHeight-51);
     }
 }).catch(function (error) {
-  　//Toast.info(String(error)); 
-    $('.RepaymentBill .am-result').height(document.body.clientHeight-44);
+    $('.RepaymentBill .am-result').height(document.body.clientHeight-51);
     console.log(error);
   });
 }
@@ -149,15 +151,15 @@ render() {
   return (
     <div className="RepaymentBill">
     <Tabs tabs={tabs}
-    initialPage={0}
+    initialPage={Number(this.state.navIndex)}
     animated={false} 
     useOnPan={false}
     swipeable={false}
     tabBarActiveTextColor="#333"
     tabBarInactiveTextColor="#999"
+     onTabClick={(tab, index) => { this.setState({ navIndex : index });localStorage.setItem("navIndex",index);console.log('onTabClick', index, tab); }}
     >
-    <div className="vertical-view" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
-    
+    <div className="paynot vertical-view" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
     { (this.state.paynot&&this.state.paynot.length>0)?
       this.state.paynot.map((item,i) => {
        return (
@@ -174,15 +176,15 @@ render() {
         >
         Tanggal Pembayaran：{item.receiveDate}
         </Item>
-        <Item
+        {item.lavePeriod?<Item
         thumb={bill03}
         >
         Sisa Tenor：{item.lavePeriod}
-        </Item>
+        </Item>:""}
         </div>
 
         <div className="horizontal-view align-items-center">
-        <div className={item.isStaging == false?"flex1 txt-blue listLeft":"flex1 txt-orange listLeft"}>{item.isStaging == false? item.DateDiff +" hari lagi":"Terlambat "+item.overDueDays+" hari"}</div>
+        <div className={item.isStaging == false?"flex1 txt-blue listLeft fs-14":"flex1 txt-orange listLeft fs-14"}>{item.isStaging == false? item.DateDiff +" hari lagi":"Terlambat "+item.overDueDays+" hari"}</div>
         <div className="flex1 txt-right"><Button onClick={()=>{this.toApp(item.contractNo,item.balance)}} type="primary" inline style={{ marginRight: '20px' }} disabled={i>0?true:false}>Bayar</Button></div>
         </div>
         </div>
@@ -192,7 +194,7 @@ render() {
       img={myImg(noLoan)}
       message={(
         <div>
-        <p>Daftar pinjaman Anda kosong.</p>
+        <p>Daftar pinjaman Anda kosong.{this.state.navIndex}</p>
         <p>Ayo ajukan pinjaman sekarang</p>
         <p>di Pinjam Gampang !</p>
         </div>
@@ -221,7 +223,7 @@ render() {
         </Item>
         </div>
         <div className="horizontal-view align-items-center">
-        <div className="flex1 txt-black listLeft lh-36 h36">Telah lunas</div>
+        <div className="flex1 txt-black listLeft lh-36 h36 fs-14">Telah lunas</div>
         </div>
         </div>
         )
@@ -238,7 +240,7 @@ render() {
       />
     }
     </div>
-    </Tabs>
+    </Tabs>    
     </div>
     );
 }
