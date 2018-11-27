@@ -1,0 +1,43 @@
+.CommonTabs{
+  position: relative;
+}
+.CommonTabs .am-tabs-tab-bar-wrap{
+  z-index: 99999;
+  width: 172px;
+  margin-top: 44px;
+}
+.CommonTabs .am-tabs-tab-bar-wrap .am-tabs-default-bar-underline{
+  border: none!important;
+}
+.CommonTabs .am-tabs-tab-bar-wrap .am-tabs-default-bar-top{
+  width: 172px;
+  height: 32px;
+  line-height: 32px;
+  border:2px solid #108EE9;
+  border-radius:5px;
+  position: fixed;
+  left:50%;
+  margin-left: -86px;
+  top:6px;
+}
+.CommonTabs .am-tabs-default-bar-tab-active .am-badge{
+  color: #FFF!important;
+}
+.CommonTabs .am-tabs-default-bar-tab-active{
+  background: #108EE9!important;
+}
+.CommonTabs .am-badge{
+  color: #108EE9;
+  font-size: 1rem!important;
+}
+.CommonTabs .am-tabs-default-bar-tab{
+  height: 28px!important;
+  line-height: 28px!important;
+  color: #108EE9
+} 
+.CommonTabs .am-tabs-default-bar-top .am-tabs-default-bar-tab::after{
+  height: 0!important;
+}
+.CommonTabs .am-tabs-default-bar-top .am-tabs-default-bar-tab{
+  border-bottom: 0!important;
+}

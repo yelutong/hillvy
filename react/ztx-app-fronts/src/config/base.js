@@ -3,13 +3,13 @@
 // Settings configured here will be merged into the final config object.
 const httpConfigArry = [];
 const httpConfig = [{
-	host: '10.3.31.216',
-	protocol: 'http',
-    domainP1: '10.3.31.221:8084',
-    domainApply: '10.3.31.221:8081',
+	host: 'sit-apply.qude369.com',
+	protocol: 'https',
+    domainP1: 'sit-invest.qude369.com',
+    domainApply: 'sit-apply.qude369.com',
     path: 'kpt-invest',
     pathApply: 'kpt-apply',
-    envCode: 'SIT',
+    envCode: 'LOCAL',
     isDefault: false
 },{
     host: '10.3.79.72',

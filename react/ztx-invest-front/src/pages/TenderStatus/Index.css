@@ -1,0 +1,145 @@
+body{
+	background-color: #f5f5f5;
+	font-family:PingFang-SC;
+}
+li,p,ul{
+	padding: 0px;
+	margin: 0px;
+}
+li{
+	list-style: none;
+}
+.Status{
+	margin-top: 44px;
+}
+.Status .head{
+	text-align: center;
+	padding: 3rem 0rem;
+	background-color: #ffffff;
+}
+.Status .head img{
+	width: 8.6rem;
+}
+.Status .head .statusText{
+	color: #333333;
+	font-size: 1.3rem;
+	line-height: 2.08rem;
+	margin-top: 1rem;
+}
+.Status .statusTips{
+	color: #999999;
+	font-size: 1.05rem;
+	line-height: 1.6rem;
+	padding: 2rem;
+}
+.Status .statusTips ul{
+	margin-left: 0.8rem;
+}
+.Status .statusTips li{
+	position: relative;
+}
+.Status .statusTips li:before{
+	content: '';
+	display: block;
+	position: absolute;
+	width: 0.3rem;
+	height: 0.3rem;
+	background-color: #999999;
+	border-radius:50%;
+ 	-moz-border-radius: 50%; /* Firefox */
+    -webkit-border-radius: 50%; /* Safari 和 Chrome */
+	left: -0.8rem;
+	top:50%;
+	margin-top: -0.15rem;
+}
+.btn{
+	width: 88%;
+	margin: 1.5rem auto 3rem auto;
+}
+.am-button{
+	font-size: 1.2rem;
+	line-height: 3rem;
+	height: 3rem;
+	background: -webkit-linear-gradient(#4CC9F7, #2598EB); 
+	background: linear-gradient(#4CC9F7, #2598EB);
+	background: -moz-linear-gradient(#4CC9F7, #2598EB); 
+	border:none;
+	border-radius: 4px;
+	-moz-border-radius: 4px; /* Firefox */
+    -webkit-border-radius:4px;
+}
+.alignCenter{
+	text-align: center;
+}
+.Waiting .head,.Success .head{
+	padding-bottom: 2rem;
+}
+.Status .topTips{
+	font-size: 1rem;
+	line-height: 1.5rem;
+	margin-top: 0.6rem;
+	color: #999999;
+}
+.Status .am-list-item .am-list-line{
+	padding: 0px;
+}
+.Status .am-list-body div:not(:last-child) .am-list-line,.Status .am-list-body{
+	border: none;
+}
+.Status .am-list-item{
+	min-height:auto;
+	line-height: 1.08rem;
+	padding: 0.5rem 0rem 0rem 0rem;
+	width: 92%;
+	margin: auto;
+}
+.Status .am-list-body{
+	padding: 0.5rem 0rem 1rem 0rem;
+}
+.Status .am-list-item .am-list-line .am-list-content,.am-list-item .am-list-line .am-list-extra{
+	padding: 0px;
+}
+.Status .am-list-item .am-list-line .am-list-content{
+	font-size: 1.08rem;
+	color: #999999;
+}
+.Status .am-list-item .am-list-line .am-list-extra{
+	color: #333333;
+}
+.Status .am-list-header{
+	position: relative;
+	font-size: 1.2rem;
+	padding: 0.8rem 0px 0.8rem 0.8rem;
+	width: 92%;
+	margin: auto;
+	color: #2E2E2E;
+}
+.Status .am-list-header:before{
+	position: absolute;
+	content: '';
+	display: block;
+	width: 0.3rem;
+	height: 1.15rem;
+	left: 0rem;
+	top: 0.88rem;
+}
+.Status .listTitleSuccess .am-list-header:before{
+	background-color: #0BA194;
+}
+.Status .listTitlefail .am-list-header:before{
+	background-color: #E8541E;
+}
+.Status .statusData{
+	margin-bottom: 3rem;
+}
+.Success .btn{
+	margin-bottom: 1rem;
+}
+.Status .bottomText{
+	color: #AFAFAF;
+	font-size: 0.88rem;
+	width: 91%;
+	margin:auto;
+	line-height: 1.2rem;
+	margin-bottom: 2rem;
+}

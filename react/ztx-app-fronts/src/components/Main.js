@@ -44,8 +44,8 @@ const Activity  = (location, cb) => {
   require.ensure([], require => {cb(null, require('../views/activity/index'));}, 'Activity');
 };
 //活动
-const ActivityNew  = (location, callback) => {
-  require.ensure([], require => {callback(null, require('../views/activityNew/index'));}, 'ActivityNew');
+const ActivityNew  = (location, cb) => {
+  require.ensure([], require => {cb(null, require('../views/activityNew/index'));}, 'ActivityNew');
 };
 //优惠券
 const Coupon  = (location, cb) => {

@@ -21,12 +21,6 @@ module.exports = new WebpackConfig.Config().extend('webpack.config.js').merge({
           }
         })
     ],
-    entry: {
-        entry: [
-            'babel-polyfill',
-            path.join(__dirname, './src/entry.js'),
-        ],
-    },
     output:{
         publicPath:'/'
     },

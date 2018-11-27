@@ -14,6 +14,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
   devtool: 'inline-source-map',
   entry: {
+    entry: [
+      'babel-polyfill',
+      path.join(__dirname, './src/entry.js'),
+    ],
     vendor: ['react','axios','react-dom', 'react-router', 'file-loader'] //第三方库
   },
   output: {

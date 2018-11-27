@@ -71,6 +71,7 @@ class RepaymentBill extends React.Component {
       Toast.info('请在app中打开');
     }
   }
+
   getBill = () => {
   let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/v3/bill';
   axios.get(url,{params:{"applyId":this.props.location.query.applyId}}).then((res) => {
@@ -157,7 +158,7 @@ render() {
     swipeable={false}
     tabBarActiveTextColor="#333"
     tabBarInactiveTextColor="#999"
-     onTabClick={(tab, index) => { this.setState({ navIndex : index });localStorage.setItem("navIndex",index);console.log('onTabClick', index, tab); }}
+     onTabClick={(tab, index) => { this.setState({ navIndex : index });localStorage.setItem("navIndex",index);}}
     >
     <div className="paynot vertical-view" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
     { (this.state.paynot&&this.state.paynot.length>0)?

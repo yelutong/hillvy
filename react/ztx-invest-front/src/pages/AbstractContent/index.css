@@ -1,0 +1,92 @@
+.AbstractContent{
+  width: 100%;
+}
+.AbstractContent .topBg{
+  background: url(images/AbstractBg.png) no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+.AbstractContent .topBg .topImg{
+  visibility: hidden;
+  width: 100%;
+}
+.AbstractContent .topContent{
+  position: absolute;
+  top:50%;
+  transform:translateY(-50%);
+  -webkit-transform:translateY(-50%);
+  width: 100%;
+  padding:0 15px;
+}
+.AbstractContent .topTips{
+  opacity: 0.7;
+}
+.AbstractContent .topTips img{
+  width:1rem;
+  height: 1rem;
+  margin-left: 10px;
+}
+.AbstractContent .topNum{
+  margin-top:2.5rem;
+}
+.AbstractContent .topNum span{
+  height: 4rem;
+  line-height: 1;
+}
+.AbstractContent .topNum span:nth-child(1){
+  font-size: 4rem;
+}
+.AbstractContent .topNum img{
+  width: 1rem;
+  height: 1rem;
+}
+.AbstractContent .centerNum span{
+  height: 4rem;
+  line-height: 4rem;
+} 
+.AbstractContent .centerNum i{
+  width: 1.2rem;
+  height: 1.2rem;
+  position: relative;
+}
+.AbstractContent .centerNum img{
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-left: 10px;
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+  -webkit-transform:translateY(-50%);
+}
+.AbstractContent .centerNum span:nth-child(2){
+  font-size: 2rem;
+}
+.AbstractContent .am-list-item:not(:last-child):after{
+  content: '';
+  position: absolute;
+  background-color: #ddd;
+  display: block;
+  z-index: 1;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1PX;
+  -webkit-transform-origin: 50% 100%;
+  -ms-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  -webkit-transform: scaleY(0.5);
+  -ms-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+.AbstractContent .am-list-body div:not(:last-child) .am-list-line::after {
+  height: 0!important; 
+}
+.AbstractContent .am-list-item img{
+  width: 1.5rem!important;
+  height: 1.5rem!important;
+}
+.AbstractContent .am-list-item .am-list-thumb:first-child{
+  margin-right: 12px!important;
+}
