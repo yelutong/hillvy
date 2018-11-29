@@ -1,0 +1,17 @@
+.RechargeSucc .am-result .am-result-pic,.RechargeSucc .imgc{
+  width: 137px!important;
+  height: 70px!important;
+}
+.RechargeSucc .am-result .am-result-pic {
+  margin: 60px auto 20px;
+}
+.RechargeSucc .am-button-primary{
+  margin: 50px 25px 10px 25px!important;
+}
+.RechargeSucc .rechargeFooter{
+  position: fixed;
+  bottom:2rem;
+  text-align: center;
+  width: 100%;
+  left: 0;
+}

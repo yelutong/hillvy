@@ -34,6 +34,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "bundle-loader": "^0.5.5",
     "clean-webpack-plugin": "^0.1.16",
+    "compression-webpack-plugin": "^1.1.11",
     "console-polyfill": "^0.2.2",
     "css-loader": "^0.28.7",
     "es5-shim": "^4.4.1",
@@ -46,14 +47,14 @@
     "mockjs": "^1.0.1-beta3",
     "postcss-cssnext": "^3.0.2",
     "postcss-loader": "^2.0.6",
+    "rc-form": "^2.2.6",
     "react-hot-loader": "^4.0.0-beta.21",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.9",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
-    "webpack-merge": "^4.1.0",
-    "compression-webpack-plugin": "^1.1.11"
+    "webpack-merge": "^4.1.0"
   },
   "dependencies": {
     "axios": "^0.16.2",

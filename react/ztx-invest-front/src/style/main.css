@@ -1,5 +1,5 @@
 @charset "utf-8";
-#app, body, html {
+#app, body {
   height: 100%;
   width: 100%;
   position: relative;
@@ -8,7 +8,7 @@
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
 }
-body {
+html,body {
   margin: 0;
   padding: 0;
   font-family: PingFang SC, Microsoft YaHei;
@@ -17,6 +17,10 @@ body {
   color: #333333;
   background-color: #f5f5f5;
   word-wrap: break-word;
+}
+li,p,ul{
+  padding: 0px;
+  margin: 0px;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -65,12 +69,17 @@ border:1px solid #ccc;
   background: #f5f5f5!important;
 }
 /*行高 高度*/
-
+p{
+  line-height: 1.43rem;
+}
+.lh-20{
+  line-height: 1.43rem;
+}
 .lh-24 {
-  line-height: 24px;
+  line-height: 1.71rem;
 }
 .lh-30 {
-  line-height: 30px;
+  line-height: 2.14rem;
 }
 .lh-36 {
   line-height: 36px;
@@ -81,16 +90,16 @@ border:1px solid #ccc;
 /*textarea/input的placeholder颜色*/
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-  color: #999
+  color: #CCC
 }
 input:-moz-placeholder, textarea:-moz-placeholder {
-  color: #999
+  color: #CCC
 }
 input::-moz-placeholder, textarea::-moz-placeholder {
-  color: #999
+  color: #CCC
 }
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-  color: #999
+  color: #CCC
 }
 /*解决input自动填充*/
 
@@ -126,16 +135,22 @@ input:-webkit-autofill {
   -webkit-transform: scale(0.50);/*缩小一半*/
 }
 .fs-12{
-  font-size:12px!important;
+  font-size:0.85rem!important;
 }
 .fs-13{
-  font-size:13px!important;
+  font-size:0.93rem!important;
 }
 .fs-14{
-  font-size:14px!important;
+  font-size:1rem!important;
+}
+.fs-15{
+  font-size:1.07rem!important;
 }
 .fs-16{
-  font-size:16px!important;
+  font-size:1.15rem!important;
+}
+.fs-18{
+  font-size:1.3rem!important;
 }
 .ht-44{
   height: 44px;
@@ -189,6 +204,9 @@ i {
 }
 .mt5 {
   margin-top: 5px!important;
+}
+.mt10 {
+  margin-top: 10px!important;
 }
 .mt25 {
   margin-top: 25px!important;
@@ -503,4 +521,73 @@ i {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis
+}
+.flexBox{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+.am-button-primary{
+  border: none!important;
+}
+.am-button{
+  font-size: 1.2rem;
+  line-height: 3rem;
+  height: 3rem;
+  background: -webkit-linear-gradient(#4CC9F7, #2598EB); 
+  background: linear-gradient(#4CC9F7, #2598EB);
+  background: -moz-linear-gradient(#4CC9F7, #2598EB); 
+  border:none;
+  border-radius: 4px;
+  -moz-border-radius: 4px; /* Firefox */
+    -webkit-border-radius:4px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx){
+  html:not([data-scale]) .am-list-body div:not(:last-child) .am-list-line::after {
+    background-color: #fff!important;
+  }
+  html:not([data-scale]) .am-list-body::before{
+    background-color: #fff!important;
+  }
+  html:not([data-scale]) .am-button-primary::before{
+    border:none!important;
+  }
+  html:not([data-scale]) .am-list-body::after{
+    background-color: #fff!important;
+  }
+}
+
+/* 统一ant-mobile变量 */
+.am-modal-button-group-v .am-modal-button{
+  color: #FFB03B!important;
+}
+.am-modal-transparent .am-modal-content{
+  padding-top: 5px!important;
+}
+.am-modal-header{
+  padding: 6px 10px 10px 10px!important;
+}
+.am-modal-transparent .am-modal-content .am-modal-body{
+  padding: 0!important;
+}
+.am-modal-button-group-v .am-modal-button::before{
+  background-color: #f3f3f3!important;
+}
+.am-modal-button-group-v .am-modal-button,.am-modal-title{
+  font-size: 1.1rem!important;
+}
+.am-modal-body{
+  font-size: 1rem!important;
+}
+.am-modal-mask{
+  background-color: rgba(0, 0, 0, 0.6)!important;
+}
+.am-list-item .am-list-line .am-list-extra{
+  color: #999!important;
+}
+.am-result .am-result-title, .am-result .am-result-message{
+  color: #333!important;
 }

@@ -1,6 +1,6 @@
 body{
 	font-size: 14px;
-	font-family:PingFang-SC;
+	font-family:PingFang SC;
 }
 .am-navbar-light .am-navbar-title{
 	-webkit-box-flex: 6;
@@ -23,5 +23,17 @@ body{
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 9999;
+	z-index: 99;
+}
+.bgBlue{
+  background: transparent!important;
+}
+.bgBlue .am-icon-md,.bgBlueTrue .am-icon-md{
+  color: #FFF!important;
+}
+.bgBlue .am-navbar-title,.bgBlueTrue .am-navbar-title{
+  color: #FFF!important;
+}
+.bgBlueTrue{
+  background: #108EE9!important;
 }

@@ -1,0 +1,76 @@
+.Recharge{
+	margin-top: 54px;
+}
+.Recharge .list{
+	margin-bottom: 10px;
+	background-color: #ffffff;
+}
+.Recharge .am-list-body div:not(:last-child) .am-list-line{
+	border-bottom: 1px solid #F7F7F7;
+}
+.Recharge .am-list-item .am-list-line .am-list-content,.Recharge .am-list-body{
+	border:0;
+}
+.Recharge .am-list-item{
+	padding-left: 4%;
+	min-height: auto;
+}
+.Recharge .am-list-item .am-list-line{
+	padding-right: 4%;
+}
+.Recharge .am-list-item.am-list-item-active{
+	background-color: #ffffff;
+}
+.Recharge .RechargeList:not(:last-child) .am-list-item{
+	border-bottom: 1px solid #f9f9f9;
+}
+.Recharge .am-list-item .am-list-line-multiple .am-list-content{
+	font-size: 0.9rem;
+	line-height: 0.9rem;
+	color: #999999;
+}
+.Recharge .am-list-item .am-list-line-multiple .am-list-content .am-list-brief{
+	font-size: 1.15rem;
+	line-height: 1.5rem;
+	color: #333333;
+	margin-top: 0.5rem;
+}
+.Recharge .RechargeAmount{
+	margin-top: 10px;
+}
+.Recharge .am-list-brief .am-list-item{
+	padding-left: 0px;
+}
+.Recharge .am-list-brief .am-list-line{
+	border: 0!important;
+	margin-top: 0.8rem;
+}
+.Recharge .am-list-item .am-input-control input{
+	color: #333333;
+	font-size: 1.1rem;
+}
+.Recharge .tips{
+	width: 92%;
+	margin: auto;
+	font-size: 1rem;
+	color: #F24724;
+	line-height: 1.2rem;
+	margin-top: 1rem;
+	margin-bottom: 3rem;
+}
+.Recharge .btn{
+	width: 86%;
+	margin:auto;
+	background: #108EE9!important;
+	height: 3rem;
+	line-height: 3rem;
+}
+.Recharge .am-list-item .am-input-control{
+	font-size: 1.1rem;
+}
+.Recharge .RechargeAmount .am-list-brief{
+	margin-top: 0rem!important;
+}
+.Recharge .RechargeAmount .am-list-item.am-input-item{
+	height: 2rem;
+}

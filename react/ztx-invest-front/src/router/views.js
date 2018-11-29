@@ -6,9 +6,28 @@
 * backUrl 返回按钮跳转，不添加url表示一般的返回
 */
 const views = [
+	//投标状态页
 	{pathName:'/TenderStatus',title:'Status Pendanaan',isShow:true,titleText:true,backUrl:''},
-	{pathName:'/Tender',title:'Tender',isShow:true,titleText:false,backUrl:''},
+	//标的详情页
+	{pathName:'/TenderDetail',title:'Detail',isShow:true,titleText:true,backUrl:''},
+	//首页（标的和出借账户中心tabs）
   {pathName:'/CommonTabs',title:'CommonTabs',isShow:true,titleText:false,backUrl:''},
+  //投标确认页
+  {pathName:'/TenderConfirm',title:'Daftar Pendanaan',isShow:true,titleText:true,backUrl:''},
+  //合同列表页
+  {pathName:'/AgreementList',title:'Perjanjian',isShow:true,titleText:true,backUrl:''},
+  //充值页
+  {pathName:'/Recharge',title:'Tambah Dana',isShow:true,titleText:true,backUrl:''},
+  //提现页
+  {pathName:'/Withdrawal',title:'Penarikan',isShow:true,titleText:true,backUrl:''},
+  //付款码页面
+  {pathName:'/PaymentCode',title:'Tambah Dana',isShow:true,titleText:true,backUrl:''},
+  //选择托管户
+  {pathName:'/SelectAccount',title:'Bidding cepat',isShow:true,titleText:true,backUrl:''},
+  //充值成功页
+  {pathName:'/RechargeSucc',title:'Status Penambahan Dana',isShow:true,titleText:true,backUrl:''},
+  //提现结果页
+  {pathName:'/WithdrawalResult',title:'Status Penarikan',isShow:true,titleText:true,backUrl:''},
 ];
 
 /*

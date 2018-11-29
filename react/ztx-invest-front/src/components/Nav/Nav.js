@@ -4,7 +4,7 @@ import { NavBar, Icon } from 'antd-mobile';
 import viewTitle from '../../router/views';//获取title
 import './Nav.css';//获取title
 
-class Nav extends Component {
+class Nav extends Component { 
   state={
       viewTitle:viewTitle()
   }
@@ -14,7 +14,10 @@ class Nav extends Component {
           viewTitle:viewTitle() || {}
       });
   }
+  componentDidMount(){
 
+  }
+  
   /*
   *@description 返回
   */
@@ -28,15 +31,21 @@ class Nav extends Component {
   }
 
   render() {
-      return (
-          <div>
-              {this.state.viewTitle.isShow?<NavBar
-                mode="light"
-                icon={<Icon type="left" />}
-                onLeftClick={this.goBack.bind(this,this.state.viewTitle.backUrl)}
-              >{this.state.viewTitle.titleText?this.state.viewTitle.title:''}</NavBar>:''}
-          </div>
-      )
+    var bgBlue;
+    if(window.location.pathname.indexOf('Withdrawal')>=0){
+      bgBlue = 'bgBlue';
+    }
+    return (
+      <div>
+          {this.state.viewTitle.isShow?<NavBar
+            mode="light"
+            className={bgBlue}
+            id="NavBar"
+            icon={<Icon type="left" />}
+            onLeftClick={this.goBack.bind(this,this.state.viewTitle.backUrl)}
+          >{this.state.viewTitle.titleText?this.state.viewTitle.title:''}</NavBar>:''}
+      </div>
+    )
   }
 }
 

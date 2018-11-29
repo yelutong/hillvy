@@ -12,17 +12,21 @@ const tabs = [
 ];
  
 class CommonTabs extends Component {
-  constructor(props) {
-        super(props);
-        this.state = {
-            count: 0
-        }
+    state = {
+      tabHeight:'300px',
+      tabIndex: localStorage.getItem('tabIndex')||0,
     }
 
-    _handleClick() {
+    constructor(props) {
+        super(props); 
+    }
+
+    componentDidMount = () => {
+        //获取屏幕有效高度
+        console.log(document.documentElement.clientHeight-44);
         this.setState({
-            count: ++this.state.count
-        });
+          tabHeight:(document.documentElement.clientHeight-44)+'px'
+        })
     }
 
     render() {
@@ -30,15 +34,15 @@ class CommonTabs extends Component {
           <div className="CommonTabs">
             <Nav />
             <Tabs tabs={tabs}
-              initialPage={0}
+              initialPage={Number(this.state.tabIndex)}
               animated={true} 
               useOnPan={false}
-              swipeable={false}
+              swipeable={true}
               tabBarActiveTextColor="#333"
               tabBarInactiveTextColor="#999"
-              onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
+              onTabClick={(tab, index) => { this.setState({ tabIndex : index });localStorage.setItem("tabIndex",index);}}
               >
-              <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: '150px', backgroundColor: '#f5f5f5' }}>
+              <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: this.state.tabHeight, backgroundColor: '#f5f5f5' }}>
 
                <ProductContent/>
               

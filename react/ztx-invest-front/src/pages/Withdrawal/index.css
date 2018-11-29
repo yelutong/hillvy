@@ -1,0 +1,49 @@
+.WithdrawalTop{
+  background: url(images/wdTopImg.png) no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+.WithdrawalTop .wdTopImg{
+  visibility: hidden;
+  width: 100%;
+}
+.WithdrawalTop .topContent {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  width: 100%;
+  padding: 0 15px;
+  margin-top: 22px;
+}
+.WithdrawalTop .topTips {
+  opacity: 0.7;
+}
+.WithdrawalTop .topNum{
+  margin-top: 2.5rem;
+  font-size: 4rem;
+}
+.Withdrawal .listItem{
+  margin:0 15px;
+  padding:5px 0; 
+}
+.Withdrawal .listItem p{
+  line-height: 2.2rem;
+}
+.Withdrawal .inputVal{
+  width: 100%;
+  border: none;
+}
+.Withdrawal .am-list-item .am-list-line .am-list-content,.Withdrawal .am-list-item .am-list-line .am-list-extra{
+  color: #999!important;
+  font-size: 0.93rem!important;
+}
+.Withdrawal .am-button-primary{
+  margin: 40px 25px 10px 25px!important;
+}
+.Withdrawal .am-button{
+  background: #108EE9!important;
+}
+.Withdrawal .am-button-primary.am-button-disabled{
+  background: #ccc!important; 
+}

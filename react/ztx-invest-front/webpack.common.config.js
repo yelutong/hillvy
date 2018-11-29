@@ -24,12 +24,7 @@ commonConfig = {
             include: path.join(__dirname, 'src')
         }, {
             test: /\.(png|jpg|gif)$/,
-            use: [{
-                loader: 'url-loader',
-                options: {
-                    limit: 8192
-                }
-            }]
+            loader: 'url-loader?limit=2192&name=images/[hash:8].[name].[ext]'
         }]
     },
     plugins: [

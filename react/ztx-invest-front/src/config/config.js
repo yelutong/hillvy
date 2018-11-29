@@ -5,28 +5,28 @@ const httpConfigArry = [];
 const httpConfig = [{
     host: 'localhost', //本地
     protocol: 'http',
-    domain: 'sit-invest.qude369.com', //出借端
+    domain: '10.3.32.232:8084', //出借端
     path: 'kpt-invest',
     envCode: 'LOCAL',
-    isDefault: true
+    isDefault: false
 },{
     host: '10.3.79.72', //本地
     protocol: 'http',
-    domain: '10.3.31.221:8090', //出借端
+    domain: '10.3.76.90:8084', //出借端
     path: 'kpt-invest',
     envCode: 'LOCAL',
     isDefault: false
 },{
-    host: '10.3.31.221', //内网
+    host: 'localhost', //内网
     protocol: 'http',
-    domain: '10.3.31.221:8090', //出借端
+    domain: '10.3.31.221:8084', //出借端
     path: 'kpt-invest',
     envCode: 'SIT',
-    isDefault: false
+    isDefault: true
 },{
     host: '10.3.31.216', //内网
     protocol: 'http',
-    domain: '10.3.31.221:8090', //出借端
+    domain: '10.3.31.221:8084', //出借端
     path: 'kpt-invest',
     envCode: 'SIT',
     isDefault: false
