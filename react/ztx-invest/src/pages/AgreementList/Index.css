@@ -1,0 +1,37 @@
+.AgreementList{
+	margin-top: 60px;
+}
+.AgreementList .list{
+	margin-bottom: 10px;
+	background-color: #ffffff;
+}
+.AgreementList .am-list-body div:not(:last-child) .am-list-line{
+	border-bottom: 1px solid #F7F7F7;
+}
+.AgreementList .am-list-item .am-list-line .am-list-content,.AgreementList .am-list-body{
+	border:0;
+}
+.AgreementList .agreementTitle .am-list-line .am-list-content{
+	font-size: 1rem;
+	color: #999999;
+	padding: 0px;
+	line-height: 2.6rem;
+	height: 2.6rem;
+}
+.AgreementList .agreementMian .am-list-line .am-list-content{
+	font-size: 1.1rem;
+	color: #108EE9;
+	padding: 0px;
+	line-height: 3.3rem;
+	height: 3.3rem;
+}
+.AgreementList .am-list-item{
+	padding-left: 4%;
+	min-height: auto;
+}
+.AgreementList .am-list-item .am-list-line{
+	padding-right: 4%;
+}
+.AgreementList .am-list-item.am-list-item-active{
+	background-color: #ffffff;
+}

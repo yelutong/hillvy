@@ -36,7 +36,6 @@ class PCBottom extends React.Component {
                       <span className="phoneL">Tel：</span>
                       <span className="phoneR">
                         <label>(021) 3003 3358</label>
-                        <label>0812 9088 5538</label>
                       </span>
                     </p>
                     <p>Email：kpt@kreditplusteknologi.id</p>

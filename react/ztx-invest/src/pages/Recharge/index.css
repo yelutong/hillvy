@@ -1,0 +1,210 @@
+.Recharge{
+	margin-top: 60px;
+}
+.Recharge .list{
+	margin-bottom: 10px;
+	background-color: #ffffff;
+}
+.Recharge .am-list-body div:not(:last-child) .am-list-line{
+	border-bottom: 1px solid #F7F7F7;
+}
+.Recharge .RechargeAmount .am-list-body div:not(:last-child) .am-list-line{
+	border-bottom: 0!important;
+}
+.Recharge .RechargeAmount:not(:last-child) .am-list-item{
+	border-bottom: 0!important;
+}
+.Recharge .am-list-item .am-list-line .am-list-content,.Recharge .am-list-body{
+	border:0;
+}
+.Recharge .am-list-item{
+	padding-left: 4%;
+	min-height: auto;
+}
+.Recharge .am-list-item .am-list-line{
+	padding-right: 4%;
+}
+.Recharge .am-list-item.am-list-item-active{
+	background-color: #ffffff;
+}
+.Recharge .RechargeList:not(:last-child) .am-list-item{
+	border-bottom: 1px solid #f9f9f9;
+}
+.Recharge .am-list-item .am-list-line-multiple .am-list-content{
+	font-size: 0.9rem;
+	line-height: 0.9rem;
+	color: #999999;
+}
+.Recharge .am-list-item .am-list-line-multiple .am-list-content .am-list-brief{
+	font-size: 1.15rem;
+	line-height: 1.5rem;
+	color: #333333;
+	margin-top: 0.5rem;
+}
+.Recharge .RechargeAmount{
+	margin-top: 10px;
+}
+.Recharge .am-list-brief .am-list-item{
+	padding-left: 0px;
+}
+.Recharge .am-list-brief .am-list-line{
+	border: 0!important;
+	margin-top: 0.8rem;
+}
+.Recharge .am-list-item .am-input-control input{
+	color: #333333;
+	font-size: 1.1rem;
+}
+.Recharge .tips{
+	width: 92%;
+	margin: auto;
+	font-size: 1rem;
+	color: #F24724;
+	line-height: 1.2rem;
+	margin-top: 1rem;
+	margin-bottom: 3rem;
+}
+.Recharge .btn{
+	width: 86%;
+	margin:auto;
+	background: #108EE9!important;
+	height: 3rem;
+	line-height: 3rem;
+}
+.Recharge .am-list-item .am-input-control{
+	font-size: 1.1rem;
+}
+.Recharge .RechargeAmount .am-list-brief{
+	margin-top: 0rem!important;
+}
+.Recharge .RechargeAmount .am-input-item{
+	height: 2rem;
+}
+.Recharge .am-list-brief .am-list-item .am-list-line .am-list-arrow{
+	width: 0px;
+}
+.Recharge .am-list-item .am-list-line .am-list-extra{
+	text-align: left!important;
+	flex-basis:100%!important;
+    font-size: 1.15rem!important;
+    line-height: 1.5rem!important;
+    color: #333333!important;
+    margin-top: 1.3rem;
+}
+.Recharge .choose .am-list-line{
+	border: 0!important;
+	margin-top: 0rem!important;
+	height: 4.5rem;
+}
+.Recharge .choose{
+	border:0!important;
+}
+.Recharge .gray{
+	font-size: 1rem;
+	color: #999999;
+	width: 100%;
+	position: absolute;
+	top:0rem;
+	left: 0rem;
+	z-index: 9;
+	margin-top: 0.5rem;
+}
+.Recharge .notChoose.am-list-item .am-list-line .am-list-arrow{
+	width: 0px;
+}
+.payWayAlert{
+	font-size: 1.2rem;
+	white-space: normal;
+	padding: 1rem 0rem;
+	height: 3.2rem;
+}
+.payWayAlert .left{
+	box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+     display: flex;
+    justify-content:center;
+    align-items:Center;
+}
+.payWayAlert .middle{
+	box-sizing: border-box;
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    white-space: normal;
+    text-align: left;
+     display: flex;
+    align-items:Center;
+    color: #333333;
+}
+.payWayAlert .right{
+	box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex:1;
+    padding-right: 4%;
+     display: flex;
+    justify-content:flex-end;
+    align-items:Center;
+}
+.payWayAlert .left img{
+	width: 1.8rem;
+}
+.payWayAlert .right img{
+	width: 1.3rem;
+}
+.am-action-sheet-button-list-item{
+	height: auto;
+	font-size: 1.2rem;
+	line-height: 1.6rem;
+}
+.am-action-sheet-title, .am-action-sheet-message{
+	margin: 0px;
+	padding:0px;
+}
+.am-action-sheet-button-list-item{
+	border-top:0;
+	border-bottom:1px solid #F1F1F1;
+}
+.am-action-sheet-button-list{
+	padding-bottom: 4rem;
+}
+.am-action-sheet-message{
+	border-bottom:1px solid #F1F1F1;
+	line-height: 3.5rem;
+	color: #666666;
+	font-weight: bold;
+	font-size: 1.3rem;
+	font-family: PingFang SC, Microsoft YaHei;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+.Recharge .am-list-item .am-input-clear{
+    width: 16px;
+    height: 16px;
+    background-size: 16px auto;
+}
+.Recharge .RechargeAmount .am-list-body .am-list-line{
+	margin-top: 0rem;
+}
+.Recharge .RechargeAmount .am-list-brief{
+	padding-top: 0.4rem!important;
+	height: 1.6rem;
+	line-height: 1.6rem;
+}
+.Recharge .am-list-item .am-input-control .fake-input-container .fake-input{
+	font-size: 1.2rem;
+	color: #333333;
+}
+.Recharge .am-list-item .am-input-control .fake-input-container{
+	line-height: 20px;
+}

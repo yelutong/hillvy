@@ -105,7 +105,7 @@ class Index extends React.Component {
                           </div>
                         </div>
                         <div className="advantageTitle">{this.state.language == 'Id'?'Bunga rendah':'Low interest rate'}</div>
-                        <p>{this.state.language == 'Id'?'bunga perhari mulai dari 0,07%':'daily interest rate start from 0,07%'}</p>
+                        <p>{this.state.language == 'Id'?'Bunga per hari 0.1% hingga 0.5%':'Daily Interest Rate 0.1%-0.5%'}</p>
                       </div>
                     </li>
                   </ul>

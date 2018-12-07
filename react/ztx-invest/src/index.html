@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <META http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta http-equiv="Expires" content="0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<meta http-equiv="Cache" content="no-cache">
+    <title>KPT</title>
+    <script>
+    	var App;
+        //捕捉页面关闭是调用 
+        window.onbeforeunload = function(event) {
+            localStorage.removeItem('fromUrl');
+        };
+        var hasBackUrl;
+        var thisPage;
+        //监听返回事件  控制无厘返回和页面的返回一致
+        var userAgentInfo = navigator.userAgent;
+        var Agents = ["Android", "iPhone",
+        "SymbianOS", "Windows Phone",
+        "iPad", "iPod"];
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+          if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+          }
+        }
+        console.log(userAgentInfo);
+        console.log(flag);
+        if(!flag){ //如果是手机浏览器再监听返回按钮
+          pushHistory();
+          window.addEventListener("popstate", function(e) {
+            if(hasBackUrl){ //如果有url，就跳转到相应url
+                if(hasBackUrl == 'finish'){
+                  if(App){
+                    localStorage.removeItem('fromUrl');
+                    App.finish();
+                  }
+                  return false;
+                }else if(thisPage.state.fromUrl == '/SelectAccount'){
+                  //.props.history.goBack();//没有url，就正常返回
+                  return false;
+                }else{
+                  //跳转到对应的url
+                  thisPage.props.history.push(hasBackUrl);
+                  return false;
+                }
+            }else{
+              //thisPage.props.history.goBack();//没有url，就正常返回
+            }
+          }, false);
+          function pushHistory() {
+            var state = {
+                title: "title",
+                url: ""
+            };
+            window.history.pushState(state, "title", "");
+          }
+        }
+    </script>
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>

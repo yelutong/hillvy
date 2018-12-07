@@ -1020,6 +1020,9 @@ body{
   padding: 8px 0px 32px 0px;
   display: none;
 }
+.PCindex .Introduction .announce .announceInfo .detail a{
+  text-decoration: none;
+}
 .PCindex .Introduction .announce .announceInfo .detail .desc div{
   display: inline-block;
   vertical-align: top;

@@ -75,7 +75,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router history={appHistory}>{/*appHistory带#号不带随机数  hashHistory会带hash随机数 browserHistory不带#号不带随机数*/}
+      <Router history={browserHistory}>{/*appHistory带#号不带随机数  hashHistory会带hash随机数 browserHistory不带#号不带随机数*/}
         <div>
           {/*PC*/}
           <Route path="/" component={Index}/>

@@ -1,0 +1,301 @@
+/*public*/
+body{
+	position: relative;
+}
+/*tender*/
+.Tender{
+	width: 100%;
+	margin-top: 5px;
+}
+.Tender .TenderItem{
+	width: 100%;
+	background-color: #ffffff;
+	margin-top: 10px;
+}
+.Tender .mainItem{
+	width: 92%;
+	margin: auto;
+}
+.Tender .TenderItemTop{
+	line-height: 2.8rem;
+	height: 2.8rem;
+	/*border-bottom: 1px solid #f3f3f3;*/
+}
+.Tender .TenderItemTop .left{
+	color: #2E2E2E;
+	font-size: 1.1rem;
+	position: relative;
+	padding-left: 0.8rem;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.Tender .TenderItemTop .left:before{
+	position: absolute;
+	content: '';
+	display: block;
+	width: 0.25rem;
+	height: 0.9rem;
+	left: 0rem;
+	top:0.85rem;
+	background-color: #108EE9;
+}
+.Tender .TenderItemTop .right{
+	color: #444444;
+	font-size: 0.95rem;
+}
+.Tender .TenderItemTop .riskImg{
+	width: 1.25rem;
+	vertical-align: middle;
+	margin-top: -0.1rem;
+	margin-right: 0.3rem;
+}
+.TenderItemTop .left{
+    box-sizing: border-box;
+    -webkit-box-flex: 2;
+    -webkit-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+}
+.TenderItemTop .right{
+	flex:1;
+	box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.TenderItemHead .left{
+    flex:3;
+	box-sizing: border-box;
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex:3;
+}
+.TenderItemHead .right{
+	flex:4;
+	box-sizing: border-box;
+    -webkit-box-flex: 4;
+    -webkit-flex: 4;
+    -ms-flex: 4;
+    flex:4;
+    padding-left: 1rem;
+    /*border-left: 1px solid #f3f3f3;*/
+}
+.TenderItemHead{
+	margin: 1.2rem 0rem;
+}
+.TenderItemHead .num{
+	color: #E8541E;
+	font-size: 1.8rem;
+	font-weight: bold;
+	line-height: 1.8rem;
+}
+.TenderItemHead .Bunga{
+	font-size: 0.95rem;
+	color: #999999;
+	line-height: 0.95rem;
+	margin-top: 0.5rem;
+}
+.TenderItemHead .term{
+	font-size: 1.25rem;
+	color: #555555;
+	font-weight: bold;
+	line-height: 1.8rem;
+}
+.TenderItemHead .amount{
+	color: #FF801A;
+	font-size: 0.95rem;
+	line-height: 0.95rem;
+	margin-top: 0.5rem;
+}
+.TenderItemHead p{
+	padding: 0px;
+	margin: 0px;
+}
+.TenderItemBottom{
+	/*border-top: 1px solid #f3f3f3;*/
+	padding: 1rem 0rem;
+}
+.TenderItemBottom .flexBox{
+	height: 2.5rem;
+}
+.TenderItemBottom .btn{
+	width: 68%;
+	margin: auto;
+	background-color: #ffffff!important;
+	background: #ffffff!important;
+	border: 1px solid #108EE9!important;
+	color: #108EE9!important;
+	font-size: 1.2rem;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	border-radius: 4px;
+  	-moz-border-radius: 4px; /* Firefox */
+    -webkit-border-radius:4px;
+}
+.TenderItemBottom .btn img{
+	height: 1.2rem;
+	vertical-align: middle;
+	margin-top: -0.1rem;
+	margin-right: 0.2rem;
+}
+.Tender .TenderMain{
+	margin-bottom: 6.9rem;
+}
+.Tender{
+	position: absolute;
+    overflow-y: scroll;
+    height: 100%;
+}
+.Tender::-webkit-scrollbar {
+    width: 0;   /* 滚动条宽度为0 */
+    height: 0; /* 滚动条高度为0 */
+    display: none; /* 滚动条隐藏 */
+}
+.Tender .bottomCar{
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 3.4rem;
+	line-height: 3.4rem;
+	z-index: 999;
+	background-color: #ffffff;
+	font-size: 1.15rem;
+	text-align: center;
+	border-top: 1px solid #f1f1f1;
+}
+.Tender .bottomCar .left{
+	flex:1;
+	box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex:1;
+    color: #108EE9;
+}
+.Tender .bottomCar .right{
+	flex:2;
+	box-sizing: border-box;
+    -webkit-box-flex: 2;
+    -webkit-flex: 2;
+    -ms-flex: 2;
+    flex:2;
+    background-color: #CCCCCC;
+    color: #ffffff;
+}
+.Tender .bottomCar .right img{
+	height: 1.4rem;
+	vertical-align: middle;
+	margin-top: -0.1rem;
+	margin-right: 0.5rem;
+}
+.Tender .bottomNum{
+	color: #999999;
+	font-size: 0.9rem;
+	text-align: center;
+	position: fixed;
+	bottom: 3.2rem;
+	left: 0px;
+	width: 100%;
+	padding: 0% 4%;
+	height: 2.7rem;
+	line-height: 2.7rem;
+	z-index: 999;
+	background-color: #FEFCEB;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+.Tender .bottomNum .left,.bottomNum .right{
+	flex:1;
+	box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex:1;
+    text-align: left;
+}
+.Tender .bottomNum label{
+	color: #F96A0E!important;
+}
+.Tender .hasChose.bottomCar .right{
+	background-color: #108EE9!important;
+}
+.Tender .hasChose .am-badge-text{
+	height:1rem;
+	width: 1rem;
+	line-height: 1rem;
+	top:-0.8rem;
+	right: -0.65rem;
+	padding: 0px;
+	border-radius:50%;
+ 	-moz-border-radius: 50%; /* Firefox */
+    -webkit-border-radius: 50%; /* Safari 和 Chrome */
+}
+.Tender .hasChose.bottomCar .left{
+	color: #848484;
+	font-size: 0.7rem;
+	line-height: 0.9rem;
+}
+.Tender .hasChose.bottomCar .left div{
+	font-size: 0px;
+	height: 0.9rem;
+	margin:0.5rem 0rem 0.5rem 0rem; 
+}
+.Tender .hasChose.bottomCar .left img{
+	height: 1.3rem;
+}
+.Tender .TenderItemChoose{
+	width: 80%;
+	margin: auto;
+	line-height: 2.5rem;
+}
+.Tender .TenderItemChoose .left,.Tender .TenderItemChoose .right{
+	flex:1;
+	box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex:1;
+    font-size: 1.1rem;
+    color: #999999;
+}
+.Tender .TenderItemChoose .right{
+	text-align: right;
+}
+.Tender .TenderItemChoose .left img{
+	height: 1.4rem;
+	vertical-align: middle;
+	margin-top: -0.15rem;
+	margin-right: 0.3rem;
+}
+.Tender .chooseIt .TenderItemChoose .right img{
+	height: 1.6rem;
+	margin-top: 0.3rem;
+}
+.Tender .empty{
+	height: 100%;
+	width: 100%;
+	background-color: #ffffff;
+	text-align: center;
+	font-size: 1rem;
+	color: #999999;
+}
+.Tender .empty .emptyMain{
+	width: 70%;
+	position: fixed;
+	top:30%;
+	left:15%;
+}
+.Tender .empty img{
+	width: 50%;
+	margin-bottom: 1rem;
+}
+.Tender .notAll{
+	font-size: 1.15rem!important;
+	color: #108EE9!important;
+	line-height: 3.4rem!important;
+}

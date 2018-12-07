@@ -1,0 +1,43 @@
+.WithdrawalResult .am-result .am-result-pic,.WithdrawalResult .imgc{
+  width: 137px!important;
+  height: 70px!important;
+}
+.WithdrawalResult .am-result .am-result-pic {
+  margin: 60px auto 20px;
+}
+.WithdrawalResult .am-button-primary{
+  margin: 50px 25px 10px 25px!important;
+}
+.WithdrawalResult .rechargeFooter{
+  position: fixed;
+  bottom:2rem;
+  text-align: center;
+  width: 100%;
+  left: 0;
+}
+.WithdrawalResult .am-result .am-result-title{
+  font-size:1.3rem!important;
+}
+.WithdrawalResult .am-result .am-result-message{
+  font-size:0.93rem!important;
+}
+.WithdrawalResult .wdFail{
+  padding:20px 25px;
+}
+.WithdrawalResult .wdFail ul li{
+  list-style-type: none;
+  position: relative;
+  text-indent: 1rem;
+}
+.WithdrawalResult .wdFail ul li:before{
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: #888;
+  border-radius: 50%;
+  left:0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform:translateY(-50%);
+}

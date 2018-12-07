@@ -11,18 +11,18 @@ class TopNav extends React.Component {
     const href = location.href;
     $('.PCnav .middle li').removeClass('active');
     $('.PCnav .AboutUs div').removeClass('active');
-    if(href.indexOf('#/Loan')>=0){
+    if(href.indexOf('Loan')>=0){
       $('.PCnav .Loan').addClass('active');
-    }else if(href.indexOf('#/Introduction')>=0){
+    }else if(href.indexOf('Introduction')>=0){
       $('.PCnav .AboutUs').addClass('active');
       $('.PCnav .introduction').addClass('active');
-    }else if(href.indexOf('#/Risk')>=0){
+    }else if(href.indexOf('Risk')>=0){
       $('.PCnav .AboutUs').addClass('active');
       $('.PCnav .Risk').addClass('active');
-    }else if(href.indexOf('#/Announcement')>=0){
+    }else if(href.indexOf('Announcement')>=0){
       $('.PCnav .AboutUs').addClass('active');
       $('.PCnav .Announcement').addClass('active');
-    }else if(href.indexOf('#/HelpCenter')>=0){
+    }else if(href.indexOf('HelpCenter')>=0){
       $('.PCnav .HelpCenter').addClass('active');
     }else{
       $('.PCnav .Home').addClass('active');

@@ -21,7 +21,6 @@ class MobileBottom extends React.Component {
               <span className="phoneL">Tel：</span>
               <span className="phoneR">
                 <a href="tel:02130033358" className="phone">(021) 3003 3358</a>
-                <a href="tel:081290885538" className="phone">0812 9088 5538</a>
               </span>
             </p>
             <p>Email：kpt@kreditplusteknologi.id</p>

@@ -654,6 +654,9 @@
 	.MobileIndex .intro .announce li .detail p{
 		line-height: 1.3em!important;
 	}
+	.MobileIndex .intro .announce li .detail a{
+		text-decoration: none;
+	}
 	/**********helpCenter*********/
 	.MobileIndex .helpCenter .showItem p{
 		display: block;

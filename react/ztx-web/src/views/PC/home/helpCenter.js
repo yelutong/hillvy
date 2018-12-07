@@ -49,49 +49,44 @@ class HelpCenter extends React.Component {
             <ul className="announceInfo">
               <li>
                 <div className="mainInfo">
-                  <p className="mianTitle">Q：Layanan pinjaman apa yang disediakan oleh Pinjam Gampang?</p>
-                  {/*<div className="answer">Jawaban:......</div>*/}
-                </div>
-                <div className="detail">
-                  <div className="desc">
-                    <div className="right">Jawaban：Jumlah pinjaman：Rp600.000~Rp5.000.000 Jangka waktu pinjaman：7/14 hari</div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="mainInfo">
-                  <p className="mianTitle">Q：Bagaimana cara mengajukan permohonan pinjaman melalui Pinjam Gampang?</p>
-                  {/*<div className="answer">Jawaban:......</div>*/}
-                </div>
-                <div className="detail">
-                  <div className="desc">
-                    <div className="right">Jawaban : Pada Google Play lakukan pencarian dengan mengetik “Pinjam Gampang”, kemudian unduh/download aplikasi tersebut. Buka aplikasi, tidak perlu menyerahkan dokumen berbentuk kertas, ikuti petunjuk pada halaman aplikasi untuk menyelesaikan. ( mohon untuk menyiapkan KTP dan kartu bank sebelum mengajukan permohonan )</div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="mainInfo">
-                  <p className="mianTitle">Q：Pertanyaan seputar peminjaman kredit?</p>
+                  <p className="mianTitle">Q：Apa syarat pengajuan pinjaman melalui Pinjam Gampang?</p>
                   {/*<div className="answer">Jawaban:......</div>*/}
                 </div>
                 <div className="detail">
                   <div className="desc">
                     <div className="right">
-					  <div>Warga Negara Indonesia.</div>
-					  <div>Usia di atas 21 tahun.</div>
-					  <div>mempunyai penghasilan stabil.</div>
+                      <div>a. Warga Negara Indonesia</div>
+                      <div>b. Berusia 21 tahun atau lebih.</div>
+                      <div>c. Memiliki Kartu Tanda Penduduk</div>
+                      <div>d. Telah bekerja, memiliki penghasilan stabil, dan memiliki kartu identitas perusahaan</div>
+                      <div>e. Memiliki rekening bank atas nama sendiri</div>
+                      <div>f. Berdomisili di Jabodetabek, Bandung, Surabaya, Manado, Semarang, Sidoarjo, Batam, Padang, Denpasar, Yogyakarta, Gresik, Malang, Bontang, Makassar, Palembang, Kediri</div>
                     </div>
                   </div>
                 </div>
               </li>
               <li>
                 <div className="mainInfo">
-                  <p className="mianTitle">Q：Saat ini, kota mana saja yang dapat menggunakan layanan Pinjam Gampang?</p>
+                  <p className="mianTitle">Q：Berapa jumlah pinjaman dan tenor yang dapat saya ajukan?</p>
                   {/*<div className="answer">Jawaban:......</div>*/}
                 </div>
                 <div className="detail">
                   <div className="desc">
-                    <div className="right">Jawaban : Untuk saat ini layanan ini terbuka untuk 7 wilayah sebagai berikut : Jakarta, Bandung, Surabaya, Bekasi, Tangerang, Bogor, Tangerang Selatan.</div>
+                    <div className="right">Jumlah pinjaman yang tersedia di Pinjam Gampang mulai dari Rp600.000 sampai dengan Rp5.000.000 dengan pilihan tenor 7 hari atau 14 hari.</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="mainInfo">
+                  <p className="mianTitle">Q：Kota mana saja yang termasuk dalam area jangkauan Pinjam Gampang?</p>
+                  {/*<div className="answer">Jawaban:......</div>*/}
+                </div>
+                <div className="detail">
+                  <div className="desc">
+                    <div className="right">
+                      <div>Hingga saat ini, Pinjam Gampang telah tersedia di 20 (dua puluh) wilayah berikut – Jabodetabek, Bandung, Surabaya, Manado, Semarang, Sidoarjo, Batam, Padang, Denpasar, Yogyakarta, Gresik, Malang, Bontang, Makassar, Palembang, Kediri.</div>
+                      <div>Cek website <a href="https://www.kreditplusteknologi.id">www.kreditplusteknologi.id</a> dan akun sosial media (Facebook, Instagram, LinkedIn) untuk perkembangan lebih lanjut !</div>
+                    </div>
                   </div>
                 </div>
               </li>
@@ -102,62 +97,111 @@ class HelpCenter extends React.Component {
                 </div>
                 <div className="detail">
                   <div className="desc">
-                    <div className="right">Jawaban : Saat ini bank yang telah bekerjasama untuk pengiriman dana pinjaman adalah Bank Mandiri, BCA, BNI, BRI, BTN, CIMB, Bank Permata, Bank Panin, Bank Danamon Indonesia. </div>
+                    <div className="right">Pinjam Gampang telah bekerjasama dengan beberapa bank berikut untuk proses pengiriman dana pinjaman – Bank Mandiri, BCA, BNI, BRI, BTN, CIMB, Bank Permata, Bank Panin, Bank Danamon Indonesia.</div>
                   </div>
                 </div>
               </li>
               <li>
                 <div className="mainInfo">
-                  <p className="mianTitle">Q：Bagaimana proses permohonan pinjaman di Pinjam Gampang?</p>
+                  <p className="mianTitle">Q：Bagaimana cara menghubungi Pinjam Gampang?</p>
                   {/*<div className="answer">Jawaban:......</div>*/}
                 </div>
                 <div className="detail">
                   <div className="desc">
-                    <div className="right">Jawaban : Anda hanya perlu memilih jumlah pinjaman dan waktu jatuh tempo, mengikuti petunjuk pada aplikasi untuk proses verifikasi( data pribadi, informasi pekerjaan, informasi kontak dan lainnya), Mohon untuk diisi dengan jujur dan tepat. Sistem akan melakukan analisa pada data besar/big data  berdasarkan informasi yang anda berikan, kemudian memberikan informasi jumlah pinjaman dan jatuh tempo yang disetujui.</div>
+                    <div className="right">
+                      <div>Anda dapat menghubungi customer service kami pada nomor (021) 3003 3358.</div>
+                      <div>Jam operasional : Senin – Jumat antara jam 09.00 – 12.00 dan jam 13.00 – 17.00.</div>
+                      <div>Atau melalui email ke kpt@kreditplusteknologi.id</div>
+                    </div>
                   </div>
                 </div>
               </li>
               <li>
                 <div className="mainInfo">
-                  <p className="mianTitle">Q：Berapa lama yang dibutuhkan untuk memverifikasi permohonan pinjaman saya?</p>
+                  <p className="mianTitle">Q：Bagaimana cara mengajukan pinjaman di Pinjam Gampang?</p>
                   {/*<div className="answer">Jawaban:......</div>*/}
                 </div>
                 <div className="detail">
                   <div className="desc">
-                    <div className="right">Jawaban: Kami akan melakukan verifikasi secepat mungkin pada permohonan pinjaman Anda, waktu paling cepat yang dibutuhkan untuk menyelesaikan permohonan pinjaman adalah 3 menit, umunya verifikasi dapat diselesaikan pada hari yang sama. Terimakasih atas pengertian dan dukungan Anda.</div>
+                    <div className="right">
+                      <div>1. Register/Login aplikasi Pinjam Gampang</div>
+                      <div>2. Pilih jumlah dan jangka waktu pinjaman yang diinginkan</div>
+                      <div>3. Melakukan verifikasi wajah dan mengisi identitas dasar seperti identitas diri dan informasi pekerjaan</div>
+                      <div>4. Jika Anda lolos verifikasi, Anda akan diberikan detail informasi jumlah pinjaman yang disetujui berserta rincian bunga dan biaya. Apabila Anda setuju, pinjaman Anda akan diproses dalam waktu 24 jam untuk dikirimkan ke rekening bank Anda</div>
+                    </div>
                   </div>
                 </div>
               </li>
               <li>
                 <div className="mainInfo">
-                  <p className="mianTitle">Q：Setelah lolos tahap verifikasi, berapa lama waktu untuk transfer dana?</p>
+                  <p className="mianTitle">Q：Berapa hari diperlukan untuk proses verifikasi?</p>
                   {/*<div className="answer">Jawaban:......</div>*/}
                 </div>
                 <div className="detail">
                   <div className="desc">
-                    <div className="right">Jawaban：Transfer dana membutuhkan waktu 1-3 hari kalender, mohon untuk sabar menunggu atau hubungi kami di (021) 3003 3358/0812 9088 5538 untuk bertanya secara langsung, kami akan secepatnya membantu anda.</div>
+                    <div className="right">Proses verifikasi diperkirakan 1 (satu) hingga 5 (hari) kerja. Selama menunggu, dipastikan bahwa nomor telepon Anda adalah aktif agar dapat dihubungi untuk konfirmasi dari pihak kami.</div>
                   </div>
                 </div>
               </li>
               <li>
                 <div className="mainInfo">
-                  <p className="mianTitle">Q：Bagaimana cara melakukan pembayaran pinjaman?</p>
+                  <p className="mianTitle">Q：Berapa hari diperlukan untuk pencairan pinjaman?</p>
                   {/*<div className="answer">Jawaban:......</div>*/}
                 </div>
                 <div className="detail">
                   <div className="desc">
-                    <div className="right">Jawaban : Sebelum jatuh tempo, kami akan mengirimakan SMS untuk mengingatkan anda tanggal jatuh tempo. Anda dapat melakukan pembayaran pinjaman melalui metode transfer dari mesin ATM, selain itu anda juga bisa melakukan pembayaran di Alfamart/AlfaMidi/Alfa Express/Lawson/DAN+DAN. Setelah melakukan pembayaran, Aplikasi Pinjam Gampang akan otomatis mendapat informasi pembayaran anda dan status pinjaman anda menjadi telah dilunasi.</div>
+                    <div className="right">Setelah lolos proses verifikasi, dibutuhkan waktu 1 (satu) hingga 3 (tiga) hari kerja untuk proses pencairan dana. Jika Anda masih belum menerima pencairan pinjaman Anda, silahkan hubungi layanan customer service kami di (021) 3003 3358.</div>
                   </div>
                 </div>
               </li>
               <li>
                 <div className="mainInfo">
-                  <p className="mianTitle">Q：Apa akibatnya jika saya terlambat melakukan pembayaran?</p>
+                  <p className="mianTitle">Q：Apakah terdapat risiko kebocoran data yang disampaikan kepada Pinjam Gampang?</p>
                   {/*<div className="answer">Jawaban:......</div>*/}
                 </div>
                 <div className="detail">
                   <div className="desc">
-                    <div className="right">Jawaban : Anda harus membayar biaya keterlambatan pembayaran. Biaya keterlambatan tertera pada layar aplikasi. Detail informasi terkait mohon baca “perjanjian pinjaman”.</div>
+                    <div className="right">Pinjam Gampang selalu berusaha melindungi informasi Anda, termasuk keamanan informasi berbentuk fisik, elektronik, termasuk namun tidak terbatas pada SSL, penyimpanan enskripsi informasi, pengendalian akses pusat data. Kami sedang dalam tahap penilaian dan penerapan standar internasional organisasi (ISO) 27001 tentang keamanan data.</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="mainInfo">
+                  <p className="mianTitle">Q：Bagaiman cara mengganti nomor HP dan informasi identitas lainnya?</p>
+                  {/*<div className="answer">Jawaban:......</div>*/}
+                </div>
+                <div className="detail">
+                  <div className="desc">
+                    <div className="right">
+                      <div>Silahkan hubungi layanan customer service kami untuk melakukan perubahan nomor telepon dan informasi identitas lainnya.</div>
+                      <div>Kedepannya, Pinjam Gampang akan menambahkan fungsi penggantian nomor telepon untuk memudahkan Anda.</div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="mainInfo">
+                  <p className="mianTitle">Q：Bagaimana cara melakukan pelunasan pinjaman?</p>
+                  {/*<div className="answer">Jawaban:......</div>*/}
+                </div>
+                <div className="detail">
+                  <div className="desc">
+                    <div className="right">
+                      <div>Sebelum tanggal jatuh tempo, Pinjam Gampang akan mengirimkan SMS untuk mengingatkan Anda tentang tanggal jatuh tempo dan jumlah pinjaman Anda.</div>
+                      <div>Anda dapat melakukan pelunasan melalui metode transfer dari mesin ATM, mobile banking, internet banking, atau melalui mini-market seperti Alfamart/AlfaMidi/Alfa Express/Lawson/DAN+DAN.</div>
+                      <div>Jika Anda sudah melakukan pelunasan, Pinjam Gampang akan secara otomatis menerima pelunasan dan mengubah status pinjaman Anda menjadi lunas.</div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="mainInfo">
+                  <p className="mianTitle">Q：Apa akibatnya jika saya melakukan pembayaran setelah tanggal jatuh tempo?</p>
+                  {/*<div className="answer">Jawaban:......</div>*/}
+                </div>
+                <div className="detail">
+                  <div className="desc">
+                    <div className="right">Setiap keterlambatan pelunasan akan dikenakan biaya keterlambatan dimana perincian biaya keterlambatan tertera di dalam aplikasi dan informasi lebih lanjut silahkan baca di "Perjanjian Pinjaman"</div>
                   </div>
                 </div>
               </li>
@@ -168,18 +212,7 @@ class HelpCenter extends React.Component {
                 </div>
                 <div className="detail">
                   <div className="desc">
-                    <div className="right">Jawaban : Sistem akan melakukan pembaruan halaman setelah Anda berhasil melakukan pembayaran pinjaman, sebelum update system terjadi, SMS masih dapat terkirim; Mohon abaikan SMS penagihan jika Anda telah berhasil melakukan pembayaran pinjaman.</div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="mainInfo">
-                  <p className="mianTitle">Q：Apakah data yang saya isi bisa diketahui orang lain?</p>
-                  {/*<div className="answer">Jawaban:......</div>*/}
-                </div>
-                <div className="detail">
-                  <div className="desc">
-                    <div className="right">Jawaban : Kami berusaha melindungi informasi anda dengan berbagai keamanan fisik, elektronik dan pengaturan yang wajar untuk, membuat informasi data anda tidak bocor, rusak atau hilang, termasuk namun tidak terbatas pada SSL, penyimpanan enskripsi informasi, pengendalian akses pusat data.</div>
+                    <div className="right">Sistem akan melakukan pembaruan halaman setelah Anda berhasil melakukan pembayaran pinjaman, sebelum pembaruan halaman dan sistem terjadi, SMS masih dapat terkirim. Mohon abaikan SMS penagihan jika Anda telah berhasil melakukan pembayaran pinjaman.</div>
                   </div>
                 </div>
               </li>

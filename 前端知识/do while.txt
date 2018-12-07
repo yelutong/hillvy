@@ -1,0 +1,12 @@
+var x=0;
+do{
+x++;
+console.log("x:"+x);
+}while(x<5);
+
+½á¹û£º
+x: 1
+x: 2
+x: 3
+x: 4
+x: 5

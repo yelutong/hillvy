@@ -15,9 +15,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     //filename: 'bundle.js',
-    filename:'[name].js',
+    filename:'js/[name].js',
     publicPath: config.build.assetsPublicPath,
-    chunkFilename: '[name][chunkhash:5].chunk.js',
+    chunkFilename: 'js/[name][chunkhash:5].chunk.js',
   },
   debug: true,
   devtool: 'false',
@@ -43,11 +43,11 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|woff|woff2|webp|webP)$/,
-        loader: 'url-loader?limit=2000'
+        loader: 'url-loader?limit=2000&name=images/[hash:8].[name].[ext]',
       },
       {
         test: /\.(mp4|ogg|svg|ttf|TTF|eot|otf|svg|woff(2))$/,
-        loader: 'file-loader'
+        loader: 'file-loader?name=font/[hash:8].[name].[ext]'
       }
     ],
     postLoaders: [
@@ -98,7 +98,7 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({ 
         name: 'vendor', 
-        filename: 'vendor.bundle.js' 
+        filename: 'js/vendor.bundle.js' 
     }),
     //new webpack.EnvironmentPlugin(['NODE_ENV']),
     new webpack.optimize.AggressiveMergingPlugin(),//合并块

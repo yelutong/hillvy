@@ -42,7 +42,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|woff|woff2|webp|webP)$/,
-        loader: 'url-loader?limit=2000'
+        loader: 'url-loader?limit=2000',
       },
       {
         test: /\.(mp4|ogg|svg|ttf|TTF|eot|otf|svg|woff(2))$/,

@@ -1,0 +1,67 @@
+.WithdrawalTop{
+  background: url(images/wdTopImg.png) no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+.Withdrawal .am-list-item:not(:last-child) .am-list-line::after{
+  height: 0!important;
+}
+.Withdrawal .am-list-item .am-input-control .fake-input-container .fake-input{
+  font-size:1.15rem!important;
+}
+.Withdrawal .am-button-primary.am-button-disabled{
+  color: rgba(255, 255, 255, 1)!important;
+  opacity: 1!important;
+}
+.WithdrawalTop .wdTopImg{
+  visibility: hidden;
+  width: 100%;
+}
+.WithdrawalTop .topContent {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  width: 100%;
+  padding: 0 15px;
+  margin-top: 15px;
+}
+.WithdrawalTop .topTips {
+  opacity: 0.7;
+}
+.WithdrawalTop .topNum{
+  margin-top: 1.2rem;
+  font-size: 2.85rem;
+}
+.Withdrawal .am-list-item.am-input-item{
+  padding-left: 0!important;
+  height: auto!important;
+  min-height: auto!important;
+}
+.Withdrawal .listItem{
+  margin:0 15px;
+  padding: 10px 0; 
+}
+.Withdrawal .listItem p{
+  line-height: 1.8rem;
+}
+.Withdrawal .inputVal{
+  width: 100%;
+  border: none;
+}
+.Withdrawal .am-list-item .am-list-line .am-list-content,.Withdrawal .am-list-item .am-list-line .am-list-extra{
+  color: #999!important;
+  font-size: 0.93rem!important;
+}
+.Withdrawal .am-button-primary{
+  margin: 40px 25px 10px 25px!important;
+}
+.Withdrawal .am-button{
+  background: #108EE9!important;
+}
+.Withdrawal .am-button-primary.am-button-disabled{
+  background: #ccc!important; 
+}
+.Withdrawal .am-list-item .am-input-control .fake-input-container .fake-input-placeholder{
+  font-size: 14px;
+}

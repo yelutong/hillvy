@@ -1,0 +1,158 @@
+.topest{
+	font-size:1.2rem;
+	color:#fff;
+	position: relative;
+}
+.topest .main{
+	background-color: rgba(7,17,27,0.5);
+	position: relative;
+	z-index: 1;
+	padding:1.3em 1.2em 3.5em 1.2em;
+}
+.topest .inline{
+	display: inline-block;
+	vertical-align: middle;
+}
+.topest .main .left{
+	width: 20%;
+	text-align: center;
+	font-size: 0px;
+}
+.topest .main .left img{
+	border-radius: 4px;
+	width: 90%;
+}
+.topest .middle-left{
+	width: 14%;
+	font-size: 0px;
+}
+.topest .middle-left img{
+	width: 100%;
+}
+.topest .line.lineSecond{
+	margin: 0.4em 0em 0.2em 0em;
+}
+.topest .middle-right{
+	width: 70%;
+	line-height: 1.05em;
+	font-weight: bold;
+	font-size: 1.05em;
+}
+.topest .main .middle{
+	width: 60%;
+	padding-left: 2%;
+}
+.topest .main .right{
+	width: 14%;
+	vertical-align: bottom;
+	font-size: 0.85em;
+}
+.topest .main .right span{
+	background: rgba(0,0,0,0.2);
+	border-radius: 12px;
+	padding: 2% 0% 2% 10%;
+	position: relative;
+	display: block;
+	width: 70%;
+}
+.topest .main .right span:before{
+	content: "";
+    display: block;
+    height: 4px;
+    width: 4px;
+    border-width: 1px 1px 0 0;
+    border-color: #fff;
+    border-style: solid;
+    transform: rotate(45deg);
+    background-color: transparent;
+    position: absolute;
+    right: 18%;
+    top: 50%;
+    margin-top: -3px;
+}
+.topest .decrease{
+	width: 1em;
+	height: 1em;
+	background-image: url('./images/jian.png');
+	background-size: cover;
+}
+.topest .receive{
+	font-size: 0.8em;
+}
+.topest .decreaseText,.topest .decrease{
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1em;
+	font-size: 0.8em;
+}
+.topest .background{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top:0em;
+	left:0em;
+	z-index: 0;
+	-webkit-filter: blur(10px);
+    filter: blur(10px);
+}
+.topest .announcement{
+	background-color: rgba(7,17,27,0.2);
+	position: relative;
+	height: 2.2em;
+	line-height: 2.2em;
+	z-index: 2;
+	color: #ffffff;
+	font-size: 0.9em;
+	margin-top: -2.2em;
+	width: 100%;
+}
+.topest .announcement .announceText{
+	display: inline-block;
+	width: 82%;
+	margin: auto;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+}
+.topest .announceIcon{
+	width: 1.8em;
+	height: 0.981em;
+	background-image: url('./images/announcement.png');
+	background-size: cover;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 2%;
+}
+.topest .announcement:before{
+	content: "";
+    display: block;
+    height: 4px;
+    width: 4px;
+    border-width: 1px 1px 0 0;
+    border-color: #fff;
+    border-style: solid;
+    transform: rotate(45deg);
+    background-color: transparent;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    margin-top: 0px;
+}
+.nav ul{
+	padding: 0px;
+	margin: 0px;
+	border-bottom: 1px solid #f2f2f2;
+}
+.nav ul li{
+	list-style: none;
+	display: inline-block;
+	width: 33.33%;
+	text-align: center;
+	color: #999999;
+	font-size: 1.1em;
+	line-height: 3em;
+}
+.nav ul li.active{
+	color:#f01414;
+}
