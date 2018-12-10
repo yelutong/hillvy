@@ -18,7 +18,10 @@
         };
         var hasBackUrl;
         var thisPage;
-        //监听返回事件  控制无厘返回和页面的返回一致
+        /*
+        *监听返回事件  控制物理返回和页面的返回一致
+        */
+        //判断是否手机浏览器
         var userAgentInfo = navigator.userAgent;
         var Agents = ["Android", "iPhone",
         "SymbianOS", "Windows Phone",
@@ -32,7 +35,7 @@
         }
         console.log(userAgentInfo);
         console.log(flag);
-        if(!flag){ //如果是手机浏览器再监听返回按钮
+        if(App){ //如果是再app打开再监听返回按钮
           pushHistory();
           window.addEventListener("popstate", function(e) {
             if(hasBackUrl){ //如果有url，就跳转到相应url

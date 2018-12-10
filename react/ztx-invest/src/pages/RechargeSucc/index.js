@@ -33,7 +33,7 @@ class RechargeSucc extends React.Component{
       let rTitle=(
         <div className="fs-18 txt-black lh-24">
         Anda telah berhasil menambah<br/>
-        dana sebesar Rp{format.addCommas(this.state.PaymentData.amount)}<br/>
+        dana sebesar Rp{format.addDot(this.state.PaymentData.amount)}<br/>
         Ayo mulai pendanaan !
         </div>
         )

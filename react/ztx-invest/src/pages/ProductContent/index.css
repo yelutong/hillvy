@@ -25,7 +25,7 @@ body{
 	color: #2E2E2E;
 	font-size: 1.1rem;
 	position: relative;
-	padding-left: 0.8rem;
+	padding-left: 0.65rem;
 	overflow: hidden;
 	text-overflow:ellipsis;
 	white-space: nowrap;
@@ -226,10 +226,10 @@ body{
 }
 .Tender .hasChose .am-badge-text{
 	height:1rem;
-	width: 1rem;
+    min-width: 1rem;
 	line-height: 1rem;
 	top:-0.8rem;
-	right: -0.65rem;
+	left:1.6rem;
 	padding: 0px;
 	border-radius:50%;
  	-moz-border-radius: 50%; /* Firefox */

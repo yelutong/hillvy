@@ -46,7 +46,7 @@ class AbstractContent extends React.Component{
       if(this.props.location.search){
           var token=this.props.location.search?(this.props.location.search.split('token=')[1].split('&cusId=')[0]):'';
           var cusId=this.props.location.search?(this.props.location.search.split('cusId=')[1]):'';
-          console.log('token',token);
+          //console.log('token',token);
           localStorage.setItem('token',token);
           localStorage.setItem('cusId',cusId);
       }
@@ -69,7 +69,7 @@ class AbstractContent extends React.Component{
                   channel.push(item.payChannel);
                 }
               })
-              console.log('channel',channel);
+              //console.log('channel',channel);
               this.props.history.push({
                 pathname:channel.length<=1?"/Recharge":'/SelectAccount', 
                 state: {
@@ -155,14 +155,13 @@ class AbstractContent extends React.Component{
       //let url=config.protocol+'://'+config.domain+'/'+config.path+'/lend-asset/query-asset';
       queryAsset({"custId":localStorage.getItem('cusId')}).then((res) => {
         if(res.data.code == '0000'){
-          console.log('成功');
-          console.log(res.data);
+          //console.log('成功');
+          //console.log(res.data);
           let getAssets = res.data.body;
-          console.log(getAssets);
           _this.setState({ getAssets : getAssets });
         }
       }).catch((error) => {
-            console.log('res',error);
+            //console.log('res',error);
             this.setState({
                 netError:true
             })
@@ -207,7 +206,7 @@ class AbstractContent extends React.Component{
                 <span className="txt-gray">Dana Tersedia<i>
                   <img onClick={() => {this.canUseMoney('modal2',event)}} src={queIconGrey}/></i>
                 </span>
-                <span className="txt-blue">{format.addDot(this.state.getAssets.balance||0)}</span>
+                <span className="txt-blue" style={(this.state.getAssets.balance && this.state.getAssets.balance>Math.pow(10,13))?{fontSize:'1.3rem'}:{}}>{format.addDot(this.state.getAssets.balance||0)}</span>
               </div>
              
                <Item
@@ -225,7 +224,9 @@ class AbstractContent extends React.Component{
               >
                 Tambah Dana
               </Item>
+              <p className="pd15 mt10 fs-12 txt-gray pdb15">*Nantikan perkembangan lebih lanjut untuk melihat Histori Pendanaan dan Histori Transaksi</p>
             </div>
+            
           }
         </div>
         )

@@ -78,7 +78,8 @@
 	margin-top: 0rem!important;
 }
 .Recharge .RechargeAmount .am-input-item{
-	height: 2rem;
+    height: 3rem;
+    margin-top: -0.3rem;
 }
 .Recharge .am-list-brief .am-list-item .am-list-line .am-list-arrow{
 	width: 0px;
@@ -189,9 +190,10 @@ input[type="number"]{
   -moz-appearance: textfield;
 }
 .Recharge .am-list-item .am-input-clear{
-    width: 16px;
-    height: 16px;
-    background-size: 16px auto;
+    width: 14px;
+    height: 14px;
+    background-size: 14px auto;
+    margin-top: -13px;
 }
 .Recharge .RechargeAmount .am-list-body .am-list-line{
 	margin-top: 0rem;
@@ -206,5 +208,14 @@ input[type="number"]{
 	color: #333333;
 }
 .Recharge .am-list-item .am-input-control .fake-input-container{
-	line-height: 20px;
+	line-height: 25px;
+	height: 25px;
+	margin-top: -10px;
+}
+.Recharge table, table tr th, table tr td{
+  border:none!important;
+}
+.am-action-sheet-message,.am-action-sheet-button-list-item{
+	border-bottom:0;
+	border-bottom: 1px solid #f6f6f6;
 }

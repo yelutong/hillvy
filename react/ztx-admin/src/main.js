@@ -80,6 +80,7 @@ Vue.use(VueRouter)
 //NProgress.configure({ showSpinner: false });
 
 const router = new VueRouter({
+  mode: 'history', //去掉路由#
   routes
 })
 
@@ -93,7 +94,7 @@ router.beforeEach((to, from, next) => {
   /*
   *如果想要直接取本地的菜单显示，则把改段代码注释掉
   */
-  if(user){
+ /* if(user){
     let localMenu = routes.filter((item) => item.children); //获取本地路由菜单
     let loginMenu = user.menu.filter((item) => item.perms == 'admin'); //获取权限系统筛选出admin的菜单菜单
     let parentMenu = loginMenu.filter((item) => item.parentId == 0);//获取父菜单
@@ -117,7 +118,7 @@ router.beforeEach((to, from, next) => {
       })
     })
   }//如果想要直接取本地的菜单显示，则以上这段代码注释掉
-  
+  */
 
 
   if (!user && to.path != '/login') {

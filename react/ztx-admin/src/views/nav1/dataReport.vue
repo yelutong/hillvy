@@ -196,11 +196,13 @@
 				//NProgress.start();
 				getReportData(para).then((res) => {
 					console.log(res);
-					this.total = res.data.body.totalElements;
-					this.list = res.data.body.content;
-					this.listLoading = false;
+					//this.total = res.data.body.totalElements;
+					//this.list = res.data.body.content;
+					//this.listLoading = false;
 					//NProgress.done();
-				});
+				}).catch(function (error) {
+			    console.log('hahah');
+			  });
 			},
 			/*
 			清空

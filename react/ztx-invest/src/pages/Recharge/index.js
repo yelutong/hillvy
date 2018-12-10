@@ -42,8 +42,8 @@ class Recharge extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.state.payWay,this.state.accountValue);
-        console.log('this.state.choosePayWay',this.state.choosePayWay);
+        //console.log(this.state.payWay,this.state.accountValue);
+        //console.log('this.state.choosePayWay',this.state.choosePayWay);
         var newPayway = new Array();
         this.state.payWay.map((item) => {
           newPayway.push(Object.assign(item,{
@@ -62,6 +62,17 @@ class Recharge extends Component {
     }
 
     /*
+    *@description 修改金额
+    */
+    changeAmount = (value) => {
+      var amount = value.replace(/\D/g,'');
+      console.log(amount);
+      this.setState({
+        amount:amount
+      })
+    }
+
+    /*
     *@description 确认充值金额
     */
     submitRecharge = () => {
@@ -69,40 +80,28 @@ class Recharge extends Component {
           payChannel: this.state.payWay[0].payChannel,
           payWay: this.state.payWay[0].payWay
         };
-        this.props.form.validateFields((error, values) => {
-          if (!error) {
-            console.log('ok', values);
-            if(values.amount<this.state.payWay[0].rechargeSingleMin){ //校验输入金额是否大于最低限制金额
-              if(App){
-                  App.showToast('Nominal yang dimasukkan salah Silahkan coba lagi');
-              }else{
-                  Toast.info('Nominal yang dimasukkan salah Silahkan coba lagi');
-              }
-              return false;
-            }
-            recharge(Object.assign(data,{
-                amount:values.amount
-            })).then((res) => {
-                if(res.data.code == '0000'){
-                    this.props.history.push({
-                        pathname:'PaymentCode', 
-                        state: {
-                          PaymentData:res.data.body,
-                          PaymentChannel:data.payChannel
-                        }
-                    });
-                }
-            })
-          } else {
-            if(App){
-                App.showToast('Nominal yang dimasukkan salah Silahkan coba lagi');
-            }else{
-                Toast.info('Nominal yang dimasukkan salah Silahkan coba lagi');
-            }
-            return false;
-            console.log('error', error, values);
+        if(this.state.amount<this.state.payWay[0].rechargeSingleMin){ //校验输入金额是否大于最低限制金额
+          if(App){
+              App.showToast('Nominal yang dimasukkan salah Silahkan coba lagi');
+          }else{
+              Toast.info('Nominal yang dimasukkan salah Silahkan coba lagi');
           }
-        });
+          return false;
+        }
+        recharge(Object.assign(data,{
+            amount:this.state.amount.replace(',','')
+        })).then((res) => {
+            if(res.data.code == '0000'){
+                this.props.history.push({
+                    pathname:'PaymentCode', 
+                    state: {
+                      PaymentData:res.data.body,
+                      PaymentChannel:data.payChannel
+                    }
+                });
+            }
+        })
+
     }
 
     /*
@@ -203,21 +202,12 @@ class Recharge extends Component {
                           <Brief>
                             <InputItem
                                 type={'money'}
-                                maxLength={16}
+                                maxLength={21}
                                 clear
+                                value={format.addDot(this.state.amount) || ''}
+                                onChange={(n) => {this.changeAmount(n)}}
                                 moneyKeyboardAlign="left"
                                 moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-                                {...getFieldProps('amount',{
-                                  normalize: (v, prev) => {
-                                    if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                                      if (v === '.') {
-                                        return '0.';
-                                      }
-                                      return prev;
-                                    }
-                                    return v;
-                                  },
-                                })}
                                 placeholder={"Mulai dari Rp"+((this.state.payWay.length>0 && this.state.payWay[0].rechargeSingleMin)?(format.addDot(this.state.payWay[0].rechargeSingleMin)):'')}
                               />
                           </Brief>

@@ -11,7 +11,7 @@ class AssetsReport extends Component {
       super(props); 
       this.state = {
       }
-      console.log(this.props.location.state.assetsData)
+      //console.log(this.props.location.state.assetsData)
     }
 
     componentDidMount = () => {
@@ -23,13 +23,13 @@ class AssetsReport extends Component {
             <Nav />
             <div className="assetsTop bg-white">
             <div className="atop1 justify-content-space-between vux-1px-b">
-               <div>
+               <div className="flex1 vux-1px-r assetsBottom">
                <p className="fs-13 txt-gray lh-28">Total Nilai Akun</p>
                <p className={this.props.location.state.assetsData.totalAmt&&String(this.props.location.state.assetsData.totalAmt).length>9?"fs-18 lh-28":"fs-25 lh-28"}>{format.addDot(this.props.location.state.assetsData.totalAmt||0)}</p>
                </div>
-               <div>
-               <p className="fs-13 txt-gray lh-28 txt-right">Dana Tersedia</p>
-               <p className={this.props.location.state.assetsData.balance&&String(this.props.location.state.assetsData.balance).length>9?"fs-18 txt-blue lh-28 txt-right":"fs-25 txt-blue lh-28 txt-right"}>{format.addDot(this.props.location.state.assetsData.balance||0)}</p>
+               <div className="flex1 pdl15 assetsBottom">
+               <p className="fs-13 txt-gray lh-28">Dana Tersedia</p>
+               <p className={this.props.location.state.assetsData.balance&&String(this.props.location.state.assetsData.balance).length>9?"fs-18 txt-blue lh-28":"fs-25 txt-blue lh-28"}>{format.addDot(this.props.location.state.assetsData.balance||0)}</p>
                </div>
             </div>
             <div className="atop2 justify-content-start">

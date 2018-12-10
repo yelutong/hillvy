@@ -169,7 +169,7 @@ class PaymentCode extends Component {
                         </div>
                         <div className="data">
                             <List className="list">
-                                <Item extra={'Rp'+format.addCommas(this.state.PaymentData.amount)}>Nominal</Item>
+                                <Item extra={'Rp'+format.addDot(this.state.PaymentData.amount)}>Nominal</Item>
                                 <Item extra={this.state.PaymentData.paymentWayName}>Metode</Item>
                                 {this.state.PaymentChannel == 'BNI'?<Item extra={this.state.PaymentData.lenderName}>Nama Rekening</Item>:''}
                             </List>

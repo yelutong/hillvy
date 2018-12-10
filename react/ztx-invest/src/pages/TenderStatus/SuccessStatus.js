@@ -33,16 +33,16 @@ class FailStatus extends Component {
                 <div className="head">
                     <img src={statusIcon} />
                     <div className="statusText">Pendanaan Berhasil</div>
-                    <div className="topTips">Total Pendanaan : Rp{format.addCommas(this.state.TenderResult.sucAmount+this.state.TenderResult.failAmount)}</div>
+                    <div className="topTips">Total Pendanaan : Rp{format.addDot(this.state.TenderResult.sucAmount+this.state.TenderResult.failAmount)}</div>
                 </div>
                 <div className="statusData">
                     <List renderHeader={() => 'Berhasil'} className="listTitleSuccess">
-                        <Item extra={format.addCommas(this.state.TenderResult.sucAmount)}>Total Pendanaan</Item>
+                        <Item extra={format.addDot(this.state.TenderResult.sucAmount)}>Total Pendanaan</Item>
                         <Item extra={this.state.TenderResult.sucCount}>Jumlah Pinjaman</Item>
-                        <Item extra={format.addCommas(this.state.TenderResult.antAmount)}>Estimasi Bunga</Item>
+                        <Item extra={format.addDot(this.state.TenderResult.antAmount)}>Estimasi Bunga</Item>
                     </List>
                     <List renderHeader={() => 'Gagal'} className="listTitlefail">
-                        <Item extra={format.addCommas(this.state.TenderResult.failAmount)}>Total Pendanaan</Item>
+                        <Item extra={format.addDot(this.state.TenderResult.failAmount)}>Total Pendanaan</Item>
                         <Item extra={this.state.TenderResult.failCount}>Jumlah Pinjaman</Item>
                     </List>
                 </div>

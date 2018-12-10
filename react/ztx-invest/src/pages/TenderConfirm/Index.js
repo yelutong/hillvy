@@ -254,8 +254,8 @@ class TenderConfirm extends Component {
                   footer={[{ text: 'Tidak', onPress: () => {this.onClose('modal1')}},{ text: 'Ok', onPress: () => {this.onClickAlert()}}]}
                   title="">
                 <div className="alert">
-                    <div>Total Pendanaan Rp{format.addCommas(this.state.amount)}</div>
-                    <div>Dana Tersedia Rp{format.addCommas(this.state.balance)}</div>
+                    <div>Total Pendanaan Rp{format.addDot(this.state.amount)}</div>
+                    <div>Dana Tersedia Rp{format.addDot(this.state.balance)}</div>
                     <div style={{'marginTop':'0.5rem'}}>Total Pendanaan lebih besar dari Dana Tersedia Anda saat ini. Mohon melakukan penambahan dana terlebih dahulu.</div>
                   </div>
                 </Modal>
@@ -279,7 +279,7 @@ class TenderConfirm extends Component {
                         <Item
                           thumb={balance}
                           arrow="horizontal"
-                          extra={'Rp'+format.addCommas(this.state.balance)} 
+                          extra={'Rp'+format.addDot(this.state.balance)} 
                           onClick={this.reChargeStatus.bind(this)}
                         >Dana Tersedia</Item>
                     </List>:
@@ -296,7 +296,7 @@ class TenderConfirm extends Component {
                                         </div>
                                         <div className="middle">
                                             <p className="bankName">{item.channel=='DOKU'?'Mandari':item.channel}</p>
-                                            <p className="amt">{'Rp'+(format.addCommas(item.balance))}</p>
+                                            <p className="amt">{'Rp'+(format.addDot(item.balance))}</p>
                                         </div>
                                         <div className="right">
                                             <img src={this.state.bank==item.channel?checked:notChecked} />
@@ -332,13 +332,14 @@ class TenderConfirm extends Component {
                     </div>
                     }
                     <List renderHeader={() => (<span onClick={() => { this.onShow('modal2'); }}>Ringkasan Keranjang <img className="question" src={question}/></span>)} className="listTitleSuccess">
-                        <Item extra={format.addCommas(this.state.amount)}>Total Pendanaan</Item>
+                        <Item extra={format.addDot(this.state.amount)}>Total Pendanaan</Item>
                         <Item extra={this.state.chooseNum}>Jumlah Pinjaman</Item>
-                        <Item extra={format.addCommas(this.state.income)}>Estimasi Bunga</Item>
+                        <Item extra={format.addDot(this.state.income)}>Estimasi Bunga</Item>
                     </List>
                     <div className="tips">
                         <p>*Pengembalian Aktual dihitung pada saat pembayaran dilakukan oleh peminjam </p>
                         <p>*Pendanaan tidak valid dapat dikarenakan ada beberapa Pendana memilih pinjaman yang sama. Hasil Pendanaan berdasarkan kepada hasil setelah pinjaman dicairkan.</p>
+                        <p style={{'marginTop':'1rem'}}>Tanggal dalam perjanjian akan disesuaikan setelah pinjaman berhasil dicairkan ke Peminjam」</p>
                     </div>
                     <div className="agreement">
                         <Flex className="agreementMain">
@@ -350,7 +351,7 @@ class TenderConfirm extends Component {
                         </Flex>
                     </div>
                     <div className="confirmBottom flexBox">
-                        <div className="left">Rp{format.addCommas(this.state.amount)}</div>
+                        <div className="left">Rp{format.addDot(this.state.amount)}</div>
                         <div className="right" onClick={this.confirmTender.bind(this)} style={(this.state.bank && this.state.aggrement)?{}:{'backgroundColor':'#CCCCCC'}}>Konfirmasi Pendanaan</div>
                     </div>
                 </div>}

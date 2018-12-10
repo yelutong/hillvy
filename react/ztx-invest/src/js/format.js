@@ -86,7 +86,7 @@ const DateApi = {
               }
               count++;
           }
-          //str = newStr + ".00"; //自动补小数点后两位 '.00'
+          str = newStr + ".00"; //自动补小数点后两位 '.00'
           str = newStr;
           return str;
       }

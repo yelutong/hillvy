@@ -32,7 +32,7 @@ class ContractIframe extends Component {
             <div>
                 <Nav />
                 <div className="contractIframe" style={{'marginTop':'50px'}}>
-                    <iframe frameBorder="0" height={this.state.Height} scrolling="auto" width="100%" src={httpUrl+"/#/HowToRepay"}></iframe>:
+                    <iframe frameBorder="0" height={this.state.Height} scrolling="auto" width="100%" src={httpUrl+"/#/HowToRepay?type=P1"}></iframe>:
                 </div>
             </div>
         )

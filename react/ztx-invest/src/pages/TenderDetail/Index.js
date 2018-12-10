@@ -30,7 +30,7 @@ class TenderDetail extends Component {
                 <div className="TenderDetail vux-1px-tb">
                     <div className="TenderDetailTop flexBox">
                         <div className="flexItem">
-                            <p className="weight">Rp{format.addCommas(this.state.detailItem.amount)}</p>
+                            <p className="weight">Rp{format.addDot(this.state.detailItem.amount)}</p>
                             <p className="thin">Jumlah pinjaman</p>
                         </div>
                         <div className="flexItem">

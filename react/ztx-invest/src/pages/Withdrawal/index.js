@@ -32,7 +32,11 @@ class Withdrawal extends Component {
           withdrawSingleMax:25006500,
           withdrawLimit:"Rp16.500 ≤ Nominal Penarikan ≤ Rp25.006.500"
         }
-      console.log(this.props.location.state.withdrawalData);
+
+      console.log(this.props.location.state);
+      if(!this.props.location.state.withdrawalData){
+        this.props.history.push('/CommonTabs');
+      }
       this.getWithdrawLimit();
     }
     componentWillUnmount(){
@@ -74,10 +78,10 @@ class Withdrawal extends Component {
               console.log(error);  
             });
           }else{
-             document.getElementsByClassName('fake-input').innerHTML='';
-             this.setState({ inputVal: 0 });
-             this.setState({ poundage : 0 });
-             this.setState({ receive : 0 });
+             //document.getElementsByClassName('fake-input').innerHTML='';
+             //this.setState({ inputVal: 0 });
+             //this.setState({ poundage : 0 });
+             //this.setState({ receive : 0 });
              if(App){
                 App.showToast('Dana Penarikan melebihi Dana Tersedia akun Anda Silahkan coba lagi');
               }else{
@@ -206,7 +210,7 @@ class Withdrawal extends Component {
           <InputItem
             className="fs-16 inputVal" 
             type={type}
-            value={this.state.inputVal||''}
+            value={this.state.inputVal?format.addDot(this.state.inputVal):''}
             placeholder={this.state.withdrawLimit}
             clear
             onChange={(n)=>{console.log(n);this.handleChange(n)}}

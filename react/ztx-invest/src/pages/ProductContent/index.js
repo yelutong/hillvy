@@ -267,7 +267,7 @@ class ProductContent extends React.Component{
                                         </div>
                                         <div className="right vux-1px-l">
                                             <p className="term">Tenor {item.term+(item.termType=='DAY'?'Hari':'bulan')}</p>
-                                            <p className="amount">Nominal Rp{format.addCommas(item.amount)}</p>
+                                            <p className="amount">Nominal Rp{format.addDot(item.amount)}</p>
                                         </div>
                                     </div>
                                     {/*根据choose判断是否已选中*/}
@@ -307,8 +307,8 @@ class ProductContent extends React.Component{
                 {this.state.tenderList&&this.state.tenderList.length>0?
                     this.state.chooseNum == 0 ?<div className="TenderBottom">
                     <div className="flexBox bottomNum">
-                        <div className="left">Total Pendanaan: <label>{format.addCommas(this.state.amount)}</label></div>
-                        <div className="right">Estimasi Bunga: <label>{format.addCommas(this.state.income)}</label></div>
+                        <div className="left">Total Pendanaan: <label>{format.addDot(this.state.amount)}</label></div>
+                        <div className="right">Estimasi Bunga: <label>{format.addDot(this.state.income)}</label></div>
                     </div>
                     <div className="flexBox bottomCar">
                         <div className="left" onClick={this.allTender.bind(this,'all')}>Danai Penuh</div>
@@ -320,8 +320,8 @@ class ProductContent extends React.Component{
                 </div>:
                 <div className="TenderBottom">
                     <div className="flexBox bottomNum">
-                        <div className="left">Total Pendanaan: <label>{format.addCommas(this.state.amount)}</label></div>
-                        <div className="right">Estimasi Bunga: <label>{format.addCommas(this.state.income)}</label></div>
+                        <div className="left">Total Pendanaan: <label>{format.addDot(this.state.amount)}</label></div>
+                        <div className="right">Estimasi Bunga: <label>{format.addDot(this.state.income)}</label></div>
                     </div>
                     <div className="flexBox bottomCar hasChose">
                         {this.state.notChoose!=0?

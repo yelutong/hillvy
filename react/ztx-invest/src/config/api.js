@@ -17,8 +17,8 @@ axios.interceptors.request.use(function (config) {
     }
     // 在发送请求之前做些什么
     const token = localStorage.getItem('token');
-    //const token='028d17962c4742ebaaa42d81fc40e494';
-    //const token = 'bfc6a5c65e0e4be18d930144b3fb79b5';//超级lender
+    //const token='bd8b1c1c3c0145a0b46f6d7b49d05db8';
+    //const token = '2fb96a480bca47eab93298a9dbf318e7';
     config.headers['X-Sso-Token'] = token;
     return config;
   }, function (error) {

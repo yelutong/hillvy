@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Router from 'vue-router'
 import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
@@ -16,6 +17,7 @@ import Home from './views/Home.vue'
 
 //组件拆分 按需加载
 const dataReport = () => import('./views/nav1/dataReport.vue')
+const apkList = () => import('./views/nav1/apkList.vue')
 const downloadList = () => import('./views/nav1/downloadList.vue')
 const userAdvice = () => import('./views/nav1/userAdvice.vue')
 const smsEdit = () => import('./views/nav2/smsEdit.vue')
@@ -24,10 +26,11 @@ const announcement = () => import('./views/nav2/announcement.vue')
 const paymentChannel = () => import('./views/nav2/paymentChannel.vue')
 const appError = () => import('./views/nav3/appError.vue')
 const clearVerificationCode = () => import('./views/nav4/clearVerificationCode.vue')
+const cityManagement = () => import('./views/nav4/cityManagement.vue')
 const modifyPhoneNum = () => import('./views/nav4/modifyPhoneNum.vue')
 const strategyPackage = () => import('./views/nav3/strategyPackage.vue')
 
-let routes = [
+const routes = [
     {
         path: '/login',
         component: Login,
@@ -49,6 +52,7 @@ let routes = [
         children: [
             { path: '/dataReport', component: dataReport, name: '数据报表' },
             { path: '/downloadList', component: downloadList, name: '下载注册' },
+            { path: '/apkList', component: apkList, name: 'apk版本管理' },
             { path: '/userAdvice', component: userAdvice, name: '用户意见查询' },
         ]
     },
@@ -74,6 +78,7 @@ let routes = [
         children: [
             { path: '/ClearVerificationCode', component: clearVerificationCode, name: '清空验证码次数' },
             { path: '/ModifyPhoneNum', component: modifyPhoneNum, name: '修改手机号' },
+            { path: '/cityManagement', component: cityManagement, name: '城市管理' },
         ]
     },
     {
@@ -103,4 +108,4 @@ let routes = [
     }
 ];
 
-export default routes;
+export default routes

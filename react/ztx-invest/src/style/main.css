@@ -574,6 +574,9 @@ i {
   html:not([data-scale]) .am-list-body::after{
     background-color: #fff!important;
   }
+  html:not([data-scale]) .am-action-sheet-button-list-item::before{
+    background-color: #ffffff!important;
+  }
 }
 
 /* 统一ant-mobile变量 */
@@ -645,4 +648,9 @@ i {
 }
 .am-number-keyboard-wrapper table tr .am-number-keyboard-item.keyboard-confirm.am-number-keyboard-item-disabled{
   background-color: #108ee9!important;
+}
+.am-list-item .am-input-clear{
+  width: 14px!important;
+  height: 14px!important;
+  background-size: 14px auto!important;
 }

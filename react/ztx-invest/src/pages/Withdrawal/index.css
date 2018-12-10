@@ -64,4 +64,8 @@
 }
 .Withdrawal .am-list-item .am-input-control .fake-input-container .fake-input-placeholder{
   font-size: 14px;
+  width: 110%;
+}
+.Withdrawal table, table tr th, table tr td{
+  border:none!important;
 }
