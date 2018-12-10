@@ -1,0 +1,9 @@
+.Index .am-tab-bar-bar{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.Index .am-tab-bar-bar .am-tab-bar-tab-title{
+  font-size: 11px!important;
+}

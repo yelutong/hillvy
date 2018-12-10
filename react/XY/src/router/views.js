@@ -7,7 +7,7 @@
 */
 const views = [
 	//投标状态页
-	{pathName:'/TenderStatus',title:'Status Pendanaan',isShow:true,titleText:true,backUrl:'/CommonTabs'},
+	{pathName:'/',title:'商城首页',isShow:true,titleText:true,backUrl:'/'},
 ];
 
 /*

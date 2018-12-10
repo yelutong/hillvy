@@ -8,17 +8,13 @@ class Loading extends Component {
     state = {
         NewError:false
     }
-	componentDidMount = () => {
+  componentDidMount = () => {
         if(navigator.onLine){
           //alert('联网');
             this.setState({
                 NewError:false
             })
-            if(App){
-                App.showLoading(true);
-            }else{
-                Toast.loading('');
-            }
+            Toast.loading('Loading...',1);
         }else{
           //alert('未联网');
           this.setState({
@@ -28,11 +24,7 @@ class Loading extends Component {
     }
 
     componentWillUnmount() {
-        if(App){
-	        App.showLoading(false);
-	    }else{
-	        Toast.hide();
-	    }
+      Toast.hide();
     }
 
      /*
@@ -47,12 +39,7 @@ class Loading extends Component {
             this.props.history.goBack();
           }
         }else{
-          //alert('未联网');
-          if(App){
-              App.showToast('Koneksi bermasalah. Silahkan periksa kembali koneksi Anda');
-          }else{
-              Toast.info('Koneksi bermasalah. Silahkan periksa kembali koneksi Anda');
-          }
+          Toast.info('nda');
         }
       }
 
