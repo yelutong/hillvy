@@ -26,6 +26,16 @@ class CommonTabs extends Component {
             tabHeight:(document.documentElement.clientHeight-44)+'px'
         })
     }
+
+    /*
+    *@description 捕获页面切换tab
+    */
+    changeIndex = (tab, index) => {
+      console.log(tab, index);
+      this.setState({
+        tab:tab
+      })
+    }
     
     render() {
         return (
@@ -38,6 +48,7 @@ class CommonTabs extends Component {
               swipeable={true}
               tabBarActiveTextColor="#333"
               tabBarInactiveTextColor="#999"
+              onChange={(tab, index) => { this.changeIndex(index, tab) }}
               onTabClick={(tab, index) => { this.setState({ tabIndex : index });localStorage.setItem("tabIndex",index);}}
               >
               <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'start', minHeight: this.state.tabHeight, backgroundColor: '#f5f5f5' }}>

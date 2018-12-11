@@ -339,7 +339,7 @@ class TenderConfirm extends Component {
                     <div className="tips">
                         <p>*Pengembalian Aktual dihitung pada saat pembayaran dilakukan oleh peminjam </p>
                         <p>*Pendanaan tidak valid dapat dikarenakan ada beberapa Pendana memilih pinjaman yang sama. Hasil Pendanaan berdasarkan kepada hasil setelah pinjaman dicairkan.</p>
-                        <p style={{'marginTop':'1rem'}}>Tanggal dalam perjanjian akan disesuaikan setelah pinjaman berhasil dicairkan ke Peminjam」</p>
+                        <p>*Tanggal dalam perjanjian akan disesuaikan setelah pinjaman berhasil dicairkan ke Peminjam</p>
                     </div>
                     <div className="agreement">
                         <Flex className="agreementMain">

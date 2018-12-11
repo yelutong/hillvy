@@ -654,3 +654,7 @@ i {
   height: 14px!important;
   background-size: 14px auto!important;
 }
+.am-list-item .am-input-clear{
+  background-image:url('../images/close.png')!important;
+  background-position:0px 0px!important;
+}

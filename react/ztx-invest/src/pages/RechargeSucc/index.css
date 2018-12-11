@@ -15,3 +15,7 @@
   width: 100%;
   left: 0;
 }
+.RechargeSucc .am-result .am-result-title, .am-result .am-result-message{
+	font-size: 1.2rem;
+	line-height: 1.6rem;
+}

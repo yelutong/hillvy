@@ -320,8 +320,12 @@ class ProductContent extends React.Component{
                 </div>:
                 <div className="TenderBottom">
                     <div className="flexBox bottomNum">
-                        <div className="left">Total Pendanaan: <label>{format.addDot(this.state.amount)}</label></div>
-                        <div className="right">Estimasi Bunga: <label>{format.addDot(this.state.income)}</label></div>
+                        <div className="left">
+                            <div>Total Pendanaan: <label>{format.addDot(this.state.amount)}</label></div>
+                        </div>
+                        <div className="right">
+                            <div>Estimasi Bunga: <label>{format.addDot(this.state.income)}</label></div>
+                        </div>
                     </div>
                     <div className="flexBox bottomCar hasChose">
                         {this.state.notChoose!=0?

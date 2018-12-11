@@ -43,7 +43,7 @@ const views = [
   //合同页-嵌入iframe
   {pathName:'/ContractIframe',title:'Perjanjian',isShow:true,titleText:true,backUrl:''},
   //如何还款-嵌入iframe
-  {pathName:'/HowToRepayIframe',title:'Tata Cara Pembayaran',isShow:true,titleText:true,backUrl:''},
+  {pathName:'/HowToRepayIframe',title:'Tata Cara Penambahan Dana',isShow:true,titleText:true,backUrl:''},
 ];
 
 /*

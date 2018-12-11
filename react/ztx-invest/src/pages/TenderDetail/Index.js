@@ -43,13 +43,13 @@ class TenderDetail extends Component {
                         </div>
                     </div>
                     <List renderHeader={() => 'Informasi Peminjam'} className="listTitleSuccess">
-                        <Item extra={'Terverifikasi'}>Nama-nama</Item>
-                        <Item extra={'Terverifikasi'}>Kartu ID</Item>
-                        <Item extra={this.state.detailItem.phone}>Nomor telepon</Item>
-                        <Item extra={this.state.detailItem.gender=='0'?'Laki-laki':'Perempuan'}>Seks</Item>
-                        <Item extra={this.state.detailItem.age}>Umur</Item>
-                        <Item extra={'Terverifikasi'}>Nama organisasi</Item>
-                        <Item extra={'Terverifikasi'}>Alamat unit</Item>
+                        <Item extra={'Terverifikasi'}>Nama</Item>
+                        <Item extra={'Terverifikasi'}>Identitas Diri</Item>
+                        <Item extra={this.state.detailItem.phone}>Nomor Telepon</Item>
+                        <Item extra={this.state.detailItem.gender=='0'?'Laki-laki':'Perempuan'}>Jenis Kelamin</Item>
+                        <Item extra={this.state.detailItem.age}>Usia</Item>
+                        <Item extra={'Terverifikasi'}>Tempat Bekerja</Item>
+                        <Item extra={'Terverifikasi'}>Alamat</Item>
                         <Item extra={this.state.detailItem.bankName}>Nama Bank</Item>
                     </List>
                 </div>

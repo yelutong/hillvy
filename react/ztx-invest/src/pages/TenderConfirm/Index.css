@@ -40,7 +40,7 @@
 .TenderDetail .am-list-header span .question{
 	position: absolute;
 	width: 1rem;
-	top:0.5rem;
+	top:0.3rem;
 	right: -1.2rem;
 }
 .TenderDetail .am-list-header:before{
@@ -277,4 +277,7 @@
 	color: #108EE9;
 	font-size: 1.15rem;
 	z-index: 99;
+}
+.am-modal-button-group-h .am-modal-button{
+	font-size: 1.1rem;
 }

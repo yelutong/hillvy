@@ -207,6 +207,7 @@ class Recharge extends Component {
                                 value={format.addDot(this.state.amount) || ''}
                                 onChange={(n) => {this.changeAmount(n)}}
                                 moneyKeyboardAlign="left"
+                                locale={{confirmLabel :'OK' }}
                                 moneyKeyboardWrapProps={moneyKeyboardWrapProps}
                                 placeholder={"Mulai dari Rp"+((this.state.payWay.length>0 && this.state.payWay[0].rechargeSingleMin)?(format.addDot(this.state.payWay[0].rechargeSingleMin)):'')}
                               />

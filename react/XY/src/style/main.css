@@ -576,7 +576,7 @@ i {
   }
 }
 
-/* 统一ant-mobile变量 */
+/* 旧统一ant-mobile变量 */
 .am-modal-button-group-v .am-modal-button{
   color: #FFB03B!important;
 }
@@ -646,3 +646,13 @@ i {
 .am-number-keyboard-wrapper table tr .am-number-keyboard-item.keyboard-confirm.am-number-keyboard-item-disabled{
   background-color: #108ee9!important;
 }
+
+
+/*新ant复写样式*/
+.am-tabs-default-bar-tab-active{
+  color: #FF4F00!important;
+}
+.am-tabs-default-bar-underline{
+  border: 1px #FF4F00 solid!important;
+}
+

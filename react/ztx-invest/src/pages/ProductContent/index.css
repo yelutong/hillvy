@@ -194,20 +194,16 @@ body{
 }
 .Tender .bottomNum{
 	color: #999999;
-	font-size: 0.9rem;
+	font-size: 0.85rem;
 	text-align: center;
 	position: fixed;
 	bottom: 3.2rem;
 	left: 0px;
 	width: 100%;
-	padding: 0% 4%;
-	height: 2.7rem;
-	line-height: 2.7rem;
+	min-height: 2.7rem;
+	line-height: 1rem;
 	z-index: 999;
 	background-color: #FEFCEB;
-	white-space: nowrap;
-	text-overflow:ellipsis;
-	overflow: hidden;
 }
 .Tender .bottomNum .left,.bottomNum .right{
 	flex:1;
@@ -217,6 +213,9 @@ body{
     -ms-flex: 1;
     flex:1;
     text-align: left;
+    padding-left: 4%;
+    display: flex;
+    align-items:Center;
 }
 .Tender .bottomNum label{
 	color: #F96A0E!important;
