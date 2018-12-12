@@ -1,0 +1,27 @@
+bd-line($po, $hei, $col) {
+    fixed() {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: $hei;
+        background-color: $col;
+        transform: scaleY(0.5);
+        -webkit-transform: scaleY(0.5);
+    }
+
+    if ($po == 'top') {
+        &:before {
+            top: 0;
+            fixed();
+        }
+    }
+
+    if ($po == 'bottom') {
+        &:after {
+            bottom: 0;
+            fixed();
+        }
+    }
+}

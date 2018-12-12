@@ -1,0 +1,80 @@
+.page-fans {
+
+  .lay-total {
+    display: flex;
+    align-items: center;
+    height: 62.5px;
+    margin-bottom: 10px;
+
+    .item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      .tag {
+        margin-bottom: 4px;
+        font-size: 14px;
+        color: #828282;
+      }
+
+      .num {
+        font-size: 12px;
+        color: #373737;
+      }
+    }
+
+    .line {
+      width: 1.5px;
+      height: 85%;
+      background-color: #184074;
+    }
+  }
+
+  .lay-detail {
+    .row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 44px;
+      padding: 0 10px;
+      text-align: center;
+    }
+
+    .hd {
+      bd-line(bottom, 1px, #eaeaea);
+
+      .tag {
+        color: #666;
+      }
+    }
+
+    .bd {
+      bd-line(bottom, 1px, #eaeaea);
+
+      &:last-child:after {
+        display: none;
+      }
+
+      .tag {
+        color: #2b2b2b;
+      }
+    }
+
+    .tag {
+      flex: 1;
+    }
+
+    .tag-1, .tag-3 {
+      width: 20%;
+    }
+
+    .i-lv {
+      width: 14px;
+      height: 13px;
+      margin: 0 2.5px;
+      background-image: url('../../assets/images/lv.png');
+    }
+  }
+}

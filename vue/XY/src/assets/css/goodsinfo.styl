@@ -1,0 +1,77 @@
+.page-goodsinfo {
+  padding: 40px 0 57.5px;
+
+  .tab-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    .item {
+      flex: 1;
+      font-size: 14px;
+      color: #626262;
+      line-height: 40px;
+
+      &.active {
+        color: #FF4F00;
+      }
+    }
+  }
+
+  .tab-con {
+    padding: 0 10px;
+  }
+
+  .goods-intro {
+    .img {
+      margin-bottom: 7.5px;
+    }
+  }
+
+  .goods-param {
+    .item {
+      display: flex;
+      text-align: left;
+      border: solid #eaeaea;
+      border-width: 1px 1px 0;
+
+      &:last-child {
+        border-bottom-width: 1px;
+      }
+
+      .name, .value {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 9px;
+        padding-bottom: 9px;
+        font-size: 13px;
+        color: #818487;
+      }
+
+      .name {
+        width: 95px;
+        padding-left: 15px;
+      }
+
+      .value {
+        flex: 1;
+        padding-left: 7.5px;
+        border-left: 1px solid #eaeaea;
+      }
+    }
+  }
+
+  .goods-serve {
+    .intro {
+      padding: 2.5px 0;
+      font-size: 13px;
+      color: #818487;
+    }
+  }
+}

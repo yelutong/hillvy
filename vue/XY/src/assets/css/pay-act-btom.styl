@@ -1,0 +1,75 @@
+.pay-act-btom {
+  border-top: 1px solid rgba(234, 234, 234, 0.5);
+  background-color: #fff;
+
+  .service {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+
+    .text {
+      margin-top: 3px;
+      font-size: 12px;
+    }
+
+    .i-call {
+      width: 21.5px;
+      height: 18.5px;
+      background-image: url('../../assets/images/call.png');
+    }
+
+    .i-colet {
+      width: 21.5px;
+      height: 18.5px;
+      background-image: url('../../assets/images/collect.png');
+
+      &.active {
+        background-image: url('../../assets/images/collected.png');
+      }
+    }
+  }
+
+  .price-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+
+    .total {
+      font-size: 18px;
+      color: #FF4F00;
+    }
+
+    .tip {
+      font-size: 13px;
+      color: #878787;
+    }
+  }
+
+  .btn-submit {
+    width: 150px;
+  }
+
+  .cancel {
+    width: 75px;
+    text-align: center;
+    background: #dbdddf;
+  }
+
+  .has-pay {
+    line-height: 50px;
+    width: 50%;
+    text-align: center;
+  }
+}
