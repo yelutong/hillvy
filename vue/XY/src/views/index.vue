@@ -86,6 +86,7 @@ export default {
   }
   .vux-slider{
     height:100%;
+    z-index:9;
   }
   .vux-slider > .vux-swiper{
     overflow-y: scroll;

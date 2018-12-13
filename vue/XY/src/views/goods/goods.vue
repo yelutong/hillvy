@@ -1,5 +1,6 @@
-<template>
+<template> 
   <div class="wrapper page-goods">
+
     <div class="lay-swiper white">
       <v-swiper :swiper-data="imageSwiper" />
     </div>
@@ -60,6 +61,7 @@ import vSwiper from "@/components/v-swiper";
 import vCell from "@/components/v-cell";
 import vNodata from "@/components/v-nodata";
 import vImglist from "@/components/v-imglist";
+
 export default {
   data() {
     return {

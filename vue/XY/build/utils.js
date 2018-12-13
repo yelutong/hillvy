@@ -30,17 +30,17 @@ exports.cssLoaders = function (options) {
     }
   }
 
-  const px2remLoader = {
+  const px2remLoader = {//打包时自动将px换算成rem
     loader: 'px2rem-loader',
     options: {
-      remUnit: 50
+      remUnit: 75 // 设计图宽度÷10 
     }
   }
   
   // generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader, px2remLoader] : [cssLoader, px2remLoader]
-    
+    //px2rem-loader 需要与 flexible 配合使用，不然px2rem仅仅只是转成rem却不会设置rem的信息
     if (loader) {
       loaders.push({
         loader: loader + '-loader',

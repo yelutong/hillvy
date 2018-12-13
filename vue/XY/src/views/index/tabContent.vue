@@ -1,27 +1,32 @@
 <!-- 首页路由 -->
 <template>
-  <div id="indexRouter" class="wrapper page-index">
-    <div class="brand white">
-      <v-title title="两大品牌"></v-title>
-      <div class="brand-list">
-        <router-link class="item" :to="{path:'/goods', query:{id:item.productId}}" v-for="(item, index) in brandList" :key="index">
-          <img class="img" :src="item.photoUrl" />
-        </router-link>
-      </div>
+  <div id="tabContent" class="wrapper page-index">
+    <div class="white">
+
+     <grid :cols="4" :show-lr-borders="false">
+      <grid-item  v-model="index3" class="vux-center" :label="item" v-for="(item,index3) in list3"  @on-item-click="onTabsClick(item)" :key="index3">
+        <img slot="icon" :src="swiperPic">
+      </grid-item>
+    </grid>
+    {{items}} Container
+
+
     </div>
   </div>
 </template>
 
 <script>
-import vSwiper from "@/components/v-swiper";
-import vTitle from "@/components/v-title";
-import vMeals from "@/components/v-meals";
-import vNodata from "@/components/v-nodata";
-
+import { Tab, TabItem, Swiper, SwiperItem, Grid, GridItem } from 'vux';
+const list3 = () => ['精选', '美食', '电影', '酒店', '外卖']
 import swiperPic from "@/assets/images/banner@2x.png";
 export default {
   data() {
     return {
+      swiperPic,
+      list3: list3(),
+      demo2: '精选',
+      items:'精选',
+      index3: 0,
       bannerSwiper: {
         speed: 800,
         auto: 3000,
@@ -46,10 +51,12 @@ export default {
     };
   },
   components: {
-    "v-swiper": vSwiper,
-    "v-title": vTitle,
-    "v-meals": vMeals,
-    "v-nodata": vNodata
+    Grid,
+    GridItem,
+    Tab,
+    TabItem,
+    Swiper,
+    SwiperItem
   },
   beforeCreate() {
     
@@ -63,6 +70,10 @@ export default {
     this.getMealsData();
   },
   methods: {
+    onTabsClick(item){
+      this.items = item;
+      console.log(this.items);
+    },
     // 获取banner图数据
     getBannerData() {
       this.$axios.get(this.api.getBanner).then(res => {
@@ -185,3 +196,18 @@ export default {
   }
 };
 </script>
+<style lang="stylus">
+#tabContent{
+  .weui-grids:before,.weui-grid:before,.weui-grid:after{
+    height: 0px!important;
+    width: 0px!important;
+  }
+  .weui-grid__icon{
+    height: 55px!important;
+    width: 55px!important;
+  }
+  .weui-grid__icon img{
+    border-radius:50%;
+  }
+}
+</style>

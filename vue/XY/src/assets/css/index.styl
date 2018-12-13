@@ -65,21 +65,23 @@
 
     .brand-list {
       display: flex;
-      height: 215px;
-      padding: 0 7.5px;
       margin-top: 15px;
+      width: 100%;
+      position:relative;
+      z-index:1;
+    }
+    .brand-list a:nth-child(2){
+       margin: 0 7.5px;
     }
 
     .item {
       flex: 1;
-      height: 215px;
-      margin: 0 10px;
-      box-shadow: 0 0 15px #ccc;
+      height: auto;
+      box-shadow: 0 0 5px #ccc;
       border-radius: 10px;
       overflow: hidden;
-
       .img {
-        height: 100%;
+        width:100%;
       }
     }
   }
