@@ -1,0 +1,104 @@
+.page-index {
+  padding-bottom: 50px;
+  .head {
+    position: relative;
+    .v-swiper {
+      position: relative;
+      z-index: 2;
+      height: auto;
+      box-shadow: 0 1px 5px #ddd;
+      overflow: hidden;
+    }
+  }
+
+  .news, .activity {
+    padding-top: 10px;
+
+    .tit {
+      display: flex;
+      align-items: center;
+      height: 38.5px;
+      padding: 0 10px;
+      background-color: #fff;
+
+      .img {
+        width: 79px;
+      }
+
+      .line {
+        width: 1px;
+        height: 14.5px;
+        margin: 0 7px;
+        background-color: #979797;
+      }
+
+      .vux-marquee, .act-txt {
+        flex: 1;
+        height: 38.5px;
+      }
+
+      .act-txt {
+        font-size: 13px;
+        line-height: 38.5px;
+      }
+    }
+
+    .con {
+      height: 90px;
+      margin: 7.5px 10px;
+    }
+  }
+
+  .news {
+    .vux-marquee {
+      height: 38.5px !important;
+
+      .item {
+        font-size: 13px;
+        line-height: 38.5px;
+      }
+    }
+  }
+
+  .brand {
+    padding: 18px 0 24px;
+
+    .brand-list {
+      display: flex;
+      margin-top: 15px;
+      width: 100%;
+      position:relative;
+      z-index:1;
+    }
+    .brand-list a:nth-child(2){
+       margin: 0 7.5px;
+    }
+
+    .item {
+      flex: 1;
+      height: auto;
+      box-shadow: 0 0 5px #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      .img {
+        width:100%;
+      }
+    }
+  }
+
+  .meals {
+    padding-top: 15px;
+
+    .v-meals-list {
+      margin-top: 20px;
+
+      .item {
+        display: block;
+      }
+    }
+
+    .v-no-data {
+      padding-bottom: 40px;
+    }
+  }
+}

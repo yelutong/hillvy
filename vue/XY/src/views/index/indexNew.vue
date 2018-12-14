@@ -142,13 +142,6 @@ export default {
           }
         });
     },
-    // 跳转快报页面
-    pageToDaily(id) {
-      this.$router.push({
-        path: "/news/article",
-        query: { type: "daily", id: id }
-      });
-    },
     // 获取小V专区三个商品信息
     getBrandData() {
       this.$axios.get(this.api.getBrand).then(res => {

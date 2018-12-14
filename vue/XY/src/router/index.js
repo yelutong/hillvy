@@ -33,13 +33,6 @@ const evaserve = () =>
   import ('@/views/goods/evaserve'); // 评价服务
 const express = () =>
   import ('@/views/goods/express'); // 查看物流
-// 资讯 -------------------------------
-const news = () =>
-  import ('@/views/news/news'); // 资讯主页
-const article = () =>
-  import ('@/views/news/article'); // 快报+资讯新闻
-const videos = () =>
-  import ('@/views/news/videos'); // 视频列表
 // 我的 -------------------------------
 const mine = () =>
   import ('@/views/mine/mine'); // 个人中心
@@ -55,12 +48,6 @@ const goldrecord = () =>
   import ('@/views/mine/goldrecord'); // 提现记录
 const golddetail = () =>
   import ('@/views/mine/golddetail'); // 提现明细
-const fans = () =>
-  import ('@/views/mine/fans'); // 我的粉丝
-const join = () =>
-  import ('@/views/mine/join'); // 入驻申请
-const joinstatus = () =>
-  import ('@/views/mine/joinstatus'); // 入驻审核
 const about = () =>
   import ('@/views/mine/about'); // 关于我们（简介）
 const bind = () =>
@@ -145,19 +132,6 @@ const router = new Router({
       path: '/goods/express',
       component: express
     },
-    // 资讯路由
-    {
-      path: '/news',
-      component: news
-    },
-    {
-      path: '/news/article',
-      component: article
-    },
-    {
-      path: '/news/videos',
-      component: videos
-    },
     // 个人中心路由
     {
       path: '/mine',
@@ -186,18 +160,6 @@ const router = new Router({
     {
       path: '/mine/golddetail',
       component: golddetail
-    },
-    {
-      path: '/mine/fans',
-      component: fans
-    },
-    {
-      path: '/mine/join',
-      component: join
-    },
-    {
-      path: '/mine/joinstatus',
-      component: joinstatus
     },
     {
       path: '/mine/about',

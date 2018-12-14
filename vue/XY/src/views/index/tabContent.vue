@@ -2,22 +2,26 @@
 <template>
   <div id="tabContent" class="wrapper page-index">
     <div class="white">
-
      <grid :cols="4" :show-lr-borders="false">
       <grid-item  v-model="index3" class="vux-center" :label="item" v-for="(item,index3) in list3"  @on-item-click="onTabsClick(item)" :key="index3">
         <img slot="icon" :src="swiperPic">
       </grid-item>
-    </grid>
-    {{items}} Container
-
-
+    </grid> 
     </div>
+    <div class="white mgt10">
+        {{items}} Container  
+      
+    </div>
+
+
+
   </div>
 </template>
 
 <script>
 import { Tab, TabItem, Swiper, SwiperItem, Grid, GridItem } from 'vux';
-const list3 = () => ['精选', '美食', '电影', '酒店', '外卖']
+const list3 = () => ['新鲜水果', '精选肉类', '海鲜水产', '新鲜蔬菜', '蛋类产品']
+
 import swiperPic from "@/assets/images/banner@2x.png";
 export default {
   data() {
@@ -125,13 +129,6 @@ export default {
             this.dailySwiper.arrData = arr;
           }
         });
-    },
-    // 跳转快报页面
-    pageToDaily(id) {
-      this.$router.push({
-        path: "/news/article",
-        query: { type: "daily", id: id }
-      });
     },
     // 获取两大品牌信息
     getBrandData() {

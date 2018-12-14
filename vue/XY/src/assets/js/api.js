@@ -46,9 +46,6 @@ const ajaxUrl = {
   cancelOrder: ajaxHost + '/wx/p/order/cancel_order.json', // 取消订单
   uploadFrontUID: ajaxHost + '/wx/p/user/upload_positive_card.json', // 上传身份证正面照
   uploadEndUID: ajaxHost + '/wx/p/user/upload_reverse_card.json', // 上传身份证反面照
-  applyJoin: ajaxHost + '/wx/p/user/user_apply_upgrade.json', // 提交申请入驻
-  getJoinStatus: ajaxHost + '/wx/p/user/get_user_apply_status.json', // 获取申请入驻审核状态
-  getMyFans: ajaxHost + '/wx/p/user/get_user_fans.json', // 获取我的粉丝
   getWalletInfo: ajaxHost + '/wx/p/user/get_user_reward_detail.json', // 获取我的分红明细（钱包）
   bindBankCard: ajaxHost + '/wx/p/user/user_add_bank_card.json', // 绑定银行卡
   getBankCard: ajaxHost + '/wx/p/user/get_user_bank_cards.json', // 获取已绑定的银行卡

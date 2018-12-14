@@ -8,7 +8,6 @@
     <swiper :duration="0" v-model="index" height="100%" :show-dots="false">
       <swiper-item v-for="(item, index) in listFun" :key="index">
         <div class="tab-swiper vux-center">
-        {{index}} Container
         <component :is="currentView"></component>
         </div>
       </swiper-item>
@@ -86,7 +85,6 @@ export default {
   }
   .vux-slider{
     height:100%;
-    z-index:9;
   }
   .vux-slider > .vux-swiper{
     overflow-y: scroll;
