@@ -33,7 +33,7 @@ export default {
       }else{
         setTimeout(()=>{
            this.swipeHeight = 'height:'+(document.body.clientWidth/this.$refs.s[0].naturalWidth)*this.$refs.s[0].naturalHeight+'px';
-        },500)
+        },800)
       }
     },500)
   },

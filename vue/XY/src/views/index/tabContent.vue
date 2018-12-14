@@ -10,35 +10,39 @@
     </div>
     <div class="white mgt10">
         {{items}} Container 
-
         <scroller lock-x scrollbar-y use-pullup use-pulldown height="200px" @on-pullup-loading="loadMore" @on-scroll-bottom="loadMore" @on-pulldown-loading="refresh" v-model="status" ref="scroller">
+
         <div class="box2">
-          <p v-for="i in n">placeholder {{i}}</p>
+           <flexbox :gutter="0" wrap="wrap">
+            <flexbox-item :span="1/2" v-for="(item, index) in listData" :key="index">
+              <div class="flex-demo">{{item.goodsName}}</div>
+            </flexbox-item> 
+          </flexbox>
         </div>
-        <!--pullup slot-->
+        
         <div slot="pullup" class="xs-plugin-pullup-container xs-plugin-pullup-up" style="position: absolute; width: 100%; height: 40px; bottom: -40px; text-align: center;">
           <span v-show="status.pullupStatus === 'default'"></span>
           <span class="pullup-arrow" v-show="status.pullupStatus === 'down' || status.pullupStatus === 'up'" :class="{'rotate': status.pullupStatus === 'up'}">↑</span>
           <span v-show="status.pullupStatus === 'loading'"><spinner type="ios-small"></spinner></span>
+          <span v-show="status.pullupStatus === 'complete'">已加载完成</span>
         </div>
       </scroller>
-      
     </div>
-
-
-
   </div>
 </template>
 
 <script>
-import { Tab, TabItem, Swiper, SwiperItem, Grid, GridItem, Scroller, Spinner } from 'vux';
+import { Tab, TabItem, Swiper, SwiperItem, Grid, GridItem, Scroller, Spinner, Flexbox, FlexboxItem } from 'vux';
 const list3 = () => ['新鲜水果', '精选肉类', '海鲜水产', '新鲜蔬菜', '蛋类产品']
 
 import swiperPic from "@/assets/images/banner@2x.png";
+const qs = require("qs");
 export default {
   data() {
     return {
-      n: 10,
+      totalPage: 1,
+      currentPage: 0,
+      listData:[],
       pullupEnabled: true,
       status: {
         pullupStatus: 'default',
@@ -76,7 +80,8 @@ export default {
     Swiper,
     SwiperItem,
     Scroller,
-    Spinner
+    Spinner,
+    Flexbox, FlexboxItem
   },
   beforeCreate() {
     
@@ -84,26 +89,41 @@ export default {
   created() {
     // 读取用户其他数据
     this.getBannerData();
+    this.loadMore();
   },
   methods: {
     loadMore () {
+      if(this.currentPage< this.totalPage){
+        this.currentPage= parseInt(this.currentPage) + 1;
+        this.$axios.post(this.api.goodsList,qs.parse({ "page" : this.currentPage, "limit":8 }),{headers: {"content-type": "application/json"}})
+        .then(res => {
+           console.log(res.data);
+           this.totalPage=res.data.content.totalPage; 
+           this.listData = [...this.listData,...res.data.content.list];
+           console.log(this.listData);
+        })
+        .catch(res => {
+         //下单失败，请您稍后重试
+        });
+      }else{
+        this.status.pullupStatus = 'complete';
+        setTimeout(()=>{
+          this.status.pullupStatus = 'default';
+        },1000);
+        console.log('已加载完');
+      }
       setTimeout(() => {
-        this.n += 10
-        setTimeout(() => {
-          this.$refs.scroller.donePullup()
-        }, 10)
-      }, 2000)
+        this.$refs.scroller.donePullup()
+      }, 10)
     },
     refresh () {
-      setTimeout(() => {
-        this.n = 10
-        this.$nextTick(() => {
+       console.log('刷新');
+       this.$nextTick(() => {
           setTimeout(() => {
             this.$refs.scroller.donePulldown()
             this.pullupEnabled && this.$refs.scroller.enablePullup()
           }, 10)
         })
-      }, 2000)
     },
     onTabsClick(item){
       this.items = item;

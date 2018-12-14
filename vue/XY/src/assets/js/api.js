@@ -2,6 +2,11 @@
 const ajaxHost = 'https://mg.xjjxsd.cn/api/mp';
 // 接口
 const ajaxUrl = {
+  goodsList:"https://api.mcyou.net/api/goods/list",//商品列表
+
+
+
+
   getShareQr: ajaxHost + '/wx/p/user/get_share_qrcode_by_user_id.json', // 根据用户id生成二维码
   getShareArgs: ajaxHost + '/wx/p/user/share_to_friend.json', // 获取微信分享所需的参数
   getToken: ajaxHost + '/wx/p/authentication/get_token_by_openid.json', // 根据用户openid获取token
