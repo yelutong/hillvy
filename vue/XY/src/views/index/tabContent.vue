@@ -9,7 +9,19 @@
     </grid> 
     </div>
     <div class="white mgt10">
-        {{items}} Container  
+        {{items}} Container 
+
+        <scroller lock-x scrollbar-y use-pullup use-pulldown height="200px" @on-pullup-loading="loadMore" @on-scroll-bottom="loadMore" @on-pulldown-loading="refresh" v-model="status" ref="scroller">
+        <div class="box2">
+          <p v-for="i in n">placeholder {{i}}</p>
+        </div>
+        <!--pullup slot-->
+        <div slot="pullup" class="xs-plugin-pullup-container xs-plugin-pullup-up" style="position: absolute; width: 100%; height: 40px; bottom: -40px; text-align: center;">
+          <span v-show="status.pullupStatus === 'default'"></span>
+          <span class="pullup-arrow" v-show="status.pullupStatus === 'down' || status.pullupStatus === 'up'" :class="{'rotate': status.pullupStatus === 'up'}">↑</span>
+          <span v-show="status.pullupStatus === 'loading'"><spinner type="ios-small"></spinner></span>
+        </div>
+      </scroller>
       
     </div>
 
@@ -19,13 +31,19 @@
 </template>
 
 <script>
-import { Tab, TabItem, Swiper, SwiperItem, Grid, GridItem } from 'vux';
+import { Tab, TabItem, Swiper, SwiperItem, Grid, GridItem, Scroller, Spinner } from 'vux';
 const list3 = () => ['新鲜水果', '精选肉类', '海鲜水产', '新鲜蔬菜', '蛋类产品']
 
 import swiperPic from "@/assets/images/banner@2x.png";
 export default {
   data() {
     return {
+      n: 10,
+      pullupEnabled: true,
+      status: {
+        pullupStatus: 'default',
+        pulldownStatus: 'default'
+      },
       swiperPic,
       list3: list3(),
       demo2: '精选',
@@ -48,10 +66,6 @@ export default {
       },
       newsTag: require("@/assets/images/news-tag.png"),
       activityTag: require("@/assets/images/act-tag.png"),
-      brandList: [],
-      activityData: null,
-      noMeals: false,
-      mealsList: []
     };
   },
   components: {
@@ -60,7 +74,9 @@ export default {
     Tab,
     TabItem,
     Swiper,
-    SwiperItem
+    SwiperItem,
+    Scroller,
+    Spinner
   },
   beforeCreate() {
     
@@ -68,12 +84,27 @@ export default {
   created() {
     // 读取用户其他数据
     this.getBannerData();
-    this.getDailyData();
-    this.getBrandData();
-    this.getActivityData();
-    this.getMealsData();
   },
   methods: {
+    loadMore () {
+      setTimeout(() => {
+        this.n += 10
+        setTimeout(() => {
+          this.$refs.scroller.donePullup()
+        }, 10)
+      }, 2000)
+    },
+    refresh () {
+      setTimeout(() => {
+        this.n = 10
+        this.$nextTick(() => {
+          setTimeout(() => {
+            this.$refs.scroller.donePulldown()
+            this.pullupEnabled && this.$refs.scroller.enablePullup()
+          }, 10)
+        })
+      }, 2000)
+    },
     onTabsClick(item){
       this.items = item;
       console.log(this.items);
@@ -82,113 +113,10 @@ export default {
     getBannerData() {
       this.$axios.get(this.api.getBanner).then(res => {
         let resData = res.data;
-        console.log(resData);
         if (resData.code === 100) {
-          // let arrData = resData.data;
-         let arrData = [
-           {createDate: 1523429636000,id: 4,path: "7",photoId: 287,photoUrl: swiperPic,sort: 1,state: "1",type: "product"},
-           {createDate: 1523429636000,id: 4,path: "7",photoId: 287,photoUrl: swiperPic,sort: 1,state: "1",type: "product"},
-           {createDate: 1523429636000,id: 4,path: "7",photoId: 287,photoUrl: swiperPic,sort: 1,state: "1",type: "product"}
-          ];
-         console.log(resData);
-         let arr = [];
-         arrData.forEach(val => {
-            let obj = {
-              id: val.path,
-              con: val.photoUrl
-            };
-            arr.push(obj);
-          });
-          console.log(arr);
-          this.bannerSwiper.arrData = arr;
+        
         }
       });
-    },
-    // 获取每日快报数据
-    getDailyData() {
-      this.$axios
-        .get(this.api.getDaily, {
-          params: {
-            page_no: 1,
-            page_size: 5
-          }
-        })
-        .then(res => {
-          let resData = res.data;
-          if (resData.code === 100) {
-            let arrData = resData.data.records;
-            let arr = [];
-            arrData.forEach(val => {
-              let obj = {
-                id: val.id,
-                con: val.title + "：" + val.summary,
-                img: val.photoPath
-              };
-              arr.push(obj);
-            });
-            this.dailySwiper.arrData = arr;
-          }
-        });
-    },
-    // 获取两大品牌信息
-    getBrandData() {
-      this.$axios.get(this.api.getBrand).then(res => {
-        const resData = res.data;
-        if (resData.code === 100) {
-          const arrData = resData.data;
-          this.brandList = arrData || [];
-        }
-      });
-    },
-    // 获取活动banner数据
-    getActivityData() {
-      this.$axios
-        .get(this.api.getActivity)
-        .then(res => {
-          const resData = res.data;
-          if (resData.code !== 100) {
-            this.activityData = null;
-            return;
-          }
-          const arrData = resData.data || [];
-          this.activityData = arrData.length === 0 ? null : arrData[0];
-        })
-        .catch(res => {
-          this.activityData = null;
-        });
-    },
-    // 跳转活动
-    pageToActivity() {
-      this.showTip("活动正在策划中，敬请期待...");
-    },
-    // 获取套餐信息
-    getMealsData() {
-      this.$axios
-        .get(this.api.getMeals)
-        .then(res => {
-          const resData = res.data;
-          if (resData.code !== 100) {
-            this.noMeals = true;
-            return;
-          }
-          const arrData = resData.data || [];
-          if (arrData.length === 0) {
-            this.noMeals = true;
-            return;
-          }
-          arrData.forEach(val => {
-            let obj = {
-              id: val.id,
-              title: val.name,
-              intro: val.sellingPoint,
-              img: val.indexPhotoUrl
-            };
-            this.mealsList.push(obj);
-          });
-        })
-        .catch(res => {
-          this.noMeals = true;
-        });
     }
   }
 };

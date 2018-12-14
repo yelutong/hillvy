@@ -84,10 +84,8 @@ export default {
   created() {
     // 读取用户其他数据
     this.getBannerData();
-    this.getDailyData();
     this.getBrandData();
     this.getnewListData();
-    this.getMealsData();
   },
   methods: {
     // 获取banner图数据
@@ -115,32 +113,6 @@ export default {
           this.bannerSwiper.arrData = arr;
         }
       });
-    },
-    // 获取每日快报数据
-    getDailyData() {
-      this.$axios
-        .get(this.api.getDaily, {
-          params: {
-            page_no: 1,
-            page_size: 5
-          }
-        })
-        .then(res => {
-          let resData = res.data;
-          if (resData.code === 100) {
-            let arrData = resData.data.records;
-            let arr = [];
-            arrData.forEach(val => {
-              let obj = {
-                id: val.id,
-                con: val.title + "：" + val.summary,
-                img: val.photoPath
-              };
-              arr.push(obj);
-            });
-            this.dailySwiper.arrData = arr;
-          }
-        });
     },
     // 获取小V专区三个商品信息
     getBrandData() {
@@ -256,39 +228,6 @@ export default {
         })
         .catch(res => {
           this.newListData = 360;
-        });
-    },
-    // 跳转活动
-    pageToActivity() {
-      this.showTip("活动正在策划中，敬请期待...");
-    },
-    // 获取套餐信息
-    getMealsData() {
-      this.$axios
-        .get(this.api.getMeals)
-        .then(res => {
-          const resData = res.data;
-          if (resData.code !== 100) {
-            this.noMeals = true;
-            return;
-          }
-          const arrData = resData.data || [];
-          if (arrData.length === 0) {
-            this.noMeals = true;
-            return;
-          }
-          arrData.forEach(val => {
-            let obj = {
-              id: val.id,
-              title: val.name,
-              intro: val.sellingPoint,
-              img: val.indexPhotoUrl
-            };
-            this.mealsList.push(obj);
-          });
-        })
-        .catch(res => {
-          this.noMeals = true;
         });
     }
   }
