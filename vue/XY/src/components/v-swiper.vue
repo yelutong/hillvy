@@ -2,9 +2,11 @@
 <template>
   <swiper class="v-swiper" :style="swipeHeight" :showIndicators="swiperData.showIndicators" :continuous="swiperData.continuous" :auto="swiperData.auto" :speed="swiperData.speed">
     <swiper-item class="item" v-for="(item, index) in swiperData.arrData" :key="index">
-      <router-link class="link" :to="{path:swiperData.link, query:{id:item.id}}">
-        <p class="text elips" v-if="swiperData.type === 'text'">{{ item.con }}</p>
-        <img class="img" ref="s" v-else :src="item.con" />
+      <a :href="item.h5LinkUrl" v-if="item.linkType&&item.linkType===1">
+        <img class="img" ref="s" :src="item.photoUrl" />
+      </a>
+      <router-link v-else class="link" :to="{path:swiperData.link, query:{id:item.id}}">
+        <img class="img" ref="s" :src="item.photoUrl" />
       </router-link>
     </swiper-item>
   </swiper>
@@ -27,15 +29,16 @@ export default {
   },
   mounted(){
     setTimeout(()=>{
+    console.log(this.$refs.s);
       if(this.$refs.s&&this.$refs.s.length>0){
         this.swipeHeight = 'height:'+(document.body.clientWidth/this.$refs.s[0].naturalWidth)*this.$refs.s[0].naturalHeight+'px';
-        console.log((document.body.clientWidth/this.$refs.s[0].naturalWidth)*this.$refs.s[0].naturalHeight);
+        let height = (document.body.clientWidth/this.$refs.s[0].naturalWidth)*this.$refs.s[0].naturalHeight;
       }else{
         setTimeout(()=>{
            this.swipeHeight = 'height:'+(document.body.clientWidth/this.$refs.s[0].naturalWidth)*this.$refs.s[0].naturalHeight+'px';
-        },800)
+        },500)
       }
-    },500)
+    },1000)
   },
 };
 </script>

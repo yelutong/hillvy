@@ -1,21 +1,23 @@
 <!-- 首页路由 -->
 <template>
   <div id="tabContent" class="wrapper page-index">
-    <div class="white">
-     <grid :cols="4" :show-lr-borders="false">
-      <grid-item  v-model="index3" class="vux-center" :label="item" v-for="(item,index3) in list3"  @on-item-click="onTabsClick(item)" :key="index3">
-        <img slot="icon" :src="swiperPic">
-      </grid-item>
-    </grid> 
-    </div>
-    <div class="white mgt10">
-        {{items}} Container 
-        <scroller lock-x scrollbar-y use-pullup use-pulldown height="200px" @on-pullup-loading="loadMore" @on-scroll-bottom="loadMore" @on-pulldown-loading="refresh" v-model="status" ref="scroller">
-
+    <div class="white mgt10 pd10">
+        <scroller lock-x :scrollbar-y=false height="-60" use-pullup @on-scroll-bottom="loadMore" @on-pulldown-loading="refresh" v-model="status" ref="scroller">
+          <div>
+            <div class="white">
+             <grid :cols="4" :show-lr-borders="false">
+              <grid-item  v-model="index3" class="vux-center" :label="item" v-for="(item,index3) in list3"  @on-item-click="onTabsClick(item)" :key="index3">
+                <img slot="icon" :src="swiperPic">
+              </grid-item>
+            </grid> 
+            </div> 
+          <vTitle :title="items" />
         <div class="box2">
            <flexbox :gutter="0" wrap="wrap">
-            <flexbox-item :span="1/2" v-for="(item, index) in listData" :key="index">
-              <div class="flex-demo">{{item.goodsName}}</div>
+            <flexbox-item :span="1/2" v-for="(goods, index) in listData" :key="index" class="mgt10">
+              <p><img :src="'http://pic.xy999888.com/'+goods.goodsMainPhoto.split(',')[0]"></p>
+              <p v-text="goods.goodsName" class="tabGoodsName center fs-12"></p>
+              <p class="center"><b class="fs-15 txt-orange rt5" v-text="'¥'+goods.salePrice"></b><i class="center-line" v-text="'¥'+goods.marketPrice"></i></p>
             </flexbox-item> 
           </flexbox>
         </div>
@@ -26,6 +28,7 @@
           <span v-show="status.pullupStatus === 'loading'"><spinner type="ios-small"></spinner></span>
           <span v-show="status.pullupStatus === 'complete'">已加载完成</span>
         </div>
+        </div>
       </scroller>
     </div>
   </div>
@@ -34,7 +37,7 @@
 <script>
 import { Tab, TabItem, Swiper, SwiperItem, Grid, GridItem, Scroller, Spinner, Flexbox, FlexboxItem } from 'vux';
 const list3 = () => ['新鲜水果', '精选肉类', '海鲜水产', '新鲜蔬菜', '蛋类产品']
-
+import vTitle from "@/components/v-title";
 import swiperPic from "@/assets/images/banner@2x.png";
 const qs = require("qs");
 export default {
@@ -50,8 +53,7 @@ export default {
       },
       swiperPic,
       list3: list3(),
-      demo2: '精选',
-      items:'精选',
+      items:'新鲜水果',
       index3: 0,
       bannerSwiper: {
         speed: 800,
@@ -81,6 +83,7 @@ export default {
     SwiperItem,
     Scroller,
     Spinner,
+    vTitle,
     Flexbox, FlexboxItem
   },
   beforeCreate() {
@@ -92,29 +95,55 @@ export default {
     this.loadMore();
   },
   methods: {
-    loadMore () {
-      if(this.currentPage< this.totalPage){
-        this.currentPage= parseInt(this.currentPage) + 1;
-        this.$axios.post(this.api.goodsList,qs.parse({ "page" : this.currentPage, "limit":8 }),{headers: {"content-type": "application/json"}})
-        .then(res => {
-           console.log(res.data);
-           this.totalPage=res.data.content.totalPage; 
-           this.listData = [...this.listData,...res.data.content.list];
-           console.log(this.listData);
-        })
-        .catch(res => {
-         //下单失败，请您稍后重试
-        });
+    loadMore (index) {
+      if(index==1){
+        this.currentPage = 0;this.totalPage = 1;this.listData=[];
+        if(this.currentPage< this.totalPage){
+            this.currentPage= parseInt(this.currentPage) + 1;
+            this.$axios.post(this.api.getGoodsList,qs.parse({ "page" : this.currentPage, "limit":8 }),{headers: {"content-type": "application/json"}})
+            .then(res => {
+               console.log(res.data);
+               this.totalPage=res.data.content.totalPage; 
+               this.listData = [...this.listData,...res.data.content.list];
+               console.log(this.listData);
+            })
+            .catch(res => {
+             //下单失败，请您稍后重试
+            });
+        }else{
+            this.status.pullupStatus = 'complete';
+            setTimeout(()=>{
+              this.status.pullupStatus = 'default';
+            },1000);
+            console.log('已加载完');
+          }
+          setTimeout(() => {
+            this.$refs.scroller.donePullup()
+          }, 10) 
       }else{
-        this.status.pullupStatus = 'complete';
-        setTimeout(()=>{
-          this.status.pullupStatus = 'default';
-        },1000);
-        console.log('已加载完');
+        if(this.currentPage< this.totalPage){
+          this.currentPage= parseInt(this.currentPage) + 1;
+          this.$axios.post(this.api.getGoodsList,qs.parse({ "page" : this.currentPage, "limit":8 }),{headers: {"content-type": "application/json"}})
+          .then(res => {
+             console.log(res.data);
+             this.totalPage=res.data.content.totalPage; 
+             this.listData = [...this.listData,...res.data.content.list];
+             console.log(this.listData);
+          })
+          .catch(res => {
+           //下单失败，请您稍后重试
+          });
+        }else{
+          this.status.pullupStatus = 'complete';
+          setTimeout(()=>{
+            this.status.pullupStatus = 'default';
+          },1000);
+          console.log('已加载完');
+        }
+        setTimeout(() => {
+          this.$refs.scroller.donePullup()
+        }, 10)
       }
-      setTimeout(() => {
-        this.$refs.scroller.donePullup()
-      }, 10)
     },
     refresh () {
        console.log('刷新');
@@ -128,6 +157,7 @@ export default {
     onTabsClick(item){
       this.items = item;
       console.log(this.items);
+      this.loadMore(1);
     },
     // 获取banner图数据
     getBannerData() {
@@ -153,6 +183,16 @@ export default {
   }
   .weui-grid__icon img{
     border-radius:50%;
+  }
+  .tabGoodsName{
+    padding: 0 5px;
+    margin: 10px 0 10px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .vux-flexbox-item {
+    padding:5px;
   }
 }
 </style>

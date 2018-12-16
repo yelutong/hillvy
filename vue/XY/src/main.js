@@ -17,7 +17,7 @@ Vue.use(tool);
 Vue.component('v-wechatshare', weChatShare);
 
 Vue.prototype.$axios = axios;
-Vue.prototype.api = ajaxApi;
+Vue.prototype.api = ajaxApi;// 在其他页面直接用 this.api就能请求到了
 Vue.prototype.showTip = function (msg, time, type) {
   const obj = {
     message: msg,

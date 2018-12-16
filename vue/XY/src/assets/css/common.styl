@@ -5,9 +5,9 @@
   margin: 0;
   -webkit-user-select: none;
   user-select: none;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   font-size: 12px;
 }
 html,body {
@@ -20,12 +20,12 @@ html,body {
   color: #333333;
   background-color: #f5f5f5;
   word-wrap: break-word;
-  touch-action: pan-x;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 ::-webkit-scrollbar {
   display: none;
 }
-
 li,p,ul{
   padding: 0px;
   margin: 0px;
@@ -78,6 +78,9 @@ border:1px solid #ccc;
 
 .bg-white {
   background: #FFF!important;
+}
+.bg-blue {
+  background: #1bbaf1!important;
 }
 .bg-gray {
   background: #f5f5f5!important;
@@ -156,8 +159,14 @@ input:-webkit-autofill {
   height: 44px;
   line-height: 44px;
 }
+.mt40{
+  margin-top:40px!important;
+}
 i {
   font-style: normal;
+}
+b{
+  font-weight:500;
 }
 .fsize-normal {
   font-weight: 500
@@ -211,6 +220,12 @@ i {
 .mt25 {
   margin-top: 25px!important;
 }
+.mgt50 {
+  margin-top: 50px!important;
+}
+.pdb50 {
+  padding-bottom: 50px!important;
+}
 .mb2 {
    border-bottom: 2px solid #f5f5f5;
 }
@@ -246,6 +261,9 @@ i {
 }
 .pd15{
   padding: 0 15px!important;
+}
+.pd10{
+  padding: 0 10px!important;
 }
 .pdtb15{
   padding:15px 0!important;
@@ -533,10 +551,16 @@ i {
   flex: 4;
 }
 .flexg1 {
-  flex-grow: 1
+  flex-grow: 1;
 }
 .flexg2 {
-  flex-grow: 2
+  flex-grow: 2;
+}
+.per40{
+  width:40%;
+}
+.per30{
+  width:30%;
 }
 .txt-ellipsis {
   white-space: nowrap;
@@ -688,7 +712,6 @@ hr {
 }
 
 .btn-submit {
-    width: 100%;
     height: 50px;
     padding: 0;
     margin: 0;
@@ -697,13 +720,8 @@ hr {
     color: #fff;
     text-align: center;
     border: none;
-    border-radius: 25px;
     background: #FF4F00;
     transition: background 0.2s;
-
-    &.nordu {
-        border-radius: 0;
-    }
 
     &:active {
         background: #0e3262;
@@ -780,4 +798,25 @@ hr {
         height: 42.5px;
         background-image: url('assets/images/ok.png');
     }
+}
+.boxPic{
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+}
+.boxPic img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.tabGoodsName{
+    width: 100%;
+    font-size: 16px;
+    margin: 10px 0 10px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

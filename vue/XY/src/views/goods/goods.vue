@@ -1,7 +1,7 @@
 <template> 
   <div class="wrapper page-goods">
-
-    <div class="lay-swiper white">
+    <vHeader :title="goodsMainData.name" to="/55"/>
+    <div class="lay-swiper white mt40">
       <v-swiper :swiper-data="imageSwiper" />
     </div>
     <div class="lay-goods white" v-if="!!goodsMainData">
@@ -40,16 +40,18 @@
     </div>
     <div class="lay-action fix-btom pay-act-btom">
       <div class="service">
-        <div class="item" @click="callHelp">
+
+        <div class="item per40" @click="callHelp">
           <i class="ico i-call"></i>
-          <p class="text">联系卖家</p>
+          <p class="text">客服</p>
         </div>
-        <div class="item" @click="collectAction">
-          <i class="ico i-colet" :class="{active:isCollect}"></i>
-          <p class="text">收藏</p>
+        <div class="item per30 bg-blue btn-submit" @click="pageToBuy(id)">
+          立即购买
+        </div>
+        <div class="item per30 btn-submit" @click="addToCart(id)">
+          加入购物车
         </div>
       </div>
-      <button class="btn-submit nordu" @click="pageToBuy(id)">立即购买</button>
     </div>
   </div>
 </template>
@@ -61,12 +63,18 @@ import vSwiper from "@/components/v-swiper";
 import vCell from "@/components/v-cell";
 import vNodata from "@/components/v-nodata";
 import vImglist from "@/components/v-imglist";
-
+import vHeader from "@/components/v-header";
+const qs = require("qs");
 export default {
   data() {
     return {
       id: this.getUrlParam("id"),
-      goodsMainData: null,
+      goodsMainData: {
+        id: null,
+        name: null,
+        price: null,
+        weight: null
+      },
       isCollect: false,
       imageSwiper: {
         speed: 800,
@@ -86,7 +94,8 @@ export default {
     "v-swiper": vSwiper,
     "v-cell": vCell,
     "v-nodata": vNodata,
-    "v-imglist": vImglist
+    "v-imglist": vImglist,
+    vHeader
   },
   computed: {
     ...mapState(["token", "userId"])
@@ -100,7 +109,6 @@ export default {
     this.getGoodsMainData(id);
     this.getGoodsDetailImg(id);
     this.getGoodsEva(id);
-    this.getIfCollect(id);
   },
   methods: {
     // 获取商品主体信息
@@ -118,22 +126,26 @@ export default {
             return;
           }
           const objData = resData.data;
-          // 成功后赋值商品对象
-          this.goodsMainData = {
-            id: objData.id,
-            name: objData.name,
-            price: objData.salePrice,
-            weight: objData.weight
-          };
-          // 再把轮播图片存进轮播对象
-          const arrImg = objData.photoMainUrls || [];
-          this.imageSwiper.arrData = [];
-          arrImg.forEach(val => {
-            this.imageSwiper.arrData.push({
+          console.log(objData);
+          if(objData){
+            // 成功后赋值商品对象
+            this.goodsMainData = {
               id: objData.id,
-              con: val
+              name: objData.name,
+              price: objData.salePrice,
+              weight: objData.weight
+            };
+            // 再把轮播图片存进轮播对象
+            const arrImg = objData.photoMainUrls || [];
+            this.imageSwiper.arrData = [];
+            arrImg.forEach(val => {
+              this.imageSwiper.arrData.push({
+                id: objData.id,
+                photoUrl: val
+              });
             });
-          });
+            console.log(this.imageSwiper.arrData);
+          }
         })
         .catch(res => {
           this.showTip("获取商品信息失败");
@@ -153,13 +165,13 @@ export default {
     // 获取商品评价列表
     getGoodsEva(id) {
       this.$axios
-        .get(this.api.getGoodsEva, {
+        .get(this.api.getGoodsEva, qs.stringify({
           params: {
             product_id: id,
             page_no: 1,
             page_size: 2
           }
-        })
+        }))
         .then(res => {
           const resData = res.data;
           if (resData.code !== 100) {
@@ -194,68 +206,14 @@ export default {
           this.goodsEvaList = [];
           this.noEvas = true;
         });
-    },
-    // 设置收藏状态
-    getIfCollect(id) {
-      this.$axios
-        .get(this.api.ifGoodsCollect, {
-          headers: { access_token: this.token },
-          params: { product_id: id }
-        })
-        .then(res => {
-          const resData = res.data;
-          if (resData.code === 100) {
-            this.isCollect = resData.data;
-          } else {
-            this.isCollect = false;
-          }
-        });
-    },
-    // 收藏或者取消收藏
-    collectAction() {
-      if (this.isCollect) {
-        // 如果已收藏，则取消收藏
-        this.$axios
-          .get(this.api.removeCollect, {
-            headers: { access_token: this.token },
-            params: { product_id: this.id }
-          })
-          .then(res => {
-            const resData = res.data;
-            if (resData.code !== 100) {
-              this.showTip("取消收藏失败");
-              return;
-            }
-            this.showTip("取消收藏成功");
-            this.isCollect = false;
-          })
-          .catch(res => {
-            this.showTip("取消收藏失败");
-          });
-      } else {
-        // 未收藏则增加收藏
-        this.$axios
-          .get(this.api.addCollect, {
-            headers: { access_token: this.token },
-            params: { product_id: this.id }
-          })
-          .then(res => {
-            const resData = res.data;
-            if (resData.code !== 100) {
-              this.showTip("收藏失败");
-              return;
-            }
-            this.showTip("收藏成功");
-            this.isCollect = true;
-          })
-          .catch(res => {
-            this.showTip("收藏失败");
-          });
-      }
-    },
+    }, 
     // 弹出电话
     callHelp() {
       this.callService();
+    },
+    // 加入购物车
+    addToCart(id) {
+      this.$router.push({ path: "/cart", query: { id: id } });
     },
     // 立即购买
     pageToBuy(id) {

@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper white page-goodseva">
+    <vHeader title="商品评价" :to="goBack"/>
     <div class="eva-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="100">
       <div class="item" v-for="(item, index) in evasList" :key="index">
         <div class="eva-pro">
@@ -34,6 +35,7 @@ import { InfiniteScroll } from "mint-ui";
 import vLoadmore from "@/components/v-loadmore";
 import vNodata from "@/components/v-nodata";
 import vImglist from "@/components/v-imglist";
+import vHeader from "@/components/v-header";
 export default {
   data() {
     return {
@@ -43,13 +45,15 @@ export default {
       moreEvas: false,
       noEvas: false,
       loading: true,
-      evasList: []
+      evasList: [],
+      goBack:''
     };
   },
   components: {
     "v-loadmore": vLoadmore,
     "v-nodata": vNodata,
-    "v-imglist": vImglist
+    "v-imglist": vImglist,
+    vHeader
   },
   computed: {
     ...mapState(["token"])

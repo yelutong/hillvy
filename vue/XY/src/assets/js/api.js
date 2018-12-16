@@ -1,7 +1,13 @@
 // 域名
+const urlHost = 'http://t-api.xy999888.com/api/';//接口请求域名
 const ajaxHost = 'https://mg.xjjxsd.cn/api/mp';
 // 接口
 const ajaxUrl = {
+  urlPic: 'http://pic.xy999888.com/', //图片请求域名
+  getBanners: urlHost + 'appadvertmanagement/carouselPic', //获取首页banner
+  getFloorList: urlHost + 'appfloormanagement/listFloor', // 获取两大品牌
+  getGoodsList: urlHost + 'goods/querygoodslist', // 获取两大品牌
+
   goodsList:"https://api.mcyou.net/api/goods/list",//商品列表
 
 

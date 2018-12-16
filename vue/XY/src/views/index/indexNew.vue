@@ -23,14 +23,14 @@
     </div>
 
     <div class="newListData pd15 bg-white" v-if="newListData">
-       <router-link class="relative item pdtb15 justify-content-space-between" :to="{path:'/goods', query:{id:item.productId}}" v-for="(item, index) in newListData" :key="index">
-          <div class="flexg1"><img class="img" :src="item.photoUrl" /></div>
+       <router-link class="relative item pdtb15 justify-content-space-between" :to="{path:'/goods', query:{id:item.id}}" v-for="(item, index) in newListData" :key="index">
+          <div class="flexg1"><img class="img" :src="'http://pic.xy999888.com/'+item.goodsMainPhoto.split(',')[0]" /></div>
           <div class="flexg2 listRight">
-            <p class="goodsName txt-black-real" v-text="item.name"></p> 
+            <p class="goodsName txt-black-real" v-text="item.goodsName"></p> 
             <div class="rightBtm justify-content-space-between">
             <div>
-            <p class="fs-18 mb5 txt-orange" v-text="'¥'+item.price"></p>
-            <p class="txt-gray1 center-line fs-10" v-text="'原价：¥'+item.cprice"></p>
+            <p class="fs-18 mb5 txt-orange" v-text="'¥'+item.salePrice"></p>
+            <p class="txt-gray1 center-line fs-10" v-text="'原价：¥'+item.salePrice"></p>
             </div>
             <div><mt-button size="small" type="primary" class="goodsDetail">立即抢购</mt-button></div>
             </div>
@@ -46,6 +46,7 @@ import vNodata from "@/components/v-nodata";
 
 import swiperPic from "@/assets/images/banner@2x.png";
 import { Button } from "mint-ui";
+const qs = require("qs");
 export default { 
   components: {
     Button
@@ -61,13 +62,6 @@ export default {
         link: "/goods",
         arrData: []
       }, 
-      dailySwiper: {
-        interval: 3000,
-        duration: 800,
-        direction: "up",
-        height: document.body.offsetWidth/7.5*0.77,
-        arrData: []
-      },
       newsTag: require("@/assets/images/news-tag.png"),
       activityTag: require("@/assets/images/act-tag.png"),
       vAreaList: [],
@@ -84,41 +78,41 @@ export default {
   created() {
     // 读取用户其他数据
     this.getBannerData();
-    this.getBrandData();
-    this.getnewListData();
+    this.getVdata();
+    this.getListData();
   },
   methods: {
     // 获取banner图数据
     getBannerData() {
-      this.$axios.get(this.api.getBanner).then(res => {
+      this.$axios.post(this.api.getBanners,qs.parse({ "advertType" : 1, "deviceType":1 }),{headers: {"content-type": "application/json"}})
+      .then(res => {
         let resData = res.data;
         console.log(resData);
-        if (resData.code === 100) {
-          // let arrData = resData.data;
-         let arrData = [
-           {createDate: 1523429636000,id: 4,path: "7",photoId: 287,photoUrl: swiperPic,sort: 1,state: "1",type: "product"},
-           {createDate: 1523429636000,id: 4,path: "7",photoId: 287,photoUrl: swiperPic,sort: 1,state: "1",type: "product"},
-           {createDate: 1523429636000,id: 4,path: "7",photoId: 287,photoUrl: swiperPic,sort: 1,state: "1",type: "product"}
-          ];
-         console.log(resData);
-         let arr = [];
-         arrData.forEach(val => {
-            let obj = {
-              id: val.path,
-              con: val.photoUrl
-            };
-            arr.push(obj);
-          });
-          console.log(arr);
-          this.bannerSwiper.arrData = arr;
+        if (resData.code === 1) {
+         let arrData = resData.content;
+         console.log(arrData);
+         if(arrData.length>0){
+           let arr = [];
+           arrData.forEach(val => {
+              let obj = {//重新组装数组
+                h5LinkUrl: val.h5LinkUrl||'',
+                linkType: val.linkType||'',
+                id: val.id||'',
+                photoUrl: this.api.urlPic+val.photoUrl,
+              };
+              arr.push(obj);
+            });
+            console.log(arr);
+            this.bannerSwiper.arrData = arr;
+         }
         }
       });
     },
     // 获取小V专区三个商品信息
-    getBrandData() {
-      this.$axios.get(this.api.getBrand).then(res => {
+    getVdata() {
+      this.$axios.get(this.api.getFloorList,{ params: {'islevelpackage':true} }).then(res => {
         const resData = res.data;
-        if (resData.code === 100) {
+        if (resData.code === 1) {
           //const arrData = resData.data;
           const arrData =[
           {
@@ -169,14 +163,14 @@ export default {
       });
     },
     // 获取活动banner数据
-    getnewListData() {
+    getListData() {
       this.$axios
-        .get(this.api.getActivity)
+        .get(this.api.getFloorList)
         .then(res => {
           const resData = res.data;
-          if (resData.code == 100) {
-            //const arrData = resData.data || [];
-            const arrData =[
+          if (resData.code == 1) {
+            const arrData = resData.content[0].goodsLst;
+          /*  const arrData =[
           {
             appletPhotoId: 926,
             appletPhotoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
@@ -220,14 +214,14 @@ export default {
             showIndex: 1,
             state: "1"
           }];
-
+           */
             this.newListData = arrData;
             console.log(this.newListData)
           }
           
         })
         .catch(res => {
-          this.newListData = 360;
+          
         });
     }
   }
