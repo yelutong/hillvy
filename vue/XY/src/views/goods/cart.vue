@@ -34,7 +34,7 @@
     <div class="lay-tips white">
       <textarea class="txa" placeholder="请填写备注" v-model="goodsTips" maxlength="200"></textarea>
     </div>
-    <div class="lay-action fix-btom pay-act-btom">
+    <div class="lay-action fix-btom pay-act-btom fix-b50">
       <div class="price-info flex1">
         <span class="tag">合计：</span>
         <span class="total">￥{{ totalPrice }}</span>

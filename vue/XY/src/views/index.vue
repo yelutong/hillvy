@@ -2,8 +2,8 @@
 <template>
   <div id="index21" class="wrapper page-index">
 
-    <tab :line-width=2 :scroll-threshold=5 animated={false}  active-color='#FF4F00' v-model="index">
-      <tab-item class="vux-center" :selected="onTab === item" v-for="(item, index) in listFun" @on-item-click="onTabClick(item)" :key="index">{{item}}</tab-item>
+    <tab :line-width=2 :custom-bar-width="getBarWidth" :scroll-threshold=4 animated={false}  active-color='#FF4F00' v-model="index">
+      <tab-item class="vux-center" :selected="onTab === item.id" v-for="(item, index) in listFun" @on-item-click="onTabClick(item)" :key="index">{{item.className}}</tab-item>
     </tab>
     <swiper v-model="index" height="100%" :show-dots="false">
       <component :is="currentView"></component>
@@ -19,16 +19,15 @@ import tabContent from "@/views/index/tabContent";
 import vFooter from "@/components/v-footer";
 import { Tab, TabItem, Swiper, SwiperItem } from "vux";
 
-
-
-const list = () => ['新品', '生鲜', '食品', '美妆', '男装', '女装', '护肤']
-
 export default {
   data() {
     return {
-      listFun: list(),
+      listFun: [1,2,3,4,5,6],
       index: 0,
-      onTab: '新品'
+      onTab: 0,
+      getBarWidth: function () {
+        return 66 + 'px'
+      }
     };
   },
   components: {
@@ -44,22 +43,57 @@ export default {
     document.title = "新银众商";
   },
   created() {
-    
+    this.getAllClassTree();
+    this.getClassBylevel();
   },
   computed:{
     currentView(){
-      if(this.onTab=='新品'){
+      if(this.onTab===0){
         return indexNew;
       }
-      else if(this.onTab=='生鲜'){
+      else{
+       this.$axios.get(this.api.getChildsList+this.onTab)
+       .then(res => {
+        if(res.data.code === 1){
+           console.log(res.data);
+        }
+      })
+      .catch(res => {
+       //下单失败，请您稍后重试
+      });
         return tabContent;
       }
     }
   },
   methods: {
     onTabClick(item){
-      console.log(item);
-      this.onTab = item;
+      this.onTab = item.id;
+      console.log(this.onTab);
+    }
+    ,
+    getClassBylevel(){
+      this.$axios.get(this.api.getClassBylevel+1)
+      .then(res => {
+        if(res.data.code === 1){
+           this.listFun = [];
+           res.data.content.unshift({'id':0,'className': "商城首页"});
+           this.listFun = res.data.content;
+        }
+         console.log(res.data);
+         
+      })
+      .catch(res => {
+       //下单失败，请您稍后重试
+      });
+    },
+    getAllClassTree(){
+      this.$axios.get(this.api.getClassTree)
+      .then(res => {
+         console.log(res.data);
+      })
+      .catch(res => {
+       //下单失败，请您稍后重试
+      });
     }
   }
 };

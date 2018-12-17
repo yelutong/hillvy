@@ -8,6 +8,10 @@ const ajaxUrl = {
   getFloorList: urlHost + 'appfloormanagement/listFloor', // 获取两大品牌
   getGoodsList: urlHost + 'goods/querygoodslist', // 获取商品列表
   getGoodsData: urlHost + 'goods/info/', // {id}获取商品详情
+  getClassTree: urlHost + 'goodsclass/getAllclassTree',// 获取所有分类
+  getClassBylevel: urlHost + 'goodsclass/getGoodsClassBylevel/',//{level}获取所有分类
+  getChildsList: urlHost + 'goodsclass/getChilds/',//{id}根据当前分类主键获取下级分类集合
+  
 
 
   goodsList:"https://api.mcyou.net/api/goods/list",//商品列表
