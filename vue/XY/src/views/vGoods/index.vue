@@ -6,7 +6,7 @@
         <div class="box2">
            <flexbox :gutter="0" wrap="wrap">
             <flexbox-item :span="1/2" v-for="(goods, index) in listData" :key="index" class="mgt10">
-              <p class="boxPic"><img :src="urlPic+goods.goodsMainPhoto.split(',')[0]"></p>
+              <p class="boxPic"><img :src="urlPicl+goods.goodsMainPhoto.split(',')[0]"></p>
               <p v-text="goods.goodsName" class="tabGoodsName center fs-12"></p>
               <p class="center"><b class="fs-15 txt-orange rt5" v-text="'¥'+goods.salePrice"></b><i class="center-line" v-text="'¥'+goods.marketPrice"></i></p>
             </flexbox-item> 
