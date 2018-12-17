@@ -1,9 +1,10 @@
 <!-- 带横线标题组件 -->
 <template>
    <mt-header fixed :title="title">
-  <router-link :to="to" slot="left">
-    <mt-button icon="back" v-if="to"></mt-button>
-  </router-link>
+    <router-link :to="to" slot="left" v-if="to">
+      <mt-button icon="back"></mt-button>
+    </router-link>
+    <mt-button v-else icon="back" slot="left" @click="goBack"></mt-button>
 </mt-header>
 </template>
 
@@ -17,6 +18,11 @@ export default {
     title:'新银众商',
     title: String,
     to: String
+  },
+  methods: {
+    goBack() {
+      this.$router.back(-1)
+    }
   }
 };
 </script>

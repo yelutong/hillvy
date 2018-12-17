@@ -2,12 +2,12 @@
   <div class="wrapper page-goods">
     <vHeader :title="goodsMainData.name" to="/55"/>
     <div class="lay-swiper white mt40">
-      <v-swiper :swiper-data="imageSwiper" />
+      <v-swiper :swiper-data="picSwipe" />
     </div>
-    <div class="lay-goods white" v-if="!!goodsMainData">
-      <div class="gd-name">{{ goodsMainData.name }}</div>
+    <div class="lay-goods white" v-if="goodsMainData">
+      <div class="gd-name fs-15" v-text="goodsMainData.name"></div>
       <div class="price-weight">
-        <span class="price">￥{{ goodsMainData.price }}</span>
+        <span class="price" v-text="'￥'+goodsMainData.price"></span>
       </div>
     </div>
     <div class="lay-eva white">
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="lay-img white">
-      <img class="img" :src="item" v-for="(item, index) in arrDetailImg" :key="index" />
+      <img class="img" :src="item" v-for="(item, index) in detailPicList" :key="index" />
     </div>
     <div class="lay-action fix-btom pay-act-btom">
       <div class="service">
@@ -69,6 +69,7 @@ export default {
   data() {
     return {
       id: this.getUrlParam("id"),
+      urlPic:this.api.urlPic,
       goodsMainData: {
         id: null,
         name: null,
@@ -76,7 +77,7 @@ export default {
         weight: null
       },
       isCollect: false,
-      imageSwiper: {
+      picSwipe: {
         speed: 800,
         auto: 3000,
         showIndicators: true,
@@ -84,7 +85,7 @@ export default {
         link: "/goods/goodsinfo",
         arrData: []
       },
-      arrDetailImg: [],
+      detailPicList: [],
       evasNum: 0,
       noEvas: false,
       goodsEvaList: []
@@ -107,59 +108,47 @@ export default {
     // 取得商品id
     const id = this.id;
     this.getGoodsMainData(id);
-    this.getGoodsDetailImg(id);
     this.getGoodsEva(id);
   },
   methods: {
     // 获取商品主体信息
     getGoodsMainData(id) {
       this.$axios
-        .get(this.api.getGoodsMain, {
-          params: {
-            product_id: id
-          }
-        })
+        .get(this.api.getGoodsData+id)
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip("获取商品信息失败");
             return;
           }
-          const objData = resData.data;
+          const objData = resData.content;
           console.log(objData);
           if(objData){
             // 成功后赋值商品对象
             this.goodsMainData = {
               id: objData.id,
-              name: objData.name,
+              name: objData.goodsName,
               price: objData.salePrice,
-              weight: objData.weight
+              weight: objData.weight||''
             };
             // 再把轮播图片存进轮播对象
-            const arrImg = objData.photoMainUrls || [];
-            this.imageSwiper.arrData = [];
-            arrImg.forEach(val => {
-              this.imageSwiper.arrData.push({
+            const arrPic = objData.goodsMainPhoto.split(',');
+            console.log(arrPic);
+            arrPic.forEach(val => {
+              this.picSwipe.arrData.push({
                 id: objData.id,
-                photoUrl: val
+                photoUrl: this.urlPic+val
               });
             });
-            console.log(this.imageSwiper.arrData);
+            let detailPicList = objData.goodsDetailPhoto.split(',');
+            detailPicList.forEach(val => {
+              val?this.detailPicList.push(this.urlPic+val):'';
+            });
+            console.log(this.detailPicList);
           }
         })
         .catch(res => {
           this.showTip("获取商品信息失败");
-        });
-    },
-    // 获取商品图文详情的--“图”
-    getGoodsDetailImg(id) {
-      this.$axios
-        .get(this.api.getGoodsDetail, { params: { product_id: id } })
-        .then(res => {
-          const resData = res.data;
-          if (resData.code === 100) {
-            this.arrDetailImg = resData.data.appPhotoMainUrls || [];
-          }
         });
     },
     // 获取商品评价列表

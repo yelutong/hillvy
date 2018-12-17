@@ -15,7 +15,7 @@
         <div class="box2">
            <flexbox :gutter="0" wrap="wrap">
             <flexbox-item :span="1/2" v-for="(goods, index) in listData" :key="index" class="mgt10">
-              <p><img :src="'http://pic.xy999888.com/'+goods.goodsMainPhoto.split(',')[0]"></p>
+              <p><img :src="urlPic+goods.goodsMainPhoto.split(',')[0]"></p>
               <p v-text="goods.goodsName" class="tabGoodsName center fs-12"></p>
               <p class="center"><b class="fs-15 txt-orange rt5" v-text="'¥'+goods.salePrice"></b><i class="center-line" v-text="'¥'+goods.marketPrice"></i></p>
             </flexbox-item> 
@@ -43,6 +43,7 @@ const qs = require("qs");
 export default {
   data() {
     return {
+      urlPic:this.api.urlPic,
       totalPage: 1,
       currentPage: 0,
       listData:[],
@@ -84,7 +85,8 @@ export default {
     Scroller,
     Spinner,
     vTitle,
-    Flexbox, FlexboxItem
+    Flexbox, 
+    FlexboxItem
   },
   beforeCreate() {
     

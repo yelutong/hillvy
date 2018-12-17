@@ -6,7 +6,9 @@ const ajaxUrl = {
   urlPic: 'http://pic.xy999888.com/', //图片请求域名
   getBanners: urlHost + 'appadvertmanagement/carouselPic', //获取首页banner
   getFloorList: urlHost + 'appfloormanagement/listFloor', // 获取两大品牌
-  getGoodsList: urlHost + 'goods/querygoodslist', // 获取两大品牌
+  getGoodsList: urlHost + 'goods/querygoodslist', // 获取商品列表
+  getGoodsData: urlHost + 'goods/info/', // {id}获取商品详情
+
 
   goodsList:"https://api.mcyou.net/api/goods/list",//商品列表
 

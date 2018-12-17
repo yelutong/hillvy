@@ -35,13 +35,14 @@
       <textarea class="txa" placeholder="请填写备注" v-model="goodsTips" maxlength="200"></textarea>
     </div>
     <div class="lay-action fix-btom pay-act-btom">
-      <div class="price-info">
+      <div class="price-info flex1">
         <span class="tag">合计：</span>
         <span class="total">￥{{ totalPrice }}</span>
         <span class="tip"> (不含运费)</span>
       </div>
-      <button class="btn-submit nordu" @click="makeOrder">结 算</button>
+      <button class="btn-submit per40" @click="makeOrder">结 算</button>
     </div>
+    <v-footer active="cart"/>
   </div>
 </template>
 
@@ -49,6 +50,7 @@
 // 购物车
 import { mapState } from "vuex";
 import { Toast } from "mint-ui";
+import vFooter from "@/components/v-footer";
 const qs = require("qs");
 export default {
   data() {
@@ -58,6 +60,9 @@ export default {
       goodsBuyInfo: [],
       goodsTips: ""
     };
+  },
+  components: { 
+    'v-footer': vFooter
   },
   computed: {
     ...mapState(["token", "autoAddress", "choseAddress"]),

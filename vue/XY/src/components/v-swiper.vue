@@ -33,6 +33,7 @@ export default {
       if(this.$refs.s&&this.$refs.s.length>0){
         this.swipeHeight = 'height:'+(document.body.clientWidth/this.$refs.s[0].naturalWidth)*this.$refs.s[0].naturalHeight+'px';
         let height = (document.body.clientWidth/this.$refs.s[0].naturalWidth)*this.$refs.s[0].naturalHeight;
+        console.log(height);
       }else{
         setTimeout(()=>{
            this.swipeHeight = 'height:'+(document.body.clientWidth/this.$refs.s[0].naturalWidth)*this.$refs.s[0].naturalHeight+'px';

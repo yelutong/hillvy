@@ -2,8 +2,12 @@
 <template>
   <div id="indexRouter" class="wrapper page-index">
 
+    <scroller lock-x :scrollbar-y=false height="-60" use-pullup @on-scroll-bottom="loadMore" v-model="status" ref="scroller">
+    
+    <div>
+
     <div class="head white">
-      <v-swiper :swiper-data="bannerSwiper" />
+      <v-swiper :swiper-data="bannerSwipe" />
     </div>
 
     <div class="brand bg-gray1 pda15">
@@ -13,10 +17,10 @@
         <span class="fs-10 txt-right"><router-link to="/vGoods">更多商品 》</router-link></span>
       </div>
       <div class="brand-list">
-        <router-link class="item" :to="{path:'/goods', query:{id:item.productId}}" v-for="(item, index) in vAreaList" :key="index">
-          <img class="img" :src="item.photoUrl" />
-          <p class="pdlr5" v-text="item.name"></p> 
-          <div class="center txt-orange fs-13 pdb10" v-text="'¥'+item.price"></div>
+        <router-link class="item" :to="{path:'/goods', query:{id:item.id}}" v-for="(item, index) in vAreaList" :key="index">
+          <p class="vPicClass"><img class="img" :src="urlPic+item.goodsMainPhoto.split(',')[0]" /></p>
+          <p class="pdlr5" v-text="item.goodsName"></p> 
+          <div class="center txt-orange fs-13 pdb10" v-text="'¥'+item.salePrice"></div>
         </router-link>
       </div>
      </div>
@@ -24,7 +28,7 @@
 
     <div class="newListData pd15 bg-white" v-if="newListData">
        <router-link class="relative item pdtb15 justify-content-space-between" :to="{path:'/goods', query:{id:item.id}}" v-for="(item, index) in newListData" :key="index">
-          <div class="flexg1"><img class="img" :src="'http://pic.xy999888.com/'+item.goodsMainPhoto.split(',')[0]" /></div>
+          <div class="flexg1"><img class="img" :src="urlPic+item.goodsMainPhoto.split(',')[0]" /></div>
           <div class="flexg2 listRight">
             <p class="goodsName txt-black-real" v-text="item.goodsName"></p> 
             <div class="rightBtm justify-content-space-between">
@@ -37,15 +41,24 @@
           </div>
         </router-link>
     </div>
+
+     </div> 
+      <div slot="pullup" class="xs-plugin-pullup-container xs-plugin-pullup-up" style="position: absolute; width: 100%; height: 40px; bottom: -40px; text-align: center;">
+          <span v-show="status.pullupStatus === 'default'"></span>
+          <span class="pullup-arrow" v-show="status.pullupStatus === 'down' || status.pullupStatus === 'up'" :class="{'rotate': status.pullupStatus === 'up'}">↑</span>
+          <span v-show="status.pullupStatus === 'loading'"><spinner type="ios-small"></spinner></span>
+          <span v-show="status.pullupStatus === 'complete'">已加载完成</span>
+      </div>
+     </scroller>
   </div>
 </template>
 
 <script>
 import vSwiper from "@/components/v-swiper";
 import vNodata from "@/components/v-nodata";
-
 import swiperPic from "@/assets/images/banner@2x.png";
 import { Button } from "mint-ui";
+import { Scroller, Spinner, Flexbox, FlexboxItem } from 'vux';
 const qs = require("qs");
 export default { 
   components: {
@@ -54,7 +67,15 @@ export default {
   data() {
     return {
       vPic:require("@/assets/images/v@2x.png"),
-      bannerSwiper: {
+      urlPic:this.api.urlPic,
+      totalPage: 1,
+      currentPage: 0,
+      listData:[],
+      pullup:true,
+      status: {
+        pullupStatus: 'default'
+      },
+      bannerSwipe: {
         speed: 800,
         auto: 3000,
         showIndicators: true,
@@ -70,7 +91,11 @@ export default {
   },
   components: {
     "v-swiper": vSwiper,
-    "v-nodata": vNodata
+    "v-nodata": vNodata,
+    Scroller,
+    Spinner,
+    Flexbox, 
+    FlexboxItem
   },
   beforeCreate() {
     
@@ -79,9 +104,35 @@ export default {
     // 读取用户其他数据
     this.getBannerData();
     this.getVdata();
-    this.getListData();
+    this.loadMore();
   },
   methods: {
+    loadMore (index) {
+        if(this.currentPage< this.totalPage){
+          this.currentPage= parseInt(this.currentPage) + 1;
+          this.$axios.post(this.api.getGoodsList,qs.parse({ "page" : this.currentPage, "limit":8 }),{headers: {"content-type": "application/json"}})
+          .then(res => {
+             // console.log(res.data);
+             this.totalPage=res.data.content.totalPage; 
+             this.newListData = [...this.newListData,...res.data.content.list];
+             // console.log(this.newListData);
+          })
+          .catch(res => {
+           //下单失败，请您稍后重试
+          });
+        }else{
+          this.pullup = false;
+          this.status.pullupStatus = 'complete';
+          setTimeout(()=>{
+            this.status.pullupStatus = 'default';
+            this.pullup = false;
+          },1000);
+          // console.log('已加载完');
+        }
+        setTimeout(() => {
+          this.$refs.scroller.donePullup()
+        }, 10)
+    },
     // 获取banner图数据
     getBannerData() {
       this.$axios.post(this.api.getBanners,qs.parse({ "advertType" : 1, "deviceType":1 }),{headers: {"content-type": "application/json"}})
@@ -103,132 +154,45 @@ export default {
               arr.push(obj);
             });
             console.log(arr);
-            this.bannerSwiper.arrData = arr;
+            this.bannerSwipe.arrData = arr;
          }
         }
       });
     },
     // 获取小V专区三个商品信息
     getVdata() {
-      this.$axios.get(this.api.getFloorList,{ params: {'islevelpackage':true} }).then(res => {
+      this.$axios.get(this.api.getFloorList).then(res => {
         const resData = res.data;
         if (resData.code === 1) {
-          //const arrData = resData.data;
-          const arrData =[
-          {
-            appletPhotoId: 926,
-            appletPhotoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            createDate: 1523413928000,
-            id: 5,
-            name: "艾戈勒（agelocer）布达佩斯系列瑞士原装进口手表男 三针多功能商务男表 全自动机械表防水带日历 银壳黑皮带 动能指示 4101A1【爆款】",
-            photoId: 194,
-            photoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            product: 360,
-            productId: 8,
-            price: 360,
-            showIndex: 1,
-            state: "1"
-          },{
-            appletPhotoId: 926,
-            appletPhotoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            createDate: 1523413928000,
-            id: 5,
-            name: "艾戈勒（agelocer）布达佩斯系列瑞士原装进口手表男 三针多功能商务男表 全自动机械表防水带日历 银壳黑皮带 动能指示 4101A1【爆款】",
-            photoId: 194,
-            photoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            product: 360,
-            productId: 8,
-            price: 360,
-            showIndex: 1,
-            state: "1"
-          },{
-            appletPhotoId: 926,
-            appletPhotoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            createDate: 1523413928000,
-            id: 5,
-            name: "艾戈勒（agelocer）布达佩斯系列瑞士原装进口手表男 三针多功能商务男表 全自动机械表防水带日历 银壳黑皮带 动能指示 4101A1【爆款】",
-            photoId: 194,
-            photoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            product: 360,
-            productId: 8,
-            price: 360,
-            showIndex: 1,
-            state: "1"
-          }];
-
-
-
-          this.vAreaList = arrData || [];
+          const arrData = resData.content[0].goodsLst;
+          let new2Array=[];
+          arrData.map((v,i)=>{
+            if(i<=2){
+              new2Array.push(v)
+            }
+          });
+        this.vAreaList = new2Array;
         }
       });
-    },
-    // 获取活动banner数据
-    getListData() {
-      this.$axios
-        .get(this.api.getFloorList)
-        .then(res => {
-          const resData = res.data;
-          if (resData.code == 1) {
-            const arrData = resData.content[0].goodsLst;
-          /*  const arrData =[
-          {
-            appletPhotoId: 926,
-            appletPhotoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            createDate: 1523413928000,
-            id: 5,
-            name: "艾戈勒（agelocer）布达佩斯系列瑞士原装进口手表男 三针多功能商务男表 全自动机械表防水带日历 银壳黑皮带 动能指示 4101A1【爆款】",
-            photoId: 194,
-            photoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            product: 360,
-            productId: 8,
-            price: 360,
-            cprice: 480,
-            showIndex: 1,
-            state: "1"
-          },{
-            appletPhotoId: 926,
-            appletPhotoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            createDate: 1523413928000,
-            id: 5,
-            name: "艾戈勒（agelocer）布达佩斯系列瑞士原装进口手表男 三针多功能商务男表 全自动机械表防水带日历 银壳黑皮带 动能指示 4101A1【爆款】",
-            photoId: 194,
-            photoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            product: 360,
-            cprice: 480,
-            productId: 8,
-            price: 360,
-            showIndex: 1,
-            state: "1"
-          },{
-            appletPhotoId: 926,
-            appletPhotoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            createDate: 1523413928000,
-            id: 5,
-            name: "艾戈勒（agelocer）布达佩斯系列瑞士原装进口手表男 三针多功能商务男表 全自动机械表防水带日历 银壳黑皮带 动能指示 4101A1【爆款】",
-            photoId: 194,
-            photoUrl: "http://img12.360buyimg.com//n0/jfs/t1/24895/21/1419/407172/5c1202a0Eb5c66789/011f2bb92f58f087.png",
-            product: 360,
-            cprice: 480,
-            productId: 8,
-            price: 360,
-            showIndex: 1,
-            state: "1"
-          }];
-           */
-            this.newListData = arrData;
-            console.log(this.newListData)
-          }
-          
-        })
-        .catch(res => {
-          
-        });
     }
   }
 };
 </script>
 <style lang="stylus">
 #indexRouter{
+  .vPicClass{
+    position:relative;
+    width:100%;
+    height: 0;
+    padding-bottom: 100%;
+  }
+  .vPicClass img {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   .vArea img{
     width:86px;
   }
