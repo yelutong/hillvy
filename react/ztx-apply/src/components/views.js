@@ -8,7 +8,8 @@ const views = [
 	{pathName:'#/privacyService',title:'PERJANJIAN PRIVASI DAN OTORISASI',IndonesianTitle:'PERJANJIAN PRIVASI DAN OTORISASI'},//privacyService 隐私服务协议
 	{pathName:'#/loanAgreement',title:'PERJANJIAN PEMBERIAN PINJAMAN',IndonesianTitle:'PERJANJIAN PEMBERIAN PINJAMAN'},//loanAgreement 借款协议
 	{pathName:'#/lendingAgreement',title:'PERJANJIAN KERJASAMA LAYANAN',IndonesianTitle:'PERJANJIAN KERJASAMA LAYANAN'},//loanAgreement 出借协议
-	{pathName:'#/activity',title:'Detail Promosi',IndonesianTitle:'Detail Promosi'},//活动
+	{pathName:'#/activity',title:'Undang Teman Dapat Hadiah',IndonesianTitle:'Undang Teman Dapat Hadiah'},//活动
+	{pathName:'#/ActivityRule',title:'Syarat dan Ketentuan',IndonesianTitle:'Syarat dan Ketentuan'},//活动细则
 	{pathName:'#/activityNew',title:'Detail Promosi',IndonesianTitle:'Detail Promosi'},//活动
 	{pathName:'#/Coupon',title:'Kupon saya',IndonesianTitle:'Kupon saya'},//优惠券
 	{pathName:'#/Event',title:'Kegiatan saya',IndonesianTitle:'Kegiatan saya'},//活动列表
@@ -22,5 +23,12 @@ const views = [
   {pathName:'#/RepaymentBill',title:'Tagihan',IndonesianTitle:'Tagihan'},
   {pathName:'#/LendDtail',title:'Informasi Pinjaman',IndonesianTitle:'Informasi Pinjaman'},
   {pathName:'#/ApplyRecord',title:'Histori Pinjaman',IndonesianTitle:'Histori Pinjaman'},
+  {pathName:'#/InviteRecord',title:'Riwayat Undangan',IndonesianTitle:'Riwayat Undangan'},
+  {pathName:'#/RecommendReg',title:'Pendaftar pengguna baru',IndonesianTitle:'Pendaftar pengguna baru'},
+  {pathName:'#/RegSuccess',title:'Pendaftar Pengguna Baru',IndonesianTitle:'Pendaftar Pengguna Baru'},
+  {pathName:'#/RedBag',title:'Hadiah',IndonesianTitle:'Hadiah'},
+  {pathName:'#/Withdrawal',title:'Tarik Dana',IndonesianTitle:'Tarik Dana'},
+  {pathName:'#/WdStatus',title:'Tarik Dana',IndonesianTitle:'Tarik Dana'},
+  {pathName:'#/BindCard',title:'Rekening Bank',IndonesianTitle:'Rekening Bank'},
 ];
 export default views

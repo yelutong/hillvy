@@ -43,6 +43,10 @@ const HowToRepay  = (location, cb) => {
 const Activity  = (location, cb) => {
   require.ensure([], require => {cb(null, require('../views/activity/index'));}, 'Activity');
 };
+//活动规则
+const ActivityRule  = (location, cb) => {
+  require.ensure([], require => {cb(null, require('../views/activity/rule'));}, 'ActivityRule');
+};
 //活动
 const ActivityNew  = (location, cb) => {
   require.ensure([], require => {cb(null, require('../views/activityNew/index'));}, 'ActivityNew');
@@ -91,6 +95,34 @@ const LendDtail  = (location, cb) => {
 const ApplyRecord  = (location, cb) => {
   require.ensure([], require => {cb(null, require('../views/userCenter/applyRecord'));}, 'ApplyRecord');
 };
+//要求记录
+const InviteRecord  = (location, cb) => {
+  require.ensure([], require => {cb(null, require('../views/userCenter/inviteRecord'));}, 'InviteRecord');
+};
+//被推荐人注册
+const RecommendReg  = (location, cb) => {
+  require.ensure([], require => {cb(null, require('../views/userCenter/recommendReg'));}, 'RecommendReg');
+};
+//推荐成功
+const RegSuccess  = (location, cb) => {
+  require.ensure([], require => {cb(null, require('../views/userCenter/regSuccess'));}, 'RegSuccess');
+};
+//红包
+const RedBag  = (location, cb) => {
+  require.ensure([], require => {cb(null, require('../views/userCenter/redBag'));}, 'RedBag');
+};
+//提现
+const Withdrawal  = (location, cb) => {
+  require.ensure([], require => {cb(null, require('../views/userCenter/withdrawal'));}, 'Withdrawal');
+};
+//提现状态
+const WdStatus  = (location, cb) => {
+  require.ensure([], require => {cb(null, require('../views/userCenter/wdStatus'));}, 'WdStatus');
+};
+//绑卡
+const BindCard  = (location, cb) => {
+  require.ensure([], require => {cb(null, require('../views/userCenter/bindCard'));}, 'BindCard');
+};
 
 const routes = (
     <div>
@@ -101,6 +133,7 @@ const routes = (
           <Route path="CouponRule" getComponent={CouponRule}/>
           <Route path="Event" getComponent={Event}/>
           <Route path="activity" getComponent={Activity}/>
+          <Route path="ActivityRule" getComponent={ActivityRule}/>
           <Route path="activityNew" getComponent={ActivityNew}/>{/**Activity 活动页面*/}
           <Route path="HelpCenter" getComponent={HelpCenter}/>
           <Route path="SecondHC/:name" getComponent={SecondHelpCenter}/>
@@ -119,6 +152,13 @@ const routes = (
           <Route path="RepaymentBill" getComponent={RepaymentBill}/>
           <Route path="LendDtail/:name" getComponent={LendDtail}/>
           <Route path="ApplyRecord" getComponent={ApplyRecord}/>
+          <Route path="InviteRecord" getComponent={InviteRecord}/>
+          <Route path="RecommendReg" getComponent={RecommendReg}/>
+          <Route path="RegSuccess" getComponent={RegSuccess}/>
+          <Route path="RedBag" getComponent={RedBag}/>
+          <Route path="Withdrawal" getComponent={Withdrawal}/>
+          <Route path="WdStatus" getComponent={WdStatus}/>
+          <Route path="BindCard" getComponent={BindCard}/>
         </Route>
     </div>
 );
@@ -141,7 +181,7 @@ class App extends React.Component {
       var docEl = doc.documentElement,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
         recalc = function () {
-          var clientWidth = docEl.clientWidth;
+          var clientWidth = docEl.clientWidth>=900?900:docEl.clientWidth;
           if (!clientWidth) return;
           docEl.style.fontSize = 14 * (clientWidth / 320) + 'px';
         };

@@ -29,8 +29,8 @@
           }
         }).then(res => {
           const resData = res.data;
-          if (resData.code === 100 && !!resData.data) {
-            this.qrImgUrl = resData.data;
+          if (resData.code === 1 && !!resData.content) {
+            this.qrImgUrl = resData.content;
           } else {
             this.qrImgUrl = 'https://mg.xjjxsd.cn/wechat/qrcode/qrcode.jpg';
           }

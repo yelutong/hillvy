@@ -106,7 +106,7 @@ const DateApi = {
         if (str.indexOf(".") == -1) {
             for (var i = str.length - 1; i >= 0; i--) {
                 if (count % 3 == 0 && count != 0) {
-                    newStr = str.charAt(i) + "." + newStr;//这里用 点号连接
+                    newStr = str.charAt(i) + "," + newStr;//这里用 点号连接
                 } else {
                     newStr = str.charAt(i) + newStr;//charAt位置,由高到低即从最右边的个位开始遍历
                 }

@@ -81,11 +81,11 @@ export default {
         .get(this.api.getGoodsDetail, { params: { product_id: id } })
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip("获取商品图文信息失败");
             return;
           }
-          const objData = resData.data;
+          const objData = resData.content;
           const introData = objData.appPhotoMainUrls || [];
           const paramData = objData.listDetailMainBody || [];
           const serveData = objData.listDetailMainSale || [];
@@ -114,13 +114,13 @@ export default {
     getIfCollect(id) {
       this.$axios
         .get(this.api.ifGoodsCollect, {
-          headers: { access_token: this.token },
+          headers: { "Authorization": this.token },
           params: { product_id: id }
         })
         .then(res => {
           const resData = res.data;
-          if (resData.code === 100) {
-            this.isCollect = resData.data;
+          if (resData.code === 1) {
+            this.isCollect = resData.content;
           } else {
             this.isCollect = false;
           }
@@ -132,12 +132,12 @@ export default {
         // 如果已收藏，则取消收藏
         this.$axios
           .get(this.api.removeCollect, {
-            headers: { access_token: this.token },
+            headers: { "Authorization": this.token },
             params: { product_id: this.id }
           })
           .then(res => {
             const resData = res.data;
-            if (resData.code !== 100) {
+            if (resData.code !== 1) {
               this.showTip("取消收藏失败");
               return;
             }
@@ -151,12 +151,12 @@ export default {
         // 未收藏则增加收藏
         this.$axios
           .get(this.api.addCollect, {
-            headers: { access_token: this.token },
+            headers: { "Authorization": this.token },
             params: { product_id: this.id }
           })
           .then(res => {
             const resData = res.data;
-            if (resData.code !== 100) {
+            if (resData.code !== 1) {
               this.showTip("收藏失败");
               return;
             }

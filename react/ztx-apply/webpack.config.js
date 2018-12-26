@@ -5,7 +5,7 @@ const webpack = require('webpack');
 // 分离 css 到独立的文件中
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 // 压缩 css 资源文件
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+//const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
@@ -29,8 +29,7 @@ const config = {
   debug: true,
   devtool:'false',
   devServer: {
-    disableHostCheck: true,
-    public: '192.168.1.1'
+    disableHostCheck: true
   },
   module: {
     loaders: [

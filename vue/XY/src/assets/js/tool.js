@@ -12,6 +12,10 @@ export default {
       const u = window.navigator.userAgent.toLowerCase();
       return (u.match(/MicroMessenger/i) == "micromessenger");
     };
+    Vue.prototype.formatPhone = function (phone) {
+      let str = phone.substr(0,3)+"****"+phone.substr(7);
+      return str;
+    }
     Vue.prototype.getUrlParam = function (name) {
       const after = window.location.hash.split("?")[1];
       if (after) {

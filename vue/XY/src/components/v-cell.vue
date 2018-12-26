@@ -35,7 +35,9 @@
 <script>
   import {
     XAddress,
-    ChinaAddressV4Data
+    Cell,
+    ChinaAddressV4Data,
+    Value2nameFilter as value2name
   } from "vux";
   export default {
     data() {
@@ -43,6 +45,7 @@
         cptIptCon: '',
         hideAddress: [],
         actAddress: [],
+        arrId:[],
         chinaAddress: ChinaAddressV4Data
       };
     },
@@ -71,7 +74,7 @@
       }
     },
     components: {
-      XAddress
+      XAddress,Cell
     },
     computed: {
       showAddress() {
@@ -99,15 +102,22 @@
       // 选择省市区
       changeRegion(arrId, arrTxt) {
         this.hideAddress = arrTxt;
+        this.arrId = arrId;
       },
       // 确定选择省市区
       actRegion(act) {
+        console.log(this.actAddress);
+        console.log(value2name(this.actAddress, ChinaAddressV4Data));
         if (act) {
           // 如果点了确定
           this.actAddress = this.hideAddress;
+          
+          //console.log(document.getElementByclassName('weui-cell__ft'));
+          
           this.$emit("iptChange", {
             pro: this.pro,
-            value: this.actAddress
+            value: this.actAddress,
+            areaId: this.arrId.pop()
           });
         }
       }

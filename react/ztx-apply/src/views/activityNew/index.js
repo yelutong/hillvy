@@ -130,7 +130,7 @@ class Activity extends React.Component {
                 <div className="otherTitle">Keterangan lainnya</div>
                 <div className="otherList">
                   <div className="otherItem">1. Pelanggan yang memenuhi kriteria perlu mengajukan permohonan pinjaman pada masa promosi berlaku；</div>
-                  <div className="otherItem">2. Setelah dana berhasil ditransfer, kupon potongan pembayaran akan dikirimkan ke lama【Kupon saya】</div>
+                  <div className="otherItem">2. Setelah dana berhasil ditransfer, kupon potongan pembayaran akan dikirimkan ke laman【Kupon saya】</div>
                   <div className="otherItem">3. Kupon potongan pembayaran dapat digunakan untuk mengurangi jumlah pembayaran pada saat akan melakukan pembayaran；</div>
                   <div className="otherItem">4. Kupon potongan pembayaran berlaku sampai masa jatuh tempo pinjaman. Kupon otomatis tidak berlaku jika lewat dari tanggal jatuh tempo；</div>
                   <div className="otherItem">5. Jika Pengguna terlambat membayar, kupon otomatis tidak berlaku；</div>

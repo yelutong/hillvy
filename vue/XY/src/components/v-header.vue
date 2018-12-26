@@ -32,6 +32,7 @@ export default {
 }
 .mint-header-title{
   color:#141414!important;
+  font-size: 16px;
 }
 .mintui{
   color:#5C5C5C!important;

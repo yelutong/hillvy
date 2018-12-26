@@ -19,8 +19,10 @@ const goodsinfo = () =>
   import ('@/views/goods/goodsinfo'); // 商品图文详情
 const goodseva = () =>
   import ('@/views/goods/goodseva'); // 商品评价列表
+const goodsCart = () =>
+  import ('@/views/goods/goodsCart'); // 购物车
 const cart = () =>
-  import ('@/views/goods/cart'); // 购买商品
+  import ('@/views/goods/cart'); // 结算购物车商品
 const pay = () =>
   import ('@/views/goods/pay'); // 支付
 const orders = () =>
@@ -33,6 +35,9 @@ const evaserve = () =>
   import ('@/views/goods/evaserve'); // 评价服务
 const express = () =>
   import ('@/views/goods/express'); // 查看物流
+const connectMe = () =>
+  import ('@/views/goods/connectMe'); // 客服
+
 // 我的 -------------------------------
 const mine = () =>
   import ('@/views/mine/mine'); // 个人中心
@@ -66,7 +71,12 @@ const seniorgrant = () =>
   import ('@/views/mine/seniorgrant'); // 服务商分配
 const juniorgrant = () =>
   import ('@/views/mine/juniorgrant'); // 服务点接单
-
+const login = () =>
+  import ('@/views/mine/login'); // 登录
+const register = () =>
+  import ('@/views/mine/register'); // 注册
+const findPwd = () =>
+  import ('@/views/mine/findPwd'); // 找回密码
 
 
 // 路由加载 --------------------------------------
@@ -105,8 +115,17 @@ const router = new Router({
       component: goodseva
     },
     {
+      path: '/goodsCart',
+      component: goodsCart
+    },
+    {
       path: '/cart',
+      name:'cart',
       component: cart
+    },
+    {
+      path: '/goods/connectMe',
+      component: connectMe
     },
     {
       path: '/goods/pay',
@@ -196,6 +215,18 @@ const router = new Router({
     {
       path: '/mine/juniorgrant',
       component: juniorgrant
+    },
+    {
+      path: '/mine/login',
+      component: login
+    },
+    {
+      path: '/mine/register',
+      component: register
+    },
+    {
+      path: '/mine/findPwd',
+      component: findPwd
     }
   ]
 });

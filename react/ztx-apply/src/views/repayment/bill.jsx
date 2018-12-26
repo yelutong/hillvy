@@ -37,8 +37,20 @@ class RepaymentBill extends React.Component {
   }
 
   componentDidMount() {
-
+     //Js在src/index.html里面定义，Js里面的方法可供app调用
+    Js.billTabs = this.billTabs;
   }
+
+  /*
+  *@description 供app调用的方法 切换tabs
+  */
+  billTabs = (tab) => {
+    tab = tab == 0?0:1;
+    this.setState({ navIndex : tab });
+    localStorage.setItem("navIndex",tab);
+    console.log('Tabs',tab);
+  }
+
   routerTo(currenList) {
     this.props.router.push({
       pathname:"/LendDtail/"+currenList.contractNo,
@@ -73,86 +85,90 @@ class RepaymentBill extends React.Component {
   }
 
   getBill = () => {
-  let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/v3/bill';
-  axios.get(url,{params:{"applyId":this.props.location.query.applyId}}).then((res) => {
-    if(res.data.code == '0000'){
-        console.log(res); 
-        let listData = res.data; 
-        console.log(listData);
-    if(listData.body && listData.body.termSettles&& listData.body.termSettles.length>0){//已还 数组
-     var Lunas = listData.body.termSettles;
-     for(let i=0;i<Lunas.length;i++){
-      let date = Lunas[i].receiveDate ? Date.parse(new Date(Lunas[i].receiveDate)) : '';
-      let settleDate = Lunas[i].settleDate ? Date.parse(new Date(Lunas[i].settleDate)) : '';
-      Lunas[i].receiveDate = DateApi.format3(date);
-      Lunas[i].settleDate = DateApi.format3(settleDate);
-
-    }
-    this.setState({ Lunas : Lunas });
-    }else{
-     $('.RepaymentBill .Lunas .am-result').height(document.body.clientHeight-51);
-    }
-    if(listData.body && listData.body.settle&& listData.body.settle.length>0){//已还 数组
-     var settle = listData.body.settle;
-     for(let i=0;i<settle.length;i++){
-      let date = settle[i].receiveDate ? Date.parse(new Date(settle[i].receiveDate)) : '';
-      let settleDate = settle[i].settleDate ? Date.parse(new Date(settle[i].settleDate)) : '';
-      settle[i].receiveDate = DateApi.format2(date);
-      settle[i].settleDate = DateApi.format3(settleDate);
-    }
-    this.setState({ settle : settle });
-    } 
-    if(listData.body && listData.body.loanDetial){
-      let loanDetial = listData.body.loanDetial;
-      this.setState({ loanDetial : loanDetial });
-    }
-    if(listData.body && listData.body.repayDetails && listData.body.repayDetails.length > 0){
-      let repayDetails = listData.body.repayDetails;
-      for(let i=0;i < repayDetails.length;i++){
-       let date = repayDetails[i].returnDate ? Date.parse(new Date(repayDetails[i].returnDate)) : '';
-       if(date){
-        repayDetails[i].returnDate = DateApi.format2(date);
-       }
-      }
-      console.log(repayDetails);
-     this.setState({ repayDetails : repayDetails });
-    }
-    if(listData.body && listData.body.toRepayList&&listData.body.toRepayList.length>0){//待还
-      var paynot = listData.body.toRepayList; 
-      for(let i=0;i < paynot.length;i++){
-        var date = paynot[i].receiveDate ? Date.parse(new Date(paynot[i].receiveDate)) : '';
-        var dateApply = paynot[i].applyTime ? Date.parse(new Date(paynot[i].applyTime)) : '';
-        if(paynot[i].isStaging == false){
-          paynot[i].DateDiff = DateApi.DateDiff(date);//剩余多少天到期
+    if(this.props.location.query.applyId){
+      let url=location.protocol+'//'+config.domainApply+'/kpt-apply/apply/v3/bill';
+      axios.get(url,{params:{"applyId":this.props.location.query.applyId}}).then((res) => {
+        if(res.data.code == '0000'){
+            console.log(res); 
+            let listData = res.data; 
+            console.log(listData);
+        if(listData.body && listData.body.termSettles&& listData.body.termSettles.length>0){//已还 数组
+           var Lunas = listData.body.termSettles;
+            for(let i=0;i<Lunas.length;i++){
+              let date = Lunas[i].receiveDate ? Date.parse(new Date(Lunas[i].receiveDate)) : '';
+              let settleDate = Lunas[i].settleDate ? Date.parse(new Date(Lunas[i].settleDate)) : '';
+              Lunas[i].receiveDate = DateApi.format3(date);
+              Lunas[i].settleDate = DateApi.format3(settleDate);
+            }
+           this.setState({ Lunas : Lunas });
+        }else{
+         $('.RepaymentBill .Lunas .am-result').height(window.screen.height-102);
         }
-        if(i>0){
-          paynot[i].notClick = true;
+        if(listData.body && listData.body.settle&& listData.body.settle.length>0){//已还 数组
+         var settle = listData.body.settle;
+         for(let i=0;i<settle.length;i++){
+          let date = settle[i].receiveDate ? Date.parse(new Date(settle[i].receiveDate)) : '';
+          let settleDate = settle[i].settleDate ? Date.parse(new Date(settle[i].settleDate)) : '';
+          settle[i].receiveDate = DateApi.format2(date);
+          settle[i].settleDate = DateApi.format3(settleDate);
         }
-        paynot[i].receiveDate = DateApi.format2(date);
-        paynot[i].returnDate1 = DateApi.format3(date);
-        paynot[i].applyTime = DateApi.format3(dateApply);
-      }
-      this.setState({ paynot : paynot });
-      if(App){
-       (paynot&&paynot.length>0&&paynot[0].isStaging==true)?App.redViewShow(true):App.redViewShow(false);
-     }
-    }else{
-      $('.RepaymentBill .paynot .am-result').height(document.body.clientHeight-51);
-    }
-
-    }else{
-      $('.RepaymentBill .am-result').height(document.body.clientHeight-51);
-    }
-}).catch(function (error) {
-    $('.RepaymentBill .am-result').height(document.body.clientHeight-51);
-    console.log(error);
-  });
+        this.setState({ settle : settle });
+        } 
+        if(listData.body && listData.body.loanDetial){
+          let loanDetial = listData.body.loanDetial;
+          this.setState({ loanDetial : loanDetial });
+        }
+        if(listData.body && listData.body.repayDetails && listData.body.repayDetails.length > 0){
+          let repayDetails = listData.body.repayDetails;
+          for(let i=0;i < repayDetails.length;i++){
+           let date = repayDetails[i].returnDate ? Date.parse(new Date(repayDetails[i].returnDate)) : '';
+           if(date){
+            repayDetails[i].returnDate = DateApi.format2(date);
+           }
+          }
+          console.log(repayDetails);
+         this.setState({ repayDetails : repayDetails });
+        }
+          if(listData.body && listData.body.toRepayList&&listData.body.toRepayList.length>0){//待还
+            var paynot = listData.body.toRepayList; 
+            for(let i=0;i < paynot.length;i++){
+              var date = paynot[i].receiveDate ? Date.parse(new Date(paynot[i].receiveDate)) : '';
+              var dateApply = paynot[i].applyTime ? Date.parse(new Date(paynot[i].applyTime)) : '';
+              if(paynot[i].status != 'overdue'){
+                paynot[i].DateDiff = DateApi.DateDiff(date);//剩余多少天到期
+              }
+              if(i>0){
+                paynot[i].notClick = true;
+              }
+              paynot[i].receiveDate = DateApi.format2(date);
+              paynot[i].returnDate1 = DateApi.format3(date);
+              paynot[i].applyTime = DateApi.format3(dateApply);
+            }
+            this.setState({ paynot : paynot });
+            if(App){
+              let timestamp1 =Date.parse(new Date());
+             (paynot&&paynot.length>0&&(paynot[0].status=='overdue'||paynot[0].receiveDate==DateApi.format2(timestamp1)))?App.redViewShow(true):App.redViewShow(false);
+           }
+          }else{
+            $('.RepaymentBill .paynot .am-result').height(window.screen.height-102);
+          }
+        }else{
+          $('.RepaymentBill .am-result').height(window.screen.height-102);
+        }
+      }).catch(function (error) {
+        $('.RepaymentBill .am-result').height(window.screen.height-102);
+        console.log(error);
+      });
+  }else{
+    $('.RepaymentBill .am-result').height(window.screen.height-102);
+  }
 }
 render() {
   return (
     <div className="RepaymentBill">
     <Tabs tabs={tabs}
     initialPage={Number(this.state.navIndex)}
+    page={Number(this.state.navIndex)}
     animated={false} 
     useOnPan={false}
     swipeable={false}
@@ -185,7 +201,7 @@ render() {
         </div>
 
         <div className="horizontal-view align-items-center">
-        <div className={item.isStaging == false?"flex1 txt-blue listLeft fs-14":"flex1 txt-orange listLeft fs-14"}>{item.isStaging == false? item.DateDiff +" hari lagi":"Terlambat "+item.overDueDays+" hari"}</div>
+        <div className={item.status != 'overdue'?"flex1 txt-blue listLeft fs-13":"flex1 txt-orange listLeft fs-13"}>{item.isStaging?(item.status != 'overdue'?"Menunggu Pembayaran":"Telah jatuh tempo"):(item.status!='overdue'?item.DateDiff +" hari lagi":"Terlambat "+item.overDueDays+" hari")}</div>
         <div className="flex1 txt-right"><Button onClick={()=>{this.toApp(item.contractNo,item.balance)}} type="primary" inline style={{ marginRight: '20px' }} disabled={i>0?true:false}>Bayar</Button></div>
         </div>
         </div>
@@ -195,7 +211,7 @@ render() {
       img={myImg(noLoan)}
       message={(
         <div>
-        <p>Daftar pinjaman Anda kosong.{this.state.navIndex}</p>
+        <p>Daftar pinjaman Anda kosong.</p>
         <p>Ayo ajukan pinjaman sekarang</p>
         <p>di Pinjam Gampang !</p>
         </div>
@@ -251,4 +267,3 @@ RepaymentBill.defaultProps = {
 };
 
 export default RepaymentBill;
-

@@ -1,14 +1,14 @@
 <template>
   <div class="wrapper page-mine">
-    <div class="lay-avatar">
+    <div class="lay-avatar" @click="isLogin">
       <div class="avatar">
         <img class="img" :src="weChatInfo.avatar" />
       </div>
-      <div class="name">{{ weChatInfo.name }}</div>
+      <div class="name">{{ userPhone?userPhone:weChatInfo.name}}</div>
     </div>
     <div class="lay-order">
       <div class="head">
-        <v-cell title="订单详情" value="查看全部订单" align="right" ricon="blue" link="/goods/orders?status=4"></v-cell>
+        <v-cell title="订单详情" value="查看全部订单" align="right" ricon="blue" link="/goods/orders?status=[10,20,30,40,50]"></v-cell>
       </div>
       <div class="list">
         <v-flexrow :flexrow-data="orderNav"></v-flexrow>
@@ -35,18 +35,15 @@
 </template>
 
 <script>
-  import {
-    mapState
-  } from "vuex";
-  import {
-    MessageBox
-  } from "mint-ui";
+  import { mapState, mapActions } from "vuex";
+  import { MessageBox } from "mint-ui";
   import vFlexrow from "@/components/v-flexrow";
   import vCell from "@/components/v-cell";
   import vFooter from "@/components/v-footer";
   export default {
     data() {
       return {
+        userPhone:'',
         orderNav: [{
             title: "待付款",
             size: 19.5,
@@ -88,18 +85,49 @@
       "v-footer": vFooter
     },
     computed: {
-      ...mapState(["token", "userId", "weChatInfo", "weChatShare"])
+      ...mapState(["token", "userId", "weChatInfo", "weChatShare",'shareId'])
     },
     beforeCreate() {
       document.title = "个人中心";
     },
     created() {
-      // 进来判断是否绑定了手机号
-      this.ifUserBind();
+      this.getUserData();
+      console.log(this.token);
     },
     methods: {
+      ...mapActions(["atnUserId"]),
+      isLogin() {
+        if(!this.token){
+          this.$router.push('/mine/login');
+        }
+      },
+      //获取个人中心信息
+      getUserData(){
+        this.$axios
+        .get(this.api.getUserData,{
+          headers: {"Authorization": this.token }
+         })
+        .then(res => {
+          const resData = res.data;
+          if (resData.code !== 1) {
+            this.showTip(resData.msg);
+            return;
+          }else{
+            this.userPhone = this.formatPhone(resData.content.userName);
+            this.atnUserId(resData.content.id);
+            console.log(this.userId);
+          }
+          console.log(resData);
+          // this.ifUserBind();// 进来判断是否绑定了手机号
+        })
+        .catch(res => {
+          console.log(res);
+          //this.showTip("获取信息失败，请稍后重试");
+        }); 
+      },
       // 判断是否绑定了手机号
       ifUserBind() {
+        console.log('判断是否绑定了手机号');
         if (!this.userId) {
           MessageBox({
             title: "绑定提示",
@@ -108,6 +136,8 @@
           }).then(action => {
             if (action === "confirm") {
               this.$router.push("/mine/bind");
+            }else{
+              this.$router.push("/mine/login");
             }
           });
         } else {
@@ -122,18 +152,18 @@
         this.$axios
           .get(this.api.getJoinStatus, {
             headers: {
-              access_token: this.token
+              "Authorization": this.token
             }
           })
           .then(res => {
             const resData = res.data;
-            if (resData.code !== 100) {
+            if (resData.code !== 1) {
               this.joinLink = "/pages/join/join";
               return;
             }
             // 成功后根据状态跳转不同页面
-            this.joinLink = resData.data ?
-              "/mine/joinstatus?status=" + resData.data :
+            this.joinLink = resData.content ?
+              "/mine/joinstatus?status=" + resData.content :
               "/mine/join";
           })
           .catch(res => {
@@ -145,14 +175,14 @@
         this.$axios
           .get(this.api.getUserInfo, {
             headers: {
-              access_token: this.token
+              "Authorization": this.token
             }
           })
           .then(res => {
             const resData = res.data;
             // 有数据的话，就证明已绑定了
-            if (resData.code === 100 && !!resData.data) {
-              const serverType = resData.data.roleTypeDsid;
+            if (resData.code === 1 && !!resData.content) {
+              const serverType = resData.content.roleTypeDsid;
               if (serverType === 2) {
                 this.serveLink = "/mine/serveorders?type=junior";
               } else if (serverType === 3) {

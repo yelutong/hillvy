@@ -6,7 +6,9 @@
       <tab-item class="vux-center" :selected="onTab === item.id" v-for="(item, index) in listFun" @on-item-click="onTabClick(item)" :key="index">{{item.className}}</tab-item>
     </tab>
     <swiper v-model="index" height="100%" :show-dots="false">
-      <component :is="currentView"></component>
+      <!--<component :is="currentView"></component>-->
+      <indexNew  v-if="onTab===0" />
+      <tabContent v-else :parentId="onTab" />
     </swiper>
  
     <v-footer active="index" />
@@ -37,7 +39,9 @@ export default {
     Tab,
     TabItem,
     Swiper, 
-    SwiperItem
+    SwiperItem,
+    tabContent,
+    indexNew
   },
   beforeCreate() {
     document.title = "新银众商";
@@ -47,23 +51,7 @@ export default {
     this.getClassBylevel();
   },
   computed:{
-    currentView(){
-      if(this.onTab===0){
-        return indexNew;
-      }
-      else{
-       this.$axios.get(this.api.getChildsList+this.onTab)
-       .then(res => {
-        if(res.data.code === 1){
-           console.log(res.data);
-        }
-      })
-      .catch(res => {
-       //下单失败，请您稍后重试
-      });
-        return tabContent;
-      }
-    }
+
   },
   methods: {
     onTabClick(item){

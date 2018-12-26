@@ -53,15 +53,15 @@ export default {
     // 获取已绑定的银行卡
     getCardList() {
       this.$axios
-        .get(this.api.getBankCard, { headers: { access_token: this.token } })
+        .get(this.api.getBankCard, { headers: { "Authorization": this.token } })
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             this.noCard = true;
             return;
           }
-          const arrData = resData.data || [];
+          const arrData = resData.content || [];
           this.noCard = arrData.length === 0 ? true : false;
           // 做下截断处理
           arrData.forEach(val => {
@@ -102,12 +102,12 @@ export default {
         if (action === "confirm") {
           this.$axios
             .get(this.api.delBankCard, {
-              headers: { access_token: this.token },
+              headers: { "Authorization": this.token },
               params: { bank_card_id: item.id }
             })
             .then(res => {
               const resData = res.data;
-              if (resData.code !== 100) {
+              if (resData.code !== 1) {
                 this.showTip(resData.message);
                 return;
               }

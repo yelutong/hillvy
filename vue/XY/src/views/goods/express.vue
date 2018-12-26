@@ -55,22 +55,22 @@ export default {
       });
       this.$axios
         .get(this.api.getExpress, {
-          headers: { access_token: this.token },
+          headers: { "Authorization": this.token },
           params: { order_detail_id: detailId }
         })
         .then(res => {
           loading.close();
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.actionError();
             this.showTip(resData.message);
             return;
           }
           // 成功后赋值数据
           let objData =
-            typeof resData.data === "string"
-              ? JSON.parse(resData.data)
-              : resData.data;
+            typeof resData.content === "string"
+              ? JSON.parse(resData.content)
+              : resData.content;
           if (!objData.data) {
             this.showTip(objData.message || "还未生成物流信息，请稍后查询");
             this.actionError();

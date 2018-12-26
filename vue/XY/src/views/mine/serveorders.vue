@@ -85,17 +85,17 @@
         });
         this.$axios.get(url, {
           headers: {
-            access_token: this.token
+            "Authorization": this.token
           },
         }).then(res => {
           loading.close();
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             this.noOrder = true;
             return;
           }
-          const arrData = resData.data || [];
+          const arrData = resData.content || [];
           if (arrData.length === 0) {
             this.noOrder = true;
             return;

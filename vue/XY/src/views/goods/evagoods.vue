@@ -10,7 +10,7 @@
     </div>
     <textarea class="txa" v-model.trim="evaContent" placeholder="感觉这件商品怎么样？来评价几句吧~" maxlength="200"></textarea>
     <vue-core-image-upload class="up-load" :crop="false" text="" inputAccept="image/*" @imageuploaded="chooseImage" :credentials="false"
-      :max-file-size="10485760" :multiple="false" inputOfFile="Filedata" :url="this.api.uploadImages" :headers="{access_token:this.token}">
+      :max-file-size="10485760" :multiple="false" inputOfFile="Filedata" :url="this.api.uploadImages" :headers="{"Authorization":this.token}">
     </vue-core-image-upload>
     <button class="btn-submit" @click="evaGoods">发表评价</button>
   </div>
@@ -59,7 +59,7 @@
           this.showTip("最多只能上传8张图片");
           return;
         }
-        if (data.code !== 100 || !data.data || data.data.length === 0) {
+        if (data.code !== 1 || !data.data || data.data.length === 0) {
           this.showTip("上传失败，请重试");
           return;
         }
@@ -94,12 +94,12 @@
         }), {
           headers: {
             "content-type": "application/x-www-form-urlencoded",
-            access_token: this.token
+            "Authorization": this.token
           },
         }).then(res => {
           loading.close();
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip("评价失败，请稍后重试");
             return;
           }

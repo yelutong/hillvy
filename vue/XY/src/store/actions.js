@@ -2,7 +2,7 @@ const actions = {
   atnOpenId(context, val) {
     context.commit('mtnOpenId', val);
   },
-  atnToken(context, val) {
+  atnToken(context, val) {//存储token
     context.commit('mtnToken', val);
   },
   atnParentId(context, val) {

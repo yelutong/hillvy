@@ -18,9 +18,10 @@ const tabs = [
 class ApplyRecord extends React.Component {
   constructor(props) {
     super(props);
-    this.statApplyRecorde = {
+    this.state = {
       listData:[],
       getResult:'',
+      noData: 'true'
     };
     console.log(this.props.location.query);
     localStorage.setItem('token',this.props.location.query.token||localStorage.getItem('token'));//"8439096e96794349b2bdd5ff4603cfe7"
@@ -41,25 +42,33 @@ class ApplyRecord extends React.Component {
   }
   getRecordContent = () => {
    let listShow=[],recordContent; 
-   let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/auth/v3/history';
+   let url=location.protocol+'//'+config.domainApply+'/kpt-apply/apply/auth/v3/history';
    axios.get(url,{params:{"registId":this.props.location.query.registId}}).then((res) => {
     if(App){
       App.showLoading(false);
     }
+    let _this = this;
+    setTimeout(()=>{
+      _this.setState({noData:'false'});
+    },1000)
     if(res.data.code == '0000'){
       console.log(res); 
       var listData = res.data.body;
-      if(!(listData&&listData.length>0)){
-        $('.ApplyRecord .am-result').height(document.body.clientHeight-51);
+      if(listData){
+        if(listData.length==0){
+         $('.ApplyRecord .am-result').height(window.screen.height-102);
+        }
+      }else{
+         $('.ApplyRecord .am-result').height(window.screen.height-102);
       }
       this.setState({ listData: listData });
     }else{
-      $('.ApplyRecord .am-result').height(document.body.clientHeight-51);
+      $('.ApplyRecord .am-result').height(window.screen.height-102);
     }
     }).catch(function (error) {
-      $('.ApplyRecord .am-result').height(document.body.clientHeight-51);
+      $('.ApplyRecord .am-result').height(window.screen.height-102);
       Toast.info(String(error));
-      });
+    });
   }
   render() {
     return ( 
@@ -88,6 +97,7 @@ class ApplyRecord extends React.Component {
            )
          }):
         <Result
+        className={this.state.noData=='true'?'hide':''}
         img={myImg(noLoan)}
         message={(
           <div>

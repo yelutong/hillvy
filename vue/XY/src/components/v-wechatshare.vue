@@ -30,11 +30,11 @@
           .get(this.api.getShareArgs)
           .then(res => {
             const resData = res.data;
-            if (resData.code !== 100 || !resData.data) {
+            if (resData.code !== 1 || !resData.content) {
               this.showTip('获取微信分享参数失败');
               return;
             }
-            this.wakeWeiXin(resData.data);
+            this.wakeWeiXin(resData.content);
           })
           .catch(res => {
             this.showTip('获取微信分享参数失败');

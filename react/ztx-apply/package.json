@@ -4,7 +4,7 @@
   "description": "React IE8 Fetch IE8 Example",
   "main": "entry.js",
   "scripts": {
-    "dev": "webpack-dev-server --config ./webpack.config.dev.js --port=8086 --host=0.0.0.0 --progress --colors",
+    "dev": "webpack-dev-server --config ./webpack.config.dev.js --port=8086 --inline --host=0.0.0.0 --progress --colors",
     "start": "npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./webpack.config.prod.js --progress --colors"

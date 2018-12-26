@@ -84,10 +84,10 @@ class ApprovalResult extends React.Component {
         );
     }else{//审批被拒绝
       rPic=refuse;
-      rTtile="Mohon maaf";
+      rTtile="Gagal Terverifikasi";
       eMess=(
         <div>
-        <p>Berdasarkan hasil verifikasi informasi Anda,</p>
+        <p>Mohon maaf. Berdasarkan hasil verifikasi informasi Anda,</p>
         <p>pengajuan ini dinyatakan tidak lolos verifikasi.</p>
         <p>Silahkan ajukan kembali pada {this.state.tryDate}.</p>
         <p>Terima kasih.</p>

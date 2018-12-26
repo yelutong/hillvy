@@ -83,7 +83,7 @@ export default {
         })
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             if (first) {
               this.noEvas = true;
             } else {
@@ -92,7 +92,7 @@ export default {
             }
             return;
           }
-          let objData = resData.data,
+          let objData = resData.content,
             pageCount = objData.page_count,
             arrData = objData.records || [];
           if (arrData.length === 0) {

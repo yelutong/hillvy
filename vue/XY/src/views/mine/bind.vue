@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper white page-bind">
+    <vHeader title="绑定"/>
     <div class="item-bind">
       <i class="ico i-phone"></i> <input class="ipt" type="number" v-model.trim="bindInfo.phone" placeholder="请输入手机号" maxlength="11" />
     </div>
@@ -8,13 +9,14 @@
       <button class="btn-submit btn-code" v-if="!bindInfo.hasSend" @click="getCode">获取验证码</button>
       <div class="cut-time" v-if="bindInfo.hasSend">剩余 {{ bindInfo.time }} s</div>
     </div>
-    <button class="btn-submit btn-bind" @click="bindPhone">绑 定</button>
+    <button class="btn-submit btn-bind flex1" @click="bindPhone">绑 定</button>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
 import { Toast } from "mint-ui";
+import vHeader from "@/components/v-header";
 const qs = require("qs");
 export default {
   data() {
@@ -26,6 +28,9 @@ export default {
         hasSend: false
       }
     };
+  },
+  components: {
+   vHeader
   },
   computed: {
     ...mapState(["token", "userId", "parentId"])
@@ -48,12 +53,12 @@ export default {
       }
       this.$axios
         .get(this.api.getMobileCode, {
-          headers: { access_token: this.token },
+          headers: { "Authorization": this.token },
           params: { mobile: bindInfo.phone }
         })
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             return;
           }
@@ -108,18 +113,18 @@ export default {
         .post(this.api.bindNewUser, qs.stringify(ajaxData), {
           headers: {
             "content-type": "application/x-www-form-urlencoded",
-            access_token: this.token
+            "Authorization": this.token
           }
         })
         .then(res => {
           loading.close();
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             return;
           }
           // 绑定成功后，看是否返回了encryptionId
-          const objData = resData.data;
+          const objData = resData.content;
           if (objData.encryptionId) {
             // 如果存在，存好后返回
             this.setUserIdBack(objData);
@@ -152,12 +157,12 @@ export default {
     // 查询是否存在userId
     ifUserBind(token) {
       this.$axios
-        .get(this.api.getUserInfo, { headers: { access_token: token } })
+        .get(this.api.getUserInfo, { headers: { "Authorization": token } })
         .then(res => {
           const resData = res.data;
           // 如果接口成功且有数据，则已经绑定了，就存储再跳
-          if (resData.code === 100 && !!resData.data) {
-            this.setUserIdBack(resData.data);
+          if (resData.code === 1 && !!resData.content) {
+            this.setUserIdBack(resData.content);
           }
         });
     }

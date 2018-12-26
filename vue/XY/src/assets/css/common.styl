@@ -74,6 +74,9 @@ border:1px solid #ccc;
 .txt-orange {
   color: #FF4F00!important;
 }
+.txt-edit{
+  color: #C18702!important;
+}
 /*背景颜色*/
 
 .bg-white {
@@ -106,6 +109,14 @@ p{
 }
 .lh-36 {
   line-height: 36px;
+}
+.h40{
+  height:40px;
+  line-height:40px;
+}
+.h45{
+  height:45px;
+  line-height:45px;
 }
 .h36 {
   height: 36px;
@@ -159,8 +170,14 @@ input:-webkit-autofill {
   height: 44px;
   line-height: 44px;
 }
+.mt5{
+  margin-top:2px!important;  
+}
 .mt40{
   margin-top:40px!important;
+}
+.mt50{
+  margin-top:50px!important; 
 }
 i {
   font-style: normal;
@@ -247,6 +264,9 @@ b{
 .mgt10{
   margin-top: 10px!important;
 }
+.mgb5{
+  margin-bottom: 5px!important;
+}
 .mg15{
   margin: 0 15px!important;
 }
@@ -258,6 +278,12 @@ b{
 }
 .pdl15{
   padding-left: 15px!important;
+}
+.pdl25{
+  padding-left: 25px!important;
+}
+.pdl40{
+  padding-left: 40px!important;
 }
 .pd15{
   padding: 0 15px!important;
@@ -276,6 +302,12 @@ b{
 }
 .pdb15{
   padding-bottom: 15px!important;
+}
+.ml15{
+  margin-left: 15px!important;
+}
+.pb42{
+  padding-bottom: 42px!important;
 }
 .relative{
   position: relative; 
@@ -627,7 +659,7 @@ hr {
 }
 
 #app {
-    height: 100%;
+    /*height: 100%;*/
 }
 
 .white {
@@ -642,7 +674,7 @@ hr {
 
 .i-cks {
     width: 19px;
-    height: 18.5px;
+    height: 19px;
     background-image: url('assets/images/cks.png');
 
     &.checked {
@@ -821,4 +853,11 @@ hr {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+input[type="checkbox"]{-webkit-appearance:none;outline: none;border:none;margin-right:10px;}
+input.check{width:15px;height:15px;background:url(assets/images/cks-no.png) no-repeat; background-size:15px 15px;position:absolute;top:50%;transform:translateY(-50%);left:0}
+input.check:checked{background:url(assets/images/cks-on.png) no-repeat;background-size:15px 15px;}
+.item .check{
+  left: 15px!important;
 }

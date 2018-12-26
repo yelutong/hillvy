@@ -1,7 +1,8 @@
 <template>
   <div class="wrapper page-orders">
+    <vHeader title="我的订单"/>
     <div class="tab-nav">
-      <div class="item" :class="{active:index === choseDex}" v-for="(item, index) in orderNav" :key="index" @click="tabOrderStatus(index)">
+      <div class="item" :class="{active:index === choseDex}" v-for="(item, index) in orderNav" :key="index" @click="tabOrderStatus(item, index)">
         {{ item.title }}
       </div>
     </div>
@@ -13,28 +14,29 @@
           </div>
           <span class="status">{{ item.status }}</span>
         </div>
-        <div class="goods-list" @click="pageToPay(item.orderId, item.orderNo)">
+        <div class="goods-list" @click="pageToPay(item.totalPrice, item.orderNo, item.statusNum)">
           <v-imglist :image-data="item.imgList" size="75" />
         </div>
         <div class="goods-info">
           <span>订单号：{{ item.orderNo }}</span>
           <div class="price-info">
-            共{{ item.num }}件商品 合计：
-            <span class="price">￥{{ item.totalPrice }}</span>
+            共{{ item.num }}件商品
           </div>
         </div>
         <div class="goods-action">
-          <button class="btn-act" @click="cancelOrder(item.orderId, index)" v-if="choseDex==0">取消订单</button>
+          <div>合计：<span class="price">￥{{ item.totalPrice }}</span></div>
+          <div>
+          <button class="btn-act" @click="cancelOrder(item.orderNo, index)" v-if="choseDex==0">取消订单</button>
           <button class="btn-act" @click="onPayOrder(item.orderNo, index)" v-if="choseDex==0">继续支付</button>
-          <button class="btn-act" @click="refundOrder(item.orderId)" v-if="choseDex==1">退款</button>
-          <button class="btn-act" @click="receiptOrder(item.orderId, index)" v-if="choseDex==2">确认收货</button>
+          <button class="btn-act" @click="refundOrder(item.orderNo)" v-if="choseDex==1">退款</button>
+          <button class="btn-act" @click="receiptOrder(item.orderNo, index)" v-if="choseDex==2">确认收货</button>
           <button class="btn-act" @click="pageToCenter('exp',index)" v-if="choseDex==2">查看物流</button>
           <button class="btn-act" @click="pageToCenter('eva',index)" v-if="choseDex==3">立即评价</button>
-          <button class="btn-act" @click="callHelp(item.orderId)" v-if="choseDex==4">申请售后</button>
+          <button class="btn-act" @click="callHelp(item.orderNo)" v-if="choseDex==4">申请售后</button>
+          </div>
         </div>
       </div>
       <v-nodata v-if="noOrders" bgcolor="grey" text="- 暂无相关订单 -" />
-      <v-loadmore v-if="moreOrders" />
     </div>
   </div>
 </template>
@@ -42,35 +44,38 @@
 <script>
 import { mapState } from "vuex";
 import { MessageBox, Toast, InfiniteScroll } from "mint-ui";
-import vLoadmore from "@/components/v-loadmore";
 import vNodata from "@/components/v-nodata";
 import vImglist from "@/components/v-imglist";
+import vHeader from "@/components/v-header";
 const qs = require("qs");
 export default {
   data() {
     return {
+      totalPage: 1,
+      currentPage: 0,
+      //status: [10],
       status: this.getUrlParam("status"),
       choseDex: 0,
       orderNav: [
         {
           title: "待付款",
-          status: "nopay"
+          status: [10]
         },
         {
           title: "待发货",
-          status: "dopay"
+          status: [20]
         },
         {
           title: "待收货",
-          status: "daishou"
+          status: [30]
         },
         {
           title: "待评价",
-          status: "yishou"
+          status: [40]
         },
         {
           title: "已完成",
-          status: "completed"
+          status: [50]
         }
       ],
       orderList: [],
@@ -82,9 +87,9 @@ export default {
     };
   },
   components: {
-    "v-loadmore": vLoadmore,
     "v-nodata": vNodata,
-    "v-imglist": vImglist
+    "v-imglist": vImglist,
+    vHeader
   },
   computed: {
     ...mapState(["token"])
@@ -94,37 +99,36 @@ export default {
   },
   created() {
     // 读取订单状态
-    this.choseDex = +this.status || 0;
-    this.getOrdersList("first");
+    this.choseDex = '';
+    this.clearData();
+    this.getOrdersList();
   },
   methods: {
     // 清空状态函数（本来想做成5组翻页数据的，但是考虑时间紧迫，就简化成切换从头加载吧）
     clearData() {
-      this.ordersPageNo = 1;
-      this.ordersPageSize = 10;
-      this.moreOrders = false;
+      this.currentPage = 0;
+      this.totalPage = 1;
       this.noOrders = false;
       this.loading = true;
       this.orderList = [];
     },
     // 获取状态文字（想把数据整合进数组，就没用计算属性了）
-    getStatusTxt() {
-      const choseDex = this.choseDex;
+    getStatusTxt(choseDex) {
       let text = "";
       switch (choseDex) {
-        case 0:
+        case 10:
           text = "等待买家付款";
           break;
-        case 1:
+        case 20:
           text = "买家已付款";
           break;
-        case 2:
+        case 30:
           text = "商家已发货";
           break;
-        case 3:
+        case 40:
           text = "交易成功";
           break;
-        case 4:
+        case 50:
           text = "交易成功";
           break;
       }
@@ -137,16 +141,18 @@ export default {
       }
       const arrImg = [];
       arr.forEach(val => {
-        arrImg.push(val.product.photoMainUrls[0] || "");
+        arrImg.push(this.api.urlPic + val.goodsPhoto.split(',')[0]);
       });
       return arrImg;
     },
     // 切换tab
-    tabOrderStatus(index) {
+    tabOrderStatus(item, index) {
+      console.log(item)
       if (this.choseDex !== index) {
         this.choseDex = index;
         this.clearData();
-        this.getOrdersList("first");
+        this.status = '['+item.status+']';
+        this.getOrdersList();
       }
     },
     // 加载更多我的订单
@@ -154,21 +160,26 @@ export default {
       this.loading = true;
       this.ordersPageNo += 1;
       this.getOrdersList();
+      console.log(' 加载');
     },
     // 获取订单数据
     getOrdersList(first) {
       this.$axios
-        .get(this.api.getOrders, {
-          headers: { access_token: this.token },
-          params: {
-            order_status: this.orderNav[this.choseDex].status,
-            page_no: this.ordersPageNo,
-            page_size: this.ordersPageSize
-          }
+        .post(this.api.payOrderList, 
+        JSON.stringify({
+            status: JSON.parse(this.status),
+            page: this.currentPage,
+            limit: 80
+        }),
+         {
+          headers: {  
+            "content-type": "application/json",
+            "Authorization": this.token 
+            }
         })
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             if (first) {
               this.noOrders = true;
             } else {
@@ -177,25 +188,24 @@ export default {
             }
             return;
           }
-          let objData = resData.data,
-            pageCount = objData.page_count,
-            arrData = objData.records || [];
+          let objData = resData.content,
+            arrData = objData.list;
           if (arrData.length === 0) {
-            if (first) {
-              this.noOrders = true;
-            }
+            this.orderList = [];
+            this.noOrders = true;
             this.loading = true;
             return;
           }
           // 重组下数据，需要把里面的商品循环出来
           arrData.forEach(val => {
             let obj = {
-              date: this.dateFormat(val.createDate, "YYYY-MM-DD hh:mm"),
-              num: val.buyCount,
-              status: this.getStatusTxt(),
-              totalPrice: val.totalAmount,
-              imgList: this.getArrImg(val.orderDetails),
-              orderNo: val.orderNo,
+              date: val.addTime,
+              num: this.goodsCount(val.items),
+              status: this.getStatusTxt(val.status),
+              statusNum: val.status,
+              totalPrice: val.totalPrice,
+              imgList: this.getArrImg(val.items),
+              orderNo: val.orderNumberStr,
               orderId: val.id,
               arrGood: []
             };
@@ -231,6 +241,13 @@ export default {
             this.loading = false;
           }
         });
+    },
+    goodsCount(items){
+      let count = 0;
+      for( let i of items){
+        count += i.goodsCount;
+      }
+      return count
     },
     // 查看物流或是立即评价
     pageToCenter(type, index) {
@@ -275,12 +292,12 @@ export default {
             .post(this.api.receiptGoods, qs.stringify({ order_id: orderId }), {
               headers: {
                 "content-type": "application/x-www-form-urlencoded",
-                access_token: this.token
+                "Authorization": this.token
               }
             })
             .then(res => {
               const resData = res.data;
-              if (resData.code !== 100) {
+              if (resData.code !== 1) {
                 this.showTip(resData.message);
                 return;
               }
@@ -299,7 +316,8 @@ export default {
       });
     },
     // 取消订单
-    cancelOrder(orderId, index) {
+    cancelOrder(orderNumber, index) {
+      console.log(orderNumber);
       MessageBox({
         title: "取消提示",
         message: "您确定要取消此订单吗？",
@@ -307,13 +325,12 @@ export default {
       }).then(action => {
         if (action === "confirm") {
           this.$axios
-            .get(this.api.cancelOrder, {
-              headers: { access_token: this.token },
-              params: { order_id: orderId }
+            .get(this.api.cancelOrder+orderNumber, {
+              headers: { "Authorization": this.token }
             })
             .then(res => {
               const resData = res.data;
-              if (resData.code !== 100) {
+              if (resData.code !== 1) {
                 this.showTip("取消失败，请稍后重试");
                 return;
               }
@@ -342,26 +359,27 @@ export default {
       this.$axios
         .post(
           this.api.payOrder,
-          qs.stringify({
-            order_no: orderNo,
-            pay_type: "wechat"
+          JSON.stringify({
+           'channel': 2,
+           'orderNumbers': orderNo,
+           'payType': 'wxpublicpay'
           }),
           {
             headers: {
-              "content-type": "application/x-www-form-urlencoded",
-              access_token: this.token
+              "content-type": "application/json",
+              "Authorization": this.token
             }
           }
         )
         .then(res => {
           loading.close();
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip("支付失败，请稍后重试");
             return;
           }
           // 返回数据成功后，拿到参数唤起微信支付
-          const objData = resData.data;
+          const objData = resData.content;
           const weiXinArg = {
             appId: objData.appid,
             timeStamp: objData.timestamp,
@@ -418,19 +436,14 @@ export default {
       }
     },
     // 点击跳转订单详情
-    pageToPay(orderId, orderNo) {
-      const choseDex = this.choseDex;
-      let url = "/goods/pay?order-id=" + orderId + "&order-no=" + orderNo;
+    pageToPay(payPrice, orderNo, status) {
       // 点得不是未付款的话，全都显示已付款
-      if (choseDex !== 0) {
-        url =
-          "/goods/pay?order-id=" +
-          orderId +
-          "&order-no=" +
-          orderNo +
-          "&has-pay=true";
+      if (status === 10) {
+        let url = "/goods/pay?orderNumbers=" + orderNo + "&payPrice=" + payPrice;
+        this.$router.push(url);
+      }else{
+        vue.showTip("跳转商品详情");
       }
-      this.$router.push(url);
     },
     // 退款
     refundOrder(orderId) {

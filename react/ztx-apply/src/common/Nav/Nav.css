@@ -1,0 +1,35 @@
+.nav{
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    background-color: #ffffff;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 16px;
+    position: fixed;
+    top: 0px;
+    left:0px;
+}
+.nav .left,.nav .right{
+	-webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.nav .middle{
+	-webkit-box-flex: 5;
+    -webkit-flex: 5;
+    -ms-flex: 5;
+    flex: 5;
+}
+.nav .left{
+	display: flex;
+	align-items:Center;
+	justify-content:center;
+}
+.nav .left img{
+	width: 24px;
+}

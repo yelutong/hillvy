@@ -56,15 +56,15 @@ export default {
     // 获取用户的提现记录
     getGoldRecord() {
       this.$axios
-        .get(this.api.getGoldRecord, { headers: { access_token: this.token } })
+        .get(this.api.getGoldRecord, { headers: { "Authorization": this.token } })
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             this.noRecord = true;
             return;
           }
-          const arrData = resData.data || [];
+          const arrData = resData.content || [];
           if (arrData.length === 0) {
             this.noRecord = true;
             return;

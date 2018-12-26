@@ -1,37 +1,49 @@
 <template>
   <div class="wrapper page-address">
-    <div class="lay-adres">
+    <vHeader title="地址管理"/>
+    <div class="lay-adres mgt50">
       <v-cell type="input" title="联系人" place="收货人姓名" pro="name" :iptCon="addressData.name" @iptChange="changeData"></v-cell>
       <v-cell type="input" title="电话" place="收货人手机号码" pro="phone" :iptCon="addressData.phone" @iptChange="changeData"></v-cell>
       <v-cell type="region" title="城市" pro="city" :address="addressData.city" @iptChange="changeData"></v-cell>
+
       <v-cell type="input" title="详细地址" place="街道/小区/楼栋/序号" pro="adres" :iptCon="addressData.adres" @iptChange="changeData"></v-cell>
+      <group>
+      <x-switch title="默认地址" :value-map="['0', '1']" v-model="stringValue"></x-switch>
+      </group>
     </div>
     <div class="lay-action fix-btom">
-      <button class="btn-submit nordu" @click="saveAddress">保 存</button>
+      <button class="btn-submit nordu full-screen" @click="saveAddress">保 存</button>
     </div>
   </div>
 </template>
 
 <script>
-  import {
-    mapState
-  } from "vuex";
+  import { mapState } from "vuex";
+  import { XSwitch, Group, Cell} from 'vux';
   import vCell from "@/components/v-cell";
+  import vHeader from "@/components/v-header";
   const qs = require("qs");
   export default {
     data() {
       return {
-        addressId: this.getUrlParam("address-id") || "",
+        stringValue: '0',
+        value: [],
+        addressId: this.getUrlParam("addressId") || "",
         addressData: {
           name: "",
           phone: "",
           city: [],
           adres: ""
-        }
+        },
+
       };
     },
     components: {
-      "v-cell": vCell
+      "x-switch": XSwitch,
+      "v-cell": vCell,
+      "group": Group, 
+      vHeader,
+      Cell
     },
     computed: {
       ...mapState(["token"])
@@ -39,7 +51,7 @@
     created() {
       // 来源id，有id就是编辑，没有就是新增
       const addressId = this.addressId;
-      if (!!addressId) {
+      if (addressId) {
         // 延迟加载，以防cell组件没加载
         setTimeout(() => {
           this.getAddressData(addressId);
@@ -49,31 +61,31 @@
     methods: {
       // 父子通信
       changeData(data) {
+        if(data.areaId){
+          this.addressData.areaId = data.areaId;
+        }
         this.addressData[data.pro] = data.value;
+        console.log(this.addressData);
       },
       // 读取需要编辑的地址
       getAddressData(addressId) {
         this.$axios
-          .get(this.api.getAddress, {
-            headers: {
-              access_token: this.token
-            },
-            params: {
-              address_id: addressId
-            }
+          .get(this.api.getAddrData+addressId, {
+            headers: {"Authorization": this.token }
           })
           .then(res => {
             const resData = res.data;
-            if (resData.code !== 100) {
+            if (resData.code !== 1) {
               this.showTip("读取来源地址失败");
               return;
             }
             // 成功后赋值
-            const objData = resData.data;
-            this.addressData.name = objData.shipName;
-            this.addressData.phone = objData.shipPhone;
-            this.addressData.city = [objData.provinceName, objData.cityName, objData.areaName];
-            this.addressData.adres = objData.shipAddress;
+            const objData = resData.content;
+            this.addressData.name = objData.userName;
+            this.addressData.phone = objData.phone;
+            this.addressData.city = objData.areaInfo.split(' ');
+            this.addressData.adres = objData.address;
+            this.stringValue = objData.isChecked?'1':'0';
           })
           .catch(res => {
             this.showTip("读取来源地址失败");
@@ -82,7 +94,8 @@
       // 保存我的地址
       saveAddress() {
         const addressId = this.addressId;
-        const addressData = this.addressData;
+        const addressData = this.addressData; 
+        console.log(addressData.areaId);
         // 检验数据先
         if (addressData.name === "") {
           this.showTip("请填写收货人姓名");
@@ -103,33 +116,30 @@
         // 校验通过后：预设为新增地址
         let okTip = "新增收货地址成功";
         let errTip = "新增收货地址失败";
-        let ajaxApi = this.api.addAddress;
+        let ajaxApi = this.api.addAddr;
         let ajaxData = {
-          ship_name: addressData.name,
-          ship_phone: addressData.phone,
-          province_name: addressData.city[0],
-          city_name: addressData.city[1] === '市辖区' ? addressData.city[0] : addressData.city[1],
-          area_name: addressData.city[2],
-          ship_address: addressData.adres
+          userName: addressData.name,
+          phone: addressData.phone,
+          areaId: Number(addressData.areaId),
+          address: addressData.adres,
+          areaInfo: addressData.city[0]+' '+addressData.city[1]+' '+addressData.city[2],
+          isChecked: Number(this.stringValue)
         };
         // 如果有ID，则改为编辑地址
-        if (!!addressId) {
+        if (addressId) {
           okTip = "修改收货地址成功";
           errTip = "修改收货地址失败";
-          ajaxApi = this.api.editAddress;
-          ajaxData.address_id = addressId;
+          ajaxApi = this.api.updateAddrData;
+          ajaxData.id = addressId;
         }
         // 开始保存
         this.$axios
-          .post(ajaxApi, qs.stringify(ajaxData), {
-            headers: {
-              "content-type": "application/x-www-form-urlencoded",
-              access_token: this.token
-            }
+          .post(ajaxApi, JSON.stringify(ajaxData), {
+             headers: {"Authorization": this.token , "content-type": "application/json"}
           })
           .then(res => {
             const resData = res.data;
-            if (resData.code !== 100) {
+            if (resData.code !== 1) {
               this.showTip(errTip);
               return;
             }
@@ -144,6 +154,7 @@
           });
       }
     }
+
   };
 
 </script>

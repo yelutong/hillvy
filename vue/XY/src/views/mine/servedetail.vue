@@ -57,19 +57,19 @@
       getServeDetail() {
         this.$axios.get(this.type === 'senior' ? this.api.getSeniorDetail : this.api.getJuniorDetail, {
           headers: {
-            access_token: this.token
+            "Authorization": this.token
           },
           params: {
             order_id: this.id
           }
         }).then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             return;
           }
           // 成功后改造下时间
-          const objData = resData.data;
+          const objData = resData.content;
           objData.createDate = objData.createDate ? this.dateFormat(objData.createDate, 'YYYY-MM-DD hh:mm:ss') :
             '暂无';
           objData.sendDate = objData.logisticsSendDate ? this.dateFormat(objData.logisticsSendDate,
@@ -93,7 +93,7 @@
         });
         this.$axios.get(this.type === 'senior' ? this.api.seniorToPlat : this.api.juniorToPlat, {
           headers: {
-            access_token: this.token
+            "Authorization": this.token
           },
           params: {
             order_id: this.id
@@ -101,7 +101,7 @@
         }).then(res => {
           loading.close();
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             return;
           }

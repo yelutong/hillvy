@@ -5,13 +5,19 @@ class CouponRule extends React.Component {
   state = {
     DOKUList:[],
     BNIList:[],
+    type:''
   };
 
   componentWillMount() {
+    var type = this.props.location.query.type || '';
+    if(type == 'P1'){
+      document.title = 'Tata Cara Penambahan Dana';
+    }
   }
 
   componentDidMount() {
     var bank = this.props.location.query.bank || '';
+    var type = this.props.location.query.type || '';
     var DOKU = [{
         title:'Mandiri ATM',
         detail:'<p>1. Masukkan kartu ATM Mandiri, lalu masukkan PIN ATM.</p>'+
@@ -133,7 +139,8 @@ class CouponRule extends React.Component {
       }];
     this.setState({
       DOKUList:DOKU,
-      BNIList:BNI
+      BNIList:BNI,
+      type:type
     })
   }
 
@@ -147,7 +154,7 @@ class CouponRule extends React.Component {
     return (
       <div className="couponRule">
         <div className="ruleList">
-          <div className="bankTitle">Tata Cara Pembayaran Mandiri</div>
+          <div className="bankTitle">{this.state.type == 'P1'?'Tata cara penambahan dana Mandiri':'Tata Cara Pembayaran Mandiri'}</div>
           {
             this.state.DOKUList.map((item,index) => {
               return (
@@ -164,7 +171,7 @@ class CouponRule extends React.Component {
           }
         </div>
         <div className="ruleList">
-          <div className="bankTitle" style={{'marginTop':'1rem'}}>Tata Cara Pembayaran BNI</div>
+          <div className="bankTitle" style={{'margin-top':'1rem'}}>{this.state.type == 'P1'?'Tata cara penambahan dana BNI':'Tata Cara Pembayaran BNI'}</div>
           {
             this.state.BNIList.map((item,index) => {
               return (

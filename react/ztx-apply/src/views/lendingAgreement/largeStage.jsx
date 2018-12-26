@@ -27,7 +27,7 @@ class LargeStageAgree extends React.Component {
   }
   
   getAmtVaule = () => {
-    let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/agreement';
+    let url=location.protocol+'//'+config.domainApply+'/kpt-apply/apply/agreement';
     axios.get(url,{params:{"contractNo":this.props.location.query.contractNo}}).then((res) => {
     if(res.data.code == '0000'){
        console.log(res); 

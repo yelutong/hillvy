@@ -10,26 +10,25 @@
 <meta http-equiv="Pragma" content="no-cache">
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
 <meta http-equiv="Cache" content="no-cache">
-<script>
+<script type='text/javascript'>
+
 var App;
-//捕捉页面关闭是调用 
-window.onbeforeunload = function(event) {
-  //console.log('test 页面关闭');
-};
+//构建js和app交互的方法，存放于var js对象里面
+var Js = new Object();
+
 </script> 
 <!-- GrowingIO Analytics code version 2.1 -->
 <!-- Copyright 2015-2018 GrowingIO, Inc. More info available at http://www.growingio.com -->
 
 <script type='text/javascript'>
 !function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.growingio.com/2.1/gio.js","gio");
-  	gio('init','ab2afe5618c6dd9e', {});
+    gio('init','ab2afe5618c6dd9e', {});
 
-	//custom page code begin here
-	gio('config', {'hashtag':true}); //放在init和send之间
-	//custom page code end here
+  //custom page code begin here
+  gio('config', {'hashtag':true}); //放在init和send之间
+  //custom page code end here
 
-	gio('send');
-
+  gio('send');
 </script>
 
 <!-- End GrowingIO Analytics code version: 2.1 -->

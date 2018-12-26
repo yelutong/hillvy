@@ -3,13 +3,22 @@
 // Settings configured here will be merged into the final config object.
 const httpConfigArry = [];
 const httpConfig = [{
-	host: 'sit-apply.qude369.com',
-	protocol: 'https',
+    host: 'localhost',
+    protocol: 'http',
     domainP1: 'sit-invest.qude369.com',
     domainApply: 'sit-apply.qude369.com',
     path: 'kpt-invest',
     pathApply: 'kpt-apply',
-    envCode: 'LOCAL',
+    envCode: 'SIT',
+    isDefault: true
+},{
+    host: 'localhost',
+    protocol: 'http',
+    domainP1: '10.3.31.221:8084',
+    domainApply: '10.3.31.221:8081',
+    path: 'kpt-invest',
+    pathApply: 'kpt-apply',
+    envCode: 'SIT',
     isDefault: false
 },{
     host: '10.3.79.72',
@@ -30,15 +39,6 @@ const httpConfig = [{
     envCode: 'SIT',
     isDefault: false
 },{
-    host: 'localhost',
-    protocol: 'http',
-    domainP1: '10.3.31.221:8084',
-    domainApply: '10.3.31.221:8081',
-    path: 'kpt-invest',
-    pathApply: 'kpt-apply',
-    envCode: 'SIT',
-    isDefault: false
-},{
 	host: 'sit-apply.qude369.com',
 	protocol: 'https',
     domainP1: 'sit-invest.qude369.com',
@@ -46,7 +46,16 @@ const httpConfig = [{
     path: 'kpt-invest',
     pathApply: 'kpt-apply',
     envCode: 'SIT',
-    isDefault: true
+    isDefault: false
+},{
+    host: 'uat-apply.qude369.com',
+    protocol: 'http',
+    domainP1: 'uat-invest.qude369.com',
+    domainApply: 'uat-apply.qude369.com',
+    path: 'kpt-invest',
+    pathApply: 'kpt-apply',
+    envCode: 'UAT',
+    isDefault: false
 },{
 	host: 'apply.kreditplusteknologi.id',
 	protocol: 'https',
@@ -73,6 +82,6 @@ if(httpConfigArry.length<=0){
 }
 
 httpConfigArry[0] = (httpConfigArry.length>=0)?httpConfigArry[0]:httpConfig[0];
-//httpConfigArry[0].baseUrl = httpConfigArry[0].protocol+'://'+httpConfigArry[0].domain+'/'+httpConfigArry[0].path;
+//httpConfigArry[0].baseUrl = httpConfigArry[0].protocol+'//'+httpConfigArry[0].domain+'/'+httpConfigArry[0].path;
 
 export default httpConfigArry[0]

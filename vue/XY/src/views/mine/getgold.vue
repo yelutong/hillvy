@@ -114,14 +114,14 @@ export default {
           {
             headers: {
               "content-type": "application/x-www-form-urlencoded",
-              access_token: this.token
+              "Authorization": this.token
             }
           }
         )
         .then(res => {
           loading.close();
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             return;
           }
@@ -138,15 +138,15 @@ export default {
     // 获取用户的分红金额
     goldAmount() {
       this.$axios
-        .get(this.api.goldAmount, { headers: { access_token: this.token } })
+        .get(this.api.goldAmount, { headers: { "Authorization": this.token } })
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             this.hasGold = 0;
             return;
           }
-          this.hasGold = resData.data;
+          this.hasGold = resData.content;
         })
         .catch(res => {
           this.showTip("未能获取到您的分红金额");

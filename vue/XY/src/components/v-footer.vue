@@ -16,7 +16,7 @@ export default {
       arrNav: [
         { title: "首页", type: "index" },
         { title: "小V", type: "vGoods" },
-        { title: "购物车", type: "cart" },
+        { title: "购物车", type: "goodsCart" },
         { title: "个人", type: "mine" }
         //{ title: "资讯", type: "news" },
       ]
@@ -85,7 +85,7 @@ export default {
       background-image: url('../assets/images/v.png');
     }
     
-    .i-cart {
+    .i-goodsCart {
       background-image: url('../assets/images/cart.png');
     }
 
@@ -104,7 +104,7 @@ export default {
       background-image: url('../assets/images/v1.png');
     }
     
-    .i-cart {
+    .i-goodsCart {
       background-image: url('../assets/images/cart1.png');
     }
 

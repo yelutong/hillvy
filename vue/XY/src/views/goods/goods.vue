@@ -1,6 +1,6 @@
 <template> 
   <div class="wrapper page-goods">
-    <vHeader :title="goodsMainData.name" to="/55"/>
+    <vHeader :title="goodsMainData.name"/>
     <div class="lay-swiper white mt40">
       <v-swiper :swiper-data="picSwipe" />
     </div>
@@ -9,6 +9,15 @@
       <div class="price-weight">
         <span class="price" v-text="'￥'+goodsMainData.price"></span>
       </div>
+      <div class="salebuy norms h45">
+        <i class="fs-14">购买:</i>
+        <div class="standards">
+          <div class="minus" @click="changeNum('minus')">-</div>
+          <input type="number" id="goodsNum" :value="num" class="num">
+          <div class="plus" @click="changeNum('plus')">+</div>
+        </div>
+      </div>
+
     </div>
     <div class="lay-eva white">
       <v-cell :title="'评价（'+evasNum+'）'" :value="noEvas?'':'好评度100%'" align="right" ricon="blue" :link="'/goods/goodseva?id='+id" />
@@ -41,10 +50,17 @@
     <div class="lay-action fix-btom pay-act-btom">
       <div class="service">
 
-        <div class="item per40" @click="callHelp">
+        <div class="per40 pd15 justify-content-space-around">
+          <div class="item" @click="callHelp">
           <i class="ico i-call"></i>
           <p class="text">客服</p>
+          </div>
+          <div class="item" @click="toCart">
+          <i class="ico i-cart"></i>
+          <p class="text">购物车</p>
+          </div>
         </div>
+        
         <div class="item per30 bg-blue btn-submit" @click="pageToBuy(id)">
           立即购买
         </div>
@@ -70,6 +86,8 @@ export default {
     return {
       id: this.getUrlParam("id"),
       urlPic:this.api.urlPic,
+      num: 1,
+      sellerStoreId: '',
       goodsMainData: {
         id: null,
         name: null,
@@ -122,14 +140,14 @@ export default {
             return;
           }
           const objData = resData.content;
+          this.sellerStoreId = objData.sellerStoreId;
           console.log(objData);
           if(objData){
             // 成功后赋值商品对象
             this.goodsMainData = {
               id: objData.id,
               name: objData.goodsName,
-              price: objData.salePrice,
-              weight: objData.weight||''
+              price: objData.salePrice
             };
             // 再把轮播图片存进轮播对象
             const arrPic = objData.goodsMainPhoto.split(',');
@@ -163,12 +181,12 @@ export default {
         }))
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.goodsEvaList = [];
             this.noEvas = true;
             return;
           }
-          const objData = resData.data,
+          const objData = resData.content,
             arrData = objData.records || [];
           if (arrData.length === 0) {
             this.noEvas = true;
@@ -198,11 +216,47 @@ export default {
     }, 
     // 弹出电话
     callHelp() {
-      this.callService();
+     // this.callService();
+      this.$router.push({ path: "/goods/connectMe"});
+    },
+    toCart(){
+     this.$router.push({ path: "/goodsCart"});
+    },
+    // 改变数量
+    changeNum(type) {
+      if (type === "plus") {
+        this.num += 1;
+      } else if (this.num >= 2) {
+        this.num -= 1;
+      }
     },
     // 加入购物车
     addToCart(id) {
-      this.$router.push({ path: "/cart", query: { id: id } });
+      let ajaxData ={
+        'goodsCount':this.num,
+        'goodsId': id,
+        'storeId': this.sellerStoreId
+      };
+      this.$axios
+          .post(
+            this.api.AddGoodsCart,
+            JSON.stringify(ajaxData),
+            {
+               headers: {"Authorization": this.token , "content-type": "application/json"}
+            }
+          )
+          .then(res => {
+            const resData = res.data;
+            if (resData.code !== 1) {
+              this.showTip("加入失败，请重试");
+              return;
+            }
+            this.showTip("加入购物车成功");
+            // this.$router.push({ path: "/cart", query: { id: id } });
+          })
+          .catch(res => {
+            this.showTip("加入失败，请重试");
+          });
     },
     // 立即购买
     pageToBuy(id) {

@@ -79,13 +79,13 @@ export default {
           {
             headers: {
               "content-type": "application/x-www-form-urlencoded",
-              access_token: this.token
+              "Authorization": this.token
             }
           }
         )
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip("评价失败，请稍后重试");
             return;
           }

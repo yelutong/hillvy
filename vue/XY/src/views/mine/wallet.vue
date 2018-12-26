@@ -44,16 +44,16 @@ export default {
     // 获取我的钱包数据
     getWalletInfo() {
       this.$axios
-        .get(this.api.getWalletInfo, { headers: { access_token: this.token } })
+        .get(this.api.getWalletInfo, { headers: { "Authorization": this.token } })
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.noWallet = true;
             this.showTip(resData.message);
             return;
           }
           // 成功后对数据重组
-          const arrData = resData.data || [];
+          const arrData = resData.content || [];
           this.noWallet = arrData.length === 0 ? true : false;
           this.walletInfo = arrData;
         })

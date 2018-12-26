@@ -1,5 +1,5 @@
 // 域名
-const urlHost = 'http://t-api.xy999888.com/api/';//接口请求域名
+const urlHost = 'http://api.xy999888.cn/api/';//接口请求域名
 const ajaxHost = 'https://mg.xjjxsd.cn/api/mp';
 // 接口
 const ajaxUrl = {
@@ -11,12 +11,28 @@ const ajaxUrl = {
   getClassTree: urlHost + 'goodsclass/getAllclassTree',// 获取所有分类
   getClassBylevel: urlHost + 'goodsclass/getGoodsClassBylevel/',//{level}获取所有分类
   getChildsList: urlHost + 'goodsclass/getChilds/',//{id}根据当前分类主键获取下级分类集合
-  
-
-
-  goodsList:"https://api.mcyou.net/api/goods/list",//商品列表
-
-
+  getClassList: urlHost + 'goods/list',//{id}根据当前分类主键获取下级分类集合
+  login: urlHost + 'user/login',//登录
+  getRegCode: urlHost + 'smscode/send/reg/',//{userName}获取注册验证码
+  getFindPwdCode: urlHost + 'smscode/send/forget/',//{userName}获取注册验证码
+  register: urlHost + 'user/register',//登录
+  findPwd: urlHost + 'user/forgetPassword',//找回密码
+  getUserData: urlHost + 'user/info',//获取个人中心信息
+  getaddressList: urlHost + 'useraddress/list',//获取个人中心信息
+  addAddr: urlHost + 'useraddress/save',//增加地址
+  deleteAddr: urlHost + 'useraddress/delete/',//{ids}删除地址
+  getAddrData: urlHost + 'useraddress/info/',//{id}根据id获取地址信息
+  updateAddrData: urlHost + 'useraddress/update',//编辑更新收货地址
+  getDefAddrData: urlHost + 'useraddress/defaultAddress',//获取默认收货地址
+  AddGoodsCart: urlHost + 'goodscart/save',//加入购物车
+  goodsCartUpdate: urlHost + 'goodscart/update',//修改购物车数量
+  getCartList: urlHost + 'goodscart/list',//获取购物车列表
+  getOrderForm: urlHost + 'orderform/save',//统一下单
+  orderPriceNew: urlHost + 'orderform/orderPriceNew',//统一下单价格查询
+  cancelOrder: urlHost + 'orderform/cancel/user/',//{orderNumber}取消订单
+  payOrder: urlHost + 'orderform/payOrder',//微信支付订单
+  payOrderList: urlHost + 'orderform/applist',//查看订单列表
+  orderformInfo: urlHost + 'orderform/info/',//{orderNumber} 订单号查询订单详情
 
 
   getShareQr: ajaxHost + '/wx/p/user/get_share_qrcode_by_user_id.json', // 根据用户id生成二维码
@@ -59,8 +75,7 @@ const ajaxUrl = {
   getFreight: ajaxHost + '/wx/p/order/get_logistics_info_fee.json', // 获取物流运费
   receiptGoods: ajaxHost + '/wx/p/order/confirm_receive_product.json', // 确认收货
   makeOrder: ajaxHost + '/wx/p/order/create_order.json', // 创建订单
-  payOrder: ajaxHost + '/wx/p/order/pay_order.json', // 调起支付api，返回预支付信息
-  cancelOrder: ajaxHost + '/wx/p/order/cancel_order.json', // 取消订单
+
   uploadFrontUID: ajaxHost + '/wx/p/user/upload_positive_card.json', // 上传身份证正面照
   uploadEndUID: ajaxHost + '/wx/p/user/upload_reverse_card.json', // 上传身份证反面照
   getWalletInfo: ajaxHost + '/wx/p/user/get_user_reward_detail.json', // 获取我的分红明细（钱包）

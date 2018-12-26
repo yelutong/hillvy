@@ -80,7 +80,7 @@ class Event extends React.Component {
             this.state.activityList.map((item,index) => {
               return (
                 <Link className="eventLink" to={item.htmlUrl?(item.htmlUrl.split('#')[1]):'/activity'} onClick={this.clickEventList.bind(this,item.id)}>
-                  <img className="img" src={httpUrl+item.listImage} />
+                  <img className="img" src={item.listImage} />
                   <span className="timeDate startDate">
                     <label className="left">
                       <label>{format.timestampToTime(item.startDate,'day')}</label>

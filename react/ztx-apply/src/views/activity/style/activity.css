@@ -1,184 +1,264 @@
 .activity{
   margin: auto;
   min-width: 320px;
-  font-family: PingFang-SC;
-  background: url('../images/bg.png');
-  width: 100%;
-  padding-top: 50%;
-  background-size: 100% auto;
-  background-repeat: no-repeat;
+  font-family: PingFang SC;
 }
-.activity .timeErea{
-  text-align: center;
-}
-.activity .time{
-  background-color: #FFFAE6;
-  color: #333333;
-  font-size: 0.81rem;
-  display: inline-block;
-  padding: 0.3rem 1rem;
-  margin: auto;
-  text-align: center;
-  border-radius: 1.03rem;
-}
-.activity .time img{
-  height: 1.38rem;
-  font-size: 0rem;
-  vertical-align: middle;
-  display: inline-block;
-}
-.activity .time label{
-  height: 1.38rem;
-  line-height: 1.38rem;
-  vertical-align: middle;
-  margin-left: 0.35rem;
-  display: inline-block;
-}
-.activity .activityDetail{
-  width: 88%;
-  margin: auto;
-  margin-top: 1rem;
-}
-.activity .activityDetail .title img{
-  width: 100%;
-}
-.activity .activityDetail .title{
-  text-align: center;
+.activity .activityTop{
   position: relative;
+  text-align: center;
   font-size: 0px;
-  min-height: 60px;
 }
-.activity .activityDetail .title:before{
-  content: 'Detail Promosi';
-  display: block;
+.activity .topBg{
+  width: 100%;
+}
+.activity .rule{
   position: absolute;
-  text-align: center;
-  width: 100%;
-  top:26%;
-  color: #4D4D4D;
-  font-weight: bold;
-  font-size: 0.94rem;
+  right: 0px;
+  top:8%;
+  width: 18%;
 }
-.activity .activityDetail .main{
-  color: #4D4D4D;
-  font-size: 0.88rem;
-  background-color: #ffffff;
-  box-shadow:0rem 0.13rem 0.94rem -0.12rem rgba(51,51,51,0.4);
-  border-bottom-left-radius:0.63rem;
-  border-bottom-right-radius:0.63rem;
-  padding-bottom: 1.2rem;
-}
-.activity .activityDetail .main .desc{
-  margin-top: -0.5rem;
-  margin-bottom: 1.6rem;
-}
-.activity .activityDetail .main .mainDetail{
-  width: 82%;
-  margin: auto;
-  position: relative;
-  z-index: 1;
-  line-height: 1.25rem;
-}
-.activity .activityDetail .main .descTitle{
-  margin-bottom: 0.1rem;
-}
-.activity .activityDetail .ruleGrid{
-  box-shadow:0rem 0.13rem 0.94rem -0.12rem rgba(51,51,51,0.4);
-  border-radius:0.5rem;
-  background-color: #FFFFFF;
-  margin-top: 2rem;
-}
-.activity .activityDetail .ruleGrid ul{
-  width: 100%;
-  margin: auto;
-  border-bottom: 1px solid #F1F1F1;
-}
-.activity .activityDetail .ruleGrid li{
-  font-size: 0.6rem;
-  text-align: center;
-  position: relative;
-  vertical-align: middle;
-}
-.activity .activityDetail .ruleGrid li:before{
-  border-left:1px solid #F1F1F1;
-  content: '';
-  display: block;
+.activity .people{
   position: absolute;
   left: 0px;
-  top: 0px;
-  width: 0px;
-  height: 100%;
+  top:28.5%;
+  width: 100%;
+  z-index: 2;
 }
-.activity .activityDetail .ruleGrid li:first-child:before{
-  border-left:none;
+.activity .btn{
+  position: absolute;
+  left: 10%;
+  bottom:3.7%;
+  width: 80%;
+  z-index: 1;
 }
-.activity .activityDetail .ruleGrid li p{
-  padding: 1rem 0rem;
-  border-bottom: 1px solid #F1F1F1;
+.activity .btnDiv{
+  position: absolute;
+  left: 10%;
+  bottom:3.7%;
+  width: 80%;
+  height: 20%;
+  z-index: 2;
 }
-.activity .activityDetail .ruleGrid li p:last-child{
-  border-bottom: none;
-}
-.activity .activityDetail .ruleGrid .letterSpace{
-  letter-spacing: -0.02rem;
-}
-.activity .activityDetail .ruleGrid li.l{
-  width: 25%;
-}
-.activity .activityDetail .ruleGrid li.l span{
-  display: block;
-  width: 90%;
-  margin: auto;
-  line-height: 0.95rem;
-}
-.activity .activityDetail .ruleGrid li.m{
-  width: 50%;
-}
-.activity .activityDetail .ruleGrid li.r{
-  width: 25%;
-}
-.activity .activityDetail .ruleGrid li.gridTitle{
-  font-size: 0.69rem;
-  font-weight: bold;
-  white-space: nowrap;
-  padding: 1rem 0rem;
-}
-.activity .otherInfomation{
-  margin: 1.1rem 0rem 1.3rem 0rem;
-}
-.activity .otherInfomation .handleInfo{
-  color: #3CB2FF;
-  font-size: 0.81rem;
-  text-align: center;
-}
-.activity .otherInfomation .otherTitle{
-  color: #4D4D4D;
-  font-size: 0.9rem;
-  line-height: 1.32rem;
-  font-weight: bold;
-  margin:2rem auto 1rem auto;
-  text-align: center;
-}
-.activity .otherInfomation .otherList{
-  font-size:0.75rem;
-  color: #333333;
-  line-height:1.06rem;
-  width: 90%;
-  margin-left: 10%;
-}
-.activity .otherInfomation .otherList .otherItem{
-  margin-top: 0.5rem;
+.activity .activityBody{
+  font-size: 0px;
   position: relative;
 }
-.activity .otherInfomation .otherList .otherItem:before{
-  content: '';
+.activity .activityBody .btn{
+  bottom: 4%;
+}
+.activity .activityBody .bg{
+  width: 100%;
+}
+.modalAlert{
+  text-align: center;
+  font-size: 14px;
+  color: #666666;
+  line-height: 20px;
+  padding-bottom: 6px;
+}
+.am-modal-button-group-h .am-modal-button{
+  color: #FFB03B!important;
+  font-size: 15px!important;
+  line-height: 48px;
+  height: 48px;
+}
+.am-modal-button-group-h .am-modal-button:first-child{
+  color: #AFAFAF!important;
+}
+.am-modal-button-group-h .am-modal-button:last-child{
+  border-left: 1px solid #F3F3F3!important;
+}
+.am-modal-button-group-h{
+  border-top: 1px solid #F3F3F3!important;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx){
+  html:not([data-scale]) .am-modal-button-group-h .am-modal-button:last-child::before,html:not([data-scale]) .am-modal-button-group-h::before{
+    width:0!important;
+  }
+}
+
+/*****活动规则******/
+.activityRule{
+  margin: auto;
+  min-width: 320px;
+  font-size: 14px;
+  font-family: PingFang SC;
+}
+.activityRule .ruleBg1{
+  background: url('../images/ruBg1.png');
+  width: 100%;
+  background-size: 100% auto;
+  background-repeat:no-repeat;
+}
+.activityRule .bgTop{
+  padding-bottom: 0px;
+  padding-top: 5%;
+}
+.activityRule .bgBottom{
+  background-position: 50% 100%;
+  padding-top: 0%;
+  padding-bottom: 5%;
+}
+.activityRule .Rule .title{
+  text-align: center;
+  padding-bottom: 2%;
+}
+.activityRule .Rule .title img{
+  width: 78%;
+}
+.activityRule .Rule .main{
+  background-color: #E3EFFF;
+  width: 95%;
+  margin: auto;
+  border-radius: 8px;
+  -webkit-border-radius:8px;
+  -moz-border-radius:8px;
+  -ms-border-radius:8px;
+  -o-border-radius:8px;
+  padding-bottom: 7%;
+}
+.activityRule .bgTop .main{
+  border-radius: 8px 8px 0px 0px;
+  -moz-border-radius: 8px 8px 0px 0px;
+  -ms-border-radius: 8px 8px 0px 0px;
+  -webkit-border-radius: 8px 8px 0px 0px;
+  -o-border-radius: 8px 8px 0px 0px;
+  padding-bottom: 0%;
+}
+.activityRule .bgBottom .main{
+  border-radius: 0px 0px 8px 8px;
+  -webkit-border-radius: 0px 0px 8px 8px;
+  -moz-border-radius: 0px 0px 8px 8px;
+  -ms-border-radius: 0px 0px 8px 8px;
+  -o-border-radius: 0px 0px 8px 8px;
+}
+.activityRule .Rule .main .one{
+  font-size: 0.93rem;
+  color: #2884EB;
+  text-align: left;
+  font-weight: bold;
+  display: flex;
+  width: 100%;
+  justify-content:flex-start;
+  align-items:center;
+  padding: 7% 0% 6% 0%;
+}
+.activityRule .Rule .main .two{
+  font-size: 0.93rem;
+  color: #2884EB;
+  text-align: left;
+  font-weight: bold;
+  display: flex;
+  width: 100%;
+  align-items:center;
+  justify-content:flex-end;
+  padding: 6% 0%;
+}
+.activityRule .Rule .main .one img{
+  width: 15%;
+  margin-right: 8px;
+}
+.activityRule .Rule .main .two img{
+  width: 15%;
+  margin-left: 8px;
+}
+.activityRule .Rule .ruleDetail{
+  display: flex;
+  width: 96%;
+  margin-left: 4%;
+  justify-items:center;
+  align-items:center;
+  font-size: 0.67rem;
+}
+.activityRule .Rule .ruleText{
+  width: 65%;
+  padding-right: 4%;
+}
+.activityRule .Rule .detailTitle{
+  color: #2884EB;
+  font-weight: bold;
+  line-height: 1.06rem;
+  margin-bottom: 0.2rem;
+}
+.activityRule .Rule .detail{
+  color: #8A9DB9;
+  line-height: 1.06rem;
+}
+.activityRule .Rule .ruleImg{
+  width: 35%;
+}
+.activityRule .Rule .ruleImg img{
+  width: 100%;
+}
+.activityRule .ruleBg2{
+  background: url('../images/ruBg2.png');
+  width: 100%;
+  background-size: 100% auto;
+  background-repeat:no-repeat;
+  padding-top: 0%;
+  padding-bottom: 11%;
+}
+.activityRule .ruleBg2 .main .detail{
+  width: 92%;
+  margin: auto;
+}
+.activityRule .ruleBg2 .main{
+  padding-top: 2%;
+  padding-bottom: 4%;
+}
+.activityRule .ruleBg2 .main .secTitle{
+  padding-top: 4%;
+  line-height: 1.2rem;
+  font-size: 0.93rem;
+  color: #4484E4;
+  font-weight: bold;
+  padding-bottom: 1.5%;
+}
+.activityRule .ruleBg2 .ruleText{
+  padding-left: 3%;
+  width: 93%;
+  font-size: 0.77rem;
+  line-height: 1.1rem;
+}
+.activityRule .ruleBg2 .thirdTitle{
+  color: #4484E4;
+  font-weight: bold;
+  padding: 2.3% 0%;
+}
+.activityRule .ruleBg2 .moreDetail{
+  font-size: 0.63rem;
+  position: relative;
+  padding-left: 6%;
+  line-height: 1rem;
+}
+.activityRule .ruleBg2 .moreDetail:not(:last-child){
+  margin-top: 0.2rem;
+}
+.activityRule .ruleBg2 .moreDetail:before{
   position: absolute;
-  display: block;
-  width: 0.56rem;
-  height: 0.56rem;
-  left: -1.4rem;
-  top:0.25rem;
+  content: '';
+  width: 5px;
+  height: 5px;
+  background-color: #BFCEE3;
   border-radius: 50%;
   -webkit-border-radius:50%;
-  background-color: #FFD600;
+  -moz-border-radius:50%;
+  -ms-border-radius:50%;
+  -o-border-radius:50%;
+  left: 2%;
+  top:0.25rem;
+}
+.activityRule .bgTop.ruleBg2{
+  padding-bottom: 0%;
+}
+.activityRule .bgBottom.ruleBg2{
+  background-position: 50% 100%;
+  padding-top: 0%;
+  padding-bottom: 18%;
+}
+.activityRule .bgTop.ruleBg2 .main{
+  padding-bottom: 0px;
+}
+.activityRule .bgBottom.ruleBg2 .main{
+  padding-top: 0px;
 }

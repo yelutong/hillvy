@@ -60,19 +60,19 @@
       getJuniorList() {
         this.$axios.get(this.api.getJuniors, {
           headers: {
-            access_token: this.token
+            "Authorization": this.token
           },
           params: {
             order_id: this.serveOrderInfo.orderId
           }
         }).then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             this.noJunior = true;
             return;
           }
-          const arrData = resData.data || [];
+          const arrData = resData.content || [];
           if (arrData.length === 0) {
             this.noJunior = true;
             return;
@@ -111,7 +111,7 @@
         })[0].siteId;
         this.$axios.get(this.api.seniorToJunior, {
           headers: {
-            access_token: this.token
+            "Authorization": this.token
           },
           params: {
             order_id: orderId,
@@ -120,7 +120,7 @@
         }).then(res => {
           loading.close();
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             return;
           }

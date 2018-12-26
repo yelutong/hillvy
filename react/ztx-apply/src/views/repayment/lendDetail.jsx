@@ -43,7 +43,7 @@ class LendDtail extends React.Component {
       console.log(this.props.location.state);
   }
   getPaid = () => {
-    let url=config.protocol+'://'+config.domainApply+'/kpt-apply/apply/v3/historyBill';
+    let url=location.protocol+'//'+config.domainApply+'/kpt-apply/apply/v3/historyBill';
     axios.get(url,{params:{"contractNo":this.props.location.state.currentItems.contractNo}}).then((res) => {
     if(res.data.code == '0000'){
        console.log(res); 
@@ -257,7 +257,7 @@ class LendDtail extends React.Component {
            {rpContent}
          </Accordion.Panel>
 
-          <Accordion.Panel header="Detail pinjaman" className="pad2">
+          <Accordion.Panel header="Informasi Lengkap" className="pad2">
             {accDetail}
           </Accordion.Panel>
          

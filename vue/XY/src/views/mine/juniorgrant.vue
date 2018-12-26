@@ -79,15 +79,15 @@
       getExpressList() {
         this.$axios.get(this.api.getJuniorExpress, {
           headers: {
-            access_token: this.token
+            "Authorization": this.token
           },
         }).then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             return;
           }
-          this.expressList = resData.data || [];
+          this.expressList = resData.content || [];
         }).catch(res => {
           this.showTip('获取物流公司失败');
         });
@@ -122,12 +122,12 @@
         }), {
           headers: {
             "content-type": "application/x-www-form-urlencoded",
-            access_token: this.token
+            "Authorization": this.token
           }
         }).then(res => {
           loading.close();
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             return;
           }

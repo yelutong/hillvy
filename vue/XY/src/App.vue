@@ -24,9 +24,20 @@ export default {
   },
   created() {
     // 通过openId拿到token
-    this.getToken();
+   // this.getToken();
     // 是否有推荐人id，有就存起来
-    this.hasParentId();
+   // this.hasParentId();
+
+   /*解决刷新页面时数据丢失的问题*/
+   //在页面加载时读取sessionStorage里的状态信息
+    if (sessionStorage.getItem("store")){
+        this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem("store"))));
+    } 
+    //在页面刷新时将vuex里的信息保存到sessionStorage里
+    window.addEventListener("beforeunload",()=>{
+        sessionStorage.setItem("store",JSON.stringify(this.$store.state));
+        console.log(JSON.stringify(this.$store.state));
+    })
   },
   methods: {
     // 状态管理动作
@@ -56,12 +67,12 @@ export default {
         .get(this.api.getToken, { params: { open_id: openId } })
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip("获取身份信息失败，建议您重新进入！", 4000);
             return;
           }
           // 拿到token就存储
-          const token = resData.data.accessToken;
+          const token = resData.content.accessToken;
           this.atnToken(token);
           // 然后再判断是否绑定手机
           this.ifUserBind(token);
@@ -73,15 +84,15 @@ export default {
     // 是否有绑定手机
     ifUserBind(token) {
       this.$axios
-        .get(this.api.getUserInfo, { headers: { access_token: token } })
+        .get(this.api.getUserInfo, { headers: { "Authorization": token } })
         .then(res => {
           const resData = res.data;
-          if (resData.code !== 100) {
+          if (resData.code !== 1) {
             this.showTip(resData.message);
             return;
           }
           // 有数据的话，就证明绑定了，就把userId和微信信息存起来
-          const objData = resData.data;
+          const objData = resData.content;
           if (objData) {
             this.atnUserId(objData.encryptionId);
             this.atnShareId(objData.id);

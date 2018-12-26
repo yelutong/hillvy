@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper white page-about">
+    <vHeader title="关于我们"/>
     <img class="img" src="https://pic.xjjxsd.cn/static/applet/about/about.jpg" />
     <p class="text">习将军新时代酒，是（贵州）茅台集团习酒有限责任公司为80、90后精英群体，打造的一款超高性价比品鉴级精致白酒系。整系以“新银众商”浓香型白酒和“将军小酒”两款畅销产品为主打。</p>
     <p class="text">从外观设计看，习将军新时代外包装的蓝白搭配更显得清爽素雅，其凸起的“新时代冲起来”的异形彩色LOGO及“苦乐一肩挑风雨向前冲”的励志语句，突显了年轻精英群体创业奋斗中的不屈和执着精神，也充分体现了80、90后面对家国，肩负起的责任和使命！</p>
@@ -13,9 +14,13 @@
 </template>
 
 <script>
+import vHeader from "@/components/v-header";
 export default {
   data() {
     return {};
+  },
+  components: {
+    vHeader
   },
   beforeCreate() {
     document.title = "简介";
