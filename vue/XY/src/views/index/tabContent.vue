@@ -12,13 +12,21 @@
             </grid> 
             </div> 
           <vTitle :title="items" />
-        <div class="box2">
-           <flexbox :gutter="0" wrap="wrap">
-            <flexbox-item :span="1/2" v-for="(goods, index) in listData" :key="index" class="mgt10" >
-              <div @click="toDetail(goods.id)">
-              <p class="boxPic"><img :src="urlPic+goods.goodsMainPhoto.split(',')[0]"></p>
-              <p v-text="goods.goodsName" class="tabGoodsName center fs-12"></p>
-              <p class="center"><b class="fs-15 txt-orange rt5" v-text="'¥'+goods.salePrice"></b><i class="center-line" v-text="'¥'+goods.marketPrice"></i></p>
+        <div class="box2 newListData">
+           <flexbox orient="vertical">
+            <flexbox-item v-for="(goods, index) in listData" :key="index">
+              <div @click="toDetail(goods.id)" class="mgt10 justify-content-space-between">
+              <p><img :src="urlPic+goods.goodsMainPhoto.split(',')[0]"></p>
+              <div class="flexg2 listRight">
+                <p class="goodsName txt-black2 fs-14" v-text="goods.goodsName"></p> 
+                <div class="rightBtm justify-content-space-between">
+                <div>
+                <p class="fs-18 mb5 txt-orange bold" v-text="'¥'+goods.salePrice"></p>
+                <p class="txt-gray1 fs-10" v-text="'销量'+goods.saleCount"></p>
+                </div>
+                <div><mt-button size="small" type="primary" class="goodsDetail">立即抢购</mt-button></div>
+                </div>
+              </div>
               </div>
             </flexbox-item> 
           </flexbox>
@@ -202,6 +210,21 @@ export default {
   }
   .vux-flexbox-item {
     padding:5px;
+  }
+  .mint-button--small{
+    width:78px;
+    height:24px;
+    border-radius:3px;
+    font-size:10px;
+  }
+  .rightBtm div:nth-child(1){
+    margin-top:30px;
+  }
+  .rightBtm div:nth-child(2){
+    margin-top:48px;
+  }
+  .mint-button--primary{
+    background: #FF4F00!important;
   }
 }
 </style>

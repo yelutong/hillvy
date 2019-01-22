@@ -2,37 +2,53 @@
   <div class="wrapper page-orders">
     <vHeader title="我的订单"/>
     <div class="tab-nav">
-      <div class="item" :class="{active:index === choseDex}" v-for="(item, index) in orderNav" :key="index" @click="tabOrderStatus(item, index)">
+      <div class="item" :class="{active:index == choseDex}" v-for="(item, index) in orderNav" :key="index" @click="tabOrderStatus(item, index)">
         {{ item.title }}
       </div>
     </div>
     <div class="tab-con" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="100">
       <div class="order-item" v-for="(item, index) in orderList" :key="index">
-        <div class="goods-status">
+
+        <div class="goods-status vux-1px-b">
           <div class="date">
-            <i class="ico i-date"></i>{{ item.date}}
+            <i class="ico i-store"></i>{{ item.storeName}}
           </div>
-          <span class="status">{{ item.status }}</span>
+          <span class="status" @click="cancelOrder(item.orderNo, index)" v-if="item.statusNum==10"><div class="act"><i class="ico i-del2"></i>
+          </div></span>
         </div>
-        <div class="goods-list" @click="pageToPay(item.totalPrice, item.orderNo, item.statusNum)">
-          <v-imglist :image-data="item.imgList" size="75" />
+
+        <div class="goods-list relative item pda15 justify-content-space-between" @click="pageToDtail(item.orderNo,item.statusNum)" v-for="(con,index2) in item.conList">
+         <div class="conPic"><img :src="con.goodsPhoto" /></div>
+         <div class="flexg2 listRight">
+            <p class="goodsName txt-black-real" v-text="con.goodsName"></p> 
+            <div class="rightBtm">
+            <div class="txt-black1 flexBox  justify-content-space-between">
+            <p class="per50"><i v-text="'实付：¥'+con.totalPrice"></i><i class="ml5 txt-gray1" v-if="item.conList.length>1&&(item.statusNum==40||item.statusNum==50)" v-text="'数量：'+con.goodsCount"></i></p>
+            <p :name="item.statusNum" v-if="item.conList.length==1||(item.statusNum!=40&item.statusNum!=50)" class="per50 txt-right" v-text="'数量：'+con.goodsCount"></p>
+            <div v-else class="">
+              <button class="btn-act" @click.stop="pageToCenter('eva',index,index2)" v-if="!con.isComment">立即评价</button>
+              <button class="btn-act" @click.stop="callHelp(item.orderNo)" v-if="item.statusNum==50||con.isComment">申请售后</button>
+            </div>
+            </div> 
+            </div>
+          </div>
         </div>
+
         <div class="goods-info">
-          <span>订单号：{{ item.orderNo }}</span>
+          <span>下单时间：{{ item.date}}</span>
           <div class="price-info">
             共{{ item.num }}件商品
           </div>
         </div>
         <div class="goods-action">
-          <div>合计：<span class="price">￥{{ item.totalPrice }}</span></div>
+          <div>合计：<span class="price txt-orange">￥{{ item.totalPrice }}</span><span v-if="item.deductedPrice" class="txt-gray">({{'抵扣积分'+item.deductedPrice}})</span></div>
           <div>
-          <button class="btn-act" @click="cancelOrder(item.orderNo, index)" v-if="choseDex==0">取消订单</button>
-          <button class="btn-act" @click="onPayOrder(item.orderNo, index)" v-if="choseDex==0">继续支付</button>
-          <button class="btn-act" @click="refundOrder(item.orderNo)" v-if="choseDex==1">退款</button>
-          <button class="btn-act" @click="receiptOrder(item.orderNo, index)" v-if="choseDex==2">确认收货</button>
-          <button class="btn-act" @click="pageToCenter('exp',index)" v-if="choseDex==2">查看物流</button>
-          <button class="btn-act" @click="pageToCenter('eva',index)" v-if="choseDex==3">立即评价</button>
-          <button class="btn-act" @click="callHelp(item.orderNo)" v-if="choseDex==4">申请售后</button>
+          <button class="btn-act" @click="pageToPay(item.totalPrice, item.orderNo, item.statusNum)" v-if="item.statusNum==10">继续支付</button>
+          <button class="btn-act" @click="refundOrder(item.orderNo)" v-if="item.statusNum==20">退款</button>
+          <button class="btn-act" @click="receiptOrder(item.orderNo, index)" v-if="item.statusNum==30">确认收货</button>
+          <button class="btn-act" @click="pageToCenter('exp',index)" v-if="item.statusNum==30">查看物流</button>
+          <button class="btn-act" @click="pageToCenter('eva',index)" v-if="item.statusNum==40&&item.conList.length==1">立即评价</button>
+          <button class="btn-act" @click="callHelp(item.orderNo)" v-if="item.statusNum==50&&item.conList.length==1">申请售后</button>
           </div>
         </div>
       </div>
@@ -45,7 +61,6 @@
 import { mapState } from "vuex";
 import { MessageBox, Toast, InfiniteScroll } from "mint-ui";
 import vNodata from "@/components/v-nodata";
-import vImglist from "@/components/v-imglist";
 import vHeader from "@/components/v-header";
 const qs = require("qs");
 export default {
@@ -55,8 +70,12 @@ export default {
       currentPage: 0,
       //status: [10],
       status: this.getUrlParam("status"),
-      choseDex: 0,
+      choseDex: this.getUrlParam("choseDex")||null,
       orderNav: [
+        {
+          title: "全部",
+          status: [10,20,30,40,50]
+        },
         {
           title: "待付款",
           status: [10]
@@ -70,12 +89,8 @@ export default {
           status: [30]
         },
         {
-          title: "待评价",
-          status: [40]
-        },
-        {
           title: "已完成",
-          status: [50]
+          status: [40,50]
         }
       ],
       orderList: [],
@@ -88,7 +103,6 @@ export default {
   },
   components: {
     "v-nodata": vNodata,
-    "v-imglist": vImglist,
     vHeader
   },
   computed: {
@@ -98,12 +112,21 @@ export default {
     document.title = "我的订单";
   },
   created() {
+    this.verToken();
     // 读取订单状态
-    this.choseDex = '';
     this.clearData();
     this.getOrdersList();
   },
-  methods: {
+  methods: { 
+    verToken(){
+     if(!this.token){
+      this.showTip("登录超时，请重新登录");
+      this.$router.push({path: "/mine/login"});
+     }
+    },
+    pageToDtail(orderNo,status){
+      this.$router.push('/goods/orderDetail?orderNo='+orderNo+'&status='+status);
+    },
     // 清空状态函数（本来想做成5组翻页数据的，但是考虑时间紧迫，就简化成切换从头加载吧）
     clearData() {
       this.currentPage = 0;
@@ -141,14 +164,15 @@ export default {
       }
       const arrImg = [];
       arr.forEach(val => {
-        arrImg.push(this.api.urlPic + val.goodsPhoto.split(',')[0]);
+        val.goodsPhoto = this.api.urlPic + val.goodsPhoto.split(',')[0];
       });
-      return arrImg;
+      return arr;
     },
     // 切换tab
     tabOrderStatus(item, index) {
       console.log(item)
       if (this.choseDex !== index) {
+        this.orderList = [];
         this.choseDex = index;
         this.clearData();
         this.status = '['+item.status+']';
@@ -164,7 +188,8 @@ export default {
     },
     // 获取订单数据
     getOrdersList(first) {
-      this.$axios
+      if(this.currentPage<=this.totalPage){
+         this.$axios
         .post(this.api.payOrderList, 
         JSON.stringify({
             status: JSON.parse(this.status),
@@ -175,7 +200,7 @@ export default {
           headers: {  
             "content-type": "application/json",
             "Authorization": this.token 
-            }
+          }
         })
         .then(res => {
           const resData = res.data;
@@ -190,6 +215,10 @@ export default {
           }
           let objData = resData.content,
             arrData = objData.list;
+
+          this.currentPage = objData.currPage+1;
+          this.totalPage = objData.totalPage;
+
           if (arrData.length === 0) {
             this.orderList = [];
             this.noOrders = true;
@@ -203,14 +232,15 @@ export default {
               num: this.goodsCount(val.items),
               status: this.getStatusTxt(val.status),
               statusNum: val.status,
+              storeName: val.storeName,
+              storeId: val.storeId,
               totalPrice: val.totalPrice,
-              imgList: this.getArrImg(val.items),
-              orderNo: val.orderNumberStr,
-              orderId: val.id,
-              arrGood: []
+              deductedPrice: val.deductedPrice||null,
+              conList: this.getArrImg(val.items),
+              orderNo: val.orderNumberStr
             };
             // 如果是待评价，把待评价的子商品循环出来
-            if (this.choseDex === 2 || this.choseDex === 3) {
+            /*if (this.choseDex == 40) {
               val.orderDetails.forEach(vl => {
                 obj.arrGood.push({
                   id: vl.productId,
@@ -223,7 +253,7 @@ export default {
                   date: vl.createDate
                 });
               });
-            }
+            }*/
             this.orderList.push(obj);
           });
           if (pageCount <= this.ordersPageNo) {
@@ -241,6 +271,7 @@ export default {
             this.loading = false;
           }
         });
+      }
     },
     goodsCount(items){
       let count = 0;
@@ -250,7 +281,8 @@ export default {
       return count
     },
     // 查看物流或是立即评价
-    pageToCenter(type, index) {
+    pageToCenter(type, index, index2) {
+      index2 = index2?index2:0;
       const orderList = this.orderList;
       let objType = {};
       switch (type) {
@@ -266,22 +298,20 @@ export default {
           break;
       }
       // 判断跳转
-      if (
-        orderList.length === 0 ||
-        !orderList[index].arrGood ||
-        orderList[index].arrGood.length === 0
-      ) {
+      if (orderList.length == 0) {
         this.showTip(objType.tip);
         return;
       }
       // 存到本地存储（转换成字符串）
-      window.localStorage.setItem(objType.key, JSON.stringify(orderList[index].arrGood));
+      orderList[index].conList = orderList[index].conList[index2];
+      sessionStorage.setItem(objType.key, JSON.stringify(orderList[index]));
+      console.log(JSON.parse(sessionStorage.getItem(objType.key)));
       setTimeout(() => {
         this.$router.push(objType.url);
       }, 0);
     },
     // 确认收货
-    receiptOrder(orderId, index) {
+    receiptOrder(orderNo, index) {
       MessageBox({
         title: "收货提示",
         message: "您确定收到货品了吗？",
@@ -289,11 +319,8 @@ export default {
       }).then(action => {
         if (action === "confirm") {
           this.$axios
-            .post(this.api.receiptGoods, qs.stringify({ order_id: orderId }), {
-              headers: {
-                "content-type": "application/x-www-form-urlencoded",
-                "Authorization": this.token
-              }
+            .get(this.api.receptGoods+orderNo,{
+              headers: { "Authorization": this.token }
             })
             .then(res => {
               const resData = res.data;

@@ -1,50 +1,64 @@
 <template>
   <div class="wrapper page-wallet">
-    <div class="lay-action white">
-      <router-link class="btn-submit" to="/mine/mycard">我的银行卡</router-link>
-      <router-link class="btn-submit" to="/mine/getgold">提现申请</router-link>
+    <vHeader title="我的钱包" to="/mine" />
+    <div class="lay-action white mt50 relative">
+      <div class="walletImg"><img src="@/assets/images/walletBg.png" /></div>
+      <div class="walletContent center"><p class="fs-12">总资产</p><p  class="fs-18 mt5" v-text="walletInfo.currentGoodsFee"></p></div>
     </div>
-    <div class="lay-detail white">
-      <div class="row">
-        <span class="tag tag-1">名称</span>
-        <span class="tag tag-2">单位</span>
-        <span class="tag tag-3">积分</span>
+    <div class="lay-detail">
+      <div class="row justify-content-space-around couponTitle white">
+        <span class="tag vux-1px-r per50">
+         <p class="fs-12">消费券</p>
+         <p class="txt-black fs-15" v-text="walletInfo.currentEnableIntegral"></p>
+        </span>
+        <span class="tag per50">
+         <p class="fs-12">兑换券</p>
+         <p class="txt-black fs-15" v-text="walletInfo.currentLockIntegral"></p>
+       </span>
       </div>
-      <div class="row" v-for="(item, index) in walletInfo " :key="index">
-        <span class="tag tag-1">{{ item.typeName }}</span>
-        <span class="tag tag-2">{{ item.unit }}</span>
-        <span class="tag tag-3">{{ item.amount }}</span>
+      <div class="mt10 white">
+        <v-cell title="消费券记录" link="" />
+        <v-cell title="兑换券记录" link="" />
       </div>
     </div>
-    <v-nodata v-if="noWallet" bgcolor="grey" text="- 暂无明细数据 -" />
-  </div>
+    </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import vNodata from "@/components/v-nodata";
+import vHeader from "@/components/v-header";
+import vCell from "@/components/v-cell";
 export default {
   data() {
     return {
-      walletInfo: [],
+      walletInfo: '',
       noWallet: false
     };
   },
   components: {
-    "v-nodata": vNodata
+    vHeader,
+    "v-cell": vCell
   },
   computed: {
     ...mapState(["token"])
   },
   created() {
-    // 获取我的钱包数据
-    this.getWalletInfo();
+    this.verToken();
   },
   methods: {
+    verToken(){
+     if(!this.token){
+      this.showTip("登录超时，请重新登录");
+      this.$router.push({path: "/mine/login"});
+     }else{
+      // 获取我的钱包数据
+      this.getWalletInfo();
+     }
+    },
     // 获取我的钱包数据
     getWalletInfo() {
       this.$axios
-        .get(this.api.getWalletInfo, { headers: { "Authorization": this.token } })
+        .get(this.api.userWallet, { headers: { "Authorization": this.token } })
         .then(res => {
           const resData = res.data;
           if (resData.code !== 1) {
@@ -52,10 +66,8 @@ export default {
             this.showTip(resData.message);
             return;
           }
-          // 成功后对数据重组
-          const arrData = resData.content || [];
-          this.noWallet = arrData.length === 0 ? true : false;
-          this.walletInfo = arrData;
+          this.walletInfo = resData.content;
+          console.log(this.walletInfo)
         })
         .catch(res => {
           this.noWallet = true;

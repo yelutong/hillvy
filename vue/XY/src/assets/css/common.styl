@@ -18,7 +18,7 @@ html,body {
   font-size: 1em;
   margin: auto;
   color: #333333;
-  background-color: #f5f5f5;
+  background-color: #E9EDF0;
   word-wrap: break-word;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -50,6 +50,12 @@ border:1px solid #ccc;
 .txt-black {
   color: #333!important;
 }
+.txt-black1{
+  color: #5C5C5C!important;
+}
+.txt-black2{
+  color: #282828!important;
+}
 .txt-dark {
   color: #666!important;
 }
@@ -76,6 +82,9 @@ border:1px solid #ccc;
 }
 .txt-edit{
   color: #C18702!important;
+}
+.bold{
+  font-weight:bold;
 }
 /*背景颜色*/
 
@@ -173,6 +182,9 @@ input:-webkit-autofill {
 .mt5{
   margin-top:2px!important;  
 }
+.mt30{
+  margin-top:30px!important;
+}
 .mt40{
   margin-top:40px!important;
 }
@@ -243,6 +255,9 @@ b{
 .pdb50 {
   padding-bottom: 50px!important;
 }
+.pdtb15 {
+  padding: 15px 0!important;
+}
 .mb2 {
    border-bottom: 2px solid #f5f5f5;
 }
@@ -260,6 +275,12 @@ b{
 }
 .hide {
   display: none!important
+}
+.mr35{
+  margin-right:35px;
+}
+.mr5{
+  margin-right:5px;
 }
 .mgt10{
   margin-top: 10px!important;
@@ -288,6 +309,9 @@ b{
 .pd15{
   padding: 0 15px!important;
 }
+.pdt10{
+  padding-top:10px!important;
+}
 .pd10{
   padding: 0 10px!important;
 }
@@ -302,6 +326,9 @@ b{
 }
 .pdb15{
   padding-bottom: 15px!important;
+}
+.ml5{
+  margin-left: 5px!important;
 }
 .ml15{
   margin-left: 15px!important;
@@ -498,7 +525,6 @@ b{
 /*设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式。*/
 
 /*弹性盒子元素将向行起始位置对齐。该行的第一个子元素的主起始位置的边界将与该行的主起始位置的边界对齐，同时所有后续的伸缩盒项目与其前一个项目对齐。*/
-
 .justify-content-start {
   display: flex;
   flex-flow:  row nowrap;
@@ -508,8 +534,8 @@ b{
   -webkit-justify-content: flex-start;
   justify-content: flex-start
 }
-/*弹性盒子元素将向行结束位置对齐。该行的第一个子元素的主结束位置的边界将与该行的主结束位置的边界对齐，同时所有后续的伸缩盒项目与其前一个项目对齐。*/
 
+/*弹性盒子元素将向行结束位置对齐。该行的第一个子元素的主结束位置的边界将与该行的主结束位置的边界对齐，同时所有后续的伸缩盒项目与其前一个项目对齐。*/
 .justify-content-center {
   display: flex;
   flex-flow:  row nowrap;
@@ -519,8 +545,8 @@ b{
   -webkit-justify-content: center;
   justify-content: center
 }
-/*弹性盒子元素将向行中间位置对齐。该行的子元素将相互对齐并在行中居中对齐，同时第一个元素与行的主起始位置的边距等同与最后一个元素与行的主结束位置的边距（如果剩余空间是负数，则保持两端相等长度的溢出）。*/
 
+/*弹性盒子元素将向行中间位置对齐。该行的子元素将相互对齐并在行中居中对齐，同时第一个元素与行的主起始位置的边距等同与最后一个元素与行的主结束位置的边距（如果剩余空间是负数，则保持两端相等长度的溢出）。*/
 .justify-content-end {
   display: flex;
   flex-flow:  row nowrap;
@@ -530,8 +556,8 @@ b{
   -webkit-justify-content: flex-end;
   justify-content: flex-end
 }
-/*弹性盒子元素会平均地分布在行里。如果最左边的剩余空间是负数，或该行只有一个子元素，则该值等效于'flex-start'。在其它情况下，第一个元素的边界与行的主起始位置的边界对齐，同时最后一个元素的边界与行的主结束位置的边距对齐，而剩余的伸缩盒项目则平均分布，并确保两两之间的空白空间相等。*/
 
+/*弹性盒子元素会平均地分布在行里。如果最左边的剩余空间是负数，或该行只有一个子元素，则该值等效于'flex-start'。在其它情况下，第一个元素的边界与行的主起始位置的边界对齐，同时最后一个元素的边界与行的主结束位置的边距对齐，而剩余的伸缩盒项目则平均分布，并确保两两之间的空白空间相等。*/
 .justify-content-space-between {
   display: flex;
   flex-flow:  row nowrap;
@@ -541,6 +567,8 @@ b{
   -webkit-justify-content: space-between;
   justify-content: space-between
 }
+
+
 /*平分父容器 弹性盒子元素会平均地分布在行里，两端保留子元素与子元素之间间距大小的一半。如果最左边的剩余空间是负数，或该行只有一个伸缩盒项目，则该值等效于'center'。在其它情况下，伸缩盒项目则平均分布，并确保两两之间的空白空间相等，同时第一个元素前的空间以及最后一个元素后的空间为其他空白空间的一半。*/
 
 .justify-content-space-around {
@@ -591,6 +619,12 @@ b{
 .per40{
   width:40%;
 }
+.per50{
+  width:50%;
+}
+.per70{
+  width:70%;
+}
 .per30{
   width:30%;
 }
@@ -606,6 +640,26 @@ b{
     display: flex;
     width: 100%;
 }
+.loginOutBtn {
+  width:90%!important;
+  margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
@@ -632,6 +686,7 @@ textarea {
     width: 100%;
     padding: 5px;
     border: 1px solid #eaeaea;
+    background: #F9F9F9;
 }
 
 a {
@@ -644,7 +699,6 @@ a {
 }
 
 img {
-    display: block;
     width: 100%;
 }
 
@@ -680,6 +734,13 @@ hr {
     &.checked {
         background-image: url('assets/images/cks-on.png');
     }
+}
+.i-store {
+    width: 15px;
+    height: 13px;
+    margin-right: 5px;
+    vertical-align: -1px;
+    background-image: url('assets/images/store.png');
 }
 
 .i-date {
@@ -860,4 +921,49 @@ input.check{width:15px;height:15px;background:url(assets/images/cks-no.png) no-r
 input.check:checked{background:url(assets/images/cks-on.png) no-repeat;background-size:15px 15px;}
 .item .check{
   left: 15px!important;
+}
+.mint-field .mint-cell-title{
+  width: 60px!important;
+}
+.vGoodsName{
+  width: 100%;
+  height:40px;
+  overflow:hidden;
+  line-height:20px;
+  margin: 5px 0 5px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.newListData img{
+    width:115px;
+    height:115px;
+    margin-right:15px;
+    border-radius:6px;
+}
+.listRight p.goodsName{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height:20px;
+  height:40px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.i-edit {
+  width: 16px;
+  height: 16px;
+  background-image: url('assets/images/edit.png');
+}
+
+.i-del {
+  width: 16px;
+  height: 16px;
+  background-image: url('assets/images/del.png');
+}
+
+.i-del2 {
+  width: 16px;
+  height: 16px;
+  background-image: url('assets/images/del2.png');
 }

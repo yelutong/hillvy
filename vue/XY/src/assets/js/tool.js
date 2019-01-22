@@ -1,5 +1,14 @@
 export default {
   install(Vue, options) {
+    Vue.prototype.uniq = function (array) {//数组去重
+      var temp = []; //一个新的临时数组
+      for(var i = 0; i < array.length; i++){
+          if(temp.indexOf(array[i]) == -1){
+              temp.push(array[i]);
+          }
+      }
+      return temp;
+    };
     Vue.prototype.isAndroid = function () {
       const u = navigator.userAgent;
       return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;

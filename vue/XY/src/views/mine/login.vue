@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper white page-bind">
-    <vHeader title="登录"/>
+    <vHeader title="登录" to="/mine"/>
     <div class="item-bind">
       <i class="ico i-person"></i> <input class="ipt" type="number" v-model.trim="phone" placeholder="请输入手机号" maxlength="11" />
     </div>
@@ -73,11 +73,17 @@ export default {
           if (resData.code === 1) {
           	console.log(resData.content);
           	this.atnToken(resData.content);
+            localStorage.setItem("token",resData.content);
           	this.showTip('登录成功');
-            let _this = this;
-            setTimeout(function(){ 
-              _this.$router.push('/mine'); 
-            }, 1000);
+        
+            if(this.$route.params.url){
+              window.location.href=this.$route.params.url;
+            }else{
+              let _this = this;
+              setTimeout(function(){ 
+                _this.$router.push('/mine'); 
+              }, 500);
+            }
           }else{
           	this.showTip(resData.msg);
           }

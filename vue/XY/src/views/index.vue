@@ -12,6 +12,7 @@
     </swiper>
  
     <v-footer active="index" />
+    <v-wechatshare :friendShare="weChatShare" />
   </div>
 </template>
 
@@ -19,8 +20,11 @@
 import indexNew from "@/views/index/indexNew";
 import tabContent from "@/views/index/tabContent";
 import vFooter from "@/components/v-footer";
+import VWechatshare from "@/components/v-wechatshare";
 import { Tab, TabItem, Swiper, SwiperItem } from "vux";
-
+import {
+    mapState
+  } from "vuex";
 export default {
   data() {
     return {
@@ -34,6 +38,7 @@ export default {
   },
   components: {
     "v-footer": vFooter,
+    "v-wechatshare": VWechatshare,
     indexNew,
     tabContent,
     Tab,
@@ -50,15 +55,14 @@ export default {
     this.getAllClassTree();
     this.getClassBylevel();
   },
-  computed:{
-
+  computed: {
+    ...mapState(["weChatInfo", "weChatShare"])
   },
   methods: {
     onTabClick(item){
       this.onTab = item.id;
       console.log(this.onTab);
-    }
-    ,
+    },
     getClassBylevel(){
       this.$axios.get(this.api.getClassBylevel+1)
       .then(res => {
@@ -82,10 +86,10 @@ export default {
       .catch(res => {
        //下单失败，请您稍后重试
       });
-    }
+    } 
   }
 };
-</script>
+</script> 
 <style lang="stylus">
 @import '../assets/css/index';
 #index21 {

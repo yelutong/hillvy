@@ -13,6 +13,15 @@ import ojk from '../../../images/ojk.png';//ojk
 class MobileHome extends React.Component {
   state = {language:sessionStorage.getItem('language') || 'Id'};
 
+  componentWillMount(){
+    console.log(window.location.search);
+      var type = window.location.search.split('?downloadUrl=')[1];
+      if(type){
+        location.href=type;
+        //location.href="https://static.kreditplusteknologi.id/install/PinjamGampang.apk";
+      }
+  }
+
   componentDidMount() {
     setTimeout(() => {
       var mySwiper = new Swiper('.mobild-swiper-container',{

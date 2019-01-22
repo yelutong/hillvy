@@ -26,7 +26,11 @@ export default {
         code: "",
         time: 60,
         hasSend: false
-      }
+      },
+      headimgurl:'',//微信头像地址
+      nickname:'',//微信昵称
+      proUserId:'',//推荐人id
+      sex:'',//微信性别
     };
   },
   components: {
@@ -36,11 +40,11 @@ export default {
     ...mapState(["token", "userId", "parentId"])
   },
   beforeCreate() {
-    document.title = "绑定注册";
+    document.title = "手机登录";
   },
   created() {},
   methods: {
-    ...mapActions(["atnUserId", "atnWeChatInfo"]),
+    ...mapActions(["atnOpenId","atnToken","atnProUserId"]),
     // 获取验证码
     getCode() {
       const bindInfo = this.bindInfo;
@@ -52,10 +56,7 @@ export default {
         return;
       }
       this.$axios
-        .get(this.api.getMobileCode, {
-          headers: { "Authorization": this.token },
-          params: { mobile: bindInfo.phone }
-        })
+        .get(this.api.getVerifyCode+bindInfo.phone)
         .then(res => {
           const resData = res.data;
           if (resData.code !== 1) {
@@ -78,7 +79,7 @@ export default {
           if (this.bindInfo.time <= 0) {
             clearTimeout(count);
             this.bindInfo.hasSend = false;
-            this.bindInfo.time = 60;
+            this.bindInfo.time = 120;
           } else {
             this.bindInfo.time -= 1;
             fnCount();
@@ -89,7 +90,6 @@ export default {
     },
     // 注册绑定手机号
     bindPhone() {
-      const parentId = this.parentId || "";
       const bindInfo = this.bindInfo;
       if (bindInfo.phone.length !== 11) {
         this.showTip("手机号码格式不正确");
@@ -104,55 +104,45 @@ export default {
         iconClass: "loading",
         duration: 30000
       });
-      const ajaxData = {
-        parent_id: parentId,
-        mobile: bindInfo.phone,
-        auth_code: bindInfo.code
-      };
+     
+      let ajaxData = localStorage.getItem('bindInfo');
+      ajaxData = JSON.parse(ajaxData);
+      ajaxData.username = bindInfo.phone;
+      ajaxData.smsCode = bindInfo.code;
+      ajaxData.proUserId = localStorage.getItem('proUserId');
+      
       this.$axios
-        .post(this.api.bindNewUser, qs.stringify(ajaxData), {
-          headers: {
-            "content-type": "application/x-www-form-urlencoded",
-            "Authorization": this.token
-          }
+        .post(this.api.wxBind, JSON.stringify(ajaxData),{
+          headers: {"content-type": "application/json"}
         })
         .then(res => {
           loading.close();
           const resData = res.data;
-          if (resData.code !== 1) {
+          if (resData.code === 1) {
+             // 绑定成功后
+            this.setUserIdBack(resData.content)
+          }else{
             this.showTip(resData.message);
             return;
           }
-          // 绑定成功后，看是否返回了encryptionId
-          const objData = resData.content;
-          if (objData.encryptionId) {
-            // 如果存在，存好后返回
-            this.setUserIdBack(objData);
-          } else {
-            // 如果不存在，再查一遍访问接口（以防重复绑定不会返回id）
-            this.ifUserBind(this.token);
-          }
+         
         })
         .catch(res => {
           loading.close();
-          this.showTip("绑定注册失败，请稍后重试");
+          this.showTip("绑定失败，请稍后重试");
         });
     },
     // 存储userId和微信信息后返回
     setUserIdBack(objData) {
-      this.atnUserId(objData.encryptionId);
-      this.atnWeChatInfo({
-        name: objData.nickName,
-        avatar: objData.wechatHeadImageUrl
-      });
+      this.atnToken(objData);
+      localStorage.setItem('token', objData)
       const bindOk = Toast({
         message: "绑定成功！",
         iconClass: "ok",
         duration: 2000
       });
-      setTimeout(() => {
-        this.$router.go(-1);
-      }, 2600);
+      
+      this.$router.push("/mine");
     },
     // 查询是否存在userId
     ifUserBind(token) {

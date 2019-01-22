@@ -27,6 +27,8 @@ const pay = () =>
   import ('@/views/goods/pay'); // 支付
 const orders = () =>
   import ('@/views/goods/orders'); // 商品订单列表
+const orderDetail = () =>
+  import ('@/views/goods/orderDetail'); // 商品订单详情 
 const ordercenter = () =>
   import ('@/views/goods/ordercenter'); // 商品订单中心
 const evagoods = () =>
@@ -41,6 +43,14 @@ const connectMe = () =>
 // 我的 -------------------------------
 const mine = () =>
   import ('@/views/mine/mine'); // 个人中心
+const updateInfo = () =>
+import ('@/views/mine/updateInfo'); // 修改信息
+const updatePhone = () =>
+import ('@/views/mine/updatePhone'); // 修改手机号
+const updatePwd = () =>
+import ('@/views/mine/updatePwd'); // 修改密码
+const set = () =>
+import ('@/views/mine/set'); // 设置
 const wallet = () =>
   import ('@/views/mine/wallet'); // 我的钱包
 const mycard = () =>
@@ -82,7 +92,8 @@ const findPwd = () =>
 // 路由加载 --------------------------------------
 const router = new Router({
   // mode: "history",
-  routes: [{
+  routes: [
+    {
       path: '*',
       redirect: '/index'
     },
@@ -136,6 +147,10 @@ const router = new Router({
       component: orders
     },
     {
+      path: '/goods/orderDetail',
+      component: orderDetail
+    },
+    {
       path: '/goods/ordercenter',
       component: ordercenter
     },
@@ -155,6 +170,22 @@ const router = new Router({
     {
       path: '/mine',
       component: mine
+    },
+    {
+      path: '/mine/set',
+      component: set
+    },
+    {
+      path: '/mine/updateInfo',
+      component: updateInfo
+    },
+    {
+      path: '/mine/updatePhone',
+      component: updatePhone
+    },
+    {
+      path: '/mine/updatePwd',
+      component: updatePwd
     },
     {
       path: '/mine/wallet',
@@ -218,6 +249,7 @@ const router = new Router({
     },
     {
       path: '/mine/login',
+      name:'login',
       component: login
     },
     {

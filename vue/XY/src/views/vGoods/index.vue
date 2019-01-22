@@ -1,15 +1,16 @@
 <template>
   <div id="vGoods" class="wrapper page-index">
-   <vHeader title="小V专区" to="/index"/>
+    <mt-header fixed title="小V专区" class="txt-black bg-white"></mt-header>
    <div class="white vGoods">
         <scroller lock-x :scrollbar-y=false height="-60" use-pullup use-pulldown @on-scroll-bottom="loadMore" @on-pulldown-loading="refresh" v-model="status" ref="scroller">
         <div class="box2">
            <flexbox :gutter="0" wrap="wrap">
-            <flexbox-item :span="1/2" v-for="(goods, index) in listData" :key="index" class="mgt10">
-              <div @click="toDetail(goods.id)">
+            <flexbox-item :span="1/2" v-for="(goods, index) in listData" :key="index">
+              <div @click="toDetail(goods.id)" class="mgt10 vuxItem">
               <p class="boxPic"><img :src="urlPic+goods.goodsMainPhoto.split(',')[0]"></p>
-              <p v-text="goods.goodsName" class="tabGoodsName center fs-12"></p>
-              <p class="center"><b class="fs-15 txt-orange rt5" v-text="'¥'+goods.salePrice"></b><i class="center-line" v-text="'¥'+goods.marketPrice"></i></p>
+              <p v-text="goods.goodsName" class="vGoodsName fs-12"></p>
+              <p><b class="fs-15 txt-orange rt5" v-text="'¥'+goods.salePrice"></b></p>
+              <p><i class="txt-gray" v-text="'销量'+goods.saleCount"></i></p>
              </div>
             </flexbox-item> 
           </flexbox>
@@ -30,7 +31,7 @@
 import { Scroller, Spinner,Flexbox, FlexboxItem  } from 'vux';
 import vFooter from "@/components/v-footer";
 const qs = require("qs");
-import vHeader from "@/components/v-header";
+import { Header } from "mint-ui";
 export default {
   data() {
     return {
@@ -38,6 +39,7 @@ export default {
       totalPage: 1,
       currentPage: 0,
       listData:[],
+      isLevelPackage: this.getUrlParam("isLevelPackage")||1,
       pullupEnabled: true,
       status: {
         pullupStatus: 'default',
@@ -50,8 +52,7 @@ export default {
     Scroller,
     Spinner,
     Flexbox, 
-    FlexboxItem,
-    vHeader
+    FlexboxItem
   },
   beforeCreate() {
     document.title = "新银众商";
@@ -65,7 +66,7 @@ export default {
         this.currentPage = 0;this.totalPage = 1;this.listData=[];
         if(this.currentPage< this.totalPage){
             this.currentPage= parseInt(this.currentPage) + 1;
-            this.$axios.post(this.api.getGoodsList,qs.parse({ "page" : this.currentPage, "limit":8 }),{headers: {"content-type": "application/json"}})
+            this.$axios.post(this.api.getGoodsList,qs.parse({ "page" : this.currentPage, "limit":8 ,"isLevelPackage":this.isLevelPackage }),{headers: {"content-type": "application/json"}})
             .then(res => {
                console.log(res.data);
                this.totalPage=res.data.content.totalPage; 
@@ -88,7 +89,7 @@ export default {
       }else{
         if(this.currentPage< this.totalPage){
           this.currentPage= parseInt(this.currentPage) + 1;
-          this.$axios.post(this.api.getGoodsList,qs.parse({ "page" : this.currentPage, "limit":8 }),{headers: {"content-type": "application/json"}})
+          this.$axios.post(this.api.getGoodsList,qs.parse({ "page" : this.currentPage, "limit": 8,"isLevelPackage":this.isLevelPackage  }),{headers: {"content-type": "application/json"}})
           .then(res => {
              console.log(res.data);
              this.totalPage=res.data.content.totalPage; 
@@ -124,7 +125,8 @@ export default {
       this.$router.push({//核心语句
         path:'/goods',//跳转的路径
         query:{//路由传参时push和query搭配使用 ，作用时传递参数
-          id: id  
+          id: id,
+          vGoods:'1' 
         }
       })
     }
@@ -133,15 +135,18 @@ export default {
 </script>
 <style lang="stylus">
 #vGoods{
-  .vux-flex-row{
-    
-  }
+  background:#e9edf0;
   .vGoods{
     margin:50px 0;
-    padding:0 10px;
+    padding:0 5px;
   }
-  .vux-flexbox-item {
-    padding: 0.1rem;
+  .vux-flexbox-item{
+    padding:0 5px;
+  }
+  .vuxItem{
+    padding:10px;
+    border-radius:5px;
+    background:#F6F5F5;
   }
 }
 

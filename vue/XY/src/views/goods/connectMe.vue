@@ -1,87 +1,93 @@
 <template>
-  <div class="wrapper white page-bind">
-    <vHeader title="客服"/>
-    <div class="content kefu">
-     <h3 class="h40 center">欢迎您</h3>
-     <p class="center h40">任何疑问、建议投诉等，可通过以下方式咨询</p>
-      <div class="kefu_pic0">
-      	<i class="kef_left">
-      	    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3317624116&amp;site=qq&amp;menu=yes" target="_blank">
-      		<b class="kef_qq sprite"></b>
-      		<b class="center qq_kefu">在线客服</b>
-      		</a>
-      	</i>
-      	<i class="kef_right"> 
-      	<a href="tel:075582777165">
-      		<b class="kef_phone sprite"></b>
-      		<b class="center phone_kefu">电话客服</b>
-      	</a>	
-      	</i>
-      </div>
-      <p class="center kef_gzh"><img src="https://m.mcyou.net/images/buyer/qrcode_share.png"></p> 
-      <p class="center kef_gzh_ms">扫描关注公众号</p>
+  <div class="wrapper white kefu">
+    <vHeader title="帮助中心"/>
+    <div class="content">
+     <group>
+      <cell title="在线客服">
+        <img slot="icon" style="display:block;margin-right:5px;width:18px;height:18px" :src="phonePic">
+      </cell>
+       <grid :cols="4" :show-lr-borders="false" class="pd15">
+          <grid-item  class="vux-center" label="新银客服01" >
+            <img slot="icon" :src="codePic">
+          </grid-item>
+          <grid-item  class="vux-center" label="新银客服02" >
+            <img slot="icon" :src="codePic">
+          </grid-item>
+          <grid-item  class="vux-center" label="新银客服03" >
+            <img slot="icon" :src="codePic">
+          </grid-item>
+          <grid-item  class="vux-center" label="新银客服04" >
+            <img slot="icon" :src="codePic">
+          </grid-item>
+       </grid> 
+    </group>
+
+    <cell title="客服电话">
+        <img slot="icon" style="display:block;margin-right:5px;width:18px;height:18px" :src="phonePic">
+    </cell>
+     <div class="pd15 weui-grids">
+      <p class="h40 txt-gray1" @click="callLine1()">客服服务热线:<i class="lt5 txt-black-real">0755–28885609</i></p>
+      <p class="h40 txt-gray1" @click="callLine2()">客服服务热线:<i class="lt5 txt-black-real">0755–28886165</i></p>
+     </div>
     </div>
   </div>
 </template>
 <script type="text/javascript">
 import vHeader from "@/components/v-header";
+import { Group, Cell, Grid, GridItem, } from 'vux';
 export default {
- components: {
-   vHeader
+ data(){
+  return{
+    phonePic: require("../../assets/images/phone@3x.png"),
+    wechatPic: require("../../assets/images/wechat@3x.png"),
+    codePic: require("../../assets/images/qrcode_share.png")
   }
+ },
+ components: {
+   vHeader,
+   "group": Group,
+   "cell": Cell,
+   Grid,
+   GridItem
+  },
+ beforeCreate() {
+  document.title = "帮助中心";
+ },
+ methods: {
+  callLine1(){
+    window.location.href="tel:075528885609";
+  },
+  callLine2(){
+    window.location.href="tel:075528886165";
+  }
+ }
 }
 </script>
 <style lang="stylus">
 .kefu{
   margin-top:44px;
-  h3 {
-    color: #333;
-    font-size: 21px;
-    font-weight: 500;
-    margin-top: 10px;
+  .vux-label{
+    color:#FF4F00;
   }
-  .h40 {
-    line-height: 40px!important;
+  .weui-grid:before{
+    width:0!important;
+    border: none!important;
   }
-  .kefu_pic0 {
-    width: 100%;
-    float: left;
+  .weui-grid:after{
+    height:0!important;
+    border: none!important;
   }
-  .kefu_pic0 i {
-    width: 50%;
-    float: left;
-    text-align: center;
-    height: 150px;
-    margin: 30px auto;
+  .weui-grid{
+    padding:10px 0!important;
   }
-  .qq_kefu,.phone_kefu,.kef_gzh_ms {
-    line-height: 40px;
-    font-size: 16px;
-    height: 40px;
-    color: #333;
+  .weui-grid__icon{
+    width: 70px!important;
+    height: 70px!important;
   }
-  .kef_qq {
-    width: 80px;
-    height: 80px;
-    background: url(../../assets/images/kef_qq.png) no-repeat;
-    margin: 0 auto;
-    display: block;
-    background-position: 0 0;
-    background-size: 80px auto; 
-  }
-  .kef_phone {
-    width: 80px;
-    height: 80px;
-    background: url(../../assets/images/tel.png) no-repeat;
-    margin: 0 auto;
-    display: block;
-    background-position: 0 0;
-    background-size: 80px auto; 
-  }
-  .kef_gzh img {
-    width: 160px;
-    height: 160px;
-    display: inline-block;
+  .weui-cells:after,.weui-cell:before{
+    height:0!important;
+    border-bottom: none!important;
+    border-top: none!important;
   }
 }
 </style>

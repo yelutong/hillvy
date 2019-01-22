@@ -5,11 +5,17 @@ const mutations = {
   mtnToken(sta, val) {
     sta.token = val;
   },
+  mtnProUserId(sta, val) {
+    sta.proUserId = val;
+  },
   mtnParentId(sta, val) {
     sta.parentId = val;
   },
   mtnUserId(sta, val) {
     sta.userId = val;
+  },
+  mtnUserPhone(sta, val) {
+    sta.userPhone = val;
   },
   mtnShareId(sta, val) {
     sta.shareId = val;

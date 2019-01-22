@@ -1,6 +1,6 @@
 <!-- 没有数据-->
 <template>
-  <div class="v-no-data mt40" :class="bgcolor" :style="{height:height+'px'}">
+  <div class="v-no-data mt50" :class="bgcolor" :style="{height:height+'px'}">
     <div class="v-img" v-if="hasimg!=='no'"></div>
     <p class="v-txt">{{ text }}</p>
   </div>

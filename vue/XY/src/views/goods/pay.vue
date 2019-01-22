@@ -132,20 +132,14 @@ export default {
           loading.close();
           const resData = res.data;
           if (resData.code !== 1) {
-            this.showTip("支付失败，请稍后重试");
+            this.showTip(resData.msg);
+            setTimeout(()=>{
+              this.$router.push({path: "/mine"});
+            },2000)
             return;
           }
           // 返回数据成功后，拿到参数唤起微信支付
-          const objData = resData.content;
-          const weiXinArg = {
-            appId: objData.appid,
-            timeStamp: objData.timestamp,
-            nonceStr: objData.nonceStr,
-            package: objData.packages,
-            signType: "MD5",
-            paySign: objData.paySign
-          };
-          this.weiXinPay(weiXinArg);
+          this.weiXinPay(resData.content);
         })
         .catch(res => {
           loading.close();
@@ -157,7 +151,7 @@ export default {
       let vue = this;
       // 支付函数先声明
       function onBridgeReady() {
-        WeixinJSBridge.invoke("getBrandWCPayRequest", weiXinArg, res => {
+        WeixinJSBridge.invoke("getBrandWCPayRequest", JSON.parse(weiXinArg), res => {
           if (res.err_msg == "get_brand_wcpay_request:ok") {
             // 支付成功时
             vue.showTip("支付成功", 2000, "ok");
@@ -172,7 +166,7 @@ export default {
             vue.showTip("您已取消支付");
           } else {
             // 支付失败时
-            vue.showTip("支付失败，请重试");
+            vue.showTip(res);
           }
         });
       }

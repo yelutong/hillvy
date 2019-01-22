@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper white page-goodseva">
     <vHeader title="商品评价" :to="goBack"/>
-    <div class="eva-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="100">
+    <div class="eva-list mt50" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="100">
       <div class="item" v-for="(item, index) in evasList" :key="index">
         <div class="eva-pro">
           <div class="pro">
@@ -39,6 +39,7 @@ import vHeader from "@/components/v-header";
 export default {
   data() {
     return {
+      avatar: require('../../assets/images/avatar.png'),
       id: this.getUrlParam("id"),
       evasPageNo: 1,
       evasPageSize: 10,
@@ -73,13 +74,13 @@ export default {
     },
     // 获取评价列表
     getEvasList(id, first) {
-      this.$axios
-        .get(this.api.getGoodsEva, {
-          params: {
-            product_id: id,
-            page_no: this.evasPageNo,
-            page_size: this.evasPageSize
-          }
+      this.$axios.post(this.api.goodsCommentList,
+          JSON.stringify({
+          goodsId: id,
+          limit: 80,
+          page: 1
+        }), {
+          headers: {"content-type": "application/json"}
         })
         .then(res => {
           const resData = res.data;
@@ -92,10 +93,8 @@ export default {
             }
             return;
           }
-          let objData = resData.content,
-            pageCount = objData.page_count,
-            arrData = objData.records || [];
-          if (arrData.length === 0) {
+          let objData = resData.content;
+          if (objData.length === 0) {
             if (first) {
               this.noEvas = true;
             }
@@ -103,15 +102,15 @@ export default {
             return;
           }
           // 重组下数据
-          arrData.forEach(val => {
+          objData.list.forEach(val => {
             this.evasList.push({
-              avatar: val.user.photoAvatarUrl,
-              name: val.user.fullName || val.user.nickName || "匿名",
+              avatar: val.photoAvatarUrl||this.avatar,
+              name: this.formatPhone(val.userName) || "匿名",
               star: val.starNum,
-              content: val.content,
-              date: this.dateFormat(val.createDate, "YYYY-MM-DD hh:mm"),
-              title: val.product.name,
-              imgList: val.imagePath
+              content: val.context,
+              date: val.addTime,
+              title: val.goodsName,
+              imgList: val.photoURLs.split(',')
             });
           });
           if (pageCount <= this.evasPageNo) {
@@ -123,11 +122,11 @@ export default {
           }
         })
         .catch(res => {
-          if (first) {
+         /* if (first) {
             this.noEvas = true;
           } else {
             this.loading = false;
-          }
+          }*/
         });
     }
   }

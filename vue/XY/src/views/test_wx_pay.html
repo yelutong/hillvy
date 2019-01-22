@@ -162,7 +162,7 @@
 		xmlhttp.onload = function () {
 			var resData = JSON.parse(this.responseText)
 			if (resData.code == 0) {
-				alert(resData.msg);
+			//	alert(resData.msg);
 			} else {
 				if(resData.content.signUrl != null && resData.content.signUrl != ''){
 					sessionStorage.setItem('qcode', qcode);

@@ -4,8 +4,8 @@
     <div class="lay-adres mgt50">
       <div class="item" v-for="(item, index) in addressesList" :key="index">
         <div class="info" @click="selectAddress(item)">
-          <div class="adres">{{ item.areaInfo }} {{ item.address }}</div>
-          <div class="name-phone">{{ item.userName }} {{ item.phone }}</div>
+          <div class="name-phone txt-black fs-14">{{ item.userName }} {{ item.phone }}</div>
+          <div class="adres txt-gray mt5 fs-12">{{ item.areaInfo }} {{ item.address }}</div>
         </div>
         <div class="acts">
           <div class="act" @click="setAutoAddress(item)">
@@ -52,11 +52,19 @@ export default {
     document.title = "收货地址";
   },
   created() {
-    // 加载收货地址列表
-    this.getAddressesList();
+    this.verToken();
   },
   methods: {
     ...mapActions(["atnAutoAddress", "atnChoseAddress"]),
+    verToken(){
+     if(!this.token){
+      this.showTip("登录超时，请重新登录");
+      this.$router.push({path: "/mine/login"});
+     }else{
+      // 加载收货地址列表
+      this.getAddressesList();
+     }
+    },
     // 获取所有地址
     getAddressesList() {
       this.$axios

@@ -38,7 +38,7 @@ export default {
         if (item.type === "index") {
           this.$router.push({
             path: "/index",
-            query: { open_id: this.openId }
+          //  query: { open_id: this.openId }
           });
         } else {
           this.$router.push("/" + item.type);

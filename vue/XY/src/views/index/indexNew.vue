@@ -9,32 +9,34 @@
     <div class="head white">
       <v-swiper :swiper-data="bannerSwipe" />
     </div>
-
-    <div class="brand bg-gray1 pda15">
-      <div class="vAreaContent pda15 bg-white">
-      <div class="vArea justify-content-space-between">
-        <span><img :src="vPic" /></span>
-        <span class="fs-10 txt-right"><router-link to="/vGoods">更多商品 》</router-link></span>
+    
+    <div class="pdt10 bg-gray1" v-if="vAreaList">
+      <div class="brand pd15 mb10" v-for="vList in vAreaList">
+        <div class="vAreaContent pda15 bg-white">
+        <div class="vArea justify-content-space-between">
+          <span><img :src="vList.vPic" /></span>
+          <span class="fs-10 txt-right"><router-link :to="vList.vGoods">更多商品 》</router-link></span>
+        </div>
+        <div class="brand-list">
+          <router-link class="item" :to="{path:'/goods', query:{id:item.id}}" v-for="(item, index) in vList.arrList" :key="index">
+            <p class="vPicClass"><img class="img" :src="urlPic+item.goodsMainPhoto.split(',')[0]" /></p>
+            <p class="pdlr5 mt5" v-text="item.goodsName"></p> 
+            <div class="center txt-orange fs-13 pdb10 mt5" v-text="'¥'+item.salePrice"></div>
+          </router-link>
+        </div>
+       </div>
       </div>
-      <div class="brand-list">
-        <router-link class="item" :to="{path:'/goods', query:{id:item.id}}" v-for="(item, index) in vAreaList" :key="index">
-          <p class="vPicClass"><img class="img" :src="urlPic+item.goodsMainPhoto.split(',')[0]" /></p>
-          <p class="pdlr5" v-text="item.goodsName"></p> 
-          <div class="center txt-orange fs-13 pdb10" v-text="'¥'+item.salePrice"></div>
-        </router-link>
-      </div>
-     </div>
     </div>
 
     <div class="newListData pd15 bg-white" v-if="newListData">
        <router-link class="relative item pdtb15 justify-content-space-between" :to="{path:'/goods', query:{id:item.id}}" v-for="(item, index) in newListData" :key="index">
-          <div class="flexg1"><img class="img" :src="urlPic+item.goodsMainPhoto.split(',')[0]" /></div>
+          <div><img class="img" :src="urlPic+item.goodsMainPhoto.split(',')[0]" /></div>
           <div class="flexg2 listRight">
             <p class="goodsName txt-black-real" v-text="item.goodsName"></p> 
             <div class="rightBtm justify-content-space-between">
             <div>
             <p class="fs-18 mb5 txt-orange" v-text="'¥'+item.salePrice"></p>
-            <p class="txt-gray1 center-line fs-10" v-text="'原价：¥'+item.salePrice"></p>
+            <p class="txt-gray1 fs-10" v-text="'销量'+item.saleCount"></p>
             </div>
             <div><mt-button size="small" type="primary" class="goodsDetail">立即抢购</mt-button></div>
             </div>
@@ -54,6 +56,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import vSwiper from "@/components/v-swiper";
 import vNodata from "@/components/v-nodata";
 import swiperPic from "@/assets/images/banner@2x.png";
@@ -66,11 +69,11 @@ export default {
   },
   data() {
     return {
-      vPic:require("@/assets/images/v@2x.png"),
       urlPic:this.api.urlPic,
       totalPage: 1,
       currentPage: 0,
       listData:[],
+      newListData:[],
       pullup:true,
       status: {
         pullupStatus: 'default'
@@ -85,8 +88,7 @@ export default {
       }, 
       newsTag: require("@/assets/images/news-tag.png"),
       activityTag: require("@/assets/images/act-tag.png"),
-      vAreaList: [],
-      newListData: []
+      vAreaList: []
     };
   },
   components: {
@@ -100,6 +102,9 @@ export default {
   beforeCreate() {
     
   },
+  computed: {
+    ...mapState(["token", "openId", "userId"])
+  },
   created() {
     // 读取用户其他数据
     this.getBannerData();
@@ -107,6 +112,7 @@ export default {
     this.loadMore();
   },
   methods: {
+    ...mapActions(["atnOpenId","atnToken","atnProUserId"]),
     loadMore (index) {
         if(this.currentPage< this.totalPage){
           this.currentPage= parseInt(this.currentPage) + 1;
@@ -163,16 +169,35 @@ export default {
     getVdata() {
       this.$axios.get(this.api.getFloorList).then(res => {
         const resData = res.data;
+
         if (resData.code === 1) {
-          const arrData = resData.content[0].goodsLst;
-          let new2Array=[];
-          arrData.map((v,i)=>{
-            if(i<=2){
-              new2Array.push(v)
+          if(resData.content.length>0){
+            for(let arrList of resData.content){
+              const arrData = arrList.goodsLst;
+              const vgoodPath = arrList.paramsArray?JSON.parse(arrList.paramsArray):'';
+              const vAreaList={},new2Array=[];
+                if(arrData.length>=3){
+                  arrData.map((v,i)=>{
+                    if(i<=2){
+                      new2Array.push(v)
+                    }
+                 });
+                }
+                if(vgoodPath&&vgoodPath.length>0){
+                vAreaList.vGoods = "/vGoods?"+vgoodPath[0].key+"="+vgoodPath[0].value;
+                }else{
+                  vAreaList.vGoods = "/vGoods";
+                }
+                
+                vAreaList.vPic = this.urlPic+arrList.imgLogo;
+                //require("@/assets/images/v@2x.png");
+                vAreaList.arrList = new2Array;
+                this.vAreaList.push(vAreaList);
             }
-          });
-        this.vAreaList = new2Array;
+             console.log(this.vAreaList); 
+          }
         }
+
       });
     }
   }
@@ -202,23 +227,10 @@ export default {
   .brand-list p {
     text-align: center;
     font-size: 12px;
-    margin: 5px 0 5px 0;
     overflow: hidden;
     color: #8C8C8C;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-  .newListData img{
-    width:115px;
-    height:115px;
-    margin-right:15px;
-  }
-  .listRight p.goodsName{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
   }
   .mint-button--small{
     width:78px;

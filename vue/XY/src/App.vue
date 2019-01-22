@@ -14,7 +14,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["openId"])
+    ...mapState(["token", "openId", "userId"])
   },
   beforeCreate() {
     // vue渲染成功，通知window不用刷新
@@ -24,10 +24,9 @@ export default {
   },
   created() {
     // 通过openId拿到token
-   // this.getToken();
-    // 是否有推荐人id，有就存起来
-   // this.hasParentId();
-
+    setTimeout(()=>{
+      this.getOpenid()
+    },0);
    /*解决刷新页面时数据丢失的问题*/
    //在页面加载时读取sessionStorage里的状态信息
     if (sessionStorage.getItem("store")){
@@ -36,7 +35,6 @@ export default {
     //在页面刷新时将vuex里的信息保存到sessionStorage里
     window.addEventListener("beforeunload",()=>{
         sessionStorage.setItem("store",JSON.stringify(this.$store.state));
-        console.log(JSON.stringify(this.$store.state));
     })
   },
   methods: {
@@ -44,75 +42,66 @@ export default {
     ...mapActions([
       "atnOpenId",
       "atnToken",
-      "atnParentId",
+      "atnProUserId",
       "atnUserId",
-      "atnShareId",
-      "atnWeChatInfo"
     ]),
-    // 通过openId拿到token
-    getToken() {
-      // 地址栏没拿到openId，再从store里面拿，都没拿到提示他重进
-      const openId = this.getUrlParam("open_id") || this.openId || "";
-      if (!openId) {
-        MessageBox.alert(
-          "没有获取到您的微信openid信息，建议您返回重新进入！",
-          "错误提示"
-        );
-        return;
-      }
-      // 存储openid
-      this.atnOpenId(openId);
-      // 调用接口拿token
-      this.$axios
-        .get(this.api.getToken, { params: { open_id: openId } })
-        .then(res => {
-          const resData = res.data;
-          if (resData.code !== 1) {
-            this.showTip("获取身份信息失败，建议您重新进入！", 4000);
-            return;
-          }
-          // 拿到token就存储
-          const token = resData.content.accessToken;
-          this.atnToken(token);
-          // 然后再判断是否绑定手机
-          this.ifUserBind(token);
-        })
-        .catch(res => {
-          this.showTip("获取身份信息失败，建议您重新进入！", 4000);
-        });
+    getOpenid() {
+        let openId = this.openId||localStorage.getItem('openId');
+        let token = this.token||localStorage.getItem('token');
+        if(token){
+            this.atnToken(token);
+            this.$axios.get(this.api.getUserData,{
+              headers: {"Authorization": token }
+             })
+            .then(res => {
+              const resData = res.data;
+              if (resData.code !== 1) {
+                if(resData.code !== 403){
+                  // this.showTip(resData.msg);
+                }
+                return;
+              }else{ 
+                this.atnUserId(resData.content.id);
+                localStorage.setItem('userId',resData.content.id); 
+              }
+            })
+            .catch(res => {
+              console.log(res);
+              //this.showTip("获取信息失败，请稍后重试");
+            }); 
+        }
+        if(openId){
+          this.atnOpenId(openId);
+        }
+        let code = this.getUrlParam("code")||sessionStorage.getItem('code');
+        //推荐用户id，这个每次分享都必有的
+        let proUserId = this.getUrlParam('proUserId')||localStorage.getItem('proUserId');
+        if(proUserId){
+          this.atnProUserId(proUserId);
+        }
+      
+        if(code){
+          this.$axios.get(this.api.getOpenid+code).then(res => {
+            const resData = res.data;
+            //如果返回了token，则表示改用户是已经绑定过的用户，此操作相当于已经登录了
+            //如果没有返回token，那么保存返回的openid和相关信息，在需要验证token的地址走绑定流程，绑定成功后，返回登录后的token
+            if(resData.code == 1){
+              let openId = resData.content.openId;
+              //alert('获得openid数据');
+              this.atnOpenId(openId);
+              localStorage.setItem("openId",openId);
+              localStorage.setItem("bindInfo",JSON.stringify(resData.content));
+              sessionStorage.removeItem('code');
+              if(resData.content.token){
+               // alert('获得token数据');
+                this.atnToken(resData.content.token);
+                localStorage.setItem("token",resData.content.token);
+              }
+            }
+           
+          });
+        }
     },
-    // 是否有绑定手机
-    ifUserBind(token) {
-      this.$axios
-        .get(this.api.getUserInfo, { headers: { "Authorization": token } })
-        .then(res => {
-          const resData = res.data;
-          if (resData.code !== 1) {
-            this.showTip(resData.message);
-            return;
-          }
-          // 有数据的话，就证明绑定了，就把userId和微信信息存起来
-          const objData = resData.content;
-          if (objData) {
-            this.atnUserId(objData.encryptionId);
-            this.atnShareId(objData.id);
-            this.atnWeChatInfo({
-              name: objData.nickName,
-              avatar: objData.wechatHeadImageUrl
-            });
-          }
-        })
-        .catch(res => {
-          this.showTip("读取您的绑定信息失败");
-        });
-    },
-    // 是否有推荐人id
-    hasParentId() {
-      const parentId = this.parentId;
-      if (parentId) {
-        this.atnParentId(parentId);
-      }
-    }
   }
 };
 </script>

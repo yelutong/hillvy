@@ -2,7 +2,8 @@
   <div class="wrapper page-buy">
   
   <mt-header title="购物车" fixed class="txt-black bg-white">
-    <mt-button class="txt-black fs-14 txt-edit" slot="right">编辑</mt-button>
+    <mt-button @click="changeStatus('1')" class="txt-black fs-14 txt-edit" slot="right" v-if="canEdit&&isShowList">编辑</mt-button>
+    <mt-button @click="changeStatus('0')" class="txt-black fs-14 txt-edit" slot="right" v-if="!canEdit">取消</mt-button>
   </mt-header>
 
     <div class="lay-goods pb42 mt50" v-if="isShowList">
@@ -32,15 +33,16 @@
       </div>
     </div>
 
-    <div class="lay-action fix-btom pay-act-btom fix-b50" v-if="isShowList">
+    <div class="lay-action fix-btom pay-act-btom fix-b50 justify-content-space-between" v-if="isShowList">
       <div class="relative h40 pdl40">
         <input type="checkbox" class="ml15 check goods-check shopCheck" v-model="allSelect" @click="totalSelect"/>全选
         </div>
-      <div class="price-info flex1">
+      <div class="price-info flex1" v-if="canEdit">
         <span class="tag">合计：</span>
         <span class="total" v-model="num">￥{{ totalPrice }}</span>
       </div>
-      <button class="btn-submit per40" @click="makeOrder">去结算</button>
+      <button v-if="canEdit" class="btn-submit per30" @click="makeOrder">去结算</button>
+      <button v-if="!canEdit" class="btn-submit per30" @click="deleteCart">删除</button>
     </div>
     <v-nodata v-if="!isShowList" bgcolor="grey" text="- 购物车空空如也 -" />
     <v-footer active="goodsCart"/>
@@ -57,8 +59,8 @@ const qs = require("qs");
 export default {
   data() {
     return {
+      canEdit: true,
       list: [],
-      checkall: false,
       allSelect: false,
       checkallList: [],
       checked: [],
@@ -110,7 +112,71 @@ export default {
   created() {
     this.getCartList();
   },
+  watch: {
+    checked(val, oldVal){
+      console.log(val, oldVal);
+      this.checkallList = this.uniq(this.checkallList);
+      for(let i of this.goodsArr){
+        let num = 0;
+        for(let k of i.goodsBuyInfo){
+          if(val.indexOf(k.id)>-1){
+            console.log('包含:'+k.id);
+             num++;
+            if(num==i.goodsBuyInfo.length){
+              this.checkallList.push(i.storeId);
+            }
+          }else{
+            console.log('不包含:'+k.id);
+            if(oldVal.indexOf(k.id)>-1){
+              this.checkallList.splice(this.checkallList.indexOf(i.storeId),1);
+            }
+          }
+        }
+      }
+      
+      if(this.uniq(this.checkallList).length==this.goodsArr.length){
+        this.allSelect = true
+      }else{
+        this.allSelect = false
+      }
+
+    }
+  },
   methods: {
+    deleteCart(){
+      if(this.checked.length == 0){
+        this.showTip("请选择商品");
+      }else{
+        console.log(this.checked.join(','));
+        this.$axios
+        .get(this.api.deleteGoods+this.checked.join(','),{
+          headers: {"Authorization": this.token , "content-type": "application/json"}
+        })
+        .then(res => {
+          const resData = res.data;
+          if (resData.code !== 1) {
+            this.showTip("未获取到商品信息");
+            return;
+          }else{
+            this.showTip("删除成功");
+            this.canEdit = true;
+            this.goodsArr = [];
+            this.getCartList();
+          }
+        })
+        .catch(res => {
+         // this.showTip("未获取到商品信息");
+        });
+      }
+    },
+    changeStatus(obj){
+      console.log(0);
+      if(obj=='1'){
+        this.canEdit = false;
+      }else{
+        this.canEdit = true;
+      }
+    },
     totalSelect(){
       console.log(this.allSelect)
       if(this.allSelect){
@@ -128,6 +194,8 @@ export default {
       }
     },
     checkAll(items) {
+      this.checkallList = this.uniq(this.checkallList);
+
       if(this.checkallList.indexOf(items.storeId)>-1){//存在
         this.checkallList.splice(this.checkallList.indexOf(items.storeId),1);
         for (let j of items.goodsBuyInfo){
@@ -141,13 +209,12 @@ export default {
           this.checked.push(k.id);
         }
       }
-
-      if(this.checkallList.length === this.goodsArr.length) {
-        this.allSelect = true
+      
+      if (this.checkallList.length == this.goodsArr.length) {
+        this.allSelect = true;
       }else{
-        this.allSelect = false
+        this.allSelect = false;
       }
-
     },
     getCartList(){
       this.$axios
@@ -157,7 +224,7 @@ export default {
         .then(res => {
           const resData = res.data;
           if (resData.code !== 1) {
-            this.showTip("未获取到商品信息");
+            // this.showTip("未获取到商品信息");
             return;
           }else{
             console.log(resData);
@@ -185,7 +252,8 @@ export default {
                 }
                this.goodsArr.push(itemInfo)
               }
-              console.log(this.goodsArr)
+              console.log('21');
+              console.log(this.goodsArr);
             }else{
               this.isShowList = false;
             }
@@ -201,6 +269,10 @@ export default {
         item.num += 1;
       } else if (item.num >= 2) {
         item.num -= 1;
+      }else{
+        item.num = 1;
+        this.showTip("亲，不能再减少了哦");
+        return;
       }
       this.$axios
         .post(

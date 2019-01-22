@@ -2,7 +2,8 @@
 <template>
   <div class="v-flex-list">
     <router-link class="item" v-for="(item, index) in flexrowData" :key="index" :to="item.link">
-      <img class="icon" :style="{width:item.size*0.02+'rem', height:item.size*0.02+'rem'}" :src="item.icon" />
+      <!--<img class="icon" :style="{width:item.size*0.02+'rem', height:item.size*0.02+'rem'}" :src="item.icon" />-->
+      <p v-text="item.num" class="fs-15"></p>
       <p class="title">{{ item.title }}</p>
     </router-link>
   </div>

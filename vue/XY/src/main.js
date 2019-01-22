@@ -4,7 +4,7 @@ import router from './router';
 import store from './store/index';
 import ajaxApi from './assets/js/api';
 import axios from 'axios';
-import tool from './assets/js/tool';
+import tool from './assets/js/tool'; 
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import {
@@ -13,7 +13,7 @@ import {
 import weChatShare from './components/v-wechatshare';
 
 Vue.use(MintUI);
-Vue.use(tool);
+Vue.use(tool); 
 Vue.component('v-wechatshare', weChatShare);
 
 Vue.prototype.$axios = axios;
@@ -29,7 +29,7 @@ Vue.prototype.showTip = function (msg, time, type) {
   Toast(obj);
 }
 Vue.prototype.callService = (msg) => {
-  window.location.href = 'tel:400-811-0851';
+  window.location.href = 'tel:0755–28885609';
 };
 
 Vue.config.productionTip = false;
@@ -38,7 +38,7 @@ Vue.config.productionTip = false;
 axios.interceptors.request.use(function (config) {
  // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;    // 这个就是
  // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-  console.log(config);
+ // console.log(config);
 　　// 在发送请求之前做些什么
 　　return config
 }, function (error) {
@@ -49,7 +49,11 @@ return Promise.reject(error)
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
 　　// 对响应数据做点什么
-    console.log(response);
+   // console.log(response);
+    if(response.data.code == 403){
+      //Toast('登录超时，请重新登录');
+      //window.location.hash= '/mine/login?url='+window.location.href;
+    }
 　　return response
 }, function (error) {
 　　// 对响应错误做点什么
