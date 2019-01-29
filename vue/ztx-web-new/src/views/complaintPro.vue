@@ -1,0 +1,78 @@
+<!-- 首页路由 -->
+<template>
+  <div class="complaintPro bg-white" v-if="showIndexFront=='PC'">
+    <v-nav />
+    <p><img :src="web" class="w100" /></p>
+    <div class="complaintPro3 w1000 pdlr100">
+      <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.complaintPro.head1")'></p>
+      <p class="indent2 fs-14 lh24" v-text='$t("message.complaintPro.con1")' ></p>
+      <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.complaintPro.head2")'></p>
+      <p class="horizontal-view mt10"><span>1.</span><span>{{$t("message.complaintPro.con2")}}</span></p>
+      <p class="horizontal-view mt10"><span>2.</span><span>
+      {{$t("message.complaintPro.con3")}}<br/>
+      {{$t("message.complaintPro.con4")}}<br/>
+      {{$t("message.complaintPro.con5")}}<br/>
+      </span></p>
+      <p class="horizontal-view mt10"><span>3.</span><span>{{$t("message.complaintPro.con6")}}</span></p>
+      <p class="pdtb30"><img :src="showWhatPic" v-model="showWhatPic2" class="w100" /></p> 
+    </div>
+    <v-footer />
+  </div>
+
+  <div v-else>
+    H5正在开发中...
+  </div>
+</template>
+
+<script>
+import vNav from "@/components/v-nav";
+import vFooter from "@/components/v-footer";
+import complaintPro2 from "../assets/images/pro1.png";
+import complaintPro3 from "../assets/images/pro2.png";
+export default {
+  data() {
+    return {
+      web: require("../assets/images/web.png"),
+      showIndexFront: this.getShowIndex(),
+      showWhatPic: ''
+    };
+  },
+  components: {
+    "v-nav": vNav,
+    "v-footer": vFooter,
+  },
+  computed:{
+    showWhatPic2(){
+      if(this.$i18n.locale=='end'){
+        this.showWhatPic = complaintPro2;
+      }else{
+        this.showWhatPic = complaintPro3;
+      }
+    }
+  },
+  beforeCreate() {
+    document.title = "PT. Kredit Plus Teknologi —— pinjam gampang";
+  },
+  created() {
+    
+  },
+  watch: {
+    
+  },
+  methods: {
+    
+  }
+};
+</script> 
+<style lang="stylus">
+.complaintPro{
+  .complaintPro3 p span{
+    font-size:14px;
+    line-height:24px;
+  }
+  .complaintPro3 p span:nth-child(1){
+   margin-right: 5px;
+   width:20px;
+  }
+}
+</style>
