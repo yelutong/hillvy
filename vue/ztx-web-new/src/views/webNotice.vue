@@ -6,15 +6,15 @@
     <div class="companyContent w1000">
       <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.web.head1")'></p>
         <div class="mt40 risk3">
-        <div class="mb40">
+        <div class="mb40 pdlr100"">
          <el-row :gutter="24" class="mt10" type="flex" justify="space-between">
          <el-col :span="18">
            <p class="fs-14 mb10 h60 txt-black-real" v-text='$t("message.web.content1")'></p>
            <p class="fs-14 mb10 h60 txt-black-real" v-text='$t("message.web.content3")'></p>
          </el-col>
          <el-col :span="6">
-           <p class="fs-14 mb10 h60 txt-black-real" v-text='$t("message.web.content2")'></p>
-           <p class="fs-14 mb10 h60 txt-black-real" v-text='$t("message.web.content4")'></p>
+           <p class="fs-14 mb10 h60 txt-right txt-black-real" v-text='$t("message.web.content2")'></p>
+           <p class="fs-14 mb10 h60 txt-right txt-black-real" v-text='$t("message.web.content4")'></p>
          </el-col>
         </el-row>
         </div>
@@ -23,8 +23,27 @@
     <v-footer />
   </div>
 
-  <div v-else>
-    H5正在开发中...
+  <div v-else class="webNoticeH5 bg-white">
+    <v-nav />
+    <p><img :src="web" class="w100" /></p>
+    <div class="companyContent w100 pdlr30">
+      <p class="center fs-40 bold mtb30 txt-black-real" v-text='$t("message.web.head1")'></p>
+        <div class="mt40 risk3">
+        <div class="mb40">
+         <el-row :gutter="24" class="mt10" type="flex" justify="space-between">
+         <el-col :span="16">
+           <p class="fs-14 mb10 lh-30 txt-black-real" v-text='$t("message.web.content1")'></p>
+           <p class="fs-14 mb10 lh-30 txt-black-real" v-text='$t("message.web.content3")'></p>
+         </el-col>
+         <el-col :span="8">
+           <p class="fs-14 mb10 h60 txt-right txt-black-real" v-text='$t("message.web.content2")'></p>
+           <p class="fs-14 mb10 h60 txt-right txt-black-real" v-text='$t("message.web.content4")'></p>
+         </el-col>
+        </el-row>
+        </div>
+       </div>
+    </div>
+    <v-footer />
   </div>
 </template>
 
@@ -65,6 +84,9 @@ export default {
 };
 </script> 
 <style lang="stylus">
+.webNoticeH5{
+  margin-top:120px;
+}
 .webNotice{
   .companyPic1{
     font-size:0!important;

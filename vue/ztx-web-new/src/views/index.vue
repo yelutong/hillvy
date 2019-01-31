@@ -6,7 +6,7 @@
       <img :src="headPic" class="headPic visi-no w100" />
       <div class="headTips auto">
         <p class="tips1">PT Kredit Plus Teknologi</p>
-        <p class="tips2 mgt45"><span class="mr10"><img :src="headNav1" /></span><span><img :src="headNav2" /></span></p>
+        <p class="tips2 mgt45"><span class="mr10 pointer" @click="download"><img :src="headNav1" /></span><span class="pointer" @click="download"><img :src="headNav2" /></span></p>
       </div>
     </div>
     <p class="center fs-25 bold mt20 txt-black-real" v-text='$t("message.index.head1")'></p>
@@ -54,18 +54,21 @@
               <div class="justify-content-space-between h60 mt10">
                 <span class="fs-18" v-text='$t("message.index.con4to3")'></span>
                 <span>
-                  <el-button type="primary" plain @click="select('7h')" :class="selectActive=='7h'?'active':''">{{ $t("message.index.con4to4")}}</el-button>
+                  <!--<el-button type="primary" plain @click="select('7h')" :class="selectActive=='7h'?'active':''">{{ $t("message.index.con4to4")}}</el-button>
                   <el-button type="primary" plain @click="select('14h')" :class="selectActive=='14h'?'active':''">{{ $t("message.index.con4to5")}}</el-button>
+                  -->
+                  <el-button type="primary" plain @click="select('7h')" class="active">{{ $t("message.index.con4to30")}}</el-button>
                 </span>
               </div>
               <div class="justify-content-space-between h60">
                 <span class="fs-18" v-text='$t("message.index.con4to6")'></span>
-                <span class="fs-18">Rp1.234.567</span>
+                <span class="fs-18" v-text='"Rp"+this.addDot(Interest)'></span>
               </div>
             </div>
            <p class="fs-18 center pdtb30 lh-24" v-text='$t("message.index.con4to7")'></p>
-           <div class="center mt10">
-            <el-button type="success" plain class="lh-20">Download<br>Pinjam Gampang</el-button></div>
+           <div class="center mt10" @click="download">
+            <el-button type="success" plain class="lh-20">Download<br>Pinjam Gampang</el-button>
+           </div>
           </div>
           </div>
         </el-col>
@@ -131,8 +134,120 @@
      <v-footer />
   </div>
 
-  <div v-else>
-    H5正在开发中...
+  <div v-else class="indexH5 bg-white">
+    <v-nav />
+    <div class="headContentH5 relative">
+      <img :src="headPicH5" class="headPic w100" />
+      <div class="headTips auto">
+        <p class="tips2"><img :src="picBottomTips" /></p>
+      </div>
+      <p class="center h60 fs-40 bold mtb40 txt-black-real" v-text='$t("message.index.head1")'></p>
+
+      <div class="swiperH5 mt20">
+      <el-carousel :interval="5000" arrow="always">
+        <el-carousel-item>
+          <div class="swiperH5p center"><img :src="headcon1" /></div>
+          <p class="fs-32 txt-black3 center" v-text='$t("message.index.con1to1")'></p>
+          <p class="fs-32 txt-black-real center" v-text='$t("message.index.con1to2")'></p>
+        </el-carousel-item>
+        <el-carousel-item>
+          <div class="swiperH5p center"><img :src="headcon2" /></div>
+          <p class="fs-32 txt-black3 center" v-text='$t("message.index.con1to1")'></p>
+          <p class="fs-32 txt-black-real center" v-text='$t("message.index.con1to2")'></p>
+        </el-carousel-item>
+        <el-carousel-item>
+          <div class="swiperH5p center"><img :src="headcon3" /></div>
+          <p class="fs-32 txt-black3 center" v-text='$t("message.index.con1to1")'></p>
+          <p class="fs-32 txt-black-real center" v-text='$t("message.index.con1to2")'></p>
+        </el-carousel-item>
+      </el-carousel>
+      </div>
+
+      <div class="indexConH5 relative">
+          <div class="justify-content-space-between swithBtn">
+           <p :class="btnActive=='left'?'center fs-18 active':'center fs-18'" @click="swithBtn('left')"><i v-text='$t("message.index.con4to1")'></i></p>
+           <p :class="btnActive=='right'?'center fs-18 active':'center fs-18'" @click="swithBtn('right')"><i v-text='$t("message.index.con5to1")'></i></p>
+          </div>
+          <div class="contentBox pd30 bg-white" v-if="btnActive=='left'">
+            <p class="center bold fs-28 mt10"  v-text='$t("message.index.con4to2")'></p>
+            <p class="fs-28 mt60 txt-left" v-text='$t("message.index.con4to21")'></p>
+            <p class="fs-28 center mt60" v-text="'Rp'+this.addDot(valueRp)"></p>
+            <div class="pdtb30">
+            <el-slider v-model="value3" :change="getVal()" :show-tooltip="false"></el-slider>
+            </div>
+            <p class="line1 justify-content-space-between h100">
+              <span class="fs-28">Rp600.000</span>
+              <span class="fs-28">Rp5.000.000</span>
+            </p>
+            <div class="pdtb10 line-gray">
+              <div class="justify-content-space-between h100 mt10">
+                <span class="fs-28" v-text='$t("message.index.con4to3")'></span>
+                <span>
+                  <!--<el-button type="primary" plain @click="select('7h')" :class="selectActive=='7h'?'active':''">{{ $t("message.index.con4to4")}}</el-button>
+                  <el-button type="primary" plain @click="select('14h')" :class="selectActive=='14h'?'active':''">{{ $t("message.index.con4to5")}}</el-button>
+                  -->
+                  <el-button type="primary" plain @click="select('7h')" class="active">{{ $t("message.index.con4to30")}}</el-button>
+                </span>
+              </div>
+              <div class="justify-content-space-between h60">
+                <span class="fs-28" v-text='$t("message.index.con4to6")'></span>
+                <span class="fs-28" v-text='"Rp"+this.addDot(Interest)'></span>
+              </div>
+            </div>
+           <p class="fs-28 center pdtb48 lh-36" v-text='$t("message.index.con4to7")'></p>
+           <div class="center mt10" @click="download">
+            <el-button type="success" plain class="lh-28">Download<br>Pinjam Gampang</el-button>
+           </div>
+          </div>
+          
+          <div class="contentBox pd30 bg-white" v-else>
+            <div class="justify-content-space-between rightBar mtb15">
+              <div class="left flex1 center">
+                <p class="fs-28 h60" v-text='$t("message.index.con5to2")'></p>
+                <p class="fs-28 h60">Rp 5.000.000</p>
+              </div>
+              <div class="right flex1 center">
+                <p class="fs-28 h60" v-text='$t("message.index.con4to3")'></p>
+                <p class="fs-28 h60" v-text='$t("message.index.con5to3")'></p>
+              </div>
+            </div>
+           <p class="fs-28 list h60 mt20 mb5"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to4")}}</p>
+           <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic2" /></i>{{$t("message.index.con5to5")}}</p>
+           <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic3" /></i>{{$t("message.index.con5to6")}}</p>
+           <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic4" /></i>{{$t("message.index.con5to7")}}</p>
+           <p class="fs-28 list h60 mb5 mt10"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to8")}}</p>
+           <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic6" /></i>{{$t("message.index.con5to9")}}</p>
+           <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic7" /></i>{{$t("message.index.con5to10")}}</p>
+           <p class="fs-28 list h60 mb5 mt11"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to10")}}</p>
+           <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic8" /></i>{{$t("message.index.con5to12")}}</p>
+           <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic9" /></i>{{$t("message.index.con5to13")}}</p>
+           <p class="fs-24 list h60 mb1"><i><img class="indexPic1 mr10" :src="indexPic9" /></i>{{$t("message.index.con5to14")}}</p>
+          </div>
+
+          </div>
+          <p class="center h60 fs-40 bold mtb40 txt-black-real" v-text='$t("message.index.head2")'></p>
+          <el-carousel :loop="true" arrow="always" :interval="5000" :height="elememtHeight+'px'">
+            <el-carousel-item v-for="item in bannerItem" :key="item.index">
+              <h3><img class="w100" ref="elememtPic" :src="item.img" /></h3>
+            </el-carousel-item>
+          </el-carousel>  
+          <p class="center h60 fs-40 bold mtb40 txt-black-real" v-text='$t("message.index.head3")'></p>
+          <p><img class="w100" :src="picBottom2" /></p>
+          <div class="contentBottom">
+           <p><img class="tips3" :src="picBottomTips" /></p>
+           <p class="mt30 fs-28 h40">{{$t("message.index.con6to1")}}</p>
+           <p class="horizontal-view"><span>1.</span><span>{{$t("message.index.con6to2")}}</span></p>
+           <p class="horizontal-view"><span>2.</span><span>{{$t("message.index.con6to3")}}</span></p>
+           <p class="horizontal-view"><span>3.</span><span>{{$t("message.index.con6to4")}}</span></p>
+           <p class="horizontal-view"><span>4.</span><span>{{$t("message.index.con6to5")}}</span></p>
+           <p class="horizontal-view"><span>5.</span><span>{{$t("message.index.con6to6")}}</span></p>
+           <p class="horizontal-view"><span>6.</span><span>{{$t("message.index.con6to7")}}</span></p>
+           <p class="horizontal-view"><span>7.</span><span>{{$t("message.index.con6to8")}}</span></p>
+           <p class="horizontal-view"><span>8.</span><span>{{$t("message.index.con6to9")}}</span></p>
+           <p class="horizontal-view"><span>9.</span><span>{{$t("message.index.con6to10")}}</span></p>
+        </div>
+    </div>
+    <v-footer />
   </div>
 </template>
 
@@ -144,6 +259,7 @@ export default {
   data() {
     return {
       headPic: require("../assets/images/head@2x.png"),
+      headPicH5: require("../assets/images/h5Index1.png"),
       headNav1: require("../assets/images/googleplay@2x.png"),
       headNav2: require("../assets/images/ojbk@2x.png"),
       headcon1: require("../assets/images/1@2x.png"),
@@ -160,13 +276,18 @@ export default {
       bannerItem: [],
       banner1: require("../assets/images/banner@2x.png"),
       banner2: require("../assets/images/banner@2x.png"),
+      banner3: require("../assets/images/banner3@2x.png"),
+      banner4: require("../assets/images/banner3@2x.png"),
       picBottom: require("../assets/images/pic@2x.png"),
+      picBottom2: require("../assets/images/picBottom2.png"),
       picBottomTips: require("../assets/images/ojbk2@2x.png"),
       selectActive: '7h',
       value3: 50,
       valueRp: 0,
       elememtHeight: 300,
       valueTotal: 4400000,
+      Interest: 0,
+      btnActive: 'left',
       showIndexFront: this.getShowIndex()
     };
   },
@@ -186,21 +307,30 @@ export default {
     document.title = "PT. Kredit Plus Teknologi —— pinjam gampang";
   },
   created() {
-    if(this.showIndexFront=='PC'){
-      this.valueRp = 600000+this.valueTotal*(this.value3/100);
-      let banner1 = [{'index':1,'img':this.banner1}];
-      let banner2 = [{'index':2,'img':this.banner2}];
-      this.bannerItem = [...banner1,...banner2];//合并数组
-      setTimeout(()=>{
-        if(this.$refs.elememtPic[0].height==0){
-          setTimeout(()=>{
-           this.elememtHeight = this.$refs.elememtPic[0].height;
-          },1000)
-        }else{
-           this.elememtHeight = this.$refs.elememtPic[0].height;
-        }
-      },1000)
+    let type = window.location.search.split('?downloadUrl=')[1];
+    if(type){
+      location.href=type;//跳转下载app页面
     }
+    this.valueRp = 600000+this.valueTotal*(this.value3/100);
+    this.Interest = this.valueRp*30*0.004;
+    let banner1 = [{'index':1,'img':this.banner1}];
+    let banner2 = [{'index':2,'img':this.banner2}];
+    let banner3 = [{'index':1,'img':this.banner3}];
+    let banner4 = [{'index':2,'img':this.banner4}];
+    if(this.showIndexFront=='PC'){
+      this.bannerItem = [...banner1,...banner2];//合并数组
+    }else{
+      this.bannerItem = [...banner3,...banner4];//合并数组
+    }
+    setTimeout(()=>{
+      if(this.$refs.elememtPic[0].height==0){
+        setTimeout(()=>{
+         this.elememtHeight = this.$refs.elememtPic[0].height;
+        },1000)
+      }else{
+         this.elememtHeight = this.$refs.elememtPic[0].height;
+      }
+    },1000)
   },
   watch: {
     value3(){
@@ -210,6 +340,7 @@ export default {
       }else{
         this.valueRp = parseInt(val/100000)*100000;
       }
+      this.Interest = this.valueRp*30*0.004;
     }
   },
   methods: {
@@ -220,8 +351,18 @@ export default {
         this.selectActive = '14h'
       }
     },
+    swithBtn(val){
+      if(val=='left'){
+        this.btnActive = 'left'
+      }else{
+        this.btnActive = 'right'
+      }
+    },
     getVal(){
       console.log(this.value3)
+    },
+    download(){
+      window.open('https://play.google.com/store/apps/details?id=com.kpt.android&hl=id-ID');
     }
   }
 };

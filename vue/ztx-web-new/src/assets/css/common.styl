@@ -22,7 +22,7 @@ html,body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: PingFang SC, Microsoft YaHei;
+  font-family: gothamrounded-book, PingFang SC, Microsoft YaHei;
   font-size: 1em;
   margin: auto;
   color: #333333;
@@ -50,6 +50,9 @@ border:1px solid #ccc;
 }
 .center-line {
   text-decoration: line-through;
+}
+.pointer{
+  cursor:pointer;
 }
 /* 字体颜色 */ 
 .txt-black-real {
@@ -133,13 +136,24 @@ p{
 .lh-36 {
   line-height: 36px;
 }
+.lh-48 {
+  line-height: 48px;
+}
 .h40{
   height:40px;
   line-height:40px;
 }
+.h30{
+  height:30px;
+  line-height:30px;
+}
 .h60{
   height:60px;
   line-height:60px;
+}
+.h100{
+  height:100px;
+  line-height:100px;
 }
 .h45{
   height:45px;
@@ -153,6 +167,9 @@ p{
 }
 .line-gray{
   border-bottom:1px solid #b1b1b1;
+}
+li{
+  list-style-type:none;
 }
 /*textarea/input的placeholder颜色*/
 
@@ -175,6 +192,12 @@ input:-webkit-autofill {
   -webkit-text-fill-color: #999;
 }
 /*字体样式*/
+.fs-0{
+  font-size:0!important;
+  padding:0;
+  margin:0;
+  line-height:0!important;
+}
 .fs-10{
   font-size:10px!important;
 }
@@ -196,8 +219,23 @@ input:-webkit-autofill {
 .fs-18{
   font-size:18px!important;
 }
+.fs-24{
+  font-size:24px!important;
+}
 .fs-25{
   font-size:25px!important;
+}
+.fs-28{
+  font-size:28px!important;
+}
+.fs-32{
+  font-size:32px!important;
+}
+.fs-40{
+  font-size:40px!important;
+}
+.fs-50{
+  font-size:50px!important;
 }
 .w1000{
   width:1000px;
@@ -231,8 +269,14 @@ input:-webkit-autofill {
 .mt40{
   margin-top:40px!important;
 }
+.mtb40{
+  margin:40px 0!important;
+}
 .mb5{
   margin-bottom:5px!important;
+}
+.mb10{
+  margin-bottom:10px!important;
 }
 .mb20{
   margin-bottom:20px!important;
@@ -294,9 +338,6 @@ b{
 .txt-left {
   text-align: left!important;
 }
-.txt-center {
-  text-align: center!important;
-}
 .txt-right {
   text-align: right!important;
 }
@@ -330,6 +371,9 @@ b{
 }
 .pdtb30 {
   padding: 30px 0!important;
+}
+.pdtb48 {
+  padding: 48px 0!important;
 }
 .mb2 {
    border-bottom: 2px solid #f5f5f5;
@@ -376,11 +420,17 @@ b{
 .pdlr5{
   padding:0 5px!important;
 }
+.pdlr30{
+  padding:0 30px!important;
+}
 .pdlr100{
   padding:0 100px!important;
 }
 .pd15{
   padding:15px!important;
+}
+.pd30{
+  padding:30px!important;
 }
 .pdlr15{
   padding:0 15px!important;
@@ -412,6 +462,9 @@ b{
 .pda15{
   padding:15px!important;
 }
+.pdt15{
+  padding-top:15px!important;
+}
 .pdb10{
   padding-bottom: 10px!important;
 }
@@ -426,6 +479,9 @@ b{
 }
 .pb42{
   padding-bottom: 42px!important;
+}
+.mt60{
+  margin-top: 60px!important;
 }
 .relative{
   position: relative; 
