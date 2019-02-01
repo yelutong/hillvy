@@ -12,7 +12,7 @@
       <p class="indent2 fs-14 lh-24  mt10" v-text='$t("message.companyPro.content6")' ></p>
        <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.companyPro.head3")'></p>
        <div class="center pdb50">
-         <video class="video"  @play="playVideo($event)" :src="videoData" controls></video>
+        <video class="video w100 pointer" :src="myVideo" controls></video>
        </div>
     </div>
     <div class="companyBottom relative">
@@ -39,7 +39,7 @@
       <p class="indent2 fs-24 lh-36  mt10" v-text='$t("message.companyPro.content6")' ></p>
        <p class="center fs-40 bold mtb30 txt-black-real" v-text='$t("message.companyPro.head3")'></p>
        <div class="center pdb50">
-         <video class="video w100"  @play="playVideo($event)" :src="videoData" controls></video>
+         <video class="video w100" :src="myVideo" controls></video>
        </div>
     </div>
     </div>
@@ -54,7 +54,6 @@
     <v-footer />
   </div>
 </template>
-
 <script>
 import vNav from "@/components/v-nav";
 import vFooter from "@/components/v-footer";
@@ -66,8 +65,8 @@ export default {
       companyPicH5: require("../assets/images/conpanyPicH5@2x.png"),
       companyPic1: require("../assets/images/dowmLoad@2x.png"),
       googleplay: require("../assets/images/googleplay@2x.png"),
-      showIndexFront: this.getShowIndex(),
-      videoData: require("../assets/images/company.mp4")
+      myVideo: require("../assets/images/company.mp4"),
+      showIndexFront: this.getShowIndex()
     };
   },
   components: {
@@ -79,10 +78,22 @@ export default {
     
   },
   beforeCreate() {
-    document.title = "PT. Kredit Plus Teknologi —— pinjam gampang";
+    document.title = "Pinjam Gampang － PT. Kredit Plus Teknologi";
   },
   created() {
-    
+    this.$axios.get(
+      'https://ipapi.co/json/' 
+      ).then(res => {
+         console.log(res);
+         if(res.status == 200 && res.data && res.data.country){
+           if(res.data.country != 'CN'){
+             this.myVideo = 'https://www.youtube.com/embed/0Xzi2G8Ji9Q';
+           }
+         }
+      })
+      .catch(res => {
+       
+      });
   },
   watch: {
     

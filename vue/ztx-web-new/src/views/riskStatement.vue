@@ -109,7 +109,7 @@ export default {
     
   },
   beforeCreate() {
-    document.title = "PT. Kredit Plus Teknologi —— pinjam gampang";
+    document.title = "Pinjam Gampang － PT. Kredit Plus Teknologi";
   },
   created() {
     

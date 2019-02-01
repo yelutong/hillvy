@@ -18,6 +18,12 @@ export default {
       }
       return temp;
     };
+    Vue.prototype.addScriptTag = function (src){
+      let script = document.createElement('script');
+      script.setAttribute("type","text/javascript");
+      script.src = src;
+      document.body.appendChild(script);
+    };
     /**
    * 每三位数加逗/点号 如 10000  转换后为 10.000
    */

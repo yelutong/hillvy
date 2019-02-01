@@ -16,6 +16,7 @@ Vue.use(MintUI);
 Vue.use(tool); 
 Vue.use(VueI18n);
 
+Vue.prototype.$axios = axios;
 Vue.prototype.callService = (msg) => {
   window.location.href = 'tel:0755–28885609';
 };

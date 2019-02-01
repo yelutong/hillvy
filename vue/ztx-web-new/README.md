@@ -1,6 +1,6 @@
-# PT. Kredit Plus Teknologi —— pinjam gampang
+# Pinjam Gampang － PT. Kredit Plus Teknologi
 
-> PT. Kredit Plus Teknologi —— pinjam gampang
+> Pinjam Gampang － PT. Kredit Plus Teknologi
 
 ## Build Setup
 

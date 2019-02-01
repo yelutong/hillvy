@@ -9,11 +9,11 @@
         <div class="mb40 pdlr100">
          <el-row :gutter="24" class="mt10" type="flex" justify="space-between">
          <el-col :span="6">
-           <p class="fs-16 mb10 h30 txt-blue" v-text='"1."+$t("message.faq.head2")'></p>
-           <p class="fs-16 mb10 h30 txt-blue" v-text='"2."+$t("message.faq.head3")'></p>
+           <p @click="scrollTop('head1')" class="fs-16 mb10 h30 txt-blue pointer" v-text='"1."+$t("message.faq.head2")'></p>
+           <p @click="scrollTop('head2')" class="fs-16 mb10 h30 txt-blue pointer" v-text='"2."+$t("message.faq.head3")'></p>
          </el-col>
          <el-col :span="18">
-           <p class="fs-16 mb20 txt-blue" v-text='$t("message.faq.head2")'></p>
+           <p class="fs-16 mb20 txt-blue faqHead1" v-text='$t("message.faq.head2")'></p>
            <el-collapse accordion>
             <el-collapse-item :title='$t("message.faq.content1")' name="1">
               <div v-text='$t("message.faq.cont1Detail1")'></div>
@@ -68,7 +68,7 @@
             </el-collapse-item>
           </el-collapse>
 
-          <p class="fs-16 mb20 mt40 txt-blue" v-text='$t("message.faq.head3")'></p>
+          <p class="fs-16 mb20 mt40 txt-blue faqHead2" v-text='$t("message.faq.head3")'></p>
            <el-collapse accordion>
             <el-collapse-item :title='$t("message.faq.loan.con1")' name="c1">
               <div v-text='$t("message.faq.loan.con1Detail1")'></div>
@@ -214,7 +214,7 @@ export default {
     
   },
   beforeCreate() {
-    document.title = "PT. Kredit Plus Teknologi —— pinjam gampang";
+    document.title = "Pinjam Gampang － PT. Kredit Plus Teknologi";
   },
   created() {
     
@@ -225,6 +225,16 @@ export default {
   methods: {
    handleChange(val) {
       console.log(val);
+   },
+   scrollTop(val){
+     if(val=='head1'){
+      //获取div距离顶部的距离
+      let mTop1 = document.getElementsByClassName('faqHead1')[0].offsetTop;
+       document.body.scrollTop = document.documentElement.scrollTop = mTop1+680;
+     }else{
+      let mTop2 = document.getElementsByClassName('faqHead2')[0].offsetTop+680;
+       document.body.scrollTop = document.documentElement.scrollTop = mTop2;
+     }
    }
   }
 };

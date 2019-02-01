@@ -83,7 +83,7 @@
               </div>
               <div class="right flex1 center">
                 <p class="fs-18 h40" v-text='$t("message.index.con4to3")'></p>
-                <p class="fs-18 h40" v-text='$t("message.index.con5to3")'></p>
+                <p class="fs-18 h40" v-text='$t("message.index.con4to30")'></p>
               </div>
             </div>
            <p class="fs-18 list h40 mt20 mb5"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to4")}}</p>
@@ -208,7 +208,7 @@
               </div>
               <div class="right flex1 center">
                 <p class="fs-28 h60" v-text='$t("message.index.con4to3")'></p>
-                <p class="fs-28 h60" v-text='$t("message.index.con5to3")'></p>
+                <p class="fs-28 h60" v-text='$t("message.index.con4to30")'></p>
               </div>
             </div>
            <p class="fs-28 list h60 mt20 mb5"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to4")}}</p>
@@ -304,7 +304,7 @@ export default {
     
   },
   beforeCreate() {
-    document.title = "PT. Kredit Plus Teknologi —— pinjam gampang";
+    document.title = "Pinjam Gampang － PT. Kredit Plus Teknologi";
   },
   created() {
     let type = window.location.search.split('?downloadUrl=')[1];

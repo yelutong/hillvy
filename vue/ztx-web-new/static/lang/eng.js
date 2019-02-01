@@ -122,7 +122,7 @@ module.exports={
       head1:'Web Announcement',
       content1:'Pengumuman pengaturan kerja periode HUT RI ke 73 tahun 2018',
       content2:'13-Aug-2018',
-      content3:'Pengumuman jadwal libur Idul Fitri 201808-Jun-2018',
+      content3:'Pengumuman jadwal libur Idul Fitri 2018',
       content4:'08-Jun-2018'
     },
     faq:{

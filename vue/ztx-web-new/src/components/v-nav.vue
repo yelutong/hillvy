@@ -232,7 +232,7 @@ export default {
   position:absolute;
   top:0;
   left:0;
-  z-index:9999;
+  z-index:999;
   .logoH5{
     height:80px;
   }
