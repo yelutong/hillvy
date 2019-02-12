@@ -5,15 +5,15 @@
     <p><img :src="web" class="w100" /></p>
     <div class="complaintPro3 w1000 pdlr100">
       <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.complaintPro.head1")'></p>
-      <p class="indent2 fs-14 lh-24" v-text='$t("message.complaintPro.con1")' ></p>
+      <p class="indent2 fs-14 lh-24 txt-justify" v-text='$t("message.complaintPro.con1")' ></p>
       <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.complaintPro.head2")'></p>
-      <p class="horizontal-view mt10"><span>1.</span><span>{{$t("message.complaintPro.con2")}}</span></p>
-      <p class="horizontal-view mt10"><span>2.</span><span>
+      <p class="horizontal-view mt10 txt-justify"><span>1.</span><span>{{$t("message.complaintPro.con2")}}</span></p>
+      <p class="horizontal-view mt10 txt-justify"><span>2.</span><span>
       {{$t("message.complaintPro.con3")}}<br/>
       {{$t("message.complaintPro.con4")}}<br/>
       {{$t("message.complaintPro.con5")}}<br/>
       </span></p>
-      <p class="horizontal-view mt10"><span>3.</span><span>{{$t("message.complaintPro.con6")}}</span></p>
+      <p class="horizontal-view mt10 txt-justify"><span>3.</span><span>{{$t("message.complaintPro.con6")}}</span></p>
       <p class="pdtb30"><img :src="showWhatPic" v-model="showWhatPic2" class="w100" /></p> 
     </div>
     <v-footer />
@@ -24,15 +24,15 @@
     <p><img :src="web" class="w100" /></p>
     <div class="complaintPro3 w100 pdlr30">
       <p class="center fs-40 bold mtb30 txt-black-real" v-text='$t("message.complaintPro.head1")'></p>
-      <p class="indent2 fs-24 lh-36" v-text='$t("message.complaintPro.con1")' ></p>
+      <p class="indent2 fs-24 lh-36 txt-justify" v-text='$t("message.complaintPro.con1")' ></p>
       <p class="center fs-40 bold mtb30 txt-black-real" v-text='$t("message.complaintPro.head2")'></p>
-      <p class="horizontal-view mt10"><span>1.</span><span>{{$t("message.complaintPro.con2")}}</span></p>
-      <p class="horizontal-view mt10"><span>2.</span><span>
+      <p class="horizontal-view mt10 txt-justify"><span>1.</span><span>{{$t("message.complaintPro.con2")}}</span></p>
+      <p class="horizontal-view mt10 txt-justify"><span>2.</span><span>
       {{$t("message.complaintPro.con3")}}<br/>
       {{$t("message.complaintPro.con4")}}<br/>
       {{$t("message.complaintPro.con5")}}<br/>
       </span></p>
-      <p class="horizontal-view mt20"><span>3.</span><span>{{$t("message.complaintPro.con6")}}</span></p>
+      <p class="horizontal-view mt20 txt-justify"><span>3.</span><span>{{$t("message.complaintPro.con6")}}</span></p>
       <p class="pdtb30"><img :src="showWhatPic" v-model="showWhatPic2" class="w100" /></p> 
     </div>
     <v-footer />
@@ -76,7 +76,7 @@ export default {
     }
   },
   beforeCreate() {
-    document.title = "Pinjam Gampang － PT. Kredit Plus Teknologi";
+    document.title = "Pinjam Gampang - PT. Kredit Plus Teknologi";
   },
   created() {
     

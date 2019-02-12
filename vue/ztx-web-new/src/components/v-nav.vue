@@ -40,6 +40,7 @@
   </el-submenu>
 </el-menu> 
   </div>
+  <button @click="backTop" :class="showTop?'met-scroll-top active bg-yellow':'hide met-scroll-top bg-yellow'"><i class="el-submenu__icon-arrow el-icon-arrow-up bold fs-18"></i></button>
   </div>
 <div v-else class="bg-white justify-content-space-between w100 navH5">
   <div><img class="logoH5" :src="logo" /></div>
@@ -82,6 +83,7 @@
     </li>
   </ul>
   </div>
+  <button @click="backTop" :class="showTop?'met-scroll-top active bg-yellow':'hide met-scroll-top bg-yellow'"><i class="el-submenu__icon-arrow el-icon-arrow-up bold fs-40"></i></button>
 </div>
 
 </template>
@@ -109,7 +111,8 @@ export default {
       showIndexFront: this.getShowIndex(),
       showNavH5: false,
       pic2: false,
-      pic4: false
+      pic4: false,
+      showTop: false
     };
   },
   components: {
@@ -134,6 +137,22 @@ export default {
         this.bgColor = "#fecf1d";
       }
       this.top = top;
+
+      if(top>400){
+        this.showTop = true;
+      }else{
+        this.showTop = false;
+      }
+    },
+    backTop(){
+      let back = setInterval(() => {
+        if (document.body.scrollTop || document.documentElement.scrollTop) {
+          document.body.scrollTop -= 100;
+          document.documentElement.scrollTop -= 100;
+        } else {
+          clearInterval(back);
+        }
+      },5);
     },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
@@ -247,6 +266,34 @@ export default {
     margin-left:70px;
     height:42px;
   }
+  .met-scroll-top{
+    position:fixed;
+    height:64px;
+    width:64px;
+    bottom:15px;
+    right:15px;
+    cursor:pointer;
+    transition-duration: 1s;  
+    transition: background 1s,color 1s;
+    border:1px solid #cba617;
+    color:#909399;
+    opacity:0.8;
+  }
+  .met-scroll-top:hover{
+    background: #cba617 !important;
+    transition-duration: 1s;  
+    transition: background 1s,color 1s;
+    color:#000;
+  }
+  .met-scroll-top i{
+    left:12px!important;
+    width:40px;
+    height:40px;
+    margin-top:-18px;
+  }
+  .met-scroll-top.active{
+    display:block!important;
+  }
 }
 .moreNav{
   position: fixed;
@@ -307,6 +354,22 @@ export default {
   font-size:14px;
   margin:20px 0;
 }
+@media (max-width: 1000px) {
+  .selectPicH5{
+    height:50px!important;
+    margin-right:20px!important;
+    float:left;
+  }
+  .dropLi{
+    height:50px!important;
+    line-height:50px!important;
+    font-size:26px!important;
+    margin:10px 0 20px 0!important;
+  }
+  .dropLi div{
+    font-size:26px!important;
+  }
+}
 .vNav{
   position:absolute;
   top:0;
@@ -337,6 +400,33 @@ export default {
   .el-menu-item{
     -webkit-transition: background-color 0s!important;
     transition: background-color 0s!important;
+  }
+  .met-scroll-top{
+    position:fixed;
+    height:36px;
+    width:36px;
+    bottom:10px;
+    right:10px;
+    cursor:pointer;
+    transition-duration: 1s;  
+    transition: background 1s,color 1s;
+    border:1px solid #cba617;
+    color:#909399;
+  }
+  .met-scroll-top:hover{
+    background: #cba617 !important;
+    transition-duration: 1s;  
+    transition: background 1s,color 1s;
+    color:#000;
+  }
+  .met-scroll-top i{
+    left:8px!important;
+    width:18px;
+    height:18px;
+    margin-top:-9px;
+  }
+  .met-scroll-top.active{
+    display:block!important;
   }
 }
 

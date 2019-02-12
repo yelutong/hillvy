@@ -109,7 +109,7 @@ export default {
     
   },
   beforeCreate() {
-    document.title = "Pinjam Gampang － PT. Kredit Plus Teknologi";
+    document.title = "Pinjam Gampang - PT. Kredit Plus Teknologi";
   },
   created() {
     
@@ -134,6 +134,10 @@ export default {
   .risk3 p span {
     font-size: 24px;
     line-height: 36px;
+    text-align: justify;
+  }
+  .horizontal-view{
+    margin-top:10px;
   }
 }
 .riskStatement{
@@ -143,6 +147,7 @@ export default {
   .risk3 p span{
     font-size:14px;
     line-height:24px;
+    text-align: justify;
   }
   .risk3 p span:nth-child(1){
    margin-right: 0.05rem;

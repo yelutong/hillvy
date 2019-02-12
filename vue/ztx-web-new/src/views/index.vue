@@ -93,7 +93,7 @@
            <p class="fs-18 list h40 mb5 mt10"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to8")}}</p>
            <p class="fs-15 list h40"><i><img class="indexPic1 mr10" :src="indexPic6" /></i>{{$t("message.index.con5to9")}}</p>
            <p class="fs-15 list h40"><i><img class="indexPic1 mr10" :src="indexPic7" /></i>{{$t("message.index.con5to10")}}</p>
-           <p class="fs-18 list h40 mb5 mt11"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to10")}}</p>
+           <p class="fs-18 list h40 mb5 mt11"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to11")}}</p>
            <p class="fs-15 list h40"><i><img class="indexPic1 mr10" :src="indexPic8" /></i>{{$t("message.index.con5to12")}}</p>
            <p class="fs-15 list h40"><i><img class="indexPic1 mr10" :src="indexPic9" /></i>{{$t("message.index.con5to13")}}</p>
            <p class="fs-15 list h40 mb1"><i><img class="indexPic1 mr10" :src="indexPic9" /></i>{{$t("message.index.con5to14")}}</p>
@@ -152,21 +152,21 @@
         </el-carousel-item>
         <el-carousel-item>
           <div class="swiperH5p center"><img :src="headcon2" /></div>
-          <p class="fs-32 txt-black3 center" v-text='$t("message.index.con1to1")'></p>
-          <p class="fs-32 txt-black-real center" v-text='$t("message.index.con1to2")'></p>
+          <p class="fs-32 txt-black3 center" v-text='$t("message.index.con2to1")'></p>
+          <p class="fs-32 txt-black-real center" v-text='$t("message.index.con2to2")'></p>
         </el-carousel-item>
         <el-carousel-item>
           <div class="swiperH5p center"><img :src="headcon3" /></div>
-          <p class="fs-32 txt-black3 center" v-text='$t("message.index.con1to1")'></p>
-          <p class="fs-32 txt-black-real center" v-text='$t("message.index.con1to2")'></p>
+          <p class="fs-32 txt-black3 center" v-text='$t("message.index.con3to1")'></p>
+          <p class="fs-32 txt-black-real center" v-text='$t("message.index.con3to2")'></p>
         </el-carousel-item>
       </el-carousel>
       </div>
 
       <div class="indexConH5 relative">
           <div class="justify-content-space-between swithBtn">
-           <p :class="btnActive=='left'?'center fs-18 active':'center fs-18'" @click="swithBtn('left')"><i v-text='$t("message.index.con4to1")'></i></p>
-           <p :class="btnActive=='right'?'center fs-18 active':'center fs-18'" @click="swithBtn('right')"><i v-text='$t("message.index.con5to1")'></i></p>
+           <p :class="btnActive=='left'?'center fs-18 active':'center fs-28'" @click="swithBtn('left')"><i class="fs-28" v-text='$t("message.index.con4to1")'></i></p>
+           <p :class="btnActive=='right'?'center fs-18 active':'center fs-28'" @click="swithBtn('right')"><i class="fs-28" v-text='$t("message.index.con5to1")'></i></p>
           </div>
           <div class="contentBox pd30 bg-white" v-if="btnActive=='left'">
             <p class="center bold fs-28 mt10"  v-text='$t("message.index.con4to2")'></p>
@@ -186,7 +186,7 @@
                   <!--<el-button type="primary" plain @click="select('7h')" :class="selectActive=='7h'?'active':''">{{ $t("message.index.con4to4")}}</el-button>
                   <el-button type="primary" plain @click="select('14h')" :class="selectActive=='14h'?'active':''">{{ $t("message.index.con4to5")}}</el-button>
                   -->
-                  <el-button type="primary" plain @click="select('7h')" class="active">{{ $t("message.index.con4to30")}}</el-button>
+                  <el-button type="primary" plain @click="select('7h')" class="active fs-28">{{ $t("message.index.con4to30")}}</el-button>
                 </span>
               </div>
               <div class="justify-content-space-between h60">
@@ -218,7 +218,7 @@
            <p class="fs-28 list h60 mb5 mt10"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to8")}}</p>
            <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic6" /></i>{{$t("message.index.con5to9")}}</p>
            <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic7" /></i>{{$t("message.index.con5to10")}}</p>
-           <p class="fs-28 list h60 mb5 mt11"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to10")}}</p>
+           <p class="fs-28 list h60 mb5 mt11"><i><img class="indexPic2 mr10" :src="indexPic1" /></i>{{$t("message.index.con5to11")}}</p>
            <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic8" /></i>{{$t("message.index.con5to12")}}</p>
            <p class="fs-24 list h60"><i><img class="indexPic1 mr10" :src="indexPic9" /></i>{{$t("message.index.con5to13")}}</p>
            <p class="fs-24 list h60 mb1"><i><img class="indexPic1 mr10" :src="indexPic9" /></i>{{$t("message.index.con5to14")}}</p>
@@ -304,7 +304,7 @@ export default {
     
   },
   beforeCreate() {
-    document.title = "Pinjam Gampang － PT. Kredit Plus Teknologi";
+    document.title = "Pinjam Gampang - PT. Kredit Plus Teknologi";
   },
   created() {
     let type = window.location.search.split('?downloadUrl=')[1];

@@ -117,6 +117,7 @@
   .contentBottom p span{
     font-size:14px;
     line-height:24px;
+    text-align: justify;
   }
 }
 
@@ -159,6 +160,7 @@
     padding:40px;
     background:#ffd401;
     border-radius:40px;
+    z-index:1;
   }
   .contentBox{
     border-radius:40px;
@@ -186,12 +188,18 @@
     border-color: #edeced !important;
     padding: 12px 18px!important;
   }
+  .el-button--primary.is-plain span{
+    font-size:28px!important;
+  }
   .el-button--success.is-plain {
     color: #000 !important;
     background: #fdd301 !important;
     border-color: #fdd301 !important;
     border-radius: 20px !important;
-    padding: 5px 15px!important;
+    padding: 16px 30px!important;
+    span{
+      font-size:26px;
+    }
   }
   .swithBtn{
     position:absolute;
@@ -278,5 +286,6 @@
   .contentBottom p span {
     font-size: 24px;
     line-height: 40px;
+    text-align: justify;
   }
 }

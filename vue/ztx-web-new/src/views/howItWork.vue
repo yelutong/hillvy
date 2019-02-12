@@ -5,24 +5,24 @@
     <p><img :src="howItWork1" class="w100" /></p>
     <div class="companyContent w1000">
       <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.howItWork.head1")'></p>
-      <p class="indent2 fs-14 lh-24 pdlr100" v-text='$t("message.howItWork.content1")' ></p>
+      <p class="indent2 fs-14 lh-24 pdlr100 txt-justify" v-text='$t("message.howItWork.content1")' ></p>
       <p class="pdtb30"><img :src="showWhatPic" v-model="showWhatPic2" class="w100 pdlr100" /></p> 
       <div class="pdlr100 howItWork3">
       <p class="fs-18 mb5 bold txt-black-real" v-text='$t("message.howItWork.head2")' ></p>
-      <p class="fs-14 lh-24" v-text='$t("message.howItWork.content2")' ></p>
-      <p class="fs-14 lh-24  mt5" v-text='$t("message.howItWork.content3")' ></p>
+      <p class="fs-14 lh-24 txt-justify" v-text='$t("message.howItWork.content2")' ></p>
+      <p class="fs-14 lh-24 txt-justify mt5" v-text='$t("message.howItWork.content3")' ></p>
       <p class="fs-18 mt10 mb5 bold txt-black-real" v-text='$t("message.howItWork.head3")' ></p>
-      <p class="fs-14 lh-24" v-text='$t("message.howItWork.content4")' ></p>
+      <p class="fs-14 lh-24 txt-justify" v-text='$t("message.howItWork.content4")' ></p>
       <p class="fs-18 mt10 mb5 bold txt-black-real" v-text='$t("message.howItWork.head4")'></p>
-      <p class="fs-14 lh-24" v-text='$t("message.howItWork.content5")' ></p>
+      <p class="fs-14 lh-24 txt-justify" v-text='$t("message.howItWork.content5")' ></p>
       <p class="fs-18 mt10 mb5 bold txt-black-real" v-text='$t("message.howItWork.head5")'></p>
-      <p class="fs-14 lh-24" v-text='$t("message.howItWork.content6")' ></p>
+      <p class="fs-14 lh-24 txt-justify" v-text='$t("message.howItWork.content6")' ></p>
       <p class="horizontal-view mt10"><span>1.</span><span>{{$t("message.howItWork.content7")}}</span></p>
       <p class="horizontal-view"><span>2.</span><span>{{$t("message.howItWork.content8")}}</span></p>
       <p class="horizontal-view"><span>3.</span><span>{{$t("message.howItWork.content9")}}</span></p>
       <p class="horizontal-view"><span>4.</span><span>{{$t("message.howItWork.content10")}}</span></p>
       <p class="fs-18 mt10 mb5 bold txt-black-real" v-text='$t("message.howItWork.head6")'></p>
-      <p class="fs-14 lh-24 mb40" v-text='$t("message.howItWork.content11")' ></p>
+      <p class="fs-14 lh-24 mb40 txt-justify" v-text='$t("message.howItWork.content11")' ></p>
       </div>
     </div>
     <v-footer />
@@ -33,24 +33,24 @@
     <p><img :src="howItWork1" class="w100" /></p>
     <div class="howH5 w100">
       <p class="center fs-40 bold mtb30 txt-black-real" v-text='$t("message.howItWork.head1")'></p>
-      <p class="indent2 fs-24 lh-36" v-text='$t("message.howItWork.content1")' ></p>
+      <p class="indent2 fs-24 lh-36 txt-justify" v-text='$t("message.howItWork.content1")' ></p>
       <p class="pdtb30"><img :src="showWhatPic" v-model="showWhatPic2" class="w100" /></p> 
       <div class="howItWork3">
       <p class="fs-28 mb20 bold txt-black-real" v-text='$t("message.howItWork.head2")' ></p>
-      <p class="fs-24 lh-36" v-text='$t("message.howItWork.content2")' ></p>
-      <p class="fs-24 lh-36 mt10" v-text='$t("message.howItWork.content3")' ></p>
+      <p class="fs-24 lh-36 txt-justify" v-text='$t("message.howItWork.content2")' ></p>
+      <p class="fs-24 lh-36 mt10 txt-justify" v-text='$t("message.howItWork.content3")' ></p>
       <p class="fs-28 mt20 mb20 bold txt-black-real" v-text='$t("message.howItWork.head3")' ></p>
-      <p class="fs-24 lh-36" v-text='$t("message.howItWork.content4")' ></p>
+      <p class="fs-24 lh-36 txt-justify" v-text='$t("message.howItWork.content4")' ></p>
       <p class="fs-28 mt20 mb20 bold txt-black-real" v-text='$t("message.howItWork.head4")'></p>
-      <p class="fs-24 lh-36" v-text='$t("message.howItWork.content5")' ></p>
+      <p class="fs-24 lh-36 txt-justify" v-text='$t("message.howItWork.content5")' ></p>
       <p class="fs-28 mt20 mb20 bold txt-black-real" v-text='$t("message.howItWork.head5")'></p>
-      <p class="fs-24 lh-36" v-text='$t("message.howItWork.content6")' ></p>
+      <p class="fs-24 lh-36 txt-justify" v-text='$t("message.howItWork.content6")' ></p>
       <p class="horizontal-view mt20"><span>1.</span><span>{{$t("message.howItWork.content7")}}</span></p>
       <p class="horizontal-view"><span>2.</span><span>{{$t("message.howItWork.content8")}}</span></p>
       <p class="horizontal-view"><span>3.</span><span>{{$t("message.howItWork.content9")}}</span></p>
       <p class="horizontal-view"><span>4.</span><span>{{$t("message.howItWork.content10")}}</span></p>
       <p class="fs-28 mt20 mb20 bold txt-black-real" v-text='$t("message.howItWork.head6")'></p>
-      <p class="fs-24 lh-36 mb40" v-text='$t("message.howItWork.content11")' ></p>
+      <p class="fs-24 lh-36 mb40 txt-justify" v-text='$t("message.howItWork.content11")' ></p>
       </div>
     </div>
     <v-footer />
@@ -84,7 +84,7 @@ export default {
     }
   },
   beforeCreate() {
-    document.title = "Pinjam Gampang － PT. Kredit Plus Teknologi";
+    document.title = "Pinjam Gampang - PT. Kredit Plus Teknologi";
   },
   created() {
     
@@ -106,6 +106,7 @@ export default {
   .howItWork3 p span {
     font-size: 24px;
     line-height: 36px;
+    text-align: justify;
   }
   .howItWork3 p span:nth-child(1) {
     margin-right:10px;
@@ -113,13 +114,10 @@ export default {
   }
 }
 .howItWork{
-  .video{
-    width:640px;
-    width:480px;
-  }
   .howItWork3 p span{
     font-size:14px;
     line-height:24px;
+    text-align: justify;
   }
   .howItWork3 p span:nth-child(1){
    margin-right: 0.05rem;

@@ -5,14 +5,14 @@
     <p><img :src="companyPic" class="w100" /></p>
     <div class="companyContent w1000">
       <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.companyPro.head1")'></p>
-      <p class="indent2 fs-14 lh-24" v-text='$t("message.companyPro.content3")' ></p>
+      <p class="indent2 fs-14 lh-24 txt-justify" v-text='$t("message.companyPro.content3")' ></p>
       <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.companyPro.head2")' ></p>
-      <p class="indent2 fs-14 lh-24" v-text='$t("message.companyPro.content4")' ></p>
-      <p class="indent2 fs-14 lh-24  mt10" v-text='$t("message.companyPro.content5")' ></p>
-      <p class="indent2 fs-14 lh-24  mt10" v-text='$t("message.companyPro.content6")' ></p>
+      <p class="indent2 fs-14 lh-24 txt-justify" v-text='$t("message.companyPro.content4")' ></p>
+      <p class="indent2 fs-14 lh-24 txt-justify mt10" v-text='$t("message.companyPro.content5")' ></p>
+      <p class="indent2 fs-14 lh-24 txt-justify mt10" v-text='$t("message.companyPro.content6")' ></p>
        <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.companyPro.head3")'></p>
        <div class="center pdb50">
-        <video class="video w100 pointer" :src="myVideo" controls></video>
+        <video class="video pointer" :src="myVideo" controls :poster="poster"></video>
        </div>
     </div>
     <div class="companyBottom relative">
@@ -39,7 +39,7 @@
       <p class="indent2 fs-24 lh-36  mt10" v-text='$t("message.companyPro.content6")' ></p>
        <p class="center fs-40 bold mtb30 txt-black-real" v-text='$t("message.companyPro.head3")'></p>
        <div class="center pdb50">
-         <video class="video w100" :src="myVideo" controls></video>
+         <video class="video-source video w100" style="object-fit:fill" webkit-playsinline="true" playsinline="true"  x5-video-player-type="h5" x5-video-orientation="h5" x5-video-player-fullscreen="true" preload="auto" :src="myVideo" controls :poster="poster"></video>
        </div>
     </div>
     </div>
@@ -61,6 +61,7 @@ import vFooter from "@/components/v-footer";
 export default {
   data() {
     return {
+      poster: require("../assets/images/video.png"),
       companyPic: require("../assets/images/companyPic.png"),
       companyPicH5: require("../assets/images/conpanyPicH5@2x.png"),
       companyPic1: require("../assets/images/dowmLoad@2x.png"),
@@ -78,7 +79,7 @@ export default {
     
   },
   beforeCreate() {
-    document.title = "Pinjam Gampang － PT. Kredit Plus Teknologi";
+    document.title = "Pinjam Gampang - PT. Kredit Plus Teknologi";
   },
   created() {
     this.$axios.get(
@@ -118,6 +119,9 @@ export default {
     height: 46px;
     margin-left:-140px;
  }
+ .indent2{
+    text-align: justify;
+ }
 }
 .companyPro{
   .companyPic1{
@@ -136,8 +140,7 @@ export default {
     height:54px;
   }
   .video{
-    width:640px;
-    width:480px;
+    width:560px;
   }
 }
 </style>

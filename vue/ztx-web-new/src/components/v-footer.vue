@@ -45,7 +45,7 @@
         <p class="fs-32 mt30 txt-black-real">{{$t("message.index.con7to2")}}</p>
         <p class="fs-28 mt30 txt-black-real">{{$t("message.index.con7to1")}}</p>
         <p class="fs-24 mt30 txt-black-real">Unit A&F, 1st Floor, The Prominence Office Tower </p>
-        <p class="fs-12 mt10 txt-black-real">Jl. Jalur Sutera Barat No.15, Alam Sutera</p>
+        <p class="fs-24 mt10 txt-black-real">Jl. Jalur Sutera Barat No.15, Alam Sutera</p>
         
         <p class="fs-28 mt30 txt-black-real">{{$t("message.index.con7to3")}}</p>
         <p class="fs-24 mt30 txt-black-real">marketing@kreditplusteknologi.id</p>
