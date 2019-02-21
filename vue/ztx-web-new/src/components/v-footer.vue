@@ -18,7 +18,7 @@
        </el-col>
         <el-col :span="8">
           <p class="fs-14 mt50 txt-black-real">Customer Service</p>
-          <p class="fs-12 mt10 txt-black-real">Tel: (021) 3003 3358 </p>
+          <p class="fs-12 mt10 txt-black-real">Tel: (021) 5089 8199 </p>
           <p class="fs-12 txt-black-real">Email: kpt@kreditplusteknologi.id</p>
           <p class="fs-12 txt-black-real">{{$t("message.index.con7to4")}}</p>
           <p class="fs-12 txt-black-real">{{$t("message.index.con7to5")}}</p>
@@ -51,7 +51,7 @@
         <p class="fs-24 mt30 txt-black-real">marketing@kreditplusteknologi.id</p>
 
         <p class="fs-28 mt30 txt-black-real">Customer Service</p>
-        <p class="fs-24 mt30 txt-black-real">Tel: (021) 3003 3358 </p>
+        <p class="fs-24 mt30 txt-black-real">Tel: (021) 5089 8199 </p>
         <p class="fs-24 mt10 txt-black-real">Email: kpt@kreditplusteknologi.id</p>
         <p class="fs-24 mt10 txt-black-real">{{$t("message.index.con7to4")}} {{$t("message.index.con7to5")}}</p>
         <div class="center bottomPhoto mt20">
@@ -128,16 +128,18 @@ export default {
     background: #231f20;
     height: 50px;
     margin-top: -1px;
+    width:100%!important;
+    overflow-x:hidden!important;
   }
   .footerTips p{
     color: #ccc;
-    width:200%;
     line-height: 50px;
     font-size:40px;
     display: inline-block;
     -webkit-transform-origin-x:0%;
-    -webkit-transform: scale(0.50);
-    transform: scale(0.50);
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    width:200%;
   }
 }
 .footer {

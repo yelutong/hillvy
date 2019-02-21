@@ -1,94 +1,94 @@
 <template>
   <div v-if="showIndexFront=='PC'" :class="top==0?'w100 center vNav':'w100 bg-yellow center vNav'">
-  <div class="w1000 horizontal-view nav-pc">
- <span><img class="logo" :src="logo" /></span>
- <el-menu
-  :default-active="activeIndex"
-  :class="top==0?'el-menu-demo allBorder1':'el-menu-demo allBorder'"
-  mode="horizontal"
-  @select="handleSelect"
-  :background-color="bgColor"
-  text-color="#555"
-  active-text-color="#000">
-  <el-menu-item index="1" v-text='$t("message.vnav.nav1")'></el-menu-item>
-  <el-submenu index="2">
-    <template slot="title">{{ $t("message.vnav.nav2") }}</template>
-    <el-menu-item index="2-1" v-text='$t("message.vnav.nav2To1")'></el-menu-item>
-    <el-menu-item index="2-2" v-text='$t("message.vnav.nav2To2")'></el-menu-item>
-    <el-menu-item index="2-3" v-text='$t("message.vnav.nav2To3")'></el-menu-item>
-  </el-submenu>
-  <el-menu-item index="3" v-text='$t("message.vnav.nav3")'></el-menu-item>
-  <el-submenu index="4">
-    <template slot="title">{{ $t("message.vnav.nav4") }}</template>
-    <el-menu-item index="4-1" v-text='$t("message.vnav.nav4To1")'></el-menu-item>
-    <el-menu-item index="4-2" v-text='$t("message.vnav.nav4To2")'></el-menu-item>
-  </el-submenu>
-</el-menu>
-<el-menu
-  :default-active="activeIndex"
-  :class="top==0?'el-menu-demo allBorder1 justify-content-end selectContent flex1':'el-menu-demo allBorder justify-content-end selectContent flex1'"
-  mode="horizontal"
-  @select="handleSelect"
-  :background-color="bgColor"
-  text-color="#555"
-  active-text-color="#000">
-  <li :class="top==0?'relative left selectLang1':'relative left selectLang'"><img :src="logoLang"/></li>
-  <el-submenu index="5" class="selectLan left">
-    <template slot="title">{{ $t("message.vnav.navLang") }}</template>
-    <el-menu-item index="5-1" @click="select('logoEnd')"><img class="selectPic" :src="logoEnd" />Indonesian</el-menu-item>
-    <el-menu-item index="5-2" @click="select('logoEng')"><img class="selectPic" :src="logoEng" />English</el-menu-item>
-  </el-submenu>
-</el-menu> 
-  </div>
-  <button @click="backTop" :class="showTop?'met-scroll-top active bg-yellow':'hide met-scroll-top bg-yellow'"><i class="el-submenu__icon-arrow el-icon-arrow-up bold fs-18"></i></button>
-  </div>
-<div v-else class="bg-white justify-content-space-between w100 navH5">
-  <div><img class="logoH5" :src="logo" /></div>
-  <div class="pdt15">
-    <div class="left">
-    <el-dropdown trigger="click">
-      <span class="el-dropdown-link navDrop">
-        <img class="left" :src="logoLangH5" />
-        <i class="left el-icon-arrow-down el-icon--right"></i>
-      </span>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item class="dropLi"><div @click="select('logoEnd')"><img class="selectPicH5" :src="logoEnd1" />Indonesian</div></el-dropdown-item>
-        <el-dropdown-item class="dropLi"><div @click="select('logoEng')"><img class="selectPicH5" :src="logoEng1" />English</div></el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
+    <div class="w1000 horizontal-view nav-pc">
+       <span><img class="logo" :src="logo" /></span>
+       <el-menu
+        :default-active="activeIndex"
+        :class="top==0?'el-menu-demo allBorder1':'el-menu-demo allBorder'"
+        mode="horizontal"
+        @select="handleSelect"
+        :background-color="bgColor"
+        text-color="#555"
+        active-text-color="#000">
+        <el-menu-item index="1" v-text='$t("message.vnav.nav1")'></el-menu-item>
+        <el-submenu index="2">
+          <template slot="title">{{ $t("message.vnav.nav2") }}</template>
+          <el-menu-item index="2-1" v-text='$t("message.vnav.nav2To1")'></el-menu-item>
+          <el-menu-item index="2-2" v-text='$t("message.vnav.nav2To2")'></el-menu-item>
+          <el-menu-item index="2-3" v-text='$t("message.vnav.nav2To3")'></el-menu-item>
+        </el-submenu>
+        <el-menu-item index="3" v-text='$t("message.vnav.nav3")'></el-menu-item>
+        <el-submenu index="4">
+          <template slot="title">{{ $t("message.vnav.nav4") }}</template>
+          <el-menu-item index="4-1" v-text='$t("message.vnav.nav4To1")'></el-menu-item>
+          <el-menu-item index="4-2" v-text='$t("message.vnav.nav4To2")'></el-menu-item>
+        </el-submenu>
+      </el-menu>
+      <el-menu
+        :default-active="activeIndex"
+        :class="top==0?'el-menu-demo allBorder1 justify-content-end selectContent flex1':'el-menu-demo allBorder justify-content-end selectContent flex1'"
+        mode="horizontal"
+        @select="handleSelect"
+        :background-color="bgColor"
+        text-color="#555"
+        active-text-color="#000">
+        <li :class="top==0?'relative left selectLang1':'relative left selectLang'"><img :src="logoLang"/></li>
+        <el-submenu index="5" class="selectLan left">
+          <template slot="title">{{ $t("message.vnav.navLang") }}</template>
+          <el-menu-item index="5-1" @click="select('logoEnd')"><img class="selectPic" :src="logoEnd" />Indonesian</el-menu-item>
+          <el-menu-item index="5-2" @click="select('logoEng')"><img class="selectPic" :src="logoEng" />English</el-menu-item>
+        </el-submenu>
+      </el-menu> 
     </div>
-    <div class="left" @click="moreNav">
-     <img class="selectNav pointer" :src="selectNav" />
-    </div>
+    <div @click="backTop" :class="showTop?'h5-scroll-top active bg-yellow':'hide h5-scroll-top bg-yellow'"><i class="el-submenu__icon-arrow el-icon-arrow-up bold fs-18"></i></div>
   </div>
-  <div :class="showNavH5?'moreNav':'hide'">
-  <div class="center title relative fs-32">PINJAM GAMPANG<img class="close pointer" :src="closeH5" @click="closeH5Btn" /></div>
-  <ul>
-    <li class="vux-1px-b fs-32"  @click="toLink('nav1')" v-text='$t("message.vnav.nav1")'></li>
-    <li class="vux-1px-b">
-      <span v-text='$t("message.vnav.nav2")' @click="moreMenu('two')" :class="pic2?'fs-32 open2 active':'fs-32 open2'"></span>
-      <div :class="pic2?'fs-32':'fs-32 pointer hide'">
-      <p class="indent2 h60 mt30 fs-28" v-text='$t("message.vnav.nav2To1")' @click="toLink('nav2To1')"></p>
-      <p class="indent2 h60 fs-28" v-text='$t("message.vnav.nav2To2")' @click="toLink('nav2To2')"></p>
-      <p class="indent2 h60 fs-28" v-text='$t("message.vnav.nav2To3")' @click="toLink('nav2To3')"></p>
-      </div>
-    </li>
-    <li class="vux-1px-b fs-32 pointer" v-text='$t("message.vnav.nav3")'  @click="toLink('nav3')"></li>
-    <li class="vux-1px-b">
-      <span v-text='$t("message.vnav.nav2")' @click="moreMenu('four')" :class="pic4?'fs-32 open2 active':'fs-32 open2'"></span>
-      <div :class="pic4?'fs-32':'fs-32 pointer hide'">
-      <p class="indent2 h60 mt30 fs-28" v-text='$t("message.vnav.nav4To1")' @click="toLink('nav4To1')"></p>
-      <p class="indent2 h60 fs-28" v-text='$t("message.vnav.nav4To2")' @click="toLink('nav4To2')"></p>
-      </div>
-    </li>
-  </ul>
-  </div>
-  <button @click="backTop" :class="showTop?'met-scroll-top active bg-yellow':'hide met-scroll-top bg-yellow'"><i class="el-submenu__icon-arrow el-icon-arrow-up bold fs-40"></i></button>
-</div>
 
+  <div v-else class="bg-white justify-content-space-between w100 navH5">
+    <div><img class="logoH5" :src="logo" /></div>
+    <div class="pdt15">
+      <div class="left">
+      <el-dropdown trigger="click" type="primary">
+        <span class="el-dropdown-link navDrop">
+          <img class="left" :src="logoLangH5" />
+          <i class="left el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item class="dropLi"><div @click="select('logoEnd')"><img class="selectPicH5" :src="logoEnd1" />Indonesian</div></el-dropdown-item>
+          <el-dropdown-item class="dropLi"><div @click="select('logoEng')"><img class="selectPicH5" :src="logoEng1" />English</div></el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      </div>
+      <div class="left" @click="moreNav">
+       <img class="selectNav pointer" :src="selectNav" />
+      </div>
+    </div>
+    <div :class="showNavH5?'moreNav':'hide'">
+    <div class="center title relative fs-32">PINJAM GAMPANG<img class="close pointer" :src="closeH5" @click="closeH5Btn" /></div>
+    <ul>
+      <li class="vux-1px-b fs-32"  @click="toLink('nav1')" v-text='$t("message.vnav.nav1")'></li>
+      <li class="vux-1px-b">
+        <span v-text='$t("message.vnav.nav2")' @click="moreMenu('two')" :class="pic2?'fs-32 open2 active':'fs-32 open2'"></span>
+        <div :class="pic2?'fs-32':'fs-32 pointer hide'">
+        <p class="indent2 h60 mt30 fs-28" v-text='$t("message.vnav.nav2To1")' @click="toLink('nav2To1')"></p>
+        <p class="indent2 h60 fs-28" v-text='$t("message.vnav.nav2To2")' @click="toLink('nav2To2')"></p>
+        <p class="indent2 h60 fs-28" v-text='$t("message.vnav.nav2To3")' @click="toLink('nav2To3')"></p>
+        </div>
+      </li>
+      <li class="vux-1px-b fs-32 pointer" v-text='$t("message.vnav.nav3")'  @click="toLink('nav3')"></li>
+      <li class="vux-1px-b">
+        <span v-text='$t("message.vnav.nav4")' @click="moreMenu('four')" :class="pic4?'fs-32 open2 active':'fs-32 open2'"></span>
+        <div :class="pic4?'fs-32':'fs-32 pointer hide'">
+        <p class="indent2 h60 mt30 fs-28" v-text='$t("message.vnav.nav4To1")' @click="toLink('nav4To1')"></p>
+        <p class="indent2 h60 fs-28" v-text='$t("message.vnav.nav4To2")' @click="toLink('nav4To2')"></p>
+        </div>
+      </li>
+    </ul>
+    </div>
+    <div @click="backTop" :class="showTop?'h5-scroll-top active bg-yellow':'hide h5-scroll-top bg-yellow'"><i class="el-submenu__icon-arrow el-icon-arrow-up bold fs-40"></i></div>
+  </div>
 </template>
 <script>
-import { Menu, Submenu, MenuItem } from 'element-ui';
+import { Menu, Submenu, MenuItem, Dropdown, DropdownMenu, DropdownItem } from 'element-ui';
 import logoEng from '../assets/images/eng@2x.png';
 import logoEnd from '../assets/images/end.png';
 import logoEng1 from '../assets/images/eng1.png';
@@ -118,10 +118,16 @@ export default {
   components: {
     "el-menu": Menu,
     "el-submenu": Submenu,
-    "el-menu-item": MenuItem
+    "el-menu-item": MenuItem,
+    "el-dropdown": Dropdown,
+    "el-dropdown-menu": DropdownMenu,
+    "el-dropdown-item": DropdownItem
   },
   mounted() {//给window添加一个滚动滚动监听事件
     window.addEventListener('scroll', this.handleScroll, true);
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll); 
   },
   created() {
     this.logoLang = (this.$i18n.locale=='eng')?logoEng:logoEnd;
@@ -130,34 +136,51 @@ export default {
   },
   methods: {
     handleScroll() { //改变元素#searchBar的top值
-      let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      let top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
       if(top==0){
         this.bgColor = "transparent";
       }else{
         this.bgColor = "#fecf1d";
       }
       this.top = top;
-
-      if(top>400){
-        this.showTop = true;
+      if(this.showIndexFront=='PC'){
+        if(top>400){
+          this.showTop = true;
+        }else{
+          this.showTop = false;
+        }
       }else{
-        this.showTop = false;
+        if(top>200){
+          this.showTop = true;
+        }else{
+          this.showTop = false;
+        }
       }
     },
-    backTop(){
+    backTop(){ 
+      let that = this;
+      let timer = setInterval(() => {
+        let ispeed = Math.floor(-that.top / 5);
+        window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = that.top + ispeed
+        if (that.top === 0) {
+          clearInterval(timer)
+        }
+      }, 16)
+     /*
       let back = setInterval(() => {
-        if (document.body.scrollTop || document.documentElement.scrollTop) {
+        if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) {
           document.body.scrollTop -= 100;
           document.documentElement.scrollTop -= 100;
+          window.pageYOffset -= 100;
         } else {
           clearInterval(back);
         }
-      },5);
+      },5);*/
     },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
       if(key!='5-1'&&key!='5-2'&&this.top!=0){
-       document.body.scrollTop = document.documentElement.scrollTop = 0;//回到顶部
+        window.pageYoffset = document.body.scrollTop = document.documentElement.scrollTop = 0;//回到顶部
       }
       sessionStorage.setItem("activeIndex", key);
       if(key=='1'){
@@ -248,9 +271,10 @@ export default {
 .navH5{
   height:120px;
   padding:20px 30px;
-  position:absolute;
+  position:fixed;
   top:0;
   left:0;
+  width:100%;
   z-index:999;
   .logoH5{
     height:80px;
@@ -266,11 +290,11 @@ export default {
     margin-left:70px;
     height:42px;
   }
-  .met-scroll-top{
+  .h5-scroll-top{
     position:fixed;
     height:64px;
     width:64px;
-    bottom:15px;
+    bottom:80px;
     right:15px;
     cursor:pointer;
     transition-duration: 1s;  
@@ -278,20 +302,21 @@ export default {
     border:1px solid #cba617;
     color:#909399;
     opacity:0.8;
+    z-index:9999;
   }
-  .met-scroll-top:hover{
+  .h5-scroll-top:hover{
     background: #cba617 !important;
     transition-duration: 1s;  
     transition: background 1s,color 1s;
     color:#000;
   }
-  .met-scroll-top i{
+  .h5-scroll-top i{
     left:12px!important;
     width:40px;
     height:40px;
     margin-top:-18px;
   }
-  .met-scroll-top.active{
+  .h5-scroll-top.active{
     display:block!important;
   }
 }
@@ -371,7 +396,7 @@ export default {
   }
 }
 .vNav{
-  position:absolute;
+  position:fixed;
   top:0;
   left:0;
   z-index:9999;
@@ -401,31 +426,32 @@ export default {
     -webkit-transition: background-color 0s!important;
     transition: background-color 0s!important;
   }
-  .met-scroll-top{
+  .h5-scroll-top{
     position:fixed;
     height:36px;
     width:36px;
-    bottom:10px;
+    top:80%;
     right:10px;
     cursor:pointer;
     transition-duration: 1s;  
     transition: background 1s,color 1s;
     border:1px solid #cba617;
     color:#909399;
+    opacity:0.8;
   }
-  .met-scroll-top:hover{
+  .h5-scroll-top:hover{
     background: #cba617 !important;
     transition-duration: 1s;  
     transition: background 1s,color 1s;
     color:#000;
   }
-  .met-scroll-top i{
+  .h5-scroll-top i{
     left:8px!important;
     width:18px;
     height:18px;
     margin-top:-9px;
   }
-  .met-scroll-top.active{
+  .h5-scroll-top.active{
     display:block!important;
   }
 }

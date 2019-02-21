@@ -7,10 +7,23 @@
       <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.web.head1")'></p>
         <div class="mt40 risk3">
         <div class="mb40 pdlr100"">
+           
+           <div class="vux-1px-b">
+           <div class="justify-content-space-between pointer" @click="webOpen('webList3')">
+           <p class="fs-14 mb10 h40 txt-blue">Pemberitahuan Maintenance</p>
+           <p class="fs-14 mb10 h40 txt-right txt-blue1">18-Feb-2019</p>
+           </div>
+           <div class="hide webList3 weblist">
+               <p class="bold fs-16 txt-black-real">Pelanggan yang terhormat:</p>
+               <p class="fs-14 mt5 txt-justify indent10 txt-black1">Dikarenakan maintenance sistem, untuk sementara pengajuan pinjaman tidak dapat dilakukan.</p>
+               <p class="fs-14 mt5 txt-justify indent10 txt-black1">Mohon maaf atas ketidaknyamannya.</p>
+             </div>
+           </div>
+           
            <div class="vux-1px-b">
            <div @click="webOpen('webList1')" class="justify-content-space-between pointer">
-            <p class="fs-14 mb10 h60 txt-blue" v-text='$t("message.web.content1")'></p>
-            <p class="fs-14 mb10 h60 txt-right txt-blue1" v-text='$t("message.web.content2")'></p>
+            <p class="fs-14 mb10 h40 txt-blue" v-text='$t("message.web.content1")'></p>
+            <p class="fs-14 mb10 h40 txt-right txt-blue1" v-text='$t("message.web.content2")'></p>
            </div>
              <div class="hide webList1 weblist">
                <p class="bold fs-16 txt-black-real">Pelanggan yang terhormat:</p>
@@ -22,8 +35,8 @@
 
            <div class="vux-1px-b">
            <div class="justify-content-space-between pointer" @click="webOpen('webList2')">
-           <p class="fs-14 mb10 h60 txt-blue" v-text='$t("message.web.content3")'></p>
-           <p class="fs-14 mb10 h60 txt-right txt-blue1" v-text='$t("message.web.content4")'></p>
+           <p class="fs-14 mb10 h40 txt-blue" v-text='$t("message.web.content3")'></p>
+           <p class="fs-14 mb10 h40 txt-right txt-blue1" v-text='$t("message.web.content4")'></p>
            </div>
            <div class="hide webList2 weblist">
                <p class="bold fs-16 txt-black-real">Pelanggan yang terhormat:</p>
@@ -32,6 +45,8 @@
                <p class="fs-14 mt5 txt-justify indent10 txt-black1">Jika tanggal jatuh tempo pembayaran pinjaman Anda berada dalam periode ini, harap mengatur pembayaran terlebih dahulu agar tidak mempengaruhi risiko pinjaman Anda</p>
              </div>
            </div>
+
+
         </div>
        </div>
     </div>
@@ -45,7 +60,19 @@
       <p class="center fs-40 bold mtb30 txt-black-real" v-text='$t("message.web.head1")'></p>
         <div class="mt40 risk3">
         <div class="mb40"">
-           <div class="vux-1px-b">
+          <div class="vux-1px-b">
+           <div class="justify-content-space-between pointer" @click="webOpen('webList3')">
+           <p class="fs-24 mb20 lh-36 per70 txt-blue">Pemberitahuan Maintenance</p>
+           <p class="fs-24 mb20 align-items-center txt-right txt-blue1">18-Feb-2019</p>
+           </div>
+           <div class="hide webList3 weblist">
+               <p class="bold fs-28 lh-36 txt-black-real">Pelanggan yang terhormat:</p>
+               <p class="fs-24 mt10 lh-36 txt-justify indent10 txt-black1">Dikarenakan maintenance sistem, untuk sementara pengajuan pinjaman tidak dapat dilakukan.</p>
+               <p class="fs-24 mt10 lh-36 mb33 txt-justify indent10 txt-black1">Mohon maaf atas ketidaknyamannya.</p>
+             </div>
+           </div>
+
+           <div class="vux-1px-b pdt10">
            <div @click="webOpen('webList1')" class="justify-content-space-between pointer">
             <p class="fs-24 mb30 lh-36 txt-blue per70" v-text='$t("message.web.content1")'></p>
             <p class="fs-24 mb30 txt-right align-items-center txt-blue1" v-text='$t("message.web.content2")'></p>
@@ -58,7 +85,7 @@
              </div>
            </div>
 
-           <div class="vux-1px-b">
+           <div class="vux-1px-b pdt10">
            <div class="justify-content-space-between pointer" @click="webOpen('webList2')">
            <p class="fs-24 mb20 lh-36 per70 txt-blue" v-text='$t("message.web.content3")'></p>
            <p class="fs-24 mb20 align-items-center txt-right txt-blue1" v-text='$t("message.web.content4")'></p>
@@ -69,7 +96,8 @@
                <p class="fs-24 mt10 lh-36 txt-justify indent10 txt-black1">11 Juni 2018 hingga 20 Juni 2018 adalah hari libur cuti bersama. Selama libur tersebut, proses persetujuan dan peminjaman serta hotline layanan pelanggan tidak beroperasi. Operasi normal akan dimulai pada tanggal 21 Juni 2018. Silakan mengatur jadwal pengajuan pinjaman dan komunikasi dengan sebaik mungkin.</p>
                <p class="fs-24 mt10 lh-36 txt-justify indent10 txt-black1">Jika tanggal jatuh tempo pembayaran pinjaman Anda berada dalam periode ini, harap mengatur pembayaran terlebih dahulu agar tidak mempengaruhi risiko pinjaman Anda</p>
              </div>
-           </div>
+           </div> 
+
         </div>
        </div>
     </div>
@@ -113,6 +141,9 @@ export default {
        arr1[0].classList.toggle('active');
       }else if(val=='webList2'){
        let arr2 = document.getElementsByClassName("webList2");
+       arr2[0].classList.toggle('active');
+      }else if(val=='webList3'){
+       let arr2 = document.getElementsByClassName("webList3");
        arr2[0].classList.toggle('active');
       }
     }

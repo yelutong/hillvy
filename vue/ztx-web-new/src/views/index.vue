@@ -79,7 +79,7 @@
             <div class="justify-content-space-between rightBar mtb15">
               <div class="left flex1 center">
                 <p class="fs-18 h40" v-text='$t("message.index.con5to2")'></p>
-                <p class="fs-18 h40">Rp 5.000.000</p>
+                <p class="fs-18 h40">Rp5.000.000</p>
               </div>
               <div class="right flex1 center">
                 <p class="fs-18 h40" v-text='$t("message.index.con4to3")'></p>
@@ -139,7 +139,7 @@
     <div class="headContentH5 relative">
       <img :src="headPicH5" class="headPic w100" />
       <div class="headTips auto">
-        <p class="tips2"><img :src="picBottomTips" /></p>
+        <p class="tips2"  @click="download"><img :src="picBottomTips" /></p>
       </div>
       <p class="center h60 fs-40 bold mtb40 txt-black-real" v-text='$t("message.index.head1")'></p>
 
@@ -204,7 +204,7 @@
             <div class="justify-content-space-between rightBar mtb15">
               <div class="left flex1 center">
                 <p class="fs-28 h60" v-text='$t("message.index.con5to2")'></p>
-                <p class="fs-28 h60">Rp 5.000.000</p>
+                <p class="fs-28 h60">Rp5.000.000</p>
               </div>
               <div class="right flex1 center">
                 <p class="fs-28 h60" v-text='$t("message.index.con4to3")'></p>
@@ -274,10 +274,13 @@ export default {
       indexPic8: require("../assets/images/index8@2x.png"),
       indexPic9: require("../assets/images/index9@2x.png"),
       bannerItem: [],
-      banner1: require("../assets/images/banner@2x.png"),
-      banner2: require("../assets/images/banner@2x.png"),
-      banner3: require("../assets/images/banner3@2x.png"),
-      banner4: require("../assets/images/banner3@2x.png"),
+      banner1: require("../assets/images/banner@2x1.png"),
+      banner2: require("../assets/images/banner@2x2.png"),
+      banner5: require("../assets/images/banner@2x3.png"),
+      banner6: require("../assets/images/banner@2x4.png"),
+      banner7: require("../assets/images/banner@2x5.png"),
+      banner3: require("../assets/images/banner3@2x1.png"),
+      banner4: require("../assets/images/banner3@2x2.png"),
       picBottom: require("../assets/images/pic@2x.png"),
       picBottom2: require("../assets/images/picBottom2.png"),
       picBottomTips: require("../assets/images/ojbk2@2x.png"),
@@ -307,18 +310,22 @@ export default {
     document.title = "Pinjam Gampang - PT. Kredit Plus Teknologi";
   },
   created() {
-    let type = window.location.search.split('?downloadUrl=')[1];
+    let type = window.location.href.split('?downloadUrl=')[1];
     if(type){
-      location.href=type;//跳转下载app页面
+      window.location.href=decodeURIComponent(type).split('#/index')[0];//跳转下载app页面
     }
     this.valueRp = 600000+this.valueTotal*(this.value3/100);
     this.Interest = this.valueRp*30*0.004;
     let banner1 = [{'index':1,'img':this.banner1}];
     let banner2 = [{'index':2,'img':this.banner2}];
+    let banner5 = [{'index':3,'img':this.banner5}];
+    let banner6 = [{'index':4,'img':this.banner6}];
+    let banner7 = [{'index':5,'img':this.banner7}];
+    //h5
     let banner3 = [{'index':1,'img':this.banner3}];
     let banner4 = [{'index':2,'img':this.banner4}];
     if(this.showIndexFront=='PC'){
-      this.bannerItem = [...banner1,...banner2];//合并数组
+      this.bannerItem = [...banner1,...banner2,...banner5,...banner6,...banner7];//合并数组
     }else{
       this.bannerItem = [...banner3,...banner4];//合并数组
     }

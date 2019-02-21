@@ -12,7 +12,8 @@
       <p class="indent2 fs-14 lh-24 txt-justify mt10" v-text='$t("message.companyPro.content6")' ></p>
        <p class="center fs-25 bold mtb30 txt-black-real" v-text='$t("message.companyPro.head3")'></p>
        <div class="center pdb50">
-        <video class="video pointer" :src="myVideo" controls :poster="poster"></video>
+        <video v-if="!myVideoShow" class="video pointer" :src="myVideo" controls :poster="poster"></video>
+        <iframe v-else width="560" height="315" src="https://www.youtube.com/embed/0Xzi2G8Ji9Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
        </div>
     </div>
     <div class="companyBottom relative">
@@ -20,7 +21,7 @@
     <div class="companyCon">
       <p class="center fs-25 h60 bold" v-text='$t("message.companyPro.content1")'></p>
       <p class="center fs-25 bold" v-text='$t("message.companyPro.content2")'></p>
-      <p class="companyPic2 mt50" @click="download"><img :src="googleplay" /></p>
+      <p class="companyPic2 mt50 pointer" @click="download"><img :src="googleplay" /></p>
     </div>
     </div>
     <v-footer />
@@ -39,7 +40,8 @@
       <p class="indent2 fs-24 lh-36  mt10" v-text='$t("message.companyPro.content6")' ></p>
        <p class="center fs-40 bold mtb30 txt-black-real" v-text='$t("message.companyPro.head3")'></p>
        <div class="center pdb50">
-         <video class="video-source video w100" style="object-fit:fill" webkit-playsinline="true" playsinline="true"  x5-video-player-type="h5" x5-video-orientation="h5" x5-video-player-fullscreen="true" preload="auto" :src="myVideo" controls :poster="poster"></video>
+         <video v-if="!myVideoShow" class="video-source video w100" style="object-fit:fill" webkit-playsinline="true" playsinline="true"  x5-video-player-type="h5" x5-video-orientation="h5" x5-video-player-fullscreen="true" preload="auto" :src="myVideo" controls :poster="poster"></video>
+         <iframe v-else class="w100 video" height="315" src="https://www.youtube.com/embed/0Xzi2G8Ji9Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
        </div>
     </div>
     </div>
@@ -67,7 +69,8 @@ export default {
       companyPic1: require("../assets/images/dowmLoad@2x.png"),
       googleplay: require("../assets/images/googleplay@2x.png"),
       myVideo: require("../assets/images/company.mp4"),
-      showIndexFront: this.getShowIndex()
+      showIndexFront: this.getShowIndex(),
+      myVideoShow:false
     };
   },
   components: {
@@ -88,7 +91,7 @@ export default {
          console.log(res);
          if(res.status == 200 && res.data && res.data.country){
            if(res.data.country != 'CN'){
-             this.myVideo = 'https://www.youtube.com/embed/0Xzi2G8Ji9Q';
+             this.myVideoShow = true;
            }
          }
       })
