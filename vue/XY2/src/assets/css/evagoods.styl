@@ -1,0 +1,49 @@
+.page-evagoods {
+  padding: 15px;
+
+  .lay-imgs, .txa {
+    margin-bottom: 12.5px;
+  }
+
+  .txa {
+    height: 90px;
+  }
+
+  .up-load {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    color: transparent;
+    border: 1px solid #bfbfbf;
+    background-color: #fff;
+    transition: background-color 0.2s;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      background-color: #979797;
+    }
+
+    &:before {
+      width: 21px;
+      height: 2.5px;
+    }
+
+    &:after {
+      width: 2.5px;
+      height: 21px;
+    }
+
+    &:active {
+      background-color: #f5f5f5;
+    }
+  }
+
+  .btn-submit {
+    margin-top: 30px;
+    width:100%;
+  }
+}

@@ -1,0 +1,57 @@
+.page-wallet {
+  .walletContent{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    color:#FFF;
+  }
+  .couponTitle .tag{
+    margin:7px 0;
+  }
+  .walletImg{
+    width:139px;
+    height:133px;
+  }
+  .lay-action {
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 160px;
+
+    .btn-submit {
+      width: 147.5px;
+      height: 32.5px;
+      line-height: 32.5px;
+      border-radius: 5px;
+    }
+  }
+
+  .lay-detail {
+    .row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      bd-line(bottom, 1px, #eaeaea);
+
+      &:last-child:after {
+        display: none;
+      }
+
+      .tag {
+        font-size: 14px;
+        color: #828282;
+        text-align: center;
+      }
+
+      .tag-1, .tag-3 {
+        width: 90px;
+      }
+
+      .tag-2 {
+        flex: 1;
+      }
+    }
+  }
+}

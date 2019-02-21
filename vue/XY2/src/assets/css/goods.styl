@@ -1,0 +1,221 @@
+.page-goods {
+  padding-bottom: 57.5px;
+
+  .lay-swiper {
+    .v-swiper {
+      height: 375px;
+    }
+  }
+  .cartNum .mint-badge{
+   transform: scale(0.5);
+   position:absolute;
+   top:-5px;
+   right:-6px;
+  }
+  .lay-goods {
+    position: relative;
+    display: block;
+    padding: 10px;
+    margin-bottom: 7.5px;
+    bd-line(bottom, 1px, #eaeaea);
+    transition: background-color 0.2s;
+
+    &.hover {
+      background-color: #f5f5f5;
+    }
+
+    .gd-name {
+      margin-bottom: 5px;
+    }
+
+    .price-weight {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 25px;
+
+      .price {
+        font-size: 20px;
+        color: #FF4F00;
+      }
+
+      .weight {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .lay-detail {
+    margin-bottom: 7.5px;
+
+    .v-cell-box {
+      .lay-cell:after {
+        display: none;
+      }
+    }
+  }
+
+  .lay-eva {
+    margin-bottom: 7.5px;
+
+    .v-cell-box {
+      padding-left: 0;
+
+      .lay-cell {
+        padding-left: 15px;
+      }
+
+      .text {
+        color: #FF4F00;
+      }
+    }
+
+    .eva-list {
+      position: relative;
+      padding: 0 10px 10px;
+      bd-line(bottom, 1px, #eaeaea);
+
+      .item {
+        position: relative;
+        padding-top: 10px;
+        bd-line(bottom, 1px, #eaeaea);
+
+        &:last-child:after {
+          display: none;
+        }
+      }
+
+      .eva-pro {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 25px;
+      }
+
+      .pro {
+        display: flex;
+        align-items: center;
+      }
+
+      .art-box {
+        height: 25px;
+        width: 25px;
+        margin-right: 2.5px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .avatar {
+        border-radius: 13px;
+        height: 100%;
+      }
+
+      .name {
+        font-size: 12px;
+      }
+
+      .date {
+        font-size: 11px;
+        color: #878787;
+      }
+
+      .i-star {
+        width: 9px;
+        height: 9px;
+        margin-left: 4px;
+        background-image: url('../../assets/images/star-act.png');
+      }
+
+      .eva-text {
+        padding: 7px 0 10px;
+        font-size: 13px;
+      }
+
+      .eva-goods {
+        padding: 8px 0 7.5px;
+        font-size: 12px;
+        color: #979797;
+      }
+    }
+
+    .eva-more {
+      display: block;
+      line-height: 27.5px;
+      font-size: 12px;
+      color: #979797;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #979797;
+      background-color: #fff;
+      transition: background-color 0.2s;
+
+      &.hover {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+
+  .lay-img {
+    padding: 5px 5px 1px;
+
+    .img {
+      margin-bottom: 5px;
+    }
+  }
+
+  .norms i {
+    width: 50px;
+    float: left;
+  }
+  .norms .standards {
+    margin: 0 0 0 56px;
+    display: block;
+  }
+  .norms b {
+    width: 65px;
+    float: left;
+  }
+  .norms .standards1 {
+    margin: 0 0 0 71px;
+    display: block;
+  }
+  .salebuy .standards div {
+    color: #999;
+    float: left;
+    text-align: center;
+    font-size: 18px;
+    width: 32px;
+    height: 32px;
+    margin-top: 6px;
+    line-height: 28px;
+  }
+  .salebuy .minus {
+    border-radius: 5px 0 0 5px;
+    border-left: 1px solid #cbcbcb;
+    border-top: 1px solid #cbcbcb;
+    border-bottom: 1px solid #cbcbcb;
+  }
+  .salebuy .plus {
+    border-radius: 0 5px 5px 0;
+    border-top: 1px solid #cbcbcb;
+    border-right: 1px solid #cbcbcb;
+    border-bottom: 1px solid #cbcbcb;
+  }
+  .minus, .plus, .goodsCheck, .shopCheck {
+    cursor: pointer;
+  }
+
+  .salebuy .num {
+    color: #ff4f00;
+    border: 1px solid #cbcbcb;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 6px;
+    width: 50px;
+    height: 32px;
+    line-height: 26px;
+    border-radius: 0;
+  } 
+
+}

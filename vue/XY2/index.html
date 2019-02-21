@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<link rel="icon" href="./static/favicon.ico" type="image/x-icon">
+<title>新银众商</title>
+<style>
+.vue-fail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: 50%;
+  font: 15px/30px 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei';
+  text-align: center;
+}
+</style>
+<script type="text/javascript">
+  var userAgent = navigator.userAgent.toLowerCase();
+  // alert('当前html地址：'+window.location.href);
+  // alert('html code:'+getQueryString('code'));
+    if(userAgent.match(/MicroMessenger/i)=="micromessenger"){
+      let token = localStorage.getItem('token');
+      let openId = localStorage.getItem('openId');
+      let proUserId = getQueryStr2('proUserId');
+      let code = getQueryString('code');
+      let okRedirectUrl = 'http://www.xy268.com/m/#/';
+      
+      if(proUserId){
+        localStorage.setItem("proUserId", proUserId);
+      }
+      alert('proUserId:'+proUserId);
+      if(code){
+        sessionStorage.setItem("code", code);
+      }
+      
+      if(location.href.indexOf('goods')>-1){
+        let goodsId = location.href.split('goods?id=')[1];//这里把推荐id也取到了
+        okRedirectUrl = okRedirectUrl + 'goods?id=' + goodsId;
+      }else{
+        okRedirectUrl = okRedirectUrl + 'index';
+      }
+
+      if(token == null && openId == null && sessionStorage.getItem('code') == null){
+        let reUrl = encodeURIComponent(okRedirectUrl) + '&response_type=code&scope=snsapi_userinfo&state=xyh5#wechat_redirect';
+        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf7af59cdfbcb5388&redirect_uri=' + reUrl;
+      }
+
+      if(getQueryString('from')=='singlemessage'|| getQueryString('from')=='timeline'){
+        window.location.href=okRedirectUrl;
+      }
+    }else {
+         /* let okRedirectUrl = 'http://127.0.0.1:8090/#/';
+          if(location.href.indexOf('goods')>-1){
+            let goodsId = location.href.split('goods?id=')[1];//这里把推荐id也取到了
+            okRedirectUrl = okRedirectUrl + 'goods?id=' + goodsId;
+            alert('当前地址1：'+okRedirectUrl);
+          }else{
+            okRedirectUrl = okRedirectUrl + 'index';
+            alert('当前地址2：'+okRedirectUrl);
+          }
+          window.location.href=okRedirectUrl;
+          let proUserId = getQueryString('proUserId');
+          alert(getQueryString('proUserId'));*/
+    }
+
+    function getQueryStr2(name) { 
+      let url = (window.location.href.indexOf('?from')>-1)?window.location.href.replace('?from',''):window.location.href;
+      let url2 = (url.indexOf('#')>-1)?('?'+url.replace('/#/','/').split('?')[1]):('?'+url.split('?')[1]);
+      let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+      let r = url2.substr(1).match(reg); 
+      if (r != null) return unescape(r[2]); return null; 
+    } 
+    function getQueryString(name) { 
+      let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+      let r = window.location.search.substr(1).match(reg); 
+      if (r != null) return unescape(r[2]); return null; 
+    } 
+</script>
+</head>
+
+<body ontouchstart="" onmouseover="">
+  <div id="app"></div>
+</body>
+<script>
+  // 有些机型上vue偶尔渲染失败，以此解决
+  var winStorge = window.localStorage,
+    loadNum = winStorge.getItem('loadNum') || 0,
+    setStorge = function (name, num) {
+      winStorge.setItem(name, num);
+    };
+  setTimeout(function () {
+    if (window.vueLoaded) {
+      setStorge('loadNum', 0);
+    } else if (loadNum < 5) {
+      setStorge('loadNum', ++loadNum);
+      window.location.reload();
+    } else {
+      document.getElementById('app').innerHTML = '<div class="vue-fail">404 页面加载失败...</div>';
+      setStorge('loadNum', 0);
+    }
+  }, 100);
+
+</script>
+
+</html>

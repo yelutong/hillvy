@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>新银微信支付</title>
+	<style>
+		body {
+			background: #ededed;
+			margin: 0;
+			padding: 0;
+			color: #999;
+			outline: none;
+		}
+
+		table,
+		td {
+			padding: 0;
+			margin: 0
+		}
+
+		.wxpay {
+			width: 84%;
+			float: left;
+			margin: 20px 3% 0 3%;
+			padding: 5px 5% 10px 5%;
+			background: #FFF;
+			display: block;
+			border-radius: 5px;
+		}
+
+		.head {
+			text-align: center;
+			margin: 20px 0 15px 0;
+		}
+
+		.center {
+			text-align: center;
+			font-size: 15px;
+		}
+
+		.center i {
+			font-style: normal;
+			color: #f05a4b;
+			margin: 0 5px;
+		}
+
+		.center img {
+			width: 60px;
+		}
+
+
+		.head img {
+			width: 70px;
+			height: 70px;
+		}
+
+		.wxpay p {
+			height: 20px;
+			line-height: 20px;
+			background: #FFF;
+			margin: 15px 0 8px 0 !important;
+		}
+
+		.wxpay span {
+			position: relative;
+			background: #FFF;
+			border-bottom: 1px solid #ccc;
+			height: 52px !important;
+			float: left;
+			width: 100%;
+			padding: 0 0 5px 0;
+		}
+
+		.wxpay input {
+			width: 100% !important;
+			height: 52px !important;
+			line-height: 52px !important;
+			font-size: 35px !important;
+			text-indent: 35px !important;
+			background: #FFF;
+			color: #000;
+			border: none;
+			outline: none;
+		}
+
+		.wxpay span:before {
+			content: "¥";
+			font-size: 40px !important;
+			width: 50px !important;
+			line-height: 52px !important;
+			height: 52px !important;
+			position: absolute !important;
+			color: #000;
+		}
+
+		.paybtn {
+			background: #19ad17;
+			outline: none;
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			font-size: 21px;
+			color: #FFF;
+			border: none;
+			margin: 20px 0 10px 0;
+			border-radius: 5px
+		}
+	</style>
+</head>
+
+<body>
+		<div id="main">
+		<div class="head">
+			<img src="data:image/jpeg;base64,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">
+		</div>
+		<div class="center">正在使用微信进行支付</div>
+		<div class="wxpay">
+			<p>支付金额</p>
+	
+			<span>
+				<input type="number" onkeyup="onlyNumber(this)" placeholder="请输入金额" class="pay_money" id="pay_money">
+			</span>
+			<button type="button" class="paybtn" onclick="payPrice()" id="paybtn">支付</button>
+	
+		</div>
+	</div>
+	<div id="errorscan"><h3>请重新使用微信扫码支付</h3></div>
+	
+	</body>
+
+</html>
+<script>
+	var payway = '010'
+	var openid = getQueryString("openid");
+	var signUrl = null
+	document.getElementById("main").style.visibility = 'visible'
+	document.getElementById("errorscan").style.visibility = 'hidden'
+	var userAgent = navigator.userAgent.toLowerCase();
+	
+	var isAndroid = userAgent.indexOf('android') > -1 || userAgent.indexOf('linux') > -1;
+	//是安卓系统
+	if(isAndroid){
+		document.getElementById("pay_money").type = "tel"
+	}
+	
+	 
+
+	//检测是否需要走第三方签名
+	if(openid == null || openid == ''){
+		checkNewStore()
+	}else{
+		payPrice()
+	}
+	
+	function checkNewStore(){
+		var qcode = getQueryString("qcode");
+		var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance 
+		xmlhttp.open("GET", "http://api.xy999888.cn/api/lcsw/checkNewStore/" + qcode, true);
+		xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		xmlhttp.onload = function () {
+			var resData = JSON.parse(this.responseText)
+			if (resData.code == 0) {
+			//	alert(resData.msg);
+			} else {
+				if(resData.content.signUrl != null && resData.content.signUrl != ''){
+					sessionStorage.setItem('qcode', qcode);
+					signUrl = resData.content.signUrl
+				}else{
+					signUrl = "false"
+				}
+			}
+		};
+
+		xmlhttp.send();
+	}
+	
+	function onlyNumber(obj) {
+		//只能输入两个小数
+		obj.value = obj.value.replace(/^\D*([0-9]\d*\.?\d{0,2})?.*$/,'$1')
+	}
+
+	function getQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return unescape(r[2]);
+		return null;
+	}
+
+	function payPrice() {
+		var price = document.getElementById("pay_money").value;
+		if(price == null || price == ''){
+			price = sessionStorage.getItem("saveprice");
+		}
+		
+		var qcode = getQueryString("qcode");
+		var wxCode = getQueryString("code");
+		
+		if(qcode == null){
+			wxCode = sessionStorage.getItem("wxCode");
+			qcode = sessionStorage.getItem("qcode");
+		}
+
+		if(price < 0.01){
+			alert("最少支付1分钱")
+			document.getElementById("pay_money").value = null
+			return
+		}
+
+		document.getElementById("paybtn").disabled = true
+		
+		//第三方签名链接为空，则定时等待结果，最多3秒
+		if(signUrl == null){
+			var countInterval = 6;
+			var tt = setInterval(function (){
+				countInterval = countInterval - 1
+				if(signUrl != null){
+					clearInteval(tt)
+				}
+				
+				if(countInterval <= 0){
+					clearInteval(tt)
+					alert("连接服务器失败，请重新扫码支付")
+				}
+			}, 500)
+			
+		}
+		
+		//openid为空，签名链接不为空走第三方签名流程
+		if(openid == null && signUrl != null && signUrl != "false"){
+			sessionStorage.setItem('saveprice', price);
+			sessionStorage.setItem("wxCode", wxCode)
+			//跳转第三方页面
+			window.location.href = signUrl
+		}else{
+			var reqData = JSON.stringify({
+				code: qcode,
+				price: price,
+				payway: payway,
+				wxCode: wxCode,
+				openid: openid
+			});
+			
+			var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance 
+			xmlhttp.open("POST", "http://api.xy999888.cn/api/lcsw/servicePay", true);
+			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xmlhttp.onload = function () {
+				var resData = JSON.parse(this.responseText)
+
+				if (resData.code == 0) {
+					alert(resData.msg);
+				} else {
+					if('010' == payway){
+						 var data = JSON.parse(resData.content)
+							function onBridgeReady(){
+							   WeixinJSBridge.invoke(
+								   'getBrandWCPayRequest', JSON.parse(data.payStr),
+								   function(res){     
+									   if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+										window.location.href = 'http://www.xy268.com/outpay/paySuccessful.html?storeName=' + data.storeName + '&amount=' + data.price + '&orderNumber=' + data.orderNumber;
+											
+									   }      
+								   }
+							   ); 
+							}
+							if (typeof WeixinJSBridge == "undefined"){
+							   if( document.addEventListener ){
+								   document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+							   }else if (document.attachEvent){
+								   document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+								   document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+							   }
+							}else{
+							   onBridgeReady();
+							}
+						}	
+				}
+			};
+
+			xmlhttp.send(reqData);
+			
+		}
+
+	}
+	document.getElementById("pay_money").focus()
+	
+
+</script>
