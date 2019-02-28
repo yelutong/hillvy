@@ -1,0 +1,24 @@
+<template>
+  <div style="display: block;" ref="abc">
+    <!-- ... -->
+     <div class="abs"></div>
+  </div>
+</template>
+<script>
+　　export default {
+  　　mounted () {
+   　　 console.log(this.$refs.abc.style.cssText)
+  　　}
+　　}
+</script>
+
+结果是 display: block;
+
+
+console.log( this.$refs.abc.$el.children[0].className)  //结果是abs
+
+
+liru:
+this.$refs.scroller.$el.children[0].style.cssText='transform-origin: 0px 0px 0px; transform: translateX(0px) translateY(0px) translateZ(0px) scale(1, 1); transition: none 0s ease 0s;';
+
+
