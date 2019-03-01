@@ -65,8 +65,8 @@
                 <span class="fs-18" v-text='"Rp"+this.addDot(Interest)'></span>
               </div>
             </div>
-           <p class="fs-18 center pdtb30 lh-24" v-text='$t("message.index.con4to7")'></p>
-           <div class="center mt10" @click="download">
+           <!--<p class="fs-18 center pdtb30 lh-24" v-text='$t("message.index.con4to7")'></p>-->
+           <div class="center indexDownBtn" @click="download">
             <el-button type="success" plain class="lh-20">Download<br>Pinjam Gampang</el-button>
            </div>
           </div>
@@ -189,13 +189,13 @@
                   <el-button type="primary" plain @click="select('7h')" class="active fs-28">{{ $t("message.index.con4to30")}}</el-button>
                 </span>
               </div>
-              <div class="justify-content-space-between h60">
+              <div class="justify-content-space-between mtb20">
                 <span class="fs-28" v-text='$t("message.index.con4to6")'></span>
                 <span class="fs-28" v-text='"Rp"+this.addDot(Interest)'></span>
               </div>
             </div>
-           <p class="fs-28 center pdtb48 lh-36" v-text='$t("message.index.con4to7")'></p>
-           <div class="center mt10" @click="download">
+           <!--<p class="fs-28 center pdtb48 lh-36" v-text='$t("message.index.con4to7")'></p>-->
+           <div class="center pdtb48" @click="download">
             <el-button type="success" plain class="lh-28">Download<br>Pinjam Gampang</el-button>
            </div>
           </div>
@@ -315,7 +315,8 @@ export default {
       window.location.href=decodeURIComponent(type).split('#/index')[0];//跳转下载app页面
     }
     this.valueRp = 600000+this.valueTotal*(this.value3/100);
-    this.Interest = this.valueRp*30*0.004;
+    //利息+服务费=借款金额 * 30天 * 日成本+借款金额*服务费费率 日成本=0.4%，服务费费率=7.3%
+    this.Interest = this.valueRp*30*0.004 + this.valueRp*0.073;
     let banner1 = [{'index':1,'img':this.banner1}];
     let banner2 = [{'index':2,'img':this.banner2}];
     let banner5 = [{'index':3,'img':this.banner5}];
@@ -347,7 +348,7 @@ export default {
       }else{
         this.valueRp = parseInt(val/100000)*100000;
       }
-      this.Interest = this.valueRp*30*0.004;
+      this.Interest = this.valueRp*30*0.004 + this.valueRp*0.073;//30天 * 利率
     }
   },
   methods: {
