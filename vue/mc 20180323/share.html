@@ -1,0 +1,268 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="email=no" name="format-detection" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>明昌生态分享推广</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<style>
+*{margin:0;padding:0}
+body{position:relative;overflow-x:hidden;width:100%;font-size:14px;font-size:.875rem;background:#000;color:#666}
+.wzy-w3{width:92%;margin:5px auto;border-radius:10px}.login_btn,.login_btn2,.login_btn3{width:96%;margin:0 auto;margin-bottom:.8rem}.login_btn input{width:100%;height:45px;color:#666;background-color:#eee;border-radius:3px;border:0;font-size:18px;-webkit-appearance:none;outline:0;cursor:pointer}.login_btn2 input{width:100%;height:45px;color:#fff;background-color:#2a89c9;border-radius:3px;border:0;font-size:18px;-webkit-appearance:none;outline:0;cursor:pointer}.login_btn3 input{width:100%;height:45px;color:#fff;background-color:#0dc891;border-radius:3px;border:0;font-size:18px;-webkit-appearance:none;outline:0;cursor:pointer}.reg{width:100%;margin:0 auto;display:block;overflow:hidden}.reg .tinput{color:#fff;background:#000;font-size:14px;height:50px;width:100%;outline:0;border:0;border-bottom:1px solid #eee} 
+.radio_reule{font-size: 14px}
+input::-webkit-input-placeholder {color:#ccc}
+input:-moz-placeholder {color:#ccc}
+input::-moz-placeholder {color:#ccc}
+input:-ms-input-placeholder {color:#ccc}
+.isClick {
+    background: #fff!important;
+    color: #071614!important;
+}
+</style>     
+<script>
+function getQueryString(name) { 
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+		var r = window.location.search.substr(1).match(reg); 
+		if (r != null) return unescape(r[2]); return null; 
+} 
+	
+function getUsername(){
+	    var  upromoterId = getQueryString("promoter");
+		 
+		$.ajax({
+ 		url: promoter+upromoterId,//get请求不要data,data是post的方法
+ 		type: "get",
+ 		contentType: "application/json", 
+ 		success: function(data) {
+ 			console.log(data);
+ 			var data = JSON.parse(data);
+ 			if(data.code == 1) {
+ 				//showmessage(data.msg); 
+				$("#promoterName").html(formmatMobile(data.content.userName));
+ 			} 
+ 		}
+ 	});	 
+		 
+	}	 
+
+</script>   
+
+</head>
+<body onload="getUsername()">
+<div id="wei">   
+  <div style="width:96%;display:block;overflow:hidden;margin:20px 2% 0 2%;">
+ 	<img src="images/seller_share.png" width="100%" />
+ 	
+ </div>
+ 
+<div class="wzy-w3">
+<div class="detailD mt45">  
+  <div class="tabL"> 
+	<input type="hidden" name="promoter" id="promoter" value="">
+	<input type="hidden" name="userType" value="2">
+    
+    <div class="reg">  
+           <p style="color:#fff;text-align:center;line-height:50px;margin-bottom:20px;font-size:16px">推荐人：<span id="promoterName"><span></p>
+             
+	    	<div><input class="tinput" type="number" oninput="if(value.length>11)value=value.slice(0,11)" id="userName1" name="userName" placeholder="请输入11位手机号码" /></div> 
+        
+	        <div><input class="tinput" type="password" id="password" name="password" placeholder="设置密码" /></div>  
+	       
+	        <div style="position: relative;"><input class="tinput" type="text" id="code1" name="smsCode" placeholder="短信验证码" style="width:100%;"/><input class="tinput isClick" type="button" value="获取验证码" data-waiting="秒" id="sms1" style="width:30%;height:40px; -webkit-appearance:none; border-radius:2px;position: absolute;top: 4px;right:0;border:0;border-radius:3px;cursor:pointer;background:#bbb" /></div>
+	        
+	       
+	</div>
+   
+    
+    <div style="margin-left: 2%;position:relative;top:34px;"><input type="checkbox" id="agree" checked="checked" style="float: left;vertical-align:middle;display:none;"><label for="agree" style="color:#fff">注册即表示同意</label><a href="reg_agreement.html" style="text-decoration:none;color:#ccc;"><span>《明昌生态注册协议》</span></a></div>
+    
+    <div class="login_btn" style="margin-top:3rem; "><input type="button"  id="commit1"  value="立即注册" style="float: left;margin-top:5px;margin-bottom:20px; width:100%; border-radius: 3px; color:#071614; background-color:#fff;"/></div>  
+    
+    <div class="login_btn2" style="margin-top:3rem;" onClick="javascript:location.href='http://a.app.qq.com/o/simple.jsp?pkgname=com.ecosystem.mc.buyer'"><input type="button"  id="commit21"  value="注册后，即可下载APP" style="float: left;margin-bottom: 30px; width:100%; border-radius: 3px; color:#fff; background-color:#bbb;"/></div>  
+		    
+    
+  </div>
+  
+</div>
+</div>
+  
+</div>
+<div id="Msg"></div>	  
+</body>
+<script>
+ $(document).ready(function(){
+	 var smsBtn = $("#sms1");
+	 var isclick = true;
+	smsBtn.click(function(e){
+		  if (!isclick) return false;
+		  e.preventDefault();
+		  var username = $("#userName1").val();
+		  var password= $("#password").val();
+
+		  if(username == "")
+	  	  {
+		  	 showmessage("请输入手机号码")
+		  	 return false;
+		  }
+
+		  if(!checkPhone(username))
+		  {
+			  showmessage("手机号码输入错误");
+			  return false;
+		  }
+		  if(password ==""){
+			 showmessage("请输入密码");
+		  	 return false;
+		  }
+		  if(password.length <6){
+		  	 showmessage("密码过短");
+		  	 return false;
+		  }if(password.length>24){
+		  	 showmessage("密码过长");
+		  	 return false;
+		  } 
+		
+		 $.ajax({
+				url:regSmscode+username,
+				type: "get", 
+				contentType: "application/json",
+				success: function (data) {//客户端jquery预先定义好的callback函数,成功获取跨域服务器上的json数据后,会动态执行这个callback函数 
+				var data = JSON.parse(data);
+				console.log(data);
+				 // 
+				if(data.code==1){
+				 showmessage("已发送验证码，请注意查收");
+				 
+				}else {
+				 showmessage("您操作太频繁，请稍后再试");
+				return;
+				}
+				}
+		  });
+
+		 var that = $(this), timeId;
+		var num = 60;
+		var thiscon = $(this).attr("data-waiting");
+		that.val(num + thiscon);
+		that.removeClass("isClick");
+		isclick = false;
+		timeId = setInterval(function () {
+			num--;
+			that.val(num + thiscon);
+			if (num == 0) {
+				clearInterval(timeId);
+				that.val("重新获取");
+				that.addClass("isClick");
+				isclick = true;
+			}
+		}, 1000);
+		
+		
+	  });
+  
+	
+	$("#commit1").click(function(){
+			
+		  var username = $("#userName1").val();
+		  var password= $("#password").val(); 
+		  var code = $("#code1").val();
+		  
+		  if(username == "" || password == "" || code == "")
+	  	  {
+		  	 showmessage("请输入完整信息")
+		  	 return false;
+		  } 
+
+		  if(!checkPhone(username))
+		  {
+			  showmessage("手机号码输入错误");
+			  return false;
+		  } 
+		  if(password.length <6){
+		  	 showmessage("密码过短");
+		  	 return false;
+		  }if(password.length>24){
+		  	 showmessage("密码过长");
+		  	 return false;
+		  } 
+		   
+			$.ajax({
+				url: register,
+				type: "POST",
+				contentType: "application/json",
+				data: JSON.stringify({
+					userName: username,
+					password: password,
+					promoterUserId:getQueryString("promoter"),
+					smsCode:code
+				}),
+				success: function(data) {
+					console.log(data);
+					var data = JSON.parse(data);
+					if(data.code == 0) {
+						showmessage(data.msg);
+					} else {
+						showmessage("恭喜你，注册成功");
+						//window.localStorage.setItem("token", data.content);
+						setTimeout(function(){
+							 	$.ajax({
+								url: login,
+								type: "POST",
+								contentType: "application/json",
+								data: JSON.stringify({
+									userName: username,
+									password: password
+								}),
+								success: function(data) {
+									console.log(data);
+									var data = JSON.parse(data);
+									if(data.code == 0) {
+										showmessageTop(data.msg);
+									} else {
+										window.localStorage.setItem("token", data.content);
+										commonUtil.request({//获取购物车数量
+											url: getGoodsCount,
+											type: "get",
+											success: function(data1) { 
+												 window.sessionStorage.setItem("carGoodsNumber", data1.content);
+												 console.log(data1.content);
+												 window.location.href = "buyer.html";
+											},
+											error: function() {
+
+											}
+										});
+									}
+								}
+								});
+							
+							//window.location.href = "index.html";
+						}, 1500);
+					}
+				}
+			});
+			return false;
+		  
+	  });  
+
+ });
+	 
+function checkPhone(phone){
+	if(!(/^1[3|4|5|7|8]\d{9}$/.test(phone)))
+	{ 
+		return false; 
+	}
+
+	return true;
+}	
+</script>
+</html>  

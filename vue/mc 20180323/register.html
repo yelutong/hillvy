@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>注册</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script> 
+<script type="text/javascript" src="min_js/login.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+</head> 
+<body onload="mid_reg()">
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">注册</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+						<a href="index.html" class="icon" ><i class="sprite gosy"></i></a>
+            </div>
+			</div>
+</header>
+<div class="login">  
+<form name="regForm" id="regForm" class="loginform"  method="post"> 
+            <div class="verification_box21">推荐人：<span id="promoterName"><span></div>
+            <input type="hidden" value="" id="promoterUserId"/>
+            
+            
+            
+             <div class="verification_box recommender">
+                <p class="c-form-search verification">
+                    <label for="mobi" class="mobi recuser sprite"></label>
+                    <input type="text" id="recName" name="recName" autocomplete="off" placeholder="推荐人手机号(选填)" value=""/> 
+                </p>
+            </div>
+            <div class="verification_box">
+                <p class="c-form-search verification">
+                    <label for="mobi" class="mobi petname sprite"></label>
+                    <input type="text" id="nickName" name="nickName" autocomplete="off" placeholder="请输入昵称(选填)" value=""/> 
+                </p>
+            </div>
+            <div class="verification_box">
+                <p class="c-form-search verification">
+                    <label for="mobi" class="mobi user sprite"></label>
+                    <input type="text" id="regName" name="regName" autocomplete="off" placeholder="请输入手机号" value=""/>
+                    <button type="button" class="sprite"></button>
+                    <span class="datalist"></span>
+                </p>
+            </div>
+            <div class="verification_box">
+                <p class="c-form-search verification">
+                    <label for="MobiPwd" class="MobiPwd sprite"></label>
+                    <input type="password" id="regPwd" name="regPwd" autocomplete="off" placeholder="请输入登录密码" maxlength="20" value=""/>
+                    <button type="button" class="sprite"></button>
+                </p>
+                <span class="pwd_eyes close sprite"></span>
+            </div>
+             <div class="verification_box">
+                        <p class="c-form-search verification">
+                            <label for="mobiCode" class="mobiCode sprite"></label>
+                            <input type="text" id="regCode" name="regCode" placeholder="请输入短信验证码" maxlength="6" value="">
+                            <button type="button" class="register_code"></button>
+                        </p>
+                        <a href="javascript:;" class="getCode isClick" id="passwordGetCode" data-waiting="秒">获取验证码</a>
+              </div>
+                    
+                    
+              <input type="button" class="register_btn" value="注 册"/>
+
+            <p class="links">
+                <a href="login.html">立即登录</a> 
+                <a href="findPwd.html">忘记密码？</a>
+            </p> 
+    </form> 
+</div>  
+<div id="Msg"></div>
+</body>
+</html>

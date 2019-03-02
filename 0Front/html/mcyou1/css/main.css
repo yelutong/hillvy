@@ -1,0 +1,85 @@
+@charset "utf-8";
+/* CSS Document */
+
+*,html,body{padding:0;margin:0;background:#101403;}
+a{text-decoration: none}
+#main{
+	background:url(../images/bg.png) no-repeat;
+	width: 1200px;
+	margin: 0 auto;
+	height: 900px;
+	background-size: cover; 
+    background-size: contain; 
+	background-size:100% 100%;  
+	position: relative;
+	min-width: 1200px;
+	font-size: 13px;
+}
+.nav_top{
+	position:absolute;
+	color: #b8b8b6;
+}
+.nav_top .cursor{cursor:pointer;width:120px;height:30px;background:transparent;position:absolute;text-align: center;line-height: 30px;}
+.nav_top .nav1{
+	top:100px;left:326px;text-align: left;
+}
+.nav_top .nav2{
+	top:100px;left:765px;text-align:right;
+}
+.nav_top .nav3{
+	top:190px;left:248px;text-align: left;
+}
+.nav_top .nav4{
+	top:190px;left:835px;text-align:right;
+} 
+.nav_bottom{
+	position:absolute;
+	color: #e2e2e2;
+} 
+.nav_bottom .cursor{cursor:pointer;width:90px;height:30px;background:transparent;position:absolute;text-align: center;line-height:30px;}
+.nav_bottom .nav5{
+	top:535px;left:375px;
+}
+.nav_bottom .nav6{
+	top:535px;left:465px;
+}
+.nav_bottom .nav7{
+	top:535px;left:555px;
+}
+.nav_bottom .nav8{
+	top:535px;left:645px;
+}
+.nav_bottom .nav9{
+	top:535px;left:735px;
+}
+.swiper-wrapper .cursor{cursor:pointer;}
+#footer{
+	position: absolute;top:800px;color:#675f38;text-align: center;width:800px;left:200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

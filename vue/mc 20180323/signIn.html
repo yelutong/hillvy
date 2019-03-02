@@ -1,0 +1,307 @@
+<!doctype html>
+<html> 
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>每日签到</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css">
+<link rel="stylesheet" href="signIn/css/style.css">
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>  
+<script type="text/javascript" src="min_js/publick.js"></script> 
+</head>
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">每日签到</span>
+		    <div class="header-icon left-icon"> 
+					<a href="index.html" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+            </div>
+			</div>
+</header> 
+	<div class="htmleaf-container"> 
+		<div class="qiandao-warp">
+	        <div class="qiandap-box">
+	            <div class="qiandao-con clear">
+	                <div class="qiandao-left">
+	                    <div class="qiandao-left-top clear">
+	                        <div class="current-date"></div>
+	                        <div class="qiandao-history qiandao-tran qiandao-radius" id="js-qiandao-history">我的签到</div>
+	                    </div>
+	                    <div class="qiandao-main" id="js-qiandao-main">
+                            <div class="qiandaoCa"><span>周日</span><span>周一</span><span>周二</span><span>周三</span><span>周四</span><span>周五</span><span>周六</span></div>
+	                        <ul class="qiandao-list" id="js-qiandao-list">
+	                        </ul>
+	                    </div> 
+	                </div>
+	                <div class="qiandao-right">
+	                    <div class="qiandao-top">
+                        
+                        
+	             <div v-if="actsignlist.isCanTakeSignAwards==true" class="qiandao-sprits" @click="getAward" id="getAward">领取奖品</div>  
+                 <div class="just-qiandao qiandao-sprits" id="js-just-qiandao">立即签到</div> 
+	               
+			    <div class="qiando_bt">
+				<p>活动规则：</p>
+				<p>“签到有礼，免费试用”活动期间(2017年12月25日-2018年1月4日)新老用户参与每日连续不间断签到11天，均可免费领取商品（油古姥纯山茶籽油150ml/瓶），限量50瓶，领完即止。</p>
+				</div>                     
+	                        
+	                    </div> 
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- 我的签到 layer start -->
+	    <div class="qiandao-layer qiandao-history-layer">
+	        <div class="qiandao-layer-con qiandao-radius">
+	            <a href="javascript:;" class="close-qiandao-layer qiandao-sprits21"></a>
+	            <ul class="qiandao-history-inf clear">
+	                <li>
+	                    <p>连续签到</p>
+	                    <h4 v-if="userSignLast.signDaysContinuous" v-text="userSignLast.signDaysContinuous">0</h4>
+	                    <h4 v-else>0</h4>
+	                </li> 
+	                <li>
+	                    <p>本月签到</p>
+	                    <h4 v-if="nowmonthList.signDaysAtMonth" v-text="nowmonthList.signDaysAtMonth">0</h4>
+	                    <h4 v-else>0</h4>
+	                </li>
+	                <li>
+	                    <p>总共签到</p>
+	                    <h4 v-if="orderAddressList.totalCount" v-text="orderAddressList.totalCount">0</h4>
+	                    <h4 v-else>0</h4>
+	                </li> 
+	            </ul>
+	            <div class="qiandao-history-table">
+	                <table>
+	                    <thead>
+	                        <tr>
+	                            <th>签到日期</th> 
+	                            <th>连续签到天数</th>
+	                        </tr>
+	                    </thead>
+	                    <table>
+	                        <tr v-if="orderAddressList.list.length>0" v-for="odList in orderAddressList.list">
+	                            <td v-text="odList.addTime"></td> 
+	                            <td v-text="odList.signDaysContinuous"></td>
+	                        </tr> 
+	                    </table>
+	                </table>
+	            </div>
+	        </div>
+	        <div class="qiandao-layer-bg"></div>
+	    </div>
+	    <!-- 我的签到 layer end -->
+	    <!-- 签到 layer start -->
+	    <div class="qiandao-layer qiandao-active">
+	        <div class="qiandao-layer-con qiandao-radius">
+	            <a href="javascript:;" class="close-qiandao-layer qiandao-sprits21"></a>
+	            <div class="yiqiandao clear">
+	                <div class="yiqiandao-icon qiandao-sprits21"></div>
+	                <p class="center h40" v-if="userSignLast.signDaysContinuous">您已连续签到<span v-text="userSignLast.signDaysContinuous+1"></span>天</p>
+	            </div>
+	            <div class="qiandao-jiangli">
+					<b><img :src="actsignlist.goodsPhoto"></b>
+					<b><i v-text="actsignlist.awardContent"></i><i>须连续签到{{actsignlist.signDays}}天,即可领奖</i><i v-text="actsignlist.validTimeStart"></i> - <i v-text="actsignlist.validTimeEnd"></i></b> 
+	            </div>
+	             
+	            <div class="qiandao-share qiandao-tran">确定</div>
+	        </div>
+	        <div class="qiandao-layer-bg"></div>
+	    </div>
+	    <!-- 签到 layer end -->
+
+	</div> 
+<div id="Msg"></div>
+</body>
+</html>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script> 
+<script type="text/javascript" src="signIn/js/main.js"></script>
+<script> 
+function onIOSGetToken(token){
+	showmessage(token);
+    if(token.length>0){ 
+		window.localStorage.setItem("token", token);  
+	}else{ 
+		window.webkit.messageHandlers.h5Login.postMessage(null);//ios
+	}
+} 
+
+var useragent=navigator.userAgent; 
+if(navigator.userAgent.indexOf('ouyanghehe')>=0){
+	 $(".header-box,footer,.od_bottom").hide();
+	 showmessage("IOS签到完善中");
+	 window.webkit.messageHandlers.getAppToken.postMessage(null);//ios   
+}
+else if(navigator.userAgent.indexOf('mcyou')>=0){ 
+	$(".header-box,footer,.od_bottom").hide();
+	if(window.jsBridge.getAppToken()){
+		window.localStorage.setItem("token", window.jsBridge.getAppToken());  
+		$(".qiandap-box").css("margin-top","25px"); 
+			
+	}else{   
+		window.localStorage.removeItem("token");
+		window.jsBridge.h5Login(); 
+	}  
+}else{
+	if(!window.localStorage.getItem("token")){
+		  window.location.href="login.html";
+	} 
+}  	
+ 
+if(window.localStorage.getItem("token")){
+var dateArray=[];
+	var vm = new Vue({
+		el: '.htmleaf-container',
+		data: { 
+			orderAddressList: [],
+			userSignList: [],
+			userSignLast: [],
+			nowmonthList:[],
+			monthList:[],
+			actsignlist:[]
+			
+		},
+		mounted: function() {
+			this.$nextTick(function() {
+				
+				//获取当月信息
+				commonUtil.request({
+					url: nowmonth,
+					type: "get", 
+					dataType:"json",
+					contentType: "application/json", 
+					success: function(data) {
+						//showmessage("调用");
+						console.log(data);
+						if(data.code == 1) {  
+							vm.nowmonthList = data.content;  
+							if(data.content.userSign.length>0){
+								$.each(data.content.userSign,function(index,val){ 
+									vm.monthList.push(Number(val.addTime.substring(8,10))-1);  
+								})  
+							} 
+							console.log(vm.monthList); 
+							
+							
+							dateArray=vm.monthList; 
+							
+							var $dateBox = $("#js-qiandao-list"),
+							$currentDate = $(".current-date"),
+							_html = '',
+							myDate = new Date();
+							$currentDate.text(myDate.getFullYear() + '年' + parseInt(myDate.getMonth() + 1) + '月' + myDate.getDate() + '日');
+
+							var monthFirst = new Date(myDate.getFullYear(), parseInt(myDate.getMonth()), 1).getDay();
+
+							var d = new Date(myDate.getFullYear(), parseInt(myDate.getMonth() + 1), 0);
+							var totalDay = d.getDate(); //获取当前月的天数
+
+							for (var i = 0; i < 42; i++) { 
+								var monthDat=parseInt(i-monthFirst+1); 
+								if(monthDat>0 && monthDat<=totalDay){
+								   _html += ' <li><i>'+monthDat+'</i><div class="qiandao-icon"></div></li>';
+								}else{ 
+								   _html += ' <li><i></i><div class="qiandao-icon"></div></li>';
+								} 
+
+							}
+							$dateBox.html(_html) //生成日历网格
+
+							var $dateLi = $dateBox.find("li");
+							for (var i = 0; i < totalDay; i++) {
+								$dateLi.eq(i + monthFirst).addClass("date" + parseInt(i + 1));
+
+
+								for (var j = 0; j < dateArray.length; j++) {
+									if (i == dateArray[j]) {
+										$dateLi.eq(i + monthFirst).addClass("qiandao");
+									}
+								}
+							} //生成当月的日历且含已签到
+
+							$(".date" + myDate.getDate()).addClass('able-qiandao');
+                            
+							$(".qiandao-list li i").widH();
+							$(".qiandao-list li i").css("line-height",$(".qiandao-list li i").width()+"px"); 
+							
+							if(data.content.activitySign.length>0){
+								if(data.content.activitySign[0].goodsPhoto){
+									data.content.activitySign[0].goodsPhoto=photo+data.content.activitySign[0].goodsPhoto;
+								}else{
+									data.content.activitySign[0].goodsPhoto="https://m.mcyou.net/images/award.jpg";
+								}
+								
+							    data.content.activitySign[0].validTimeStart=data.content.activitySign[0].validTimeStart.substring(0,10); 
+							    data.content.activitySign[0].validTimeEnd=data.content.activitySign[0].validTimeEnd.substring(0,10); 
+							
+							    vm.actsignlist = data.content.activitySign[0]; 
+								window.sessionStorage.setItem("actsignlist",JSON.stringify(vm.actsignlist));
+								console.log(window.sessionStorage.getItem("actsignlist"));
+							} 
+
+						}else{
+							showmessage(data.msg);
+						}
+					}
+				})
+				 
+				//转盘列表
+				commonUtil.request({
+					url: usersignlist,
+					type: "post", 
+					data:{"limit":10000}, 
+					dataType:"json",
+					contentType: "application/json", 
+					success: function(data) {
+						console.log(data);
+						if(data.code == 1) {
+							vm.orderAddressList = data.content; 
+							vm.userSignLast=data.content.list[0];  
+						}else{ 
+							showmessage(data.msg);
+							setTimeout(function(){
+							//window.location.reload();
+						    },1500)
+						}
+					}
+				})
+				 
+			})
+		},
+		beforeUpdate: function() {
+			
+		},
+		methods: {
+		 'getAward':function(){  
+			    if(navigator.userAgent.indexOf('mcyou')>=0){
+                     showmessage("请到微信公众号H5商城领取奖品");
+				}else{
+                window.sessionStorage.setItem("awardAc","awardAc");
+				window.location.href="awardAcounts.html";
+			 }    
+				
+			}
+			
+		}
+	}) 
+}
+</script>
+<script type="text/javascript">
+$(function(){
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = date.getMonth()+1;
+	var day = date.getDate();
+	$(".current-date").text(year+"年"+month+"月"+day+"日");
+	//$(".qiandao-list li").widH();
+	$(".qiandao-layer-con").css({"top":(window.screen.height-400)/2});
+	$(".qiandao-layer-bg").click(function(){$(".qiandao-layer").hide();$(".qiandao-active").hide()})
+})
+</script>

@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>订单</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="min_css/public.css">
+		<link rel="stylesheet" href="min_css/content.css">
+		<link rel="stylesheet" href="min_css/detail.css">
+		<link rel="stylesheet" href="min_css/user.css">
+	</head>
+
+	<body>
+		<div id="app">
+			<header class="header-box">
+				<div class="header-menu" id="headerMenu">
+					<span class="logo">订单</span>
+					<div class="header-icon left-icon">
+						<a href="buyer.html" class="icon_bk sprite" ></a>
+					</div>
+					<div class="header-icon right-icon">
+						<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+					</div>
+				</div>
+			</header>
+			<div class="content21 order">
+            
+				<ul>
+				 
+				</ul>
+
+			</div>
+
+			<div id="Msg"></div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+
+<script type="text/javascript" src="min_js/user.js"></script>
+<script type="text/javascript" src="min_js/dropload.min21.js"></script>
+<script>
+var totalPage = 1;//初始化
+//当前页
+var page = 0;
+var statusArrStr = window.localStorage.getItem("userOrderStatus").split(",");
+var postData={}; 
+	postData.limit=8;	
+
+	var statusArr = [];
+	
+	for(var i = 0; i < statusArrStr.length; i++){
+		statusArr[i] = Number(statusArrStr[i]);
+	}
+	 
+	postData.status=statusArr;
+	
+
+	console.log(postData);
+	// dropload
+	$(".order").dropload({
+		scrollArea : window,
+		domDown : {
+			domClass   : 'dropload-down', 
+			domLoad    : '<div class="dropload-load" style="clear:both"><span class="loading"></span>加载中...</div>'
+		},
+		loadDownFn : function(me){  
+			if(page< totalPage){
+				page= parseInt(page) + 1;
+			    postData.page=page;
+				var result = '';
+                
+            
+			commonUtil.request({
+					type: 'post',
+					url: queryUserOrderList,
+
+					dataType: 'json',
+					cache : false,
+					async : false,
+					data : postData,
+					success: function(data){
+						//$("."+appendId+" i").html(data.content.totalCount);
+						console.log(data);
+						totalPage=data.content.totalPage; 
+						$.each(data.content.list, function() {
+							var _order = this;
+							$.each(_order.items, function() {
+								if(this.goodsPhoto) {
+									this.goodsPhoto = photo + this.goodsPhoto.split(",")[0];
+								}
+							});
+
+						});
+						if(totalPage==0||data.content.totalCount==0){
+							$(".dropload-down").html("暂无数据");
+							return false;
+						}
+						if(totalPage==1){
+							setTimeout(function(){ 
+							   $(".dropload-down").html("已全部加载");
+							},300);
+							setTimeout(function(){ 
+								$(".dropload-down").hide();
+							},500);
+						}
+						$.each(data.content.list,function(i,v){  
+							console.log(v);
+							result += '<li>'+
+							'<div class="order_idstyle">'+
+							'<a href="javascript:void(0)" onclick="ToOrderDatail(&apos;'+v.orderNumberStr+'&apos;)"><i>订单号：<em>'+v.orderNumberStr+'</em></i></a>'+
+							'</div>'
+							
+                           $.each(v.items, function (key, goods) { 
+							 result +='<div class="order_olstyle">'+
+								 '<div class="pic_pa">'+
+								 '<img src="'+goods.goodsPhoto+'">'+
+								 '</div>'+
+								 '<div class="info_pl">'+
+									'<p class="order_goodsname">'+
+										'<a href="javascript:void(0)" onclick="toDetail('+goods.goodsId+')"><em>'+goods.goodsName+'</em></a>'+
+									'</p>'+
+									'<p class="order_goodsprice ct_active">￥<em>'+goods.totalPrice+'</em></p>'+
+									'<p class="f12 order_goodscount"> × <em>'+goods.goodsCount+'</em></p>'+
+								'</div>'+
+							'</div>'  
+							  })
+								
+							result +='<div class="tool">'+
+								'<span>总计：<i class="ct_active">¥'+v.totalPrice+'</i></span>'
+								 if(v.status==10){
+									 result +='<input class="order_ok oright" type="button" onClick="toPay(&apos;'+v.orderNumberStr+'&apos;,'+v.totalPrice+')" value="立即付款">'+ 
+								     '<input class="order_cancel oright" type="button" onClick="cancel('+v.status+',&apos;'+v.orderNumberStr+'&apos;)" value="取消订单">' 
+								 }
+							     if(v.status==20){
+									 result +='<input class="order_cancel oright" type="button" value="待发货">' 
+								 }
+								 if(v.status==0){
+									  result +='<input class="order_cancel oright" type="button" value="订单已取消">'
+								  }
+							      if(v.status==30){
+									  result +='<input class="order_ok oright" type="button" onclick="ToOrderDatail(&apos;'+v.orderNumberStr+'&apos;)" value="订单详情">'+ 
+									  '<input class="order_cancel oright" type="button" value="待收货">'
+								  }
+							     if(v.status==40||v.status==50){
+									  result +='<input class="order_cancel oright" type="button" value="已完成">'
+								  } 
+								   
+							result +='</div>'+
+						'</li>'; 
+						}); 
+					},
+					error: function(xhr, type){
+						me.resetload();
+					}
+				});
+				setTimeout(function(){
+					$(".order ul").append(result);
+					me.resetload(); 
+				},300);
+
+			}else{
+				$(".dropload-down").html("已全部加载");
+				setTimeout(function(){
+					$(".dropload-down").hide();
+				},500);
+			}
+		}
+	});
+	
+	
+function toDetail(goodsId) {
+	window.sessionStorage.setItem("detailGoodsId", goodsId);
+	window.location.href = "detail.html";
+}
+
+//取消订单
+function cancel(status,orderNumberStr) {   
+	 commonUtil.request({
+		url: cancelOrder + orderNumberStr,
+		type: "get",
+		contentType: "application/json",
+		success: function(data) {
+			if(data.code == 1) {  
+				showmessage("取消成功");
+				setTimeout(function(){
+				   window.location.reload();	
+				},1500) 
+			} else {
+				showmessage(data.msg);
+			}
+		}
+
+	}); 
+} 
+//跳转到订单详情
+function ToOrderDatail(orderNumberStr) {
+	window.localStorage.setItem("orderDetailId", orderNumberStr);
+	window.location.href = "order_view.html";
+
+}
+//去付款
+function toPay(orderNumberStr,totalPrice) { 
+	var orderIds=[]; 
+	orderIds.push(orderNumberStr); 
+
+	 window.localStorage.setItem("oderIds",orderIds); 
+	 window.sessionStorage.setItem("allPrice", totalPrice);
+	 window.location.href = "shopcar_code_pay.html";
+}
+	
+</script>

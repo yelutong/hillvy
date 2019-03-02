@@ -1,0 +1,28 @@
+父组件.vue
+
+<swiper v-model="index" height="100%" :show-dots="false">
+      <indexNew  v-if="onTab===0" />
+      <tabContent v-else :parentId="onTab" /> <!--parentId-->
+</swiper>
+
+import indexNew from "@/views/index/indexNew";
+import tabContent from "@/views/index/tabContent";
+
+
+components: {
+    tabContent,
+    indexNew
+  },
+
+
+子组件.vue
+export default {
+props : ['parentId'],// 接收父组件传过来的值
+
+created() {
+    // 读取用户其他数据
+    this.getBannerData();
+    this.loadMore();
+    this.getTab(this.parentId);//这里可以获取到的parentId
+    console.log(this.parentId);
+  },

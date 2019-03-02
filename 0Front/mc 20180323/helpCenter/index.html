@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>帮助中心</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="email=no" name="format-detection" />
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"> 
+<link rel="stylesheet" type="text/css" href="min_css/help.css"> 
+<script type="text/javascript" src="min_js/jquery.min.js"></script>  
+<script type="text/javascript" src="min_js/publick.js"></script> 
+</head>
+
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">帮助中心</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="../index.html" class="icon" ><i class="sprite gosy"></i></a>
+            </div>
+			</div>
+</header>
+<div class="content"><img src="images/help_c.png" width="100%" /></div>
+
+  <div class="help_list">
+  	<div class="tabPanel">
+      <ul style="width:96%; margin: 0 auto;"> 
+         <li class="hit">常见问题</li>
+         <li>买家帮助</li>
+         <li>商家帮助</li> 
+      </ul> 
+    <div class="panes"> 
+       <!-- 第一个 --> 
+       <div class="pane" style="display:block;">
+			<div style="margin-top: 15px;">
+				<div id="firstpane" class="menu_list">
+			
+				<h3 class="menu_head current">常见问题</h3>
+				<div style="display:block" class="menu_body"> 
+					<a href="help1_list1_1.html">【教程】新朋友如何注册成会员</a> 
+					<a href="help1_list1_2.html">如何找回密码？</a> 
+					<a href="help1_list1_3.html">如何购买商品？</a> 
+				    <a href="help1_list1_4.html">如何查询订单，物流？</a> 
+				    <a href="help1_list1_5.html">【教程】如何实名认证?</a> 
+				    <a href="help1_list1_8.html">【教程】如何购买5000元销售套餐成为明昌创客会员</a>
+				    <a href="help1_list1_12.html">【名词解释】商城个种积分傻傻分不清楚怎么办</a> 
+				     <a href="help1_list1_9.html">成为明昌创客会员的优势？</a>
+				     <a href="help1_list1_10.html">如何成为明昌代理商？</a>
+				     <a href="help1_list1_11.html">成为明昌区域代理商优势？</a>
+				    <a href="help1_list1_6.html">【教程】如何激活5000元山茶油销售套餐?</a>
+				    <a href="help1_list1_7.html">如何分享，创建自己的团队？</a>
+					<a href="help1_list1_one.html">如何成为代理商？</a> 
+					<a href="help1_list1_two.html">如何联系我们？</a> 
+				</div>
+			</div>
+			</div>
+        </div>
+        <!-- 第二个 --> 
+        <div class="pane" >
+			<div style="margin-top: 15px;">
+				<div id="firstpane" class="menu_list">
+				<h3 class="menu_head current">购买类</h3>
+				<div style="display:block" class="menu_body"> 
+					<a href="help2_list1_one.html">购物提供发票吗？</a>
+					<a href="help2_list1_two.html">拍下的商品不想要了，商家已经发货怎么办？</a>
+				</div>
+				<h3 class="menu_head">支付类</h3>
+				<div style="display:none" class="menu_body">
+					<a href="help2_list2_one.html">付款不成功怎么办？</a>
+					<a href="help2_list2_two.html">重复付款后怎么办？</a>
+				</div>
+				<h3 class="menu_head">退货退款类</h3>
+				<div style="display:none" class="menu_body">
+					<a href="help2_list3_one.html">退货和换货邮费由谁承担？</a> 
+				</div> 
+			    </div>
+			</div>
+        </div>
+        
+      
+      
+      
+       <!-- 第三个 -->
+        <div class="pane">
+			<div style="margin-top: 15px;">
+				<div id="firstpane" class="menu_list"> 
+				<h3 class="menu_head current">商家须知</a></h3> 
+				<div style="display:block"  class="menu_body"> 
+			        <a href="help3_list1_one.html">交易完成，买家收到货后，商家何时可以收到货款？</a>   
+				</div> 
+			   </div>
+        </div>
+       </div> 
+        
+       
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
+<script type="text/javascript">
+$(function(){	
+	$('.tabPanel ul li').click(function(){
+		$(this).addClass('hit').siblings().removeClass('hit');//点击它才显示，其他隐藏
+		$('.panes>div:eq('+$(this).index()+')').show().siblings().hide();	//class为panes的下一个子div显示，其他隐藏
+	})
+})
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("#firstpane .menu_body:eq(0)").show();
+	$("#firstpane h3.menu_head").click(function(){
+		$(this).addClass("current").next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+		$(this).siblings().removeClass("current");
+	});
+	
+	$("#secondpane .menu_body:eq(0)").show();
+	$("#secondpane h3.menu_head").mouseover(function(){
+		$(this).addClass("current").next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
+		$(this).siblings().removeClass("current");
+	});
+	
+});
+</script> 

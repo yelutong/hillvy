@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>支付</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<style>
+body{background:#ededed;margin:0;padding: 0;color:#999 ;outline: none;}
+table,td{padding:0;margin:0}	
+.wxpay{width:84%;float: left;margin:20px 3% 0 3%;padding:5px 5% 10px 5%;background:#FFF;display: block;border-radius:5px;}
+.head{text-align: center;margin:20px 0 15px 0;}
+.center{text-align:center;font-size:15px;}
+.center	i{font-style: normal;color:#f05a4b;margin:0 5px;}	
+.center img{width:60px;}	
+.hd_cnt{border-top:1px solid #ccc;width:100%;float:left;padding:15px 0 10px 0;}	
+.head img{width:70px;height:70px;}	
+.wxpay p{height:20px;line-height:20px;background: #FFF;margin:15px 0 8px 0!important;}	
+.wxpay span{position: relative;background: #FFF;border-bottom: 1px solid #ccc;height:52px!important;float: left;width: 100%;padding:0 0 5px 0;}	
+.wxpay input{width:100%!important;height:52px!important;line-height:52px!important;font-size:40px!important;text-indent:40px!important;background: #FFF;color:#000;border: none;outline:none;}
+.wxpay span:before{content: "¥";font-size:40px!important;width:50px!important;line-height:52px!important;height:52px!important;position: absolute!important;color:#000;}	
+.paybtn{background:#19ad17;outline:none; width:100%;height:50px;line-height:50px;font-size:21px;color:#FFF;border:none;margin:20px 0 10px 0;border-radius: 5px}
+.pay_botton{float:left;width:100%;display: block} 
+.pay_right{width:100%;}	
+.pay_right table{width:100%;border-right:1px #999 solid;border-bottom:1px #999 solid;border-collapse:collapse;}
+.pay_right td{border-left:1px #999  solid;height:45px;line-height:45px; border-top:1px #999 solid;text-align: center;color:#000;font-size:24px}	
+.pay_right td img{max-width:25px}	
+.pay_right td.td_active{background:#e0e0e0!important }	
+</style>
+</head> 
+<body>
+<div class="head"><img src="images/logo400.png"></div>
+<div class="center">正在支付</div>
+<div class="wxpay">
+<p>支付金额</p>	
+
+	<span><input type="tel" onkeyup="onlyNumber(this)" class="pay_money"></span>
+	<button type="button" class="paybtn">支付</button> 
+
+
+</div>
+<div class="center hd_cnt"><img src="images/tobottom.png"></div>
+<div class="pay_botton"> 
+<div class="pay_right">
+	<table>
+		<tr><td>1</td><td>2</td><td>3</td></tr>
+		<tr><td>4</td><td>5</td><td>6</td></tr>
+		<tr><td>7</td><td>8</td><td>9</td></tr>
+		<tr><td class="td_active">.</td><td>0</td><td class="td_active"><img src="images/reset.png"></td></tr>
+	</table>
+</div>
+</div>
+
+</body>
+</html>
+<script>
+
+	var payOK = false;
+	var userAgent = navigator.userAgent.toLowerCase();
+
+	 if(userAgent.match(/MicroMessenger/i)=="micromessenger"){
+	//判断是微信app的浏览器
+			payOK = true;
+    }else {
+			alert("请使用微信支付");
+	}
+
+
+function onlyNumber(obj){ 
+		//先把非数字的都替换掉，除了数字和. 
+		obj.value = obj.value.replace(/[^\d\.]/g,''); 
+		//必须保证第一个为数字而不是. 
+		obj.value = obj.value.replace(/^\./g,'0.'); 
+		//保证只有出现一个.而没有多个. 
+		obj.value = obj.value.replace(/\.{2,}/g,'.'); 
+		//保证.只出现一次，而不能出现两次以上 
+		obj.value = obj.value.replace('.','$#$').replace(/\./g,'').replace('$#$','.');
+		 //只能输入两个小数
+		obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); 
+} 
+
+function getQueryString(name) { 
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+		var r = window.location.search.substr(1).match(reg); 
+		if (r != null) return unescape(r[2]); return null; 
+	} 
+
+$(function(){    
+  $(".pay_money").focus();
+  $(".pay_right td").css({"width":window.screen.width/3});
+	
+	$(".pay_right td").click(function () {
+		  var xfjp_text = $(".pay_money").val(); 
+          var click = $(this).html();
+		//console.log(click);
+		if (!click.match(/^[0-9]{0}([0-9]|[.])+$/)) {//如果不能匹配数字和点就清空
+                xfjp_text = "";
+                $(".pay_money").val(xfjp_text);
+            }else {
+                xfjp_text = xfjp_text + click;
+				//只能输入一个小数点，且只能输入两位
+				xfjp_text=xfjp_text.replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3').replace(/^\./g,'0.');
+				
+                $(".pay_money").val(xfjp_text);
+;
+          }
+
+	})
+	
+	$(".paybtn").click(function(){
+			if(!payOK){
+				alert("请使用支付宝或微信支付");
+				return false;
+			}
+			var price = $(".pay_money").val();
+			var wxCode = getQueryString("code");
+			
+			$.ajax({
+			url: "https://api.mcyou.net/api/orderformoutlinepay/pay",
+			type: "POST",
+			contentType: "application/json",
+			data: JSON.stringify({
+				goodsType: 3,
+				price: price,
+				wxCode: wxCode,
+			}),
+
+			success: function(data) {
+				var data = JSON.parse(data);
+				if(data.code == 0) {
+					alert(data.msg);
+					window.location.href = 'http://mp.weixin.qq.com/s/PdcVJRVpzVxlGFb8VshS8g';
+				} else {
+					sessionStorage.setItem('orderNumber', data.content.orderNumber);
+					sessionStorage.setItem('orderPrice', data.content.orderPrice);
+					sessionStorage.setItem('goodsName', data.content.goodsName);
+					function onBridgeReady(){
+						   WeixinJSBridge.invoke(
+							   'getBrandWCPayRequest', JSON.parse(data.content.payData),
+							   function(res){
+							   
+								   if(res.err_msg == "get_brand_wcpay_request:ok" ) { 
+									   window.location.href="shopcar_pay_ok.html";
+									   return false; 
+								   }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+							   }
+						   ); 
+						}
+						if (typeof WeixinJSBridge == "undefined"){
+						   if( document.addEventListener ){
+							   document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+						   }else if (document.attachEvent){
+							   document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+							   document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+						   }
+						}else{
+						   onBridgeReady();
+						}
+				}
+			}
+		});
+	
+		$(".paybtn").attr('disabled',"true")
+
+ 	});
+	
+	$(".pay_money").focus(function(){
+        document.activeElement.blur();
+    });
+	
+	
+	})
+	
+	
+	
+</script>

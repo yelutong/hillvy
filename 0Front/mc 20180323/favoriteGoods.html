@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>收藏夹</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="min_css/public.css"> 
+<link rel="stylesheet" type="text/css" href="min_css/content.css"> 
+<link rel="stylesheet" type="text/css" href="min_css/user.css"/>
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">收藏夹</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="shopcar.html" class="icon" ><i class="sprite gocar"></i><em></em></a>
+            </div>
+			</div>
+</header>
+<div class="content ticket">
+<div class="ticketBox collectBox">
+			<div class="hd">  
+				<ul><li class="hd1">商品收藏</li><li class="hd2">店铺收藏</li></ul>
+			</div>
+			<div class="ticketUl order">
+				<div class="bd">
+					<ul class="takeOk1"></ul>
+					<ul class="takeList1"></ul> 
+				</div> 
+			</div>
+		</div> 
+</div>
+<footer>
+</footer> 
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div>
+<div id="Msg"></div>   
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js" ></script>
+<script type="text/javascript" src="min_js/vue.min.js" ></script> 
+<script type="text/javascript" src="min_js/publick.js"></script>  
+<script type="text/javascript" src="min_js/jquery.SuperSlide.2.1.1.js"></script> 
+<script type="text/javascript" src="min_js/dropload.min21.js"></script>
+<script>
+  $("footer").load("footer.html"); 
+  $(".ticketBox").slide({effect:"fade"});
+  $(".ticketBox .ticketUl").css("height",window.screen.height-143);	
+  $(function(){
+	  $(".hd1").click(function(){
+		if("obj_idok5"==window.sessionStorage.getItem("obj_idok5")){  
+			return false;
+		}else{ 
+		  window.sessionStorage.setItem("obj_idok5","obj_idok5"); 
+		  $(".takeOk1").empty();
+		  $(".dropload-down").remove(); 
+		  pageloadAll(".ticketUl",".takeOk1",goodsCollectList);
+		  setTimeout(function(){ 
+				window.sessionStorage.removeItem('obj_idok5');
+		  },1000);
+		}
+	  })
+	  $(".hd2").click(function(){
+		if("obj_idok6"==window.sessionStorage.getItem("obj_idok6")){
+		  return false;
+		}else{ 
+		  window.sessionStorage.setItem("obj_idok6","obj_idok6"); 
+		  $(".takeList1").empty();
+		  $(".dropload-down").remove();
+		  pageloadAll(".ticketUl",".takeList1",storecollectlist);
+		  setTimeout(function(){ 
+				window.sessionStorage.removeItem('obj_idok6');
+		  },1000);
+		} 
+	  }) 
+  })	
+</script>  
+<script>
+pageloadAll(".ticketUl",".takeOk1",goodsCollectList);
+function pageloadAll(dropClass,appendId,url){
+	//总页数
+	var totalPage = 1;//初始化
+	//当前页
+	var page = 0;
+
+	// dropload
+	$(dropClass).dropload({ 
+		scrollArea : window,
+		domDown : {
+			domClass   : 'dropload-down', 
+			domLoad    : '<div class="dropload-load" style="clear:both"><span class="loading"></span>加载中...</div>'
+		},
+		loadDownFn : function(me){
+			if(page< totalPage){
+				page= parseInt(page) + 1;  
+				console.log(page);
+				//console.log("页码"+page);
+				if(page==window.sessionStorage.getItem("pageok") && page>1){
+					console.log("重复");
+					return false;
+				}else{
+					window.sessionStorage.setItem("pageok",page);
+				}  
+				
+				var result = '';
+				var data21={  
+						"page" : page,
+						"limit":6
+					}  
+			commonUtil.request({
+					type: 'post',
+					url: url, 
+					dataType: 'json',
+					cache : false,
+					async : false,
+					data : data21,
+					success: function(data){ 
+						//$("."+appendId+" i").html(data.content.totalCount);
+						console.log(data);
+						totalPage=data.content.totalPage;  
+						if(totalPage==0||data.content.totalCount==0){
+							console.log("ddd1");
+							$(dropClass+" .dropload-down").html("查询无数据");
+							return false;
+						}
+						if(totalPage==1){
+							setTimeout(function(){ 
+							   $(dropClass+"  .dropload-down").html("已全部加载");
+							},300);
+							setTimeout(function(){ 
+								$(dropClass+"  .dropload-down").hide();
+							},500);
+						}
+						jQuery.each(data.content.list,function(i,v){    
+							
+							if(v.storeId){
+								result += '<li>'+
+										'<div class="order_olstyle"><div class="good_xq"><div class="pic_pa">'+
+										'<img src="'+photo+v.storePhoto+'"  onclick="toStore('+v.storeId+')"></div>'+
+										'<div class="info_pl"><b class="order_goodsname"  onclick="toStore('+v.storeId+')"><a href="javascript:void(0)">'+v.storeName+'</a></b>'+
+										'<i class="order_goodsprice ct_active"><b>福田区新浩e都1802</b></i><b class="order_cancel shopCancel" onClick="shoreCancel('+v.storeId+')">取消收藏</b></div></div></div>'+
+	                              '</li>'; 
+								
+							}else{
+								result += '<li>'+
+										'<div class="order_olstyle"><div class="good_xq"><div class="pic_pa">'+
+										'<img src="'+photo+v.goodsPhoto.split(",")[0]+'"  onclick="toDetail('+v.goodsId+')"></div>'+
+										'<div class="info_pl"><b class="order_goodsname"><a href="javascript:void(0)"  onclick="toDetail('+v.goodsId+')">'+v.goodsName+'</a></b>'+
+										'<i class="order_goodsprice ct_active">￥<b>'+v.goodsPrice+'</b></i><b class="order_cancel shopCancel" onClick="shopCancel('+v.goodsId+')">取消收藏</b></div></div></div>'+
+	                              '</li>'; 
+							} 
+							
+					  
+						});
+					},
+					error: function(xhr, type){
+						me.resetload();
+					}
+				}); 
+				setTimeout(function(){
+					$(appendId).append(result);
+					me.resetload();  
+				},500);
+
+			}else{
+				$(dropClass+"  .dropload-down").html("已全部加载");
+				setTimeout(function(){
+					$(dropClass+" .dropload-down").hide();
+				},800);
+			} 
+			
+		}
+	}); 
+	 	
+	setTimeout(function(){
+		var droploadDown=$(".dropload-down").html();
+		 
+		if((droploadDown=="undefined"||droploadDown==undefined) && $(".hd1").hasClass("on")){
+		    window.sessionStorage.removeItem('obj_idok5');$(window).scrollTop(100);  
+			//$(".hd1").click();
+			setTimeout(function(){
+				$(window).scrollTop(0);
+			},500)
+		}
+		else if((droploadDown=="undefined"||droploadDown==undefined) && $(".hd2").hasClass("on")){ 
+			window.sessionStorage.removeItem('obj_idok6');$(window).scrollTop(100);  
+			//$(".hd2").click();
+			setTimeout(function(){
+				$(window).scrollTop(0);
+			},500)
+		}  
+	},500);											  
+}	 
+function shopCancel(goodsId){
+	commonUtil.request({	 
+	   type: "get",
+	   url: goodscollect+goodsId, 
+	   dataType : "json",  
+	   contentType: "application/json",
+	   success: function(data){ 
+		   showmessage(data.msg); 
+		   setTimeout(function(){
+			   location.reload();
+		   },1500);
+		}
+	   })
+	
+}	
+function shoreCancel(storeId){
+	commonUtil.request({	 
+	   type: "get",
+	   url: storecollect+storeId, 
+	   dataType : "json",  
+	   contentType: "application/json",
+	   success: function(data){ 
+		   showmessage(data.msg); 
+		   setTimeout(function(){
+			   location.reload();
+		   },1500);
+		}
+	   })
+}	
+function toStore(storeId) { 
+	window.sessionStorage.setItem("storeId",storeId);
+	window.location.href = "store.html";
+}	
+</script> 

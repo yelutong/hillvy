@@ -1,0 +1,448 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>订单信息</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="min_css/public.css">
+		<link rel="stylesheet" href="min_css/content.css">
+		<link rel="stylesheet" href="min_css/detail.css">
+		<link rel="stylesheet" href="min_css/shopcar.css">
+		<link rel="stylesheet" href="min_css/user.css">
+		<link rel="stylesheet" href="min_css/font-awesome.min.css">
+	</head>
+
+	<body>
+		<header class="header-box">
+			<div class="header-menu" id="headerMenu">
+				<span class="logo">订单信息</span>
+				<div class="header-icon left-icon">
+					<a href="javascript:window.history.back()" class="icon_bk sprite" ></a>
+				</div>
+				<div class="header-icon right-icon"> 
+					<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+            </div>
+			</div>
+		</header>
+		<div class="content21 sca" id="app">
+
+			<div>  
+				<div id="1163" class="myaddress2 chadd" v-if="defaultAddress">
+					<input type="hidden" id="areaId" :value="defaultAddress.id" />
+					<span class="name" v-text="defaultAddress.userName"></span>
+					<span class="num" v-text="defaultAddress.phone"></span>
+					<span class="address" v-text="defaultAddress.areaInfo"></span>
+					<span class="address" v-text="defaultAddress.address"></span>
+					<span class="shop_address_edit"><a href="address.html?id=1163"><i class="fa fa-pencil-square-o color3" style="font-size:20px"></i></a></span>
+				</div>
+			</div>
+			<div class="confirm">
+
+				<ul v-for="store in oderInfoObj.storeList">
+					<div class="cart_headerbox">
+						<img alt="" src="images/icon-kin.png" width="100%;" style="border: 0;vertical-align:text-bottom">
+						<span class="cart_storename" v-text="store.storeName"  @click="toStore(store.storeId)"></span>
+					</div>
+					<template v-for="goods in store.goodsCarts">
+						<li class="order_listyle" @click="toDetail(goods.goodsId)">
+							<div class="shop_img">
+								<img v-if="goods.goodsPhoto"  alt="" :src="photo+goods.goodsPhoto" width="100%">
+							</div>
+							<div style="width: 70%;float: left;display:block;">
+								<div class="shop_name ct_active" v-text="goods.goodsName"></div>
+								<div class="shop_select">
+									<div class="shop-brief" v-text="goods.goodsSkuInfo">
+										<!--<span>重量:3.3kg</span><span>颜色:标配版</span><span>版本:13.3英寸</span>--> 
+									</div>
+								</div>
+								<div class="shop_money ct_active normalPrice">¥<b v-text="goods.price"></b></div>
+								<div class="shop_money ct_active hide exchangePriceShow"><b class="integralPrice"></b>+¥<b class="exchangePrice"></b></div>
+								<div class="shop_num">×<b v-text="goods.num"></b></div>
+							</div>
+						</li>
+					</template>
+
+				</ul>
+				<!--<div class="serveyf">
+					<div class="asdk"><span class="mright" style="font-size: 16px">运费:0 元</span></div>
+				</div </div>-->
+                
+                
+                <div class="color6 h40 set platform counSee" @click="platformList">平台优惠券<i>未使用</i></div> 
+                <div class="color6 h40 set getcoupon counSee" @click="getcouponList">店铺优惠券<i>未使用</i></div>
+                
+                <div class="color6 h40 set integral hide" >使用积分<i>未使用</i></div>
+                
+                
+                <div><textarea class="remark" placeholder="备注"></textarea></div>
+                
+                
+                <div class="payment-bar">
+                
+                <div class="shop-total f16">合计（含运费）：<label class="color2 f18 ct_active">￥<b v-text="oderInfoObj.allprice" id="allPrice"></b></label></div> 
+                <a href="javascript:void(0)" class="settlement" @click="saveOrderBtn">立即下单</a>
+                
+                </div>
+                 
+
+			</div> 
+
+			<div id="Msg"></div>
+			<div class="mb_bg"></div>
+			<div class="region-picker-wrapper couponList">
+			<p class="h30 center color3">选择店铺优惠券</p>
+			<ul>
+				<li v-for="coupon in couponList"> 
+					<div class="pay takeCouponSelect takeCouponVal" @click="takeCouponSelect(coupon.id)">
+						<input type="radio" class="checkbox" :id="coupon.id" :value="coupon.price" name="webbankpay">
+					</div>
+					<div class="coupon-left">
+						<p v-text="coupon.title"></p>
+						<p v-text="coupon.content"></p>
+						<p><i v-text="coupon.validTimeStart.substring(0,10)"></i> — <i v-text="coupon.validTimeEnd.substring(0,10)"></i></p>
+					</div>
+					<div class="coupon-right center"> 
+					<div class="triangle-border-right"><em class="circular0"></em><em class="circular1"></em><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div> 
+					  <p class="cp_price">¥<i v-text="coupon.price"></i></p>
+					  <p class="cp_requrePrice">消费满<i v-text="coupon.requirePrice"></i>可用</p>
+					</div>
+				</li>
+			</ul>
+            <button class="addressbtn" @click="takeCouponOk('couponListok')">确 定</button>
+		</div>
+	 	
+		 	<div class="region-picker-wrapper platformCoupon">
+			<p class="h30 center color3">选择平台优惠券</p>
+			<ul>
+				<li v-for="coupon in platformCoupon"> 
+					<div class="pay takeplatformVal takeCouponSelect" @click="platformCouponSelect(coupon.id)">
+						<input type="radio" class="checkbox" :id="coupon.id" :value="coupon.price" name="webbankpay">
+					</div>
+					<div class="coupon-left">
+						<p v-text="coupon.title"></p>
+						<p v-text="coupon.content"></p>
+						<p><i v-text="coupon.validTimeStart.substring(0,10)"></i> — <i v-text="coupon.validTimeEnd.substring(0,10)"></i></p>
+					</div>
+					<div class="coupon-right center"> 
+					<div class="triangle-border-right"><em class="circular0"></em><em class="circular1"></em><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div> 
+					  <p class="cp_price">¥<i v-text="coupon.price"></i></p>
+					  <p class="cp_requrePrice">消费满<i v-text="coupon.requirePrice"></i>可用</p>
+					</div>
+				</li>
+			</ul>
+            <button class="addressbtn" @click="takeCouponOk('platformCouponok')">确 定</button>
+		</div>
+		
+		
+	</body>
+
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script> 
+<script>
+document.write("<s"+"cript type='text/javascript' src='min_js/publick.js?timestamp="+new Date().getTime()+"'></scr"+"ipt>");  
+document.write('<scr'+'ipt type="text/javascript" src="min_js/api.js?rand='+Math.random()+'"></sc'+'ript>');
+document.write('<scr'+'ipt type="text/javascript" src="min_js/detail.js?rand='+Math.random()+'"></sc'+'ript>'); 
+</script> 
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+<script>
+  $("footer").load("footer.html");  
+</script> 
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			defaultAddress: {},
+			oderInfoObj: {},
+			couponList:{},
+			goodsIntegral:0,
+			toOrderform:{},
+			platformCoupon:{},
+			userCouponIds:[],
+			platformIds:[] 
+		},
+		mounted: function() {
+			this.$nextTick(function() {
+				/*选择地址*/
+				var chooseAddress = window.localStorage.getItem("chooseAddress");//获取地址address.html页面，选中的地址
+				if(chooseAddress) {
+					vm.defaultAddress = JSON.parse(window.localStorage.getItem("chooseAddress"));
+					window.localStorage.setItem("chooseAddress", "");
+				} else {
+					/*获取默认地址*/
+					commonUtil.request({
+						url: defaultAddress,
+						type: "get",
+						contentType: "application/json",
+						success: function(data) { 
+							if(data.code == 1) {
+								vm.defaultAddress = data.content;
+							}
+						},
+						beforeSend: function(request) {
+							request.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+						}
+					});
+				}
+				//订单信息	
+				var oderInfo = window.localStorage.getItem("oderInfo");
+				console.log(JSON.parse(oderInfo));
+				if(oderInfo) {
+					vm.oderInfoObj = JSON.parse(oderInfo);
+
+				} 
+				//下单价格查询 
+				if(oderInfo) {
+					var oderInfoObj = JSON.parse(oderInfo); 
+					vm.toOrderform.channel = 2;
+					vm.toOrderform.goodsCarts = oderInfoObj.carIdList;
+					vm.toOrderform.userAddressId = Number($("#areaId").val());
+					var orderformUuid=window.localStorage.getItem("orderformUuid");
+					vm.toOrderform.uuid = orderformUuid;
+					if(window.sessionStorage.getItem("exchangeBuy")){
+					     $(".counSee").hide();$(".integral").show();
+						 vm.toOrderform.goodsChannel=2;
+						 vm.toOrderform.isUseIntegral=1;
+					}else{ 
+						vm.toOrderform.goodsChannel=1;
+						vm.toOrderform.isUseIntegral=0; 
+					}  
+					commonUtil.request({
+						url: orderPriceNew,//queryOrderPrice,
+						type: "POST",
+						data: vm.toOrderform,
+						contentType: "application/json",
+						success: function(data) {
+							console.log("下单");
+							console.log(data); 
+							if(data.code == 1) {
+								var payPrice=data.content.payPrice;
+								window.sessionStorage.setItem("allPrice",payPrice); 
+								$("#allPrice").text(payPrice); 
+								  if(window.sessionStorage.getItem("exchangeBuy")){
+									     vm.goodsIntegral=data.content.exchange.goodsIntegral;
+									     $(".integralPrice").html(data.content.exchange.goodsIntegral+"积分");
+						                 $(".exchangePrice").html(data.content.exchange.salePrice);
+									     if(data.content.exchange.userIntegral<data.content.exchange.goodsIntegral){
+											 $(".integral i").html("积分不足");
+										 }else{
+											 $(".integral i").html("-"+data.content.exchange.goodsIntegral+"积分");
+										 }   
+										 $(".normalPrice").hide();$(".exchangePriceShow").show();
+									} 
+								
+							} else {
+								showmessage(data.msg);
+							}
+						}
+
+					});
+
+				}
+				 
+				 
+
+			})
+		},
+
+		methods: {
+			//去商品详情页面
+			toDetail: function(goodsId) {
+				window.sessionStorage.removeItem("detailExchange");
+				window.sessionStorage.setItem("detailGoodsId", goodsId);
+				window.location.href = "detail.html";
+			},
+			toStore: function(storeId) { 
+				window.sessionStorage.removeItem("detailExchange");
+				window.sessionStorage.setItem("storeId",storeId);
+				window.location.href = "store.html";
+			},
+            platformList:function(){
+					commonUtil.request({
+						type: 'post',
+						url: allowedCoupon, 
+						dataType: 'json', 
+						data : {"goodsCarts":vm.toOrderform.goodsCarts},
+						success: function(data){ 
+							if(data.content.platformCoupon.length==0){
+								showmessage("你暂无可用平台券哦");return false;
+							}else{ 
+							 vm.platformCoupon=data.content.platformCoupon;
+							 $(".platformCoupon").css("transform","translate3d(0px,-360px, 0px)");
+							 $(".mb_bg").show();
+							}
+						} 
+					});
+				
+			},
+			getcouponList:function(){
+				    vm.userCouponIds=[];
+					commonUtil.request({
+						type: 'post',
+						url: allowedCoupon, 
+						dataType: 'json', 
+						data : {"goodsCarts":vm.toOrderform.goodsCarts},
+						success: function(data){ 
+							if(data.content.sellerStoreCoupon.length==0){
+								showmessage("你暂无可用店铺券哦");return false;
+							}else{
+								 vm.couponList=data.content.sellerStoreCoupon;
+								 $(".couponList").css("transform","translate3d(0px,-360px, 0px)");
+								 $(".mb_bg").show();
+							}
+						} 
+					}); 
+				
+			},
+			takeCouponSelect:function(couponId){console.log(couponId);
+				vm.userCouponIds=[];							
+				if($("#"+couponId).hasClass("checked21")){
+					$(".checkbox").removeClass("checked21");
+					return false;
+				}	
+				$(".checkbox").removeClass("checked21");				
+				$("#"+couponId).addClass("checked21");  
+			},
+			platformCouponSelect:function(couponId){console.log(couponId);
+				vm.platformIds=[];							
+				if($("#"+couponId).hasClass("checked21")){
+					$(".checkbox").removeClass("checked21");
+					return false;
+				}	
+				$(".checkbox").removeClass("checked21");				
+				$("#"+couponId).addClass("checked21");  
+			},
+			takeCouponOk:function(obj){  
+				if(obj=="couponListok"){
+					$(".takeCouponVal input.checked21").each(function(index,val){
+					vm.userCouponIds.push(Number($(this).attr("id"))); 
+				    })  
+				   $(".getcoupon i").html("优惠¥"+$(".takeCouponVal input.checked21").val());	
+				}else{
+					$(".takeplatformVal input.checked21").each(function(index,val){
+					  vm.platformIds.push(Number($(this).attr("id"))); 
+				    }) 
+					$(".platform i").html("优惠¥"+$(".takeplatformVal input.checked21").val());	
+				}  
+				vm.toOrderform.userCouponIds=vm.userCouponIds.concat(vm.platformIds);//数组合并 
+				 console.log(vm.toOrderform.userCouponIds);
+				
+							console.log(vm.toOrderform);
+				commonUtil.request({
+						url: orderPriceNew,
+						type: "POST",
+						data: vm.toOrderform,
+						contentType: "application/json",
+						success: function(data) {
+							console.log(data);
+							if(data.code == 1) { 
+								$("#allPrice").text(data.content.payPrice);
+								window.sessionStorage.setItem("allPrice", data.content.payPrice);
+								
+							} else {
+								showmessage(data.msg);
+							}
+						}
+
+					});
+			},
+			unique:function(arr){
+				  var res =[]; 
+				  var json = {}; 
+				  for(var i=0;i<arr.length;i++){ 
+					if(!json[arr[i]]){ 
+					  res.push(arr[i]); 
+					  json[arr[i]] = 1; 
+					} 
+				  } 
+　　              return res;
+			},
+			//下订单
+			saveOrderBtn: function() {
+				var oderInfo = window.localStorage.getItem("oderInfo");
+				if(oderInfo) {
+					var oderInfoObj = JSON.parse(oderInfo);
+					var toOrderform = {};
+					toOrderform.channel = 2;
+					toOrderform.isUseIntegral=0;
+					toOrderform.goodsCarts = oderInfoObj.carIdList;
+					toOrderform.userAddressId = Number($("#areaId").val());
+					toOrderform.userCouponIds = vm.toOrderform.userCouponIds; 
+					toOrderform.remark=$(".remark").val();
+					var orderformUuid=window.localStorage.getItem("orderformUuid");
+					toOrderform.uuid = orderformUuid;
+						if(!toOrderform.channel) {
+						showmessage("下单渠道部能空");
+						return false;
+					}
+					if(!toOrderform.userAddressId) {
+						showmessage("下单地址不能为空");
+						return false;
+					}
+					if(!toOrderform.goodsCarts || toOrderform.goodsCarts.length <= 0) {
+						showmessage("购物车没商品");
+						return false;
+					}
+					   
+					if(!window.sessionStorage.getItem("exchangeBuy")){
+						 var allprice = Number($("#allPrice").text());
+						 if(allprice <= 0) {
+								showmessage("订单总价不能为空");
+								return false;
+						 }
+					 }else{
+						 toOrderform.goodsIntegral = vm.goodsIntegral;
+						 toOrderform.isUseIntegral=1;
+					 } 
+					commonUtil.request({
+							url: saveOrder,
+							type: "POST",
+							data: toOrderform,
+							contentType: "application/json",
+							success: function(data) { 
+								window.localStorage.setItem("oderInfo", ""); 
+								var orderIds=[];
+								var orderIdsList = data.content.split(",");
+								$.each(orderIdsList, function(index,val) {
+									 orderIds.push(val);
+								}) 
+								window.localStorage.setItem("oderIds", orderIds);
+								
+								if(data.code == 1) {
+									commonUtil.request({
+							            url: orderDatailById+data.content,
+							            type: "get",
+										contentType: "application/json",
+										success: function(data) { 
+											if(data.code == 1) {
+												if(data.content.status==20){
+													showmessge("积分支付成功");
+													window.sessionStorage.removeItem("exchangeBuy"); 
+													setTimeout(function(){
+														window.localStorage.setItem("userOrderStatus", 20);
+			                                            window.location.href = "buyer_order.html";
+													},1500) 
+												}else{ 
+													window.location.href = "shopcar_code_pay.html"; 
+												}
+												
+											}
+										}
+									});
+									  
+								} else {
+									showmessage(data.msg);
+								}
+							}
+
+						});
+
+				}
+			}
+		}
+	});
+
+</script>

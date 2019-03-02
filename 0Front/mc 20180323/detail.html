@@ -1,0 +1,545 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+		<META HTTP-EQUIV="Expires" CONTENT="0">
+		<meta http-equiv="Cache" content="no-cache">
+		<title>商品详情</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="min_css/public.css">
+		<link rel="stylesheet" type="text/css" href="min_css/content.css">
+		<link rel="stylesheet" type="text/css" href="min_css/user.css"/>
+		<link rel="stylesheet" type="text/css"  href="min_css/swiper.min.css">
+		<link rel="stylesheet" type="text/css"  href="min_css/font-awesome.min.css">
+		<style>
+			html,
+			body {
+				position: relative;
+			}
+			
+			.swiper-container {
+				width: 100%;
+				height: auto;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			
+			.swiper-slide {
+				text-align: center;
+				font-size: 18px;
+				float: left;
+				background: #fff;
+				width: 100%;
+				height: auto;
+				position: relative;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			}
+			
+			.swiper-slide img {
+				width: 100%;
+			}
+			
+			.swiper-pagination-bullet {
+				opacity: 1;
+			}
+			
+			.swiper-pagination-bullet-active {
+				display: inline-block;
+				margin-top: 14px;
+				margin-left: 5px;
+				margin-right: 5px;
+				width: 20px;
+				height: 8px;
+				background: #c7c7c7;
+				border-radius: 9999px;
+				cursor: pointer;
+				transition: all 0.6s;
+			}
+		</style>
+	</head>
+
+	<body onLoad="detailMes()">
+		<div id="app">
+			<header class="header-box">
+				<div class="header-menu" id="headerMenu">
+					<span class="logo">商品详情</span>
+					<div class="header-icon left-icon">
+						<a href="index.html" class="icon_bk sprite" ></a>
+					</div>
+					<div class="header-icon right-icon">
+						<a href="shopcar.html" class="icon"><i class="sprite gocar"></i><em></em></a>
+                        <span class="icon_share" onClick="toshare21()"><i class="sprite goshare"></i></span>
+					</div>
+				</div>
+			</header>
+			<div class="content">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="goodsMainPhoto in goodsMainPhotoList"><img v-bind:data-src="goodsMainPhoto" class="swiper-lazy"></div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+				<div class="detail_bg"></div>
+				<div class="detail_sp">
+				   <i v-text="goods.sellerStoreId"  v-bind:alt="goods.id" value="明昌生态自营店"  id="sellerStoreId" class="hide"></i>  
+				   <i v-text="goods.goodsMainPhoto" id="goodsMainPhoto" class="hide"></i>
+				
+					<!--<span class="dt_active saleprice" v-if="goods.showSkus&&goods.showSkus.length>0">¥<i v-text="skuPrice"></i></span>-->
+					<span class="saleprice market_P normalDetail"><i class="dt_active f16">¥<b v-text="goods.salePrice"></b></i><i class="swipe_hr">¥<b v-text="goods.marketPrice"></b></i></span> 
+					<span class="saleprice market_P exchangeDetail hide"><i class="dt_active f16"><b class="integralPrice"></b>+¥<b class="exchangePrice"></b></i></span>
+					<span class="collect" @click="collect(goods)">  
+					<i class="fa fa-heart dt_active" aria-hidden="true"  v-if="goods.isCollect==true"></i><i class="fa fa-heart" aria-hidden="true" v-else></i>
+					收藏
+					</span> 
+					
+					<span class="goodsname" v-text="goods.goodsName"></span>
+                    <span class="saleSpots" v-text="goods.saleSpots"></span>
+					<span v-for="sku in goods.showSkus" class="norms">
+      			    <i><em v-text="sku.skuKeyName"></em>：</i>  
+      			 <div class="standards">
+      			
+      			<template v-for="values in sku">
+      				<a v-for="(va, index)  in values" v-if="va.skuValueName" href="javascript:void(0)" :class="index==0 ? 'curred' : ''" onclick="selectSpec(this);"> 
+      					<em v-text="va.skuValueName"></em><input :value="sku.skuKeyId+':'+va.skuValueId" name="checkAttr" type="hidden"/>
+      				</a>
+      			</template>
+				</div>
+      		</span>
+					<span class="saleprice norms"><i>库存:</i><div class="standards" id="stock" v-if="goods.showSkus&&goods.showSkus.length>0" v-text="skuStock"></div><div class="standards" id="stock" v-else v-text="goods.goodsStock"></div></span>
+					<span class="salebuy norms"><i>购买:</i><div class="standards"><div class="minus">-</div><input type="number" class="num" id="goodsNum" value="1"><div class="plus">+</div></span></div>
+				</span>
+				<span class="black color_m getTickt" v-if="CouponLength>0" @click="getTickt"><i><img src="images/coupan.png"></i><i>全明昌实物商品通用</i></span>
+			</div>
+			<!--<div class="diteail_ct">
+				<p><span class="ct_left">商品编号：</span><span class="ct_right">{{goods.id}}</span></p>
+				<p><span class="ct_left">商品描述：</span><span class="ct_right">Ssd是多大的多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多撒奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥vS8923892389SDS</span></p>
+				<p><span class="ct_left">到货时间：</span><span class="ct_right">SS8923892389SDS</span></p>
+				<p><span class="ct_left">产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地：</span><span class="ct_right">加拿大</span></p>
+			</div>-->
+			<div class="detail_hr black">商品介绍</div>
+			<div class="detail_content">
+				<img  v-for="goodsDetailPhoto in goodsDetailPhotoList" src="images/logo_mr.png" :data-original="goodsDetailPhoto" class="lazy">
+			</div>
+			<div class="od_bottom">
+		        <span class="datail_addCars kefu" onClick="javascript:location.href='kefu.html'"><i class="sprite"></i><b>客服</b></span>
+			    <span class="datail_addCars store" @click="toStore(goods.sellerStoreId)"><i class="sprite"></i><b>店铺</b></span>
+				<span class="datail_addCars shopCar" @click="addGoodsToCat(0)">加入购物袋</span>
+				<span class="datail_desire" @click="addGoodsToCat(1)" name="nowBuy">立即购买</span>
+			</div>
+          
+          <div class="region-picker-wrapper">
+			<p class="h30 center color3">领取优惠券</p>
+			<ul>
+				<li @click="takeCoupon(coupon.id,coupon.couponType)"  v-for="coupon in goods.sellerStoreCoupon">
+					<div class="coupon-left">
+						<p v-text="coupon.title"></p>
+						<p v-text="coupon.content"></p>
+						<p><i v-text="coupon.validTimeStart.substring(0,10)"></i> — <i v-text="coupon.validTimeEnd.substring(0,10)"></i></p>
+					</div>
+					<div class="coupon-right"> 
+					<div class="triangle-border-right"><em class="circular0"></em><em class="circular1"></em><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div> 
+					  <p class="cp_price">¥<i v-text="coupon.price"></i></p>
+					  <p class="cp_requrePrice">消费满<i v-text="coupon.requirePrice"></i>可用</p>
+					</div>
+				</li>
+			</ul>
+            <button class="addressbtn">确 定</button>
+		</div>
+	
+	
+		</div>
+		<div id="gotop">
+			<div class="sprite gopic"></div>
+		</div>
+		<div id="Msg"></div>
+
+		</div>
+
+<div class="am-share">
+  <h3 class="am-share-title">推广到</h3>
+  <ul class="am-share-sns"> 
+  <li id="weixin_friend"><img src="images/buyer/weixin_friend.png" width="35%"><label>微信好友</label></li>
+  <li id="weixin"><img src="images/buyer/weixin.png" width="35%"><label>微信朋友圈</label></li>
+  <li id="qq"><img src="images/buyer/qq.png" width="35%"><label>QQ好友</label></li>
+  <li id="qqzone"><img src="images/buyer/qqzone.png" width="35%"><label>QQ空间</label></li>
+    
+  </ul> 
+	
+  <div class="am-share-footer"><button class="share_btn">取消</button></div>
+</div>
+<div class="mb_dioalogde">
+	 <div class="verific_box">
+                <p class="c-form-search verific"> 
+                    <input type="text" id="midName" name="midName" autocomplete="off" placeholder="请输入手机号" value=""> 
+                </p>
+            </div>
+	 <div class="verific_box">
+                        <p class="c-form-search verific"> 
+                            <input type="text" id="midCode" name="midCode" placeholder="请输入短信验证码" maxlength="6" value=""> 
+                        </p>
+                        <a href="javascript:;" class="getCode isClick" id="midGetCode" data-waiting="秒">获取验证码</a>
+              </div>
+	 
+	<div>
+		<span class="mb_nobtnde od_km">取消</span>
+		<span class="mb_okbtnde bg_active od_km de_submit">提交</span>
+	</div>
+	<p class="color_red">注：若输入手机号为新注册用户，默认密码为该手机号</p>
+</div>
+<div class="mb_bg"></div>
+<div class="sharebg"></div>
+<div class="share_wxbg"><img src="images/buyer/share_weixin.png"></div>
+ 
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/jquery.lazyload.min.js"></script>
+<script>
+document.write("<s"+"cript type='text/javascript' src='min_js/publick.js?timestamp="+new Date().getTime()+"'></scr"+"ipt>");  
+document.write('<scr'+'ipt type="text/javascript" src="min_js/api.js?rand='+Math.random()+'"></sc'+'ript>');
+document.write('<scr'+'ipt type="text/javascript" src="min_js/detail.js?rand='+Math.random()+'"></sc'+'ript>'); 
+</script>  
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script> 
+<script type="text/javascript" src="min_js/slidingPickerView.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+<script>
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			//商品 
+			goods: {
+				goodsDetailPhoto: "",
+				goodsMainPhoto: ""
+			},
+			//sku价格
+			skuPrice: 0,
+			//sku库存
+			skuStock: 0,
+			CouponLength:0,
+			goodsCarId:0,
+			
+			//sku 信息
+			skuInfoStr: "",
+            goodsCart2:{}
+		},
+		mounted: function() {
+
+			this.$nextTick(function() { 
+				$(".right-icon em").html(window.sessionStorage.getItem("carGoodsNumber"));
+				var detailGoodsId = Number(vm.getParam('goodsId'));//获取url链接参数 
+				if(!detailGoodsId){
+					if(window.sessionStorage.getItem("detailExchange")){ 
+						var detailExchange=JSON.parse(window.sessionStorage.getItem("detailExchange"));
+						console.log("兑换");
+						console.log(detailExchange);
+						$(".normalDetail").hide();$(".exchangeDetail").show();
+						$(".integralPrice").html(detailExchange.integralPrice+"积分");
+						$(".exchangePrice").html(detailExchange.salePrice);
+						
+						$(".shopCar,.getTickt").hide();
+						$(".store,.kefu").css("width","25%"); 
+						$(".datail_desire").html("立即兑换").css("width","50%");
+						$(".datail_desire").attr("name","exchangeBuy");
+						
+						detailGoodsId=detailExchange.goodsId; 
+					}
+					else if(window.sessionStorage.getItem("detailGoodsId")){
+						detailGoodsId = window.sessionStorage.getItem("detailGoodsId");
+					}else{
+						window.location.href="/";
+					}   
+				}  
+				if(detailGoodsId) { 
+					//商品详情
+					commonUtil.request({
+						url: goodsDetail + detailGoodsId, //goodsId商品id,
+						type: "get",
+						contentType: "application/json",
+						success: function(data) {
+							console.log(data);
+							if(data.code == 1) {
+								if(data.content.sellerStoreCoupon){
+									vm.CouponLength=data.content.sellerStoreCoupon.length;
+								} 
+								vm.goods = data.content;
+								vm.skuPriceAndSkuStock();
+								vm.lazyloadImg();
+							}
+						}
+					});
+				}
+
+			})
+
+		},
+		computed: {
+
+			goodsMainPhotoList: function() {
+				// `this` 指向 vm 实例 
+				var list = this.goods.goodsMainPhoto.split(',');
+				var result = [];
+				$.each(list, function(index, value) {
+					if(value) {
+						result.push(photo + value);
+					}
+
+				});
+
+				return result;
+			},
+			goodsDetailPhotoList: function() {
+				// `this` 指向 vm 实例 
+				var list = this.goods.goodsDetailPhoto.split(',');
+				var result = [];
+				$.each(list, function(index, value) {
+					if(value) {
+						result.push(photo + value);
+					}
+
+				});
+
+				return result;
+			}  
+		},
+		methods: {//这里面写方法
+			
+			//url获取路径参数
+			getParam:function (paramName) {
+			    paramValue = "";
+			    isFound = false;
+			    if (window.location.search.indexOf("?") == 0 && window.location.search.indexOf("=") > 1) {
+			        arrSource = unescape(window.location.search).substring(1, window.location.search.length).split("&");
+			        i = 0;
+			        while (i < arrSource.length && !isFound) {
+			            if (arrSource[i].indexOf("=") > 0) {
+			                if (arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase()) {
+			                    paramValue = arrSource[i].split("=")[1];
+			                    isFound = true;
+			                }
+			            }
+			            i++;
+			        }
+			    }
+			    return paramValue;
+			},
+						
+			lazyloadImg: function() {
+
+				this.$nextTick(function() {
+
+					$("img.lazy").lazyload({
+						placeholder: "images/loading.gif",
+						effect: "fadeIn",
+						failurelimit: 10
+					});
+
+				})
+
+			},
+            getTickt:function(){
+		         $(".region-picker-wrapper").css("transform","translate3d(0px,-360px, 0px)");
+		         $(".mb_bg").show();
+	        },
+			//sku 默认选择的库存和价格；
+			skuPriceAndSkuStock: function() {
+				this.$nextTick(function() {
+					var checkAttrDom = $('.curred input[name="checkAttr"]');
+					var skuInfo = [];
+					if(checkAttrDom && checkAttrDom.length > 0) {
+						$.each(checkAttrDom, function() {
+							skuInfo.push($(this).val());
+						})
+						vm.skuInfoStr = skuInfo.join(",");
+						$.each(vm.goods.goodsSku, function() {
+							if(this.skuInfo == vm.skuInfoStr) {
+								vm.skuPrice = this.skuPrice;
+								vm.skuStock = this.skuStock;
+							}
+						})
+					}
+				})
+
+			},
+			//添加商品到购物车
+			addGoodsToCat: function(directBuy) {
+				    var goodsCart = {};
+					goodsCart.goodsId = vm.goods.id;
+					goodsCart.storeId = vm.goods.sellerStoreId;
+					goodsCart.goodsCount = Number($("#goodsNum").val());
+					if(vm.skuInfoStr){
+						goodsCart.goodsSku = vm.skuInfoStr;
+					} 
+					if(directBuy == 1) {
+						goodsCart.directBuy = directBuy; 
+					}
+				   if($(".datail_desire").attr("name")=="midBuy"){ 
+					    window.sessionStorage.removeItem("exchangeBuy");
+						window.localStorage.setItem("goodsCart21",JSON.stringify(goodsCart)); 
+						console.log(window.localStorage.getItem("goodsCart21"));
+						$('.mb_bg').fadeIn(500); 
+						$('.mb_dioalogde').fadeIn(500); 
+					    return false; 
+				    }
+				    if(!localStorage.getItem('token')){
+						window.location.href="login.html";
+					}
+				    if(Number($("#stock").text())==0) {
+						showmessage("没有库存");
+						return false;
+					}
+					  
+					commonUtil.request({
+						url: saveGoodscart, //goodsId,
+						type: "POST",
+						data: goodsCart,
+						contentType: "application/json",
+						success: function(data) {
+							vm.carDoodsNum();
+							console.log(data);
+							if(data.code == 1) {
+								if(directBuy == 1) { 
+									vm.goodsCarId=data.content;window.localStorage.removeItem("oderInfo");
+									if($(".datail_desire").attr("name")=="exchangeBuy"){ 
+										 window.sessionStorage.setItem("exchangeBuy","exchangeBuy"); 
+										 vm.buyNow();
+									}else{
+										 window.sessionStorage.removeItem("exchangeBuy")
+										 vm.buyNow(); 
+									}
+
+								} else { 
+									showmessage(data.msg)
+								}
+
+							}else{
+								showmessage(data.msg)
+							}
+						}
+					})  
+			 
+			}, 
+			toStore: function(storeId) { 
+				window.sessionStorage.setItem("storeId",storeId);
+				window.location.href = "store.html";
+			},
+			takeCoupon:function(couponId,couponType){ 
+			  commonUtil.request({	 
+			   type: "POST",
+			   url: takeCoupon, 
+	           dataType : "json", 
+			   data:{"couponId" : Number(couponId), "couponType" : Number(couponType)}, 
+			   contentType: "application/json",
+			   success: function(data){
+                 console.log(data);
+				   showmessage(data.msg);
+	            }
+			   })
+				
+			},
+			collect:function(goods){
+				commonUtil.request({	 
+			   type: "get",
+			   url: goodscollect+goods.id, 
+	           dataType : "json",  
+			   contentType: "application/json",
+			   success: function(data){ 
+				   showmessage(data.msg); 
+				   if(goods.isCollect==false){
+					   goods.isCollect=true;
+				   }else{
+					   goods.isCollect=false;
+				   } 
+	            }
+			   })
+			}, 
+			buyNow: function() {
+				var oderInfo = {};
+				var storeList = [],carIdList=[];
+				var newstore = {},goodsCarId={};
+				var goods = {};
+				newstore.goodsCarts = [];
+				goods.goodsId = $("#sellerStoreId").attr("alt");
+				goods.goodsName = $(".goodsname").html();
+				if($("#goodsMainPhoto").html()) {
+					goods.goodsPhoto =$("#goodsMainPhoto").html().split(',')[0];
+				}
+				goods.price = $(".normalDetail .dt_active b").html();
+				goods.num = Number($("#goodsNum").val()); 
+				 
+				newstore.goodsCarts.push(goods);
+				newstore.storeName = $("#sellerStoreId").attr("value");
+				newstore.storeId = $("#sellerStoreId").html();
+				goodsCarId.id=vm.goodsCarId;
+				storeList.push(newstore);
+				carIdList.push(goodsCarId);
+				
+				oderInfo.carIdList = carIdList;
+				oderInfo.storeList = storeList; 
+				oderInfo.cartIds = vm.cartIds;
+				window.localStorage.setItem("oderInfo", JSON.stringify(oderInfo));
+				
+				console.log(window.localStorage.getItem("oderInfo"));
+				window.localStorage.setItem("orderformUuid", commonUtil.getUuid());
+				window.location.href = "shopcar_acounts.html";   
+			},
+			//获取购物车数量
+			carDoodsNum: function() { 
+				commonUtil.request({
+					url: getGoodsCount,
+					type: "get",
+					success: function(data) { 
+						$(".right-icon em").html(data.content);
+						//vm.carGoodsNumber = data.content;
+                        window.sessionStorage.setItem("carGoodsNumber", data.content);
+					},
+					error: function() {
+
+					}
+				});
+
+			}  
+	}  
+
+	}) 	
+</script>
+<script type="text/javascript" src="min_js/swiper.min.js"></script>
+<script>
+	var mySwiper = new Swiper('.swiper-container', { //swiper-container为上面的class容器
+		freeMode: false, //默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合
+		pagination: '.swiper-pagination', //分页器 
+		slidesPerView: 1, //一个页面宽度显示2.6个板块
+		loop: true, //是否循环播放
+		autoplay: 5000, //自动播放
+		speed: 300, //速度
+		spaceBetween: 0, ///两个板块之间的空间间距0px 
+		lazyLoading: true,
+		initialSlide: 10, //从第10个图片开始， 默认为0
+		observer: true, //修改swiper自己或子元素时，自动初始化swiper
+		observeParents: true, //修改swiper的父元素时，自动初始化swiper
+		autoplayDisableOnInteraction: false, //注意此参数，默认为true,Swiper自动地轮播时slides触碰该滑块自动轮播就会停止 这句代码为false时再次触发
+		onSlideChangeStart: function(swiper) {
+			swiper.update(); //更新Swiper 
+			mySwiper.startAutoplay(); //重新开始自动切换； 
+			mySwiper.reLoop(); //重新对需要循环的slide个数进行计算 
+		}
+	});
+</script>  
+</body> 
+</html> 
+<script type="text/javascript" src="min_js/jweixin-1.2.0.js" ></script>
+<script type="text/javascript" src="min_js/detail_wx.js"></script>  

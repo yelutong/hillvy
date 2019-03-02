@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<meta http-equiv="Cache" content="no-cache">
+<title>兑换区</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">兑换区</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="shopcar.html" class="icon" ><i class="sprite gocar"></i><em></em></a>
+            </div>
+			</div>
+</header>
+<div class="content" id="app">
+<ul v-if="exchangeList">
+<li v-for="exchange in exchangeList" @click="toBrandGoods(exchange)"><p><img :src="exchange.goods.goodsMainPhoto" style="width:40%;margin-top:20px" onLoad="imagetoCanvas(this,'image/jpeg',300,0.5)"/></p><p v-text="exchange.name"></p><p class="ct_active"><b v-text="exchange.integralPrice"></b>积分+¥<b v-text="exchange.salePrice"></b></p></li> 	
+</ul>	 
+</div> 
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div> 
+		
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script> 
+
+<script type="text/javascript">
+	var indexVm = new Vue({
+		el: '#app',
+		data: { 
+			exchangeList: [],
+
+		},
+		created: function() { 
+			commonUtil.request({
+				url: integralGoodsList,
+				type: "POST", 
+				//data:{"limit":20},
+				contentType: "application/json",
+				success: function(data) {
+					
+					console.log(data);
+					if(data.code == 1) {
+						if(data.content.list.length>0){
+							$.each(data.content.list, function(index,val) {
+								    if(this.goods.goodsMainPhoto){
+										this.goods.goodsMainPhoto = photo + this.goods.goodsMainPhoto.split(",")[0];
+									    indexVm.exchangeList.push(this); 
+									} 
+								
+						    });
+						} 
+						console.log(indexVm.exchangeList)
+					}
+				}
+			})
+		},
+		mounted: function() { //生命期钩子 
+			this.$nextTick(function() { 
+				 
+			})
+
+		},  
+		methods: { 
+			toBrandGoods(exchange) { 
+				window.sessionStorage.setItem("detailExchange",JSON.stringify(exchange));
+				window.location.href = "detail.html";
+
+			} 
+			
+
+		}
+
+	})
+</script>

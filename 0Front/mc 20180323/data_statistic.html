@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>数据统计</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css"> 
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">数据统计</span>
+		<div class="header-icon left-icon"> 
+			<a href="javascript:window.history.back()" class="icon_bk sprite" ></a>
+        </div>  
+         <div class="header-icon right-icon"> 
+			<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+         </div>
+		</div>
+</header>
+<div class="content data">
+<table>
+	<tr><td>统计</td><td>今日</td><td>总数</td></tr> 
+	<tr><td onClick="javascript:location.href='data_menber.html?id=pt'">普通会员</td><td onClick="javascript:location.href='data_menber.html?id=pt'" v-text="statistic.dayNormalUser"></td><td v-text="statistic.totalNormalUser"  onClick="javascript:location.href='data_menber.html?id=ptall'" ></td></tr>
+	<tr><td onClick="javascript:location.href='data_menber.html?id=ck'">创客会员</td><td v-text="statistic.dayCreateUser"  onClick="javascript:location.href='data_menber.html?id=ck'"></td><td v-text="statistic.totalCreateUser"   onClick="javascript:location.href='data_menber.html?id=ckall'"></td></tr>
+	<tr><td onClick="javascript:location.href='data_menber.html?id=tc'" >套餐数量</td><td v-text="statistic.dayPackage"  onClick="javascript:location.href='data_menber.html?id=tc'" ></td><td v-text="statistic.totalPackage"  onClick="javascript:location.href='data_menber.html?id=tcall'" ></td></tr>
+	<tr><td>已支付订单</td><td v-text="statistic.dayPayOrderform"></td><td v-text="statistic.totalPayOrderform"></td></tr>  
+	
+</table>   
+</div> 
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div> 
+		
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script> 
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js" ></script> 
+<script>
+	var vm = new Vue({
+		el: '.data',
+		data: { 
+           statistic:{}
+		},
+
+		created: function() { 
+			
+			commonUtil.request({
+				url: statistics_info,
+				type: "get", 
+				contentType: "application/json",
+				success: function(data) {
+					console.log(data);
+					if(data.code == 1) {  
+						vm.statistic = data.content; 
+
+					}
+				}
+			}); 
+
+		},
+		mounted: function() { //生命期钩子 
+			 
+
+		},
+		methods: {
+ 
+
+		}
+
+	})
+</script>

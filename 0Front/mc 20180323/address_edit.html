@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>编辑收货地址</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+<link rel="stylesheet" href="min_css/detail.css">
+<link rel="stylesheet" href="min_css/font-awesome.min.css">
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">编辑收货地址</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+            </div>
+			</div>
+</header>
+<div class="content21 sca" id="app">
+ <div id="dreg"> 
+	<div class="regitem">
+		<span>联系姓名</span>
+		<input type="text"  name="userName" v-model="orderAddress.userName" id="userName"  value="">
+	</div>
+	<div class="regitem">
+		<span>联系电话</span>
+		<input type="text" id="txtPhone"  v-model="orderAddress.phone" name="txtPhone" value="">
+	</div>
+	 
+
+		
+	<div class="regitem ocity">
+	    <i>选择地址</i>
+		<div id="city">  
+		  <select class="prov" v-model="prov.id" @change="getCityList" >
+		  	 <option disabled value="">请选择</option>
+		  	 <option v-for="option in provList" v-bind:value="option.id" v-text="option.areaname">
+		   
+		  	</option>
+		  </select> 
+		  <select class="city" v-model="city.id"  disabled="disabled" @change="getAreaList" id="citySelect">
+		  	 <option disabled value="">请选择</option>
+		  	 <option v-for="option in cityList" v-bind:value="option.id" v-text="option.areaname">
+		   
+		     </option>
+		  </select>  
+		  <select class="dist" v-model="area.id"  disabled="disabled" id="areaSelect">
+		  	 <option disabled value="">请选择</option>
+		  	 <option v-for="option in areaList" v-bind:value="option.id" v-text="option.areaname">
+		     </option>
+		  </select>  
+		</div>
+	</div>
+	<div class="regitem">
+		<span class="regitem-detail">详细地址</span>
+		<textarea id="txtarea" class="address_input" v-model="orderAddress.address"  name="txtarea"></textarea>
+	</div>
+	<div class="regitem ocity"><!-- v-if="!orderAddress.isChecked"-->
+		<span>是否默认</span>
+		<div class="checkbox_isok"><input type="checkbox" id="checkbox_is" v-model="orderAddress.isChecked" name="checkbox_is"><label></label></div>
+	</div>
+	<div class="regitem-but">
+		<div class="dregbtn addressbtn"  @click="editAddress"><a href="javascript:;">确定</a></div>
+		
+	</div>
+</div>
+	
+	
+</div>
+ 
+ 
+ 
+<div id="Msg"></div>		
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script> 
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+<script type="text/javascript" src="min_js/address_edit.js"></script>

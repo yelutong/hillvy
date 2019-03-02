@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>支付成功</title>
+<link rel="shortcut icon" href="https://m.mcyou.net/images/favicon.ico" />
+<style> 
+#app{text-align: center;color:#333}	
+#app div{width:100%;margin:10px auto}	
+.pok_left img{margin-top:30px;width:100px;height:100px;border-radius:50%}	
+.shtem{width:105px; display:inline-block;text-align: right}
+.pok_right p:first-child{text-align: center}	
+.pok_right p{width:300px;margin: auto;text-align: left;line-height:40px;font-size:18px}	
+#app div button{width:40%;color:#666;margin:50px 10px;height:50px;line-height: 50px;font-size:16px;border:1px solid #CCC;background:#FFF;border-radius:5px}	
+#app {text-align: center;} 
+.content {width: 100%;background: #FFF;float: left;margin:60px 0 50px 0;}	
+.ct_active {color: #d8a300!important;}
+i {font-style: normal;}
+b {font-weight: 400;}	
+</style>
+</head> 
+<body> 
+<div class="content" id="app"> 
+ <div class="pok_left">
+ 	<img src="https://m.mcyou.net/images/logo80.png">
+ </div>
+ <div class="pok_right">
+ 	<p>订单支付成功</p>
+ 	<p><i class="shtem">支付方式：</i><b class="ct_active">微信支付</b></p>
+	<p><i class="shtem">订单编号：</i><b class="ct_active orderNumber"></b></p>
+	<p><i class="shtem">商品名称：</i><b class="ct_active goodsName"></b></p>
+	<p><i class="shtem">订单金额：</i><b class="ct_active orderPrice"></b></p>
+ </div>  
+ <div><button onClick="javascript:location.href='http://a.app.qq.com/o/simple.jsp?pkgname=com.ecosystem.mc.buyer'">下载APP</button><button onClick="javascript:location.href='http://mp.weixin.qq.com/s/PdcVJRVpzVxlGFb8VshS8g'">关于明昌</button></div>  
+</div> 
+</body>
+</html> 
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>		
+	$('.orderNumber').html(sessionStorage.getItem('orderNumber'));
+	$('.orderPrice').html(sessionStorage.getItem('orderPrice'));
+	$('.goodsName').html(sessionStorage.getItem('goodsName'));
+</script>

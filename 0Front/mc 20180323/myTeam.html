@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>我的团队</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="min_css/public.css">
+		<link rel="stylesheet" href="min_css/content.css">
+		<link rel="stylesheet" href="min_css/detail.css">
+		<link rel="stylesheet" href="min_css/user.css">
+	</head>
+
+	<body>
+		<div id="app">
+			<header class="header-box">
+				<div class="header-menu" id="headerMenu">
+					<span class="logo">我的团队</span>
+					<div class="header-icon left-icon">
+						<a href="javascript:window.history.back()" class="icon_bk sprite" ></a>
+					</div>
+					<div class="header-icon right-icon">
+						<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+					</div>
+				</div>
+			</header>
+			<div class="content21 team">
+				<div class="team_top">
+					<span class="tt_left"><i v-text="userLeader.userName"></i><团长></span>
+					<span class="tt_right">推荐人数：<i v-text="userLeader.totalPromoteCount"></i></span>
+					<span class="tt_left" v-if="userLeader.userLevel==1">普通会员</span>
+					<span class="tt_left" v-else-if="userLeader.userLevel==2">创客会员</span>
+					<span class="tt_left" v-else-if="userLeader.userLevel==20">代理</span>
+					<span class="tt_left" v-else-if="userLeader.userLevel==30">培训师</span> 
+				</div>
+				<ul class="team_ul21" id="team_a">
+					<li class="team_a"><span @click="queryDirectUser" class="team_acive" id="queryDirectUser">业务团队</span><span @click="queryIndirectUser" id="queryIndirectUser">服务团队</span></li>
+				</ul>
+				<ul class="team_ul queryDirectUser">
+					<template v-if="userLeader.totalPromoteCount!=0">
+					<li v-for="user in userLeader.promoteUsers">
+						<div class="li_left">
+							<span v-text="user.userName"></span>
+							<span v-text="user.realName" v-if="user.realName"></span> 
+							<span v-text="user.nickName" v-else-if="user.nickName"></span> 
+							<span  v-else>无名</span>
+						</div>
+						<div class="li_right">
+							<span v-if="user.userLevel==1">普通会员</span>
+							<span v-else-if="user.userLevel==2">创客会员</span>
+							<span v-else-if="user.userLevel==20">代理</span>
+							<span v-else-if="user.userLevel==30">培训师</span> 
+							<span v-text="user.regTime"></span>
+						</div>
+					</li> 
+				    </template>
+					
+					<template  v-else>	
+					<li style="line-height: 100px;text-align: center">
+						暂无数据
+					</li>
+				    </template>  
+				</ul>
+				<ul class="team_ul queryIndirectUser">	
+				<template v-if="indirectUser.totalPromoteCount!=0">
+					<li v-for="user21 in indirectUser.promoteUsers">
+						<div class="li_left">
+							<span v-text="user21.userName"></span>
+							<span v-text="user21.realName" v-if="user21.realName"></span> 
+							<span v-text="user21.nickName" v-else-if="user21.nickName"></span> 
+							<span  v-else>无名</span>
+						</div>
+						<div class="li_right">
+							<span v-if="user21.userLevel==1">普通会员</span>
+							<span v-else-if="user21.userLevel==2">创客会员</span>
+							<span v-else-if="user21.userLevel==20">代理</span>
+							<span v-else-if="user21.userLevel==30">培训师</span> 
+							<span v-text="user21.regTime"></span>
+						</div>
+					</li>
+				</template>
+				<template  v-else>	
+					<li style="line-height: 100px;text-align: center">
+						暂无数据
+					</li>
+				</template>
+					<!--<li>
+             		<div class="li_left">
+					<span>深圳市<i>15323438158</i>会员</span>
+            	    <span>省级代理商</span>
+            	    </div>
+            	    <div class="li_right">
+					<span>推荐人数：0</span>
+            	    <span>2017-09-09</span>
+            	    </div>
+             	</li>
+             	<li>
+             		<div class="li_left">
+					<span>深圳市<i>15323438158</i>会员</span>
+            	    <span>省级代理商</span>
+            	    </div>
+            	    <div class="li_right">
+					<span>推荐人数：0</span>
+            	    <span>2017-09-09</span>
+            	    </div>
+             	</li>
+             	<li>
+             		<div class="li_left">
+					<span>深圳市<i>15323438158</i>会员</span>
+            	    <span>省级代理商</span>
+            	    </div>
+            	    <div class="li_right">
+					<span>推荐人数：0</span>
+            	    <span>2017-09-09</span>
+            	    </div>
+             	</li>-->
+
+				</ul>
+
+			</div>
+
+			<div id="Msg"></div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+<script type="text/javascript" src="min_js/myTeam.js"></script>
+<script>
+$(function(){
+	$(".team_ul21 li span").click(function(){
+		$(this).addClass("team_acive").siblings().removeClass("team_acive"); 
+       var obj_id=$(this).attr("id");
+		$(".team_ul").hide();
+	   $("."+obj_id).show();	
+	})	
+})
+</script>

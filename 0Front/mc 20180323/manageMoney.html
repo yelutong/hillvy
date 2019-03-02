@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>套餐</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="min_css/public.css">
+		<link rel="stylesheet" href="min_css/content.css">
+		<link rel="stylesheet" href="min_css/detail.css">
+		<link rel="stylesheet" href="min_css/user.css">
+	</head>
+
+	<body>
+		<div id="app">
+			<header class="header-box">
+				<div class="header-menu" id="headerMenu">
+					<span class="logo">套餐</span>
+					<div class="header-icon left-icon">
+						<a href="javascript:window.history.back()" class="icon_bk sprite" ></a>
+					</div>
+					<div class="header-icon right-icon">
+						<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+					</div>
+				</div>
+			</header>
+			<div class="content21 team">
+		
+				<div v-if="financepackage.list&&financepackage.list.length>0">
+						<ul class="tmm_ul" v-for="package in financepackage.list" >
+						<li> <span><p>可使用</p><p class="ct_active" v-text="package.remainCount"></p></span> <span><p>已激活</p><p class="ct_active" v-text="package.activatedCount"></p></span> <span><p>已转让</p><p class="ct_active" v-text="package.transferredCount"></p></span></li>
+						<li><span @click="toActive(package)"><img src="images/content/jihuo.png"><i>激活</i></span><span onClick="javascript:location.href='transfer.html'"><img src="images/content/zhuanhuan.png">转让</span></li>
+					</ul>
+				</div> 
+			   <div v-else> 
+				<p class="center h40">亲，您还没有套餐数据哦</p>  
+               </div> 
+
+		<!--	<ul class="tmm_ul"> 
+				<li><span>订　单　号</span><span>MDSS98776786</span></li>
+				<li> <span><p>可使用</p><p class="ct_active">2332</p></span> <span><p>已激活</p><p class="ct_active">545</p></span> <span><p>已转让</p><p class="ct_active">5646</p></span></li> 
+				<li><span  onClick="javascript:location.href='activation.html'"><img src="images/content/jihuo.png"><i>激活</i></span><span  onClick="javascript:location.href=''transfer.html'"><img src="images/content/zhuanhuan.png">转让</span></li> 
+             </ul> 
+              <ul class="tmm_ul"> 
+				<li><span>订　单　号</span><span>MDSS98776786</span></li>
+				<li> <span><p>可使用</p><p class="ct_active">2332</p></span> <span><p>已激活</p><p class="ct_active">545</p></span> <span><p>已转让</p><p class="ct_active">5646</p></span></li> 
+				<li><span onClick="javascript:location.href='activation.html'"><img src="images/content/jihuo.png"><i>激活</i></span><span  onClick="javascript:location.href=''transfer.html'"><img src="images/content/zhuanhuan.png">转让</span></li> 
+             </ul>
+			</div>-->
+
+			<div id="Msg"></div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+<script type="text/javascript" src="min_js/manageMoney.js"></script>

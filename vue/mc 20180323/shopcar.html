@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>购物车</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="min_css/public.css">
+		<link rel="stylesheet" href="min_css/content.css">
+		<link rel="stylesheet" href="min_css/shopcar.css">
+	</head>
+
+	<body> 
+		<header class="header-box">
+			<div class="header-menu" id="headerMenu">
+				<span class="logo">购物车</span>
+				<div class="header-icon left-icon">
+					<a href="javascript:window.history.back()" class="icon_bk sprite"></a>
+				</div>
+				<div class="header-icon right-icon">
+					<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+				</div>
+			</div>
+		</header>
+		<div class="content shopcar" id="app">
+
+			<div class="shopping" v-if="showCarGoodsList.length!=0">
+
+				<div class="shop-group-item" v-for="(store, index) in showCarGoodsList" :storeId="store.storeId" :storeName="store.storeName">
+					<div class="shop-name">
+						<input type="checkbox" class="check goods-check shopCheck">
+						<h4><a href="javascript:;"  @click="toStore(store.storeId)" v-text="store.storeName"></a></h4>
+						<!--<div class="coupons"><span>领券</span><em>|</em><span>编辑</span></div>-->
+					</div>
+					<ul v-for="(goods, index) in store.goodsCarts">
+						<li>
+							<div class="shop-info">
+								<input type="hidden" class="goodsObj" :goodsId="goods.goodsId" :goodsName="goods.goodsName" :goodsSkuInfo="goods.goodsSkuInfo" :goodsSku="goods.goodsSku" :carId="goods.id" :storeId="goods.storeId" :goodsPhoto="goods.goodsPhoto" />
+								<a href="javascript:;" class="close" @click="remove(goods,index)">关闭</a>
+								<p class="goodsId" style="display:none" v-text="goods.id"></p>
+								<input type="checkbox" class="check goods-check goodsCheck">
+								<div class="shop-info-img" v-if="goods.goodsPhoto">
+									<a href="javascript:void(0)"><img :src="photo+goods.goodsPhoto.split(',')[0]" /></a>
+								</div>
+								<div class="shop-info-text">
+									<div v-if="goods.goodsSkuInfo">
+									 <h4 v-text="goods.goodsName"></h4>
+										<div class="shop-brief"><span v-for="goodsize in goods.goodsSkuInfo.split(',')" v-text="goodsize"></span></div> 
+										<div class="shop-price">
+											<div class="shop-pices">￥<b class="price" v-text="goods.price"></b></div>
+											<div class="shop-arithmetic">
+												<a href="javascript:;" class="minus">-</a>
+												<span class="num" v-text="goods.goodsCount"></span>
+												<a href="javascript:;" class="plus">+</a>
+											</div>
+										</div>
+									</div>
+									<div v-else> 
+									 <h4 style="height:38px" v-text="goods.goodsName"></h4>
+										<div class="shop-price">
+											<div class="shop-pices">￥<b class="price" v-text="goods.price"></b></div>
+											<div class="shop-arithmetic">
+												<a href="javascript:;" class="minus">-</a>
+												<span class="num" v-text="goods.goodsCount"></span>
+												<a href="javascript:;" class="plus">+</a>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</li>
+
+					</ul>
+					<div class="shopPrice">本店总计：<span>￥<b class="shop-total-amount ShopTotal">0.00</b></span></div>
+				</div> 
+				
+				
+				
+			<div class="payment-bar">
+				<div class="all-checkbox"><input type="checkbox" class="check goods-check" id="AllCheck">全选</div>
+				<div class="shop-total">
+					<strong>总价：￥<i class="total" id="AllTotal">0.00</i></strong>
+					<!--<span>减免：123.00</span>-->
+				</div>
+				<a @click="toAcounts" href="javascript:void(0)" class="settlement">结算</a>
+			</div>
+			
+			
+			</div>
+			
+			
+            <div class="shopping21" v-else>
+            	<div><p class="sprite pic_car21"></p></div>
+            	<div><p class="center color_m h40">您的购物车空空如也!</p></div>
+            </div>
+            
+            
+
+</div>	 
+	
+<div id="Msg"></div>
+</body> 
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script> 
+<script>
+document.write("<s"+"cript type='text/javascript' src='min_js/publick.js?timestamp="+new Date().getTime()+"'></scr"+"ipt>");  
+document.write('<scr'+'ipt type="text/javascript" src="min_js/api.js?rand='+Math.random()+'"></sc'+'ript>');
+document.write('<scr'+'ipt type="text/javascript" src="min_js/shopping.js?rand='+Math.random()+'"></sc'+'ript>'); 
+</script>  
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+
+<script type="text/javascript">
+var vm = new Vue({
+		el: '#app',
+		data: {
+			//购物车信息
+			showCarGoodsList: [],
+			//结算信息
+			orderInfo: {
+				allprice: 0,
+				orderList: {
+
+				}
+			}
+
+		},
+		mounted: function() {
+			this.$nextTick(function() {
+				//获取购物车商品 
+				commonUtil.request({
+					url: goodsCartList,
+					type: "get",
+					contentType: "application/json",
+					success: function(data) {
+						if(data.code == 1) {
+							vm.showCarGoodsList = data.content;
+							console.log(data.content);
+							//window.location.href="shopcar_acounts.html"
+						}
+					}
+				});
+			})
+		},
+
+		methods: {
+			//更新购物车数量
+			updateGoodCount: function(goods) {
+				commonUtil.request({
+					url: updateGoodsToCart, //goodsId,
+					type: "POST",
+					data: goods,
+					contentType: "application/json",
+					success: function(data) {
+						if(data.code == 1) {
+							showmessage(data.msg)
+						}
+					}
+				})
+
+			},
+			//删除购物车商品
+			remove: function(goods,index) {
+
+				commonUtil.request({
+					url: goodscartDelete + goods.id, //goodsId,
+					type: "get",
+					contentType: "application/json",
+					success: function(data) {
+						if(data.code == 1) {
+							//showmessage(data.msg);
+							location.reload(); 
+							//console.log(index);
+							//vm.showCarGoodsList.splice(index, 1); 
+							//this.splice(index, 1);
+							//vm.showCarGoodsList.splice(index, 1);
+							
+						}
+					}
+				})
+
+			},
+            toStore: function(storeId) { 
+				window.sessionStorage.setItem("storeId",storeId);
+				window.location.href = "store.html";
+			},
+			//to shopcar_acounts.html
+			toAcounts: function() {
+				if(vm.allprice > 0) {
+					window.localStorage.setItem("orderformUuid", commonUtil.getUuid());
+					window.location.href = "shopcar_acounts.html"
+				} else {
+					showmessage("请选择商品");
+					return false;
+				}
+			}
+
+		}
+
+	})	  
+</script> 

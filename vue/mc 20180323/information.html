@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>资讯</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+<link rel="stylesheet" href="min_css/swiper.min.css">  
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>  
+<script>
+document.write("<s"+"cript type='text/javascript' src='min_js/publick.js?timestamp="+new Date().getTime()+"'></scr"+"ipt>");   
+</script> 
+<style>
+    html, body {  
+        position: relative;   
+    }   
+    .swiper-container {  
+        width: 100%;  
+        height: auto;  
+        margin-left: auto;  
+        margin-right: auto;  
+    }  
+    .swiper-slide {  
+        text-align: center;  
+        font-size: 18px;float:left;  
+        background: #fff;  
+        width:100%;
+		height:auto;
+		position:relative; 
+        display: -webkit-box;  
+        display: -ms-flexbox;  
+        display: -webkit-flex;  
+        display: flex;  
+        -webkit-box-pack: center;  
+        -ms-flex-pack: center;  
+        -webkit-justify-content: center;  
+        justify-content: center;  
+        -webkit-box-align: center;  
+        -ms-flex-align: center;  
+        -webkit-align-items: center;  
+        align-items: center;  
+    } 
+	.swiper-slide img{
+		width:100%;
+	}
+	.swiper-pagination-bullet{
+		opacity:1;
+	}
+	.swiper-pagination-bullet-active{
+		display: inline-block;
+		margin-top: 14px;
+		margin-left: 5px;
+		margin-right: 5px;
+		width:20px;
+		height:8px;
+		background:#c7c7c7;
+		border-radius: 9999px;
+		cursor: pointer;
+		transition: all 0.6s;
+	}  
+    </style>  
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">资讯</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="shopcar.html" class="icon" ><i class="sprite gocar"></i><em></em></a>
+            </div>
+			</div>
+</header>
+<div class="content ct_other inform">
+<!-- Swiper -->  
+    <!--<div class="swiper-container">  
+        <div class="swiper-wrapper">  
+              <div class="swiper-slide"><img src="images/content/news1.jpg"></div>  
+        </div>   
+    <div class="swiper-pagination"></div> 
+    </div> 
+	<div class="detail_bg"></div>-->
+      <div class="od_detail infor_ma"> 
+             <div>
+     		<img class="video" src="images/content/02.jpg" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)">
+     		 <video  controls class="displaynone videoInfo" id="video0">
+                      <source src="images/video/jq22.mp4" type="video/mp4">
+             </video>         
+            </div> 
+            
+            <div>
+     		<img class="video" src="images/content/03.jpg" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)">
+     		 <video  controls class="displaynone videoInfo" id="video1">
+                      <source src="images/video/tq22.mp4" type="video/mp4">
+             </video>         
+            </div> 
+            
+            
+            <div><img class="video" src="images/content/05.jpg" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)">
+     		<video  controls class="displaynone videoInfo" id="video3">
+                      <source src="images/video/yike.mp4" type="video/mp4">
+                      <!--
+						<source src="./movie.ogg" type="video/ogg" />
+						<source src="./movie.mp4" type="video/mp4" />
+						<source src="./movie.webm" type="video/webm" />-->
+                    </video>
+            </div> 
+             
+    		 <div><img class="video" src="images/content/06.jpg" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)">
+     		        <video  controls class="displaynone videoInfo" id="video2">
+                      <source src="images/video/pyue.mp4" type="video/mp4">
+                      <!--
+						<source src="./movie.ogg" type="video/ogg" />
+						<source src="./movie.mp4" type="video/mp4" />
+						<source src="./movie.webm" type="video/webm" />-->
+                    </video>
+            </div>
+     	</div>
+     	
+     <div class="news_li"> 
+     	<div class="li_hr"><i>最新资讯</i></div>
+     	<ul class="news_ul2">
+     	<li onClick="javascript:location.href='information/infor_detail35.html'">
+     		<div class="li_news_left">
+     			<p class="black">第48届美博会 引领美业新趋势再展花间里品牌实力</p>
+     			<p class="show_line2">此次展会规模仅次于意大利COSMOPROF美容展，展览规模是亚洲之best，全球第二。这场美丽盛会以无限精彩，吸引着全球美容化妆品行业人士的目光。</p>
+     			<p class="color_grey"><i>2018-03-13 16:29:33</i></p>
+     		</div>
+     		<div class="li_news_right">
+     			<img src="images/content/infor/infor35/1.jpg" onLoad="imagetoCanvas(this,'image/jpeg',120,0.5)">
+     		</div>
+     	</li> 
+     	 <li onClick="javascript:location.href='information/infor_detail34.html'">
+     		<div class="li_news_left">
+     			<p class="black">女神节，遇见最美的你</p>
+     			<p class="show_line2">人间三月，桃之夭夭、灼灼其华。在鲜花盛开的时节，最具代表性的节日就属3.8“女神节”了。</p>
+     			<p class="color_grey"><i>2018-03-08 11:05:09</i></p>
+     		</div>
+     		<div class="li_news_right">
+     			<img src="images/content/infor/infor34/1.png" onLoad="imagetoCanvas(this,'image/jpeg',120,0.5)">
+     		</div>
+     	</li> 
+     	 <li onClick="javascript:location.href='information/infor_detail33.html'">
+     		<div class="li_news_left">
+     			<p class="black">山茶油厉害了，2018“油”你真好</p>
+     			<p class="show_line2">近期，湖南卫视播出的《天天向上》节目中，关晓彤、易烊千玺等明星与营养健康专家李定文教授，展开了“橄榄油VS山茶油，哪种油更健康养生？”的话题讨论。</p>
+     			<p class="color_grey"><i>2018-02-22 14:55:48</i></p>
+     		</div>
+     		<div class="li_news_right">
+     			<img src="images/content/infor/infor33/1.png" onLoad="imagetoCanvas(this,'image/jpeg',120,0.5)">
+     		</div>
+     	</li> 
+     	 <li onClick="javascript:location.href='information/infor_detail32.html'">
+     		<div class="li_news_left">
+     			<p class="black">2018国际中国公益事业大典</p>
+     			<p class="show_line2">2018年1月20日，“2018国际中国公益事业大典”在北京星光大道演播厅开幕。当晚，备受瞩目的公益大典如期举行，在部分政界领导、中国公益届先锋人物、领军人物、各大公益基金会负责人、国际公益组织、商界领袖、主流媒体等各界代表见证活动正式拉开序幕</p>
+     			<p class="color_grey"><i>2018-02-21 17:23:37</i></p>
+     		</div>
+     		<div class="li_news_right">
+     			<img src="images/content/infor/infor32/2.png" onLoad="imagetoCanvas(this,'image/jpeg',120,0.5)">
+     		</div>
+     	</li> 
+     	 <li onClick="javascript:location.href='information/infor_detail31.html'">
+     		<div class="li_news_left">
+     			<p class="black">百强女性领导力</p>
+     			<p class="show_line2">近年来，有关女性领导力话题的讨论渐成趋势，应该说这是一个喜人的现象。一方面，这一话题的流行，标志着女性在商业世界与社会活动中起到了越来越重要的作用，另一方面也说明了即使在今天这个高度开明的时代，人们对女性走上领导者位置仍旧持有一定的怀疑</p>
+     			<p class="color_grey"><i>2018-01-23 14:56:33</i></p>
+     		</div>
+     		<div class="li_news_right">
+     			<img src="images/content/infor/infor31/1.png" onLoad="imagetoCanvas(this,'image/jpeg',120,0.5)">
+     		</div>
+     	</li> 
+     	 <li onClick="javascript:location.href='information/infor_detail30.html'">
+     		<div class="li_news_left">
+     			<p class="black">明昌集团董事郑晓辉先生参加2017•深圳‘一带一路’投资合作国际行及深港企业家联谊会</p>
+     			<p class="show_line2">2018年1月19日，明昌集团董事郑晓辉先生应邀参加2017中国•深圳“‘一带一路’投资合作国际行”年会，暨2017深港企业家联谊会在五洲宾馆召开</p>
+     			<p class="color_grey"><i>2018-01-23 13:55:24</i></p>
+     		</div>
+     		<div class="li_news_right">
+     			<img src="images/content/infor/infor30/1.png" onLoad="imagetoCanvas(this,'image/jpeg',120,0.5)">
+     		</div>
+     	</li> 
+     	 <li onClick="javascript:location.href='information/infor_detail29.html'">
+     		<div class="li_news_left">
+     			<p class="black">2018深圳招牌菜美食节！</p>
+     			<p class="show_line2">各位亲们，这两天寒风不是凛冽，在这不下雪又暖和，冰冷的雨水拍不到脸上，深圳冬季一言难尽的时节里，美食 治愈了我们的胃和心灵</p>
+     			<p class="color_grey"><i>2018-01-22 17:21:18</i></p>
+     		</div>
+     		<div class="li_news_right">
+     			<img src="images/content/infor/infor29/1.png" onLoad="imagetoCanvas(this,'image/jpeg',120,0.5)">
+     		</div>
+     	</li> 
+     	
+     	 <li onClick="javascript:location.href='information/infor_detail26.html'">
+     		<div class="li_news_left">
+     			<p class="black">爆！爆！爆！“油古姥”纯山茶油众筹已突破110万！</p>
+     			<p class="show_line2">近些年，食用油消费量是呈现逐年上升的趋势，茶油的市场需求越来越旺盛，山茶油的发展前景被业内人士看好，山茶油作为...</p>
+     			<p class="color_grey"><i>2018-01-10 18:04:58</i></p>
+     		</div>
+     		<div class="li_news_right">
+     			<img src="images/content/infor/infor26/1.png" onLoad="imagetoCanvas(this,'image/jpeg',120,0.5)">
+     		</div>
+     	</li> 
+     
+     	<li onClick="javascript:location.href='information/infor_detail27.html'">
+     		<div class="li_news_left">
+     			<p class="black">【苏宁众筹】明昌生态“油古姥”纯山茶油正式上线</p>
+     			<p class="show_line2">我们期待已久的【苏宁众筹】明昌生态“油古姥”纯山茶油项目正式上线了</p>
+     			<p class="color_grey"><i>2018-01-10 12:04:58</i></p>
+     		</div>
+     		<div class="li_news_right">
+     			<img src="images/content/infor/infor27/2.jpg" onLoad="imagetoCanvas(this,'image/jpeg',120,0.5)">
+     		</div>
+     	</li>
+     		<li onClick="javascript:location.href='information/infor_detail28.html'">
+     		<div class="li_news_left">
+     			<p class="black">“油古姥”纯山茶油--醇自天然，如此美味</p>
+     			<p class="show_line2">近些年，食用油消费量是呈现逐年上升的趋势，茶油的市场需求越来越旺盛，山茶油的发展前景被业内人士看好，山茶油作为...</p>
+     			<p class="color_grey"><i>2018-01-10 09:58:11</i></p>
+     		</div>
+     		<div class="li_news_right">
+     			<img src="images/content/infor/infor28/7.jpg" onLoad="imagetoCanvas(this,'image/jpeg',120,0.5)">
+     		</div>
+     	</li>
+     	
+     	<button type="button" class="btn-squared h40 center"><i class="wb-chevron-down"><img src="images/arrow-bottom.png"></i>更多文章</button>
+     	
+     	</ul>
+     	<ul class="news_ul2 news_ul3"></ul>
+     </div>
+       
+</div>
+<footer>
+		<div class="bg_footer"></div>
+		<ul>
+			<li onclick="javascript:window.location.href='index.html'">
+				<p><i class="sprite pic_sc1"></i></p>
+				<p>商城</p>
+			</li>
+			<!--<li onclick="javascript:window.location.href='live.html'">
+				<p><i class="sprite pic_zb1"></i></p>
+				<p>直播</p>
+			</li>-->
+			<li onclick="javascript:window.location.href='information.html'">
+				<p><i class="sprite pic_zx0"></i></p>
+				<p class="active">资讯</p>
+			</li>
+			<li onclick="javascript:window.location.href='hots.html'">
+				<p><i class="sprite pic_rx1 hots"></i></p>
+				<p>热销</p>
+			</li>
+			<li onclick="javascript:window.location.href='order.html'">
+				<p><i class="sprite pic_dz1"></i></p>
+				<p>定制</p>
+			</li>
+			
+			<li onclick="javascript:window.location.href='buyer.html'">
+				<p><i class="sprite pic_wd1"></i></p>
+				<p>我的</p>
+			</li>
+		</ul>
+	</footer> 
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div> 
+		
+</body>
+</html>  
+<!-- Swiper JS -->  
+<script src="min_js/swiper.min.js"></script>  
+
+<!-- Initialize Swiper -->  
+<script> 
+/*
+var swiper = new Swiper('.swiper-container', {  //swiper-container为上面的class容器
+		freeMode : false,//默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合
+		pagination: '.swiper-pagination', //分页器 
+		slidesPerView:1, //一个页面宽度显示2.6个板块
+		loop: true, //是否循环播放
+		autoplay: 5000, //自动播放
+		speed:300,//速度
+		autoplayDisableOnInteraction : false, //注意此参数，默认为true,Swiper自动地轮播时slides触碰该滑块自动轮播就会停止 这句代码为false时再次触发
+});
+*/	  
+vide("video0");	
+vide("video1");
+vide("video2");
+vide("video3");	 
+$(function(){
+	$(".btn-squared").click(function(){
+		 $(this).hide();
+		 $(".news_ul3").load("information2.html");
+	})
+})	
+</script>   
+
+
+
+
+
+
+

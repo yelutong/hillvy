@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>支付成功</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+<style> 
+#app{text-align: center}	
+#app div{width:100%;margin:10px auto}	
+.pok_left img{margin-top:30px;width:100px;height:100px}	
+.shtem{width:105px;display:inline-block;text-align: right}
+.pok_right p{width:200px;margin: auto;text-align: left;line-height:24px}	
+#app div button{width:100px;margin:50px 10px;height:40px;line-height: 40px;border:1px solid #CCC;background:#FFF;border-radius:5px}	 
+</style>
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">订单支付成功</span>
+		    <div class="header-icon left-icon"> 
+					<a href="index.html" class="icon_bk sprite"></a>
+            </div>
+			<div class="header-icon right-icon">
+					<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+			</div>
+			</div>
+</header>
+<div class="content" id="app">
+ 
+ <div class="pok_left">
+ 	<img :src="oderInfoObj.goodsPhoto">
+ </div>
+ <div class="pok_right">
+ 	<p><i class="shtem">支付方式：</i><b class="ct_active">微信支付</b></p>
+ 	<p><i class="shtem">订单金额：</i><b class="ct_active">¥<i v-text="oderInfoObj.allPrice"></i></b></p>
+ </div>
+ 
+ 
+ <div><button @click="toloadApp">下载APP</button><button @click="backtoMc">返回首页</button></div>
+ 
+ 
+</div> 
+<footer></footer>
+</body>
+</html> 
+
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script>
+document.write("<s"+"cript type='text/javascript' src='min_js/publick.js?timestamp="+new Date().getTime()+"'></scr"+"ipt>");  
+document.write('<scr'+'ipt type="text/javascript" src="min_js/api.js?rand='+Math.random()+'"></sc'+'ript>'); 
+</script> 
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+<script>
+  $("footer").load("footer.html"); 
+</script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app',
+		data: { 
+			oderInfoObj: {} 
+		},
+		mounted: function() {
+			this.$nextTick(function() { 
+				//订单信息	
+				var oderInfo = window.localStorage.getItem("oderInfo");
+				
+				if(oderInfo) {
+					vm.oderInfoObj = JSON.parse(oderInfo);  
+					var allPrice=window.sessionStorage.getItem("allPrice");
+                    console.log(allPrice);
+					vm.oderInfoObj.allPrice=allPrice;
+					vm.oderInfoObj.goodsPhoto=photo+vm.oderInfoObj.storeList[0].goodsCarts[0].goodsPhoto;
+					console.log(vm.oderInfoObj); 
+				}
+
+			})
+		},
+
+		methods: {
+			//下载APP
+			toloadApp: function() {
+				 window.location.href='http://a.app.qq.com/o/simple.jsp?pkgname=com.ecosystem.mc.buyer';
+				 return false;
+			},
+
+			//回首页
+			backtoMc: function() {
+			     window.location.href="index.html";
+				 return false;
+			}
+		}
+	});
+</script>

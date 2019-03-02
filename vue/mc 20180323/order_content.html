@@ -1,0 +1,869 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>定制</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css"> 
+<link rel="stylesheet" href="min_css/detail.css"> 
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">定制详情</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="shopcar.html" class="icon" ><i class="sprite gocar"></i><em></em></a>
+            </div>
+			</div>
+</header>
+<div class="content od_detail">  
+
+  <!--<div class="infor_ma ocdcont" style="display: none">
+   <div>
+      <img class="video" src="images/content/07.jpg">
+		<video  controls class="displaynone" id="video1">
+		  <source src="images/video/4d1de488a.mp4" type="video/mp4"> 
+		</video>
+  </div>
+  </div>
+  -->
+  
+  <div class="ode_top"><i class="ode_zhi_fz">1</i>/<i class="ode_zhi_fm">8</i></div>
+  <div class="ode_pic center"><img src="images/content/order/male.jpg"></div>
+  
+  
+  
+  
+  
+  
+<div class="odp_head pdd20 odc_head" style="display: none">
+<div class="mall_line odd_line22"></div>
+<div class="mall_wd mall_dz">订　制</div>	
+</div> 
+
+
+<div class="detail_sp od_con detail_ood">
+	<span class="norms21"> 
+		<div class="center ode_model od_choise21"> 
+		<a href="javascript:void(0)" onclick="selectOd(this);" class="male21" name="checkAttr" value="0"><i class="male"><b class="color_m">男</b></i></a> 
+		<a href="javascript:void(0)" onclick="selectOd(this);" class="female21" name="checkAttr" value="1"><i class="female"><b class="color_m">女</b></i></a> 
+		</div>
+		<p>测试介绍：此测试能全面、准确、迅速地反映适合您订制的明昌系列产品。</p>
+		<p class="odp_head">自测提醒</p>
+		<p>1.请根据自身情况，认真选择相关信息。</p>
+		<p>2.此自测通过总结，让用户使用的产品更有参考价值，更能让消费者选择适合自己的产品。</p> 
+	</span>
+   
+    <span class="norms21" id="east_tea"> 
+	<b>出生年份：</b> <input id="Text1" class="Text1" type="text"/>
+	<div class="od_choise21"> 
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="2"></a>
+	<div id="scrollbox"></div>   
+	</div> 
+	</span>
+    <span class="norms21" id="oil_good">
+	<b>您要定制的明昌品牌：</b><input class="Text_brand Text1" type="text"/>
+	<div class="od_choise21">
+	  <a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="3"></a>
+	  <div id="scrollbox_brand"></div> 
+	</div> 
+	</span>
+   
+   
+    <span class="norms21" id="brand_goods2">
+	<p>一块好的手工皂因为质地均匀，色泽温和光润，那么我们如何来选一块好皂呢？</p>  
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="4"></a>
+	 <p class="sel">第一题</p> 
+	 <b>您现在用的皂是不是很硬：</b><input class="Text_brand2 Text1" type="text"/>
+	 <div id="scrollbox_brand2"></div>
+	</div> 
+	</span>
+   
+    <span class="norms21" id="brand_goods22">  
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="7"></a>
+	 <p class="sel">第二题</p> 
+	 <b>皂是否为透明色，且为纯植物配方：</b><input class="Text_brand22 Text1" type="text"/>
+	 <div id="scrollbox_brand22"></div>
+	</div> 
+	</span>
+     <span class="norms21" id="brand_goods23">  
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="8"></a>
+	 <p class="sel">第三题</p> 
+	 <b>您使用的皂的功效作用：</b><input class="Text_brand23 Text1" type="text"/>
+	 <div id="scrollbox_brand23"></div>
+	</div> 
+	</span>
+    <span class="norms21" id="brand_goods24">  
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="9"></a>
+	 <p class="sel">第四题</p> 
+	 <b>您的脸是否有过敏现象：</b><input class="Text_brand24 Text1" type="text"/>
+	 <div id="scrollbox_brand24"></div>
+	</div> 
+	</span>
+    <span class="norms21" id="brand_goods241">  
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="91"></a>
+	 <p class="sel">第四题</p> 
+	 <b>您的发质是否受损：</b><input class="Text_brand241 Text1" type="text"/>
+	 <div id="scrollbox_brand241"></div>
+	</div> 
+	</span>
+    
+     <span class="norms21" id="brand_goods25">  
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="10"></a>
+	 <p class="sel">最后一题</p> 
+	 <b>洗完脸后是否感觉皮肤缺水，脸干：</b><input class="Text_brand25 Text1" type="text"/>
+	 <div id="scrollbox_brand25"></div>
+	</div> 
+	</span>  
+    <span class="norms21" id="brand_goods251">  
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="101"></a>
+	 <p class="sel">最后一题</p> 
+	 <b>您是否经常烫发、染发：</b><input class="Text_brand251 Text1" type="text"/>
+	 <div id="scrollbox_brand251"></div>
+	</div> 
+	</span>   
+ 
+    <span class="norms21" id="brand_goods1">
+	<p>年龄是女人最大的秘密之一，对女性来说，测定肌肤年龄是很重要的，由此可以及时知道肌肤当前状况，并采用相应措施以防止皮肤衰老。来做做下面的测试吧，测定你的肌肤年龄。</p>  
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="5"></a>
+	 <p class="sel">第一题</p> 
+	 <b>触摸眼角下的皮肤，感觉到不平滑：</b><input class="Text_brand1 Text1" type="text"/>
+	 <div id="scrollbox_brand1"></div>
+	</div> 
+	</span>
+    <span class="norms21" id="brand_goods52"> 
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="52"></a>
+	 <p class="sel">第二题</p> 
+	 <b>笑的时候，眼下有放射状皱纹：</b><input class="Text_brand52 Text1" type="text"/>
+	 <div id="scrollbox_brand52"></div>
+	</div> 
+	</span>
+    <span class="norms21" id="brand_goods53"> 
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="53"></a>
+	 <p class="sel">第三题</p> 
+	 <b>鼻子四周出油现象：</b><input class="Text_brand53 Text1" type="text"/>
+	 <div id="scrollbox_brand53"></div>
+	</div> 
+	</span> 
+   <span class="norms21" id="brand_goods54"> 
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="54"></a>
+	 <p class="sel">第四题</p> 
+	 <b>脸上有过敏现象：</b><input class="Text_brand54 Text1" type="text"/>
+	 <div id="scrollbox_brand54"></div>
+	</div> 
+	</span> 
+   <span class="norms21" id="brand_goods55"> 
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="55"></a>
+	 <p class="sel">最后一题</p> 
+	 <b>洗完脸拍上化妆水后，水分立刻被吸收：</b><input class="Text_brand55 Text1" type="text"/>
+	 <div id="scrollbox_brand55"></div>
+	</div> 
+	</span>  
+    <span class="norms21" id="brand_goods3">
+	<p>99%的人都忽略了油营养，只有补充相应油份，才能让您的身体更健康，那我们来开始测试吧？</p>  
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="6"></a>
+	 <p class="sel">第一题</p> 
+	 <b>您的身体有如下现象：</b><input class="Text_brand3 Text1" type="text"/>
+	 <div id="scrollbox_brand3"></div>
+	</div> 
+	</span>
+     <span class="norms21" id="brand_goods62"> 
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="62"></a>
+	 <p class="sel">第二题</p> 
+	 <b>下列最接近目前身体现状的是：</b><input class="Text_brand62 Text1" type="text"/>
+	 <div id="scrollbox_brand62"></div>
+	</div> 
+	</span>  
+      <span class="norms21" id="brand_goods63"> 
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="63"></a>
+	 <p class="sel">第三题</p> 
+	 <b>下列符合您身体现状的是：</b><input class="Text_brand63 Text1" type="text"/>
+	 <div id="scrollbox_brand63"></div>
+	</div> 
+	</span>   
+      <span class="norms21" id="brand_goods64"> 
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="64"></a>
+	 <p class="sel">第四题</p> 
+	 <b>您的身体出现了以下现状：</b><input class="Text_brand64 Text1" type="text"/>
+	 <div id="scrollbox_brand64"></div>
+	</div> 
+	</span>   
+      <span class="norms21" id="brand_goods65"> 
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);" class="curred21" name="checkAttr" value="65"></a>
+	 <p class="sel">最后一题</p> 
+	 <b>下列符合您身体状况的是：</b><input class="Text_brand65 Text1" type="text"/>
+	 <div id="scrollbox_brand65"></div>
+	</div> 
+	</span>   
+   
+   
+    <span class="norms21" id="inflower">
+	<p>花间里系列产品：</p> 
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);">山茶花精华液<input name="checkAttr" type="hidden" value="9"></a> 
+	</div>
+	</span>
+   
+    <span class="norms21">
+	<p>睡眠时间不规律，不能按时睡觉：</p> 
+	<div class="od_choise21">
+	<a href="javascript:void(0)" onclick="selectOd(this);">经常<input name="checkAttr" type="hidden" value="0"></a>
+	<a href="javascript:void(0)" onclick="selectOd(this);">偶尔<input name="checkAttr" type="hidden" value="2"></a>
+	<a href="javascript:void(0)" onclick="selectOd(this);">没有<input name="checkAttr" type="hidden" value="1"></a>
+	</div>
+	</span>  					 					
+				
+</div>
+<div class="od_btn_01 od_next"><button class="bg_active order_next">下一步</button></div>
+
+<div class="od_btn_01"><button onclick="order_btn()" class="bg_active">提交</button></div>
+
+</div> 
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div> 
+<div class="mb_dioalog02">
+	<div class="mb_tit02">根据测试，适合您的产品是</div>
+	 <p>“东方茶果”山茶花精华液</p>
+	<div>
+		<span class="mb_nobtn02 od_km">取消</span>
+		<span class="mb_okbtn02 bg_active od_km">去购买</span>
+	</div>
+</div>
+<div class="displaynone test_result"><img src="images/content/order/banner1.png"></div>
+<footer>
+</footer> 
+<div class="mb_bg"></div>
+<div id="Msg"></div>	
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>  
+<script>
+  $("footer").load("footer.html"); 
+</script>
+<script> 
+	
+function selectOd(e){
+	var specOl = jQuery(e).siblings(".od_choise21 a");
+	//console.info(specOl);
+	specOl.removeClass("curred21");//先删除所有class样式
+	$(e).addClass("curred21"); 
+}
+
+$(".order_next").click(function(){  
+	$(".od_con .norms21").each(function(index,element){ 
+	   //判断每一个div，其css中display是否为block 
+	 if($(this).css("display")=="block"){ 
+		 if(!$(this).find("a").hasClass("curred21")){
+			 showmessage("亲，你还没选择哦");
+			return false;
+		 }else{
+		     $(this).hide();
+			 var value_curr=$(this).find("a.curred21[name='checkAttr']").attr("value");
+			 console.log(value_curr); 
+			 if(value_curr==0||value_curr==1){
+				 //选择年份
+					var data1 = [];
+					for (var i = 1900; i < 2018; i++) {
+					data1.push(i);
+					}
+					$("#scrollbox").EasyScrollBox({
+						fontSize: 18,
+						fontFamily: '',
+						color: '#333',
+						lineHeight: 2.5,//表示行高
+						spaceRows: 2,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+						value: '1990',
+						data: data1,
+						textFiled: 'txt',
+						valueFiled: 'id',
+						onSelected: function (index, value) {
+						$("#Text1").val(value+"年");
+					}
+					}); 
+				 $(".ode_zhi_fz").html(2);  
+				 $("#east_tea").show();  
+				 return false;
+			 }
+			 if(value_curr==2){
+				 //选择品牌
+				 var data_brand = [];
+				   data_brand.push("花间里","东方茶果","油古姥");  
+				   $("#scrollbox").empty();
+				  $("#scrollbox_brand").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '东方茶果',
+					  data: data_brand,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand").val(value);
+					  }
+				  });
+				 $(".ode_zhi_fz").html(3);
+				 $("#oil_good").show();
+				 return false;
+			 }
+			 if($(".Text_brand").val()=="东方茶果"){  
+				 //选择品牌
+				 var data_brand2 = [];
+				   data_brand2.push("是","适中","不是");  
+				 $("#oil_good").empty();
+				 $(".ode_zhi_fz").html(4);
+				 $("#scrollbox_brand2").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '适中',
+					  data: data_brand2,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand2").val(value);
+					  }
+				  });
+				 $("#brand_goods2").show();
+				 return false;
+			 }
+			 if($(".Text_brand").val()=="花间里"){  
+				 //选择品牌
+				 var data_brand1 = [];
+				   data_brand1.push("是","适中","不是");  
+				 $("#oil_good").empty();
+				 $(".ode_zhi_fz").html(4);
+				 $("#scrollbox_brand1").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '适中',
+					  data: data_brand1,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand1").val(value);
+					  }
+				  });
+				 $("#brand_goods1").show();
+				 return false;
+			 }
+			if($(".Text_brand").val()=="油古姥"){  
+				 //选择品牌
+				 var data_brand3 = [];
+				   data_brand3.push("长色斑","长真菌","免疫力低","皮肤发痒","抵抗力低下","健忘","胆固醇高","“三高”","总是手脚冰冷，不耐寒");  
+				 $("#oil_good").empty();
+				 $(".ode_zhi_fz").html(4);
+				 $("#scrollbox_brand3").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 2.5,
+					  spaceRows: 2,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '抵抗力低下',
+					  data: data_brand3,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand3").val(value);
+					  }
+				  });
+				 $("#brand_goods3").show();
+				 return false;
+			 } 
+			 if(value_curr==4){
+				 var data_brand22 = [];
+				 data_brand22.push("是","不清楚","不是");  
+				 $("#brand_goods2").empty();
+				 $(".ode_zhi_fz").html(5);
+				 $("#scrollbox_brand22").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '不清楚',
+					  data: data_brand22,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand22").val(value);
+					  }
+				  });
+				 $("#brand_goods22").show();
+				 return false;
+			 }
+			 if(value_curr==7){
+				 var data_brand23 = [];
+				 data_brand23.push("养发护发","美白肌肤","控油保湿");  
+				 $("#brand_goods22").empty();
+				 $(".ode_zhi_fz").html(6);
+				 $("#scrollbox_brand23").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '美白肌肤',
+					  data: data_brand23,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand23").val(value);
+					  }
+				  });
+				 $("#brand_goods23").show();
+				 return false;
+			 }
+			 if(value_curr==8){
+				 if($(".Text_brand23").val()=="美白肌肤"){
+					 var data_brand24 = [];
+					 data_brand24.push("是","适中","不是");  
+					 $("#brand_goods23").empty();
+					 $(".ode_zhi_fz").html(7);
+					 $("#scrollbox_brand24").EasyScrollBox({
+						  fontSize: 18,
+						  fontFamily: '',
+						  color: '#333',
+						  lineHeight: 3,
+						  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+						  value: '适中',
+						  data: data_brand24,
+						  textFiled: 'text',
+						  valueFiled: 'id',
+						  onSelected: function (index, value) {
+							  $(".Text_brand24").val(value);
+						  }
+					  });
+					 $("#brand_goods24").show();
+					 return false;
+				 }else{
+					 var data_brand241 = [];
+					 data_brand241.push("是","一般","不是");  
+					 $("#brand_goods23").empty();
+					 $(".ode_zhi_fz").html(7);
+					 $("#scrollbox_brand241").EasyScrollBox({
+						  fontSize: 18,
+						  fontFamily: '',
+						  color: '#333',
+						  lineHeight: 3,
+						  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+						  value: '一般',
+						  data: data_brand241,
+						  textFiled: 'text',
+						  valueFiled: 'id',
+						  onSelected: function (index, value) {
+							  $(".Text_brand241").val(value);
+						  }
+					  });
+					 $("#brand_goods241").show();
+					 return false;
+				 }  
+			 }
+			 if(value_curr==91){
+				 var data_brand251 = [];
+				 data_brand251.push("经常","还好","不经常");  
+				 $("#brand_goods241").empty();
+				 $(".ode_zhi_fz").html(8);
+				 $("#scrollbox_brand251").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '还好',
+					  data: data_brand251,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand251").val(value);
+					  }
+				  }); 
+				 $(".order_next").html("提交");
+				 $("#brand_goods251").show();
+				 return false;
+			 }
+			 if(value_curr==9){
+				 var data_brand25 = [];
+				 data_brand25.push("是","有时","不是");  
+				 $("#brand_goods24").empty();
+				 $(".ode_zhi_fz").html(8);
+				 $("#scrollbox_brand25").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '有时',
+					  data: data_brand25,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand25").val(value);
+					  }
+				  });
+				 $(".order_next").html("提交");
+				 $("#brand_goods25").show();
+				 return false;
+			 } 
+			 if(value_curr==5){
+				 var data_brand52 = [];
+				 data_brand52.push("较多","较少","没有");  
+				 $("#brand_goods1").empty();
+				 $(".ode_zhi_fz").html(5);
+				 $("#scrollbox_brand52").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '较少',
+					  data: data_brand52,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand52").val(value);
+					  }
+				  }); 
+				 $("#brand_goods52").show();
+				 return false;
+			 } 
+			 if(value_curr==52){
+				 var data_brand53 = [];
+				 data_brand53.push("明显","较少","没有");  
+				 $("#brand_goods52").empty();
+				 $(".ode_zhi_fz").html(6);
+				 $("#scrollbox_brand53").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '较少',
+					  data: data_brand53,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand53").val(value);
+					  }
+				  }); 
+				 $("#brand_goods53").show();
+				 return false;
+			 } 
+			 if(value_curr==53){
+				 var data_brand54 = [];
+				 data_brand54.push("是","较少","没有");  
+				 $("#brand_goods53").empty();
+				 $(".ode_zhi_fz").html(7);
+				 $("#scrollbox_brand54").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '较少',
+					  data: data_brand54,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand54").val(value);
+					  }
+				  }); 
+				 $("#brand_goods54").show();
+				 return false;
+			 }
+			 if(value_curr==54){
+				 var data_brand55 = [];
+				 data_brand55.push("是","较少","没有");  
+				 $("#brand_goods54").empty();
+				 $(".ode_zhi_fz").html(8);
+				 $("#scrollbox_brand55").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 3,
+					  spaceRows: 1,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '较少',
+					  data: data_brand55,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand55").val(value);
+					  }
+				  }); 
+				 $(".order_next").html("提交");
+				 $("#brand_goods55").show();
+				 return false;
+			 }
+			  if(value_curr==6){
+				 var data_brand62 = [];
+				 data_brand62.push("容易躁动不安","有黑眼圈、眼袋","经常失眠","食欲不振","有时哮喘","肠胃不好","早衰","经常头晕、犯困");  
+				 $("#brand_goods3").empty();
+				 $(".ode_zhi_fz").html(5);
+				 $("#scrollbox_brand62").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 2.5,
+					  spaceRows: 2,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '食欲不振',
+					  data: data_brand62,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand62").val(value);
+					  }
+				  }); 
+				 $("#brand_goods62").show();
+				 return false;
+			 }
+			
+			 if(value_curr==62){
+				 var data_brand63 = [];
+				 data_brand63.push("皮肤干燥","毛孔粗大","浑身无力","皮肤红肿、发痒","关节炎","便秘","肠梗阻","胸闷、胸痛");  
+				 $("#brand_goods62").empty();
+				 $(".ode_zhi_fz").html(6);
+				 $("#scrollbox_brand63").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 2.5,
+					  spaceRows: 2,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '皮肤红肿、发痒',
+					  data: data_brand63,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand63").val(value);
+					  }
+				  }); 
+				 $("#brand_goods63").show();
+				 return false;
+			 }
+			 if(value_curr==63){
+				 var data_brand64 = [];
+				 data_brand64.push("经常使用嗓子、咳嗽","肥胖","皮肤角质化","皮肤皱纹多","脑筋不灵活","脱发严重","有带疱类皮肤病","多尿多饮多食，但消瘦");  
+				 $("#brand_goods63").empty();
+				 $(".ode_zhi_fz").html(7);
+				 $("#scrollbox_brand64").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 2.5,
+					  spaceRows: 2,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '脑筋不灵活',
+					  data: data_brand64,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand64").val(value);
+					  }
+				  }); 
+				 $("#brand_goods64").show();
+				 return false;
+			 }
+			 
+			   if(value_curr==64){
+				 var data_brand65 = [];
+				 data_brand65.push("体温低、容易发麻、眩晕","痔疮、湿热","虚胖、面部蜡黄","体虚、经常咳嗽","视力衰退","皮肤湿疹","身体局部发肿","疲劳、血压高");  
+				 $("#brand_goods64").empty();
+				 $(".ode_zhi_fz").html(8);
+				 $("#scrollbox_brand65").EasyScrollBox({
+					  fontSize: 18,
+					  fontFamily: '',
+					  color: '#333',
+					  lineHeight: 2.5,
+					  spaceRows: 2,//1表示除了中间的选中条目外，上下只能显示1条数据，总计3条
+					  value: '体虚、经常咳嗽',
+					  data: data_brand65,
+					  textFiled: 'text',
+					  valueFiled: 'id',
+					  onSelected: function (index, value) {
+						  $(".Text_brand65").val(value);
+					  }
+				  });  
+				 $(".order_next").html("提交");
+				 $("#brand_goods65").show();
+				 return false; 
+			 }  
+			 if(value_curr==55){
+				  $(".od_btn_01").css("width",window.screen.width);
+				  $(".test_result").html('<img src="images/content/order/banner3.png">');
+	              window.sessionStorage.setItem("ad_result",95);
+				  $('.mb_bg').fadeIn(500);
+	              $(".test_result").fadeIn(500); 
+				 return false;
+			 } 
+			 
+			  if(value_curr==10){ 
+				  $(".od_btn_01").css("width",window.screen.width);
+				  $(".test_result").html('<img src="images/content/order/banner10.png">');
+	              window.sessionStorage.setItem("ad_result",102); 
+				  $('.mb_bg').fadeIn(500);
+	              $(".test_result").fadeIn(500); 
+				  
+				 return false;
+			 } 
+			  if(value_curr==101){
+				  $(".od_btn_01").css("width",window.screen.width);
+				  $(".test_result").html('<img src="images/content/order/banner7.png">');
+	              window.sessionStorage.setItem("ad_result",100);
+				  $('.mb_bg').fadeIn(500);
+	              $(".test_result").fadeIn(500); 
+				 return false;
+			 }
+			 if(value_curr==65){
+				  var mr=Math.random()*10; 
+				  if(mr<=2.5){
+					 $(".od_btn_01").css("width",window.screen.width);
+					 $(".test_result").html('<img src="images/content/order/banner1.png">');
+	                 window.sessionStorage.setItem("ad_result",106); 
+				  }
+				 else if(mr>2.5&&mr<=5){
+					$(".od_btn_01").css("width",window.screen.width);
+					$(".test_result").html('<img src="images/content/order/banner5.png">');
+	                window.sessionStorage.setItem("ad_result",105);  
+				 }
+				 else if(mr>5&&mr<=7.5){
+					 $(".od_btn_01").css("width",window.screen.width);
+					 $(".test_result").html('<img src="images/content/order/banner6.png">');
+	                 window.sessionStorage.setItem("ad_result",103); 
+				 }
+				 else{
+					$(".od_btn_01").css("width",window.screen.width);
+					$(".test_result").html('<img src="images/content/order/banner6.png">');
+	                window.sessionStorage.setItem("ad_result",93); 
+				 }
+				 $('.mb_bg').fadeIn(500);
+	             $(".test_result").fadeIn(500); 
+				 return false;  
+			 }
+			   
+			 
+		}
+		 
+		 
+	 }
+
+ 
+	})
+ 
+});  	
+	
+	
+function order_btn(){  
+	checked_array = [];
+    $('.od_choise21 a.curred21').each(function(index,value){
+        checked_array.push(value);
+    });
+	if(checked_array.length<5){
+		 showmessage("亲，你还没选择完哦"); 
+		return false;
+	} 
+	
+	
+	var skuInfo=[],allnum=0;
+	var checkAttrDom= $('.od_choise21 .curred21[name="checkAttr"]');   
+	$.each(checkAttrDom,function(index,value){
+		skuInfo.push($(this).val());
+		allnum+=parseInt($(this).val());
+	}) 
+	console.log(skuInfo);
+	console.log(allnum);
+	 
+   if(allnum<=3){
+	   //$(".mb_dioalog02 p").html("山茶花精华液");
+	   $(".test_result").html('<img src="images/content/order/banner1.png">');
+	   window.sessionStorage.setItem("ad_result",95);
+	   
+   }else if(allnum>3&&allnum<7){
+	  // $(".mb_dioalog02 p").html("山茶油礼盒装");
+	   $(".test_result").html('<img src="images/content/order/banner1.png">');
+	   window.sessionStorage.setItem("ad_result",106);
+   }else{
+	  // $(".mb_dioalog02 p").html("山茶油手工皂");
+	   $(".test_result").html('<img src="images/content/order/banner1.png">');
+	   window.sessionStorage.setItem("ad_result",102);
+   }
+	  
+	 $('.mb_bg').fadeIn(500);
+	 $(".test_result").fadeIn(500); 
+     //$('.mb_dioalog02').fadeIn(500);   
+	
+}	
+
+ 
+$(function(){
+	
+//vide("video1");
+	
+$(".mb_bg,.mb_nobtn02").click(function(){ 
+	$('.mb_bg').fadeOut(500);
+	//$('.mb_dioalog02').fadeOut(500);
+	 $(".test_result").fadeOut(500);
+	 window.location.reload();
+});	
+	
+	
+	
+$(".test_result").click(function(){ 
+	toOdDetail(window.sessionStorage.getItem("ad_result"));  
+});  
+	
+//console.log($(".test_result img").height());
+$(".test_result").css({"top":(window.screen.height-$(".test_result img").height())/3,"left":(window.screen.width-$(".test_result img").width())/2});	
+
+
+$(".ode_model i").click(function(){
+	var obj_class=$(this).attr("class");
+	if(obj_class=="male"){ 
+		$(".ode_pic img").attr("src","images/content/order/male.jpg");
+	    $(this).addClass("ode_actvie");
+		$(".female").removeClass("ode_actvie1");
+	}else{
+		$(".ode_pic img").attr("src","images/content/order/female.jpg");
+		$(this).addClass("ode_actvie1");
+		$(".male").removeClass("ode_actvie");
+	}
+}) 
+
+})	
+function toDetail(goodsId) {
+	window.sessionStorage.removeItem("detailExchange");
+	window.sessionStorage.setItem("detailGoodsId", goodsId);
+	window.location.href = "detail.html";
+} 
+	
+</script>
+
+<script src="min_js/jquery.easyui.min.js" type="text/javascript"></script>
+<script src="min_js/EasyScrollBox.js" type="text/javascript"></script>  

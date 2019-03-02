@@ -1,0 +1,204 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<meta http-equiv="Cache" content="no-cache">
+<title>个人中心</title> 
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">  
+<link rel="stylesheet" type="text/css" href="min_css/public.css"/>
+<link rel="stylesheet" type="text/css" href="min_css/user.css"/>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script>
+document.write("<s"+"cript type='text/javascript' src='min_js/publick.js?timestamp="+new Date().getTime()+"'></scr"+"ipt>");  
+document.write('<scr'+'ipt type="text/javascript" src="min_js/api.js?rand='+Math.random()+'"></sc'+'ript>'); 
+document.write('<scr'+'ipt type="text/javascript" src="min_js/user.js?rand='+Math.random()+'"></sc'+'ript>'); 
+</script>  
+</head> 
+<body onLoad="buyerMes()">
+<div id="app">
+<div class="top"> 
+<div onclick="javascript:window.location.href='buyer_setting.html'" class="buyer_set"><i class="sprite_buyer pic_set"></i></div>
+<div class="theme">
+	<div class="th_top center" onclick="javascript:window.location.href='buyer_setting.html'"><img src="images/logo_f.png" width="100%"/></div>	
+	<div class="th_bottom">
+		<p class="tc_top center color-da"></p>
+		<p class="tc_bottom center color-da"></p>
+	</div> 
+</div>
+</div> 
+<div class="buyer_car">
+	<ul>
+		<li onclick="javascript:window.location.href='shopcar.html'"><p class="sprite_buyer pic_car"></p><p>购物车</p></li>
+		<li onclick="javascript:window.location.href='favourable.html'"><p class="sprite_buyer pic_scj"></p><p>优惠券</p></li>
+		<li onclick="javascript:window.location.href='favoriteGoods.html'"><p class="sprite_buyer pic_yhq"></p><p>收藏夹</p></li>
+		<li onclick="javascript:window.location.href='message.html'"><p class="sprite_buyer pic_mess"></p><p>消息</p></li>
+	</ul>
+</div>
+<div class="orderform">
+	<div @click="toBuyerOrder('10,20,30,40,50')" ><span><em class="sprite_buyer pic_odf"></em><i>我的订单</i></span><span><img src="images/buyer/right212.png"><i>查看全部订单</i></span></div>
+	<ul>
+		<li @click="toBuyerOrder(10)">
+				<p class="sprite_buyer pic_dfk"></p>
+				<p>待付款</p>
+			</li>
+			<li @click="toBuyerOrder(20)">
+				<p class="sprite_buyer pic_dfh"></p>
+				<p>待发货</p>
+			</li>
+			<li @click="toBuyerOrder(30)">
+				<p class="sprite_buyer pic_dsh"></p>
+				<p>待收货</p>
+			</li>
+			<li @click="toBuyerOrder('40,50')">
+				<p class="sprite_buyer pic_dpj"></p>
+				<p>已完成</p>
+			</li>
+			<!--
+			<li @click="toBuyerOrder(50)">
+				<p class="sprite_buyer pic_dpj"></p>
+				<p>待评价</p>
+			</li>
+			<li>
+				<p class="sprite_buyer pic_sh"></p>
+				<p>售后</p>
+			</li>
+			-->
+	</ul>
+</div>
+<div class="sy"><em class="sprite_buyer pic_wsy"></em><i>我的收益</i></div>
+<div class="my_list9">
+	<ul>
+					<li style="border-right: 1px solid #eee;" onClick="javascript:window.location.href='#cash_points.html'">
+						<div class="abt"><span>现金积分</span><span class="upper" v-text="format(userWallet.currentCashFee)" ></span></div>
+					</li>
+
+					<li style="border-right: 1px solid #eee;" onClick="javascript:window.location.href='#business.html'">
+						<div class="abt"><span>业务积分</span><span class="upper"  v-text="format(userWallet.currentDirectIntegral)"></span></div>
+					</li>
+
+					<li onClick="javascript:window.location.href='#service.html'">
+						<div class="abt"><span>服务积分</span><span class="upper"  v-text="format(userWallet.currentIndirectIntegral)"></span></div>
+					</li>
+
+					<li style="border-right: 1px solid #eee;border-top: 1px solid #eee;" onClick="javascript:window.location.href='#consumption.html'">
+						<div class="abt"><span>消费积分</span><span class="upper" v-text="format(userWallet.currentAgainBuyIntegral)" ></span></div>
+						</a>
+					</li>
+
+					<li style="border-right: 1px solid #eee;border-top: 1px solid #eee;"><img src="images/logo.png" width="30%" id="logoimg"></li>
+
+					<!--<li style="border-top: 1px solid #eee;" onClick="javascript:window.location.href='#financial.html'">
+						<div class="abt"><span>理财积分</span><span class="upper" v-text="format(userWallet.currentPackageIntegral)" ></span></div>
+					</li>-->
+                    
+                    <li style="border-top: 1px solid #eee;" onClick="javascript:window.location.href='#financial.html'">
+						<div class="abt"><span>兑换积分</span><span class="upper" v-text="format(userWallet.currentGoodsBuyIntegral)" ></span></div>
+					</li>
+					
+					<li style="border-right: 1px solid #eee;border-top: 1px solid #eee;" onClick="javascript:window.location.href='#training.html'">
+						<div class="abt"><span>培训积分</span><span class="upper" v-text="format(userWallet.currentTrainLecturerIntegral)" ></span></div>
+					</li>
+
+					<li style="border-right: 1px solid #eee;border-top: 1px solid #eee;" onClick="javascript:window.location.href='#administer.html'">
+						<div class="abt"><span>管理积分</span><span class="upper" v-text="format(userWallet.currentManagementIntegral )" ></span></div>
+					</li>
+                    
+					<li style="border-top: 1px solid #eee;" onClick="javascript:window.location.href='#privilege.html'">
+						<div class="abt"><span>特权积分</span><span class="upper"  v-text="format(userWallet.currentStockIntegral)" ></span></div>
+					</li>
+	      
+	</ul>
+	  
+</div>
+	
+<div class="orderform">
+	<div><span><em class="sprite_buyer pic_myw"></em><i>我的业务</i></span></div>
+	<ul class="buyer_yf">
+		<li onclick="javascript:window.location.href='myTeam.html'">
+			<p><em class="sprite_buyer pic_mtd"></em></p><p>我的团队</p>
+		</li>
+		<li class="upgrade" onclick="javascript:window.location.href='#upgrade.html'">
+			<p><em class="sprite_buyer pic_msj"></em></p><p>升级</p>
+		</li>
+		<li onclick="javascript:window.location.href='manageMoney.html'">
+			<p><em class="sprite_buyer pic_mtc"></em></p><p>套餐</p>
+		</li>
+		<li onclick="toshare()">
+			<p><em class="sprite_buyer pic_msr"></em></p><p>分享</p>
+			<input type="hidden" value="" class="toshare_id">
+		</li> 
+	</ul>
+</div>
+
+<div class="statistic">
+    <div><span><i>数据统计</i></span></div> 
+</div>    
+<div class="help">
+	<div onclick="javascript:window.location.href='helpCenter/index.html'"><span><i>帮助中心</i></span></div> 
+</div>	 
+	<!--<div class="kf" onClick="javascript:location.href='tel:4009670765'">客服热线 4009-670-765</div>-->
+	
+<footer>
+		<div class="bg_footer"></div>
+		<ul>
+			<li onclick="javascript:window.location.href='index.html'">
+				<p><i class="sprite pic_sc1"></i></p>
+				<p>商城</p>
+			</li>
+			<!--<li onclick="javascript:window.location.href='live.html'">
+				<p><i class="sprite pic_zb1"></i></p>
+				<p>直播</p>
+			</li>-->
+			<li onclick="javascript:window.location.href='information.html'">
+				<p><i class="sprite pic_zx1"></i></p>
+				<p>资讯</p>
+			</li>
+			<li onclick="javascript:window.location.href='hots.html'">
+				<p><i class="sprite pic_rx1 hots"></i></p>
+				<p>热销</p>
+			</li>
+			<li onclick="javascript:window.location.href='order.html'">
+				<p><i class="sprite pic_dz1"></i></p>
+				<p>定制</p>
+			</li>
+			<!--<li onclick="javascript:window.location.href='business_school.html'">
+				<p><i class="sprite pic_sxy1"></i></p>
+				<p>商学院</p>
+			</li>-->
+			<li onclick="javascript:window.location.href='buyer.html'">
+				<p><i class="sprite pic_wd0"></i></p>
+				<p class="active">我的</p>
+			</li>
+		</ul>
+	</footer>
+	</div>
+<div id="Msg"></div>
+
+<div class="am-share">
+  <h3 class="am-share-title">推广到</h3>
+  <ul class="am-share-sns"> 
+  <li id="weixin_friend"><img src="images/buyer/weixin_friend.png" width="35%"><label>微信好友</label></li>
+  <li id="weixin"><img src="images/buyer/weixin.png" width="35%"><label>微信朋友圈</label></li>
+  <li id="qq"><img src="images/buyer/qq.png" width="35%"><label>QQ好友</label></li>
+  <li onClick="javascript:location.href='buyer_mycode.html'"><img src="images/buyer/mycode1.png" width="35%"><label>推广码</label></li> 
+    
+  </ul> 
+	
+  <div class="am-share-footer"><button class="share_btn">取消</button></div>
+</div>
+<div class="sharebg"></div>
+<div class="share_wxbg"><img src="images/buyer/share_weixin.png"></div>
+
+</body>
+</html> 
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js" ></script>
+<script type="text/javascript" src="min_js/vue.min.js" ></script> 
+<script type="text/javascript" src="min_js/jweixin-1.2.0.js" ></script> 
+<script> 
+document.write('<scr'+'ipt type="text/javascript" src="min_js/buyer.js?rand='+Math.random()+'"></sc'+'ript>'); 
+</script> 

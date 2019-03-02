@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>我的推广二维码</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script> 
+<!--<script type="text/javascript" src="min_js/jquery-qrcode-0.14.0.js"></script>-->
+<script type="text/javascript" src="min_js/jquery.qrcode.min.js"></script>
+<!--<script type="text/javascript" src="min_js/xyqrcode.js"></script>-->
+<script type="text/javascript" src="min_js/canvas2image.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/user.js"></script> 
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+<link rel="stylesheet" href="min_css/detail.css">
+<link rel="stylesheet" href="min_css/user.css">
+<style>
+html,.buyer_mycode{background:#f4f4f4}
+</style>  
+</head> 
+<body onLoad="myShareCode()">
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">我的推广二维码</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+            </div>
+			</div>
+</header> 
+<div class="content22">
+  <div class="buyer_mycode">
+  	<div id="code" style="display:none"></div>    
+    <img src="" id="myImg" style="display:none"/>  
+    <img id="img-buffer" style="display:none" src="images/buyer/logo288.png"/>
+    <img id="img-buffer21" src="" style="width:60%;margin-left: 20%;margin-top:120px"/> 
+  </div>
+	
+</div> 
+ 
+<div id="Msg"></div>		
+</body>
+</html>   

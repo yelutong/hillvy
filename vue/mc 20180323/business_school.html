@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="email=no" name="format-detection" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="keywords" content="关键词" />
+<meta name="description" content="描述" />
+<meta name="copyright" content="XX有限公司  版权所有" />
+<title>明昌生态</title>   
+<link rel="shortcut icon" href="images/favicon.ico" /> 
+<script  type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script  type="text/javascript" src="min_js/index.js"></script>  
+<link rel="stylesheet" type="text/css" href="min_css/index.css">
+<link rel="stylesheet" type="text/css" href="min_css/public.css" /> 
+</head>
+<body> 
+		 商学院
+		 
+<footer>
+	<div class="bg_footer"></div>
+	<ul>
+		<li onclick="javascript:window.location.href='index.html'">
+			<p><i class="sprite pic_sc1"></i></p>
+			<p>商城</p>
+		</li> 
+		<li onclick="javascript:window.location.href='live.html'">
+			<p><i class="sprite pic_zb1"></i></p>
+			<p>直播</p>
+		</li>
+		<li onclick="javascript:window.location.href='hots.html'">
+			<p><i class="sprite pic_rx1 hots"></i></p>
+			<p>热销</p>
+		</li> 
+		<li onclick="javascript:window.location.href='business_school.html'">
+			<p><i class="sprite pic_sxy0"></i></p>
+			<p class="active">商学院</p>
+		</li>
+		<li onclick="javascript:window.location.href='buyer.html'">
+			<p><i class="sprite pic_wd1"></i></p>
+			<p>我的</p>
+		</li>
+	</ul>
+</footer>
+<div id="gotop">
+	<div class="sprite gopic"></div>
+</div>		 
+</body>
+
+</html>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+
+<script type="text/javascript">
+	var indexVm = new Vue({
+		el: '.swiper-container',
+		data: { 
+			advertList: [],
+
+		},
+		created: function() {
+			//获取广告
+			commonUtil.request({
+				url: carouselPic, //goodsId,
+				type: "POST",
+				data: {
+					advertType: 4,
+					deviceType:1
+				},
+				contentType: "application/json",
+				success: function(data) {
+					
+					console.log(data.content);
+					if(data.code == 1) {
+					 
+					}
+				}
+			})
+		},
+		mounted: function() { //生命期钩子 
+			this.$nextTick(function() { 
+				 
+			})
+
+		},  
+		methods: {
+			//跳转到商品详情页面
+			//param 品牌id
+			//url 跳转的页面
+			toBrandGoods(param) {
+				//window.localStorage.setItem("brandId", param);
+				//window.location.href = "brand.html";
+				
+				window.sessionStorage.setItem("detailGoodsId", param);
+				window.location.href = "detail.html";
+
+			} 
+			
+
+		}
+
+	})
+</script>
+ 
