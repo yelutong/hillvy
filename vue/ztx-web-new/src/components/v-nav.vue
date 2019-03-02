@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showIndexFront=='PC'" :class="top==0?'w100 center vNav':'w100 bg-yellow center vNav'">
+  <div v-if="showIndexFront=='PC'" :class="top==0?'w100 center vNav':'w100 bg-white center vNav shadow'">
     <div class="w1000 horizontal-view nav-pc">
        <span><img class="logo" :src="logo" /></span>
        <el-menu
@@ -40,7 +40,7 @@
         </el-submenu>
       </el-menu> 
     </div>
-    <div @click="backTop" :class="showTop?'h5-scroll-top active bg-yellow':'hide h5-scroll-top bg-yellow'"><i class="el-submenu__icon-arrow el-icon-arrow-up bold fs-18"></i></div>
+    <div @click="backTop" :class="showTop?'h5-scroll-top active bg-white':'hide h5-scroll-top bg-white'"><i class="el-submenu__icon-arrow el-icon-arrow-up bold fs-18"></i></div>
   </div>
 
   <div v-else class="bg-white justify-content-space-between w100 navH5">
@@ -127,7 +127,7 @@ export default {
     window.addEventListener('scroll', this.handleScroll, true);
   },
   destroyed() {
-    window.removeEventListener('scroll', this.handleScroll); 
+    window.removeEventListener('scroll', this.handleScroll, true); 
   },
   created() {
     this.logoLang = (this.$i18n.locale=='eng')?logoEng:logoEnd;
@@ -140,7 +140,7 @@ export default {
       if(top==0){
         this.bgColor = "transparent";
       }else{
-        this.bgColor = "#fecf1d";
+        this.bgColor = "#fff";
       }
       this.top = top;
       if(this.showIndexFront=='PC'){
@@ -279,6 +279,9 @@ export default {
   .logoH5{
     height:80px;
   }
+  .moreNav{ 
+   background:#cba617!important;
+  }
   .navDrop{
     height:40px;
   }
@@ -299,13 +302,13 @@ export default {
     cursor:pointer;
     transition-duration: 1s;  
     transition: background 1s,color 1s;
-    border:1px solid #cba617;
+    border:1px solid #fecf1d;
     color:#909399;
     opacity:0.8;
     z-index:9999;
   }
   .h5-scroll-top:hover{
-    background: #cba617 !important;
+    background: #fecf1d !important;
     transition-duration: 1s;  
     transition: background 1s,color 1s;
     color:#000;
@@ -326,8 +329,9 @@ export default {
   left:0;
   width:100%;
   height:100%;
-  background:#cba617!important;
+  background:#fecf1d!important;
   color:#FFF;
+  z-index: 99999;
   .title{
     height:88px;
     line-height:88px;
@@ -417,10 +421,10 @@ export default {
     font-size:15px!important;
   }
   .el-menu--horizontal .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal .el-menu-item:not(.is-disabled):hover{
-    background-color: #cba617!important;
+    background-color: #fecf1d!important;
   }
   .el-menu--horizontal>.el-submenu:focus .el-submenu__title, .el-menu--horizontal>.el-submenu:hover .el-submenu__title{
-    background-color: #cba617!important;
+    background-color: #fecf1d!important;
   }
   .el-menu-item{
     -webkit-transition: background-color 0s!important;
@@ -435,12 +439,12 @@ export default {
     cursor:pointer;
     transition-duration: 1s;  
     transition: background 1s,color 1s;
-    border:1px solid #cba617;
+    border:1px solid #fecf1d;
     color:#909399;
     opacity:0.8;
   }
   .h5-scroll-top:hover{
-    background: #cba617 !important;
+    background: #fecf1d !important;
     transition-duration: 1s;  
     transition: background 1s,color 1s;
     color:#000;
@@ -469,7 +473,6 @@ export default {
   }
   .selectLang{
     height: 60px;
-    border-bottom: 2px solid #fecf1d!important;
   }
   .selectLang1{
     height: 60px;
@@ -481,4 +484,5 @@ export default {
     height:30px;
   }
 }
+
 </style>
