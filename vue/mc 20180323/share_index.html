@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>分享</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css"> 
+<link rel="stylesheet" href="min_css/user.css"> 
+</head> 
+<body style="background:#FFF!important">
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">分享</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="shopcar.html" class="icon" ><i class="sprite gocar"></i><em></em></a>
+            </div>
+			</div>
+</header>
+<div class="content infor"> 
+<p class="head">分享有礼：</p>
+<p class="contenty">每邀请一个好友注册可获得150兑换积分。进入APP“我的”界面，点击积分，即可查看本次推广获得的兑换积分。</p>
+
+<div class="am-share share_index"> 
+  <ul class="am-share-sns"> 
+  <li id="weixin_friend" class="shareTo2"><img src="images/buyer/weixin_friend.png" width="35%"><label>微信好友</label></li>
+  <li id="weixin" class="shareTo2"><img src="images/buyer/weixin.png" width="35%"><label>微信朋友圈</label></li>
+  <li id="qq" class="shareTo2"><img src="images/buyer/qq.png" width="35%"><label>QQ好友</label></li>
+  <li class="shareTo1"><img src="images/buyer/mycode1.png" width="35%"><label>推广码</label></li>  
+  </ul>  
+</div>
+
+
+</div>
+<footer>
+</footer>  
+<div id="Msg"></div>
+<div class="sharebg"></div>
+<div class="share_wxbg"><img src="images/buyer/share_weixin.png"></div>
+</body>
+</html>  
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js" ></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/jweixin-1.2.0.js" ></script>
+<script>
+  $("footer").load("footer.html"); 
+  $(function(){
+	  $(".shareTo1").click(function(){
+			if(!localStorage.getItem('token')){
+				  window.location.href="login.html";return false; 
+			}else{
+                 window.location.href="buyer_mycode.html";return false; 
+			}   
+	  })
+	  $(".shareTo2").click(function(){
+			if(!localStorage.getItem('token')){
+				  window.location.href="login.html";return false; 
+			}else{
+                var ua = window.navigator.userAgent.toLowerCase(); 
+				if(ua.match(/MicroMessenger/i) == 'micromessenger'){   
+					$(".sharebg").addClass("sharebg-active"); 
+					$(".share_wxbg").fadeIn();
+				} 
+				else{   
+					showmessage("请在微信客户端中进行分享"); 
+					return false;
+				}  
+	  
+				commonUtil.request({
+					   type: "POST",
+					   url: wxShareSign,
+					   data: {"url":window.location.href},
+					   dataType : "json",
+					   success: function(data){
+						   console.log(data);
+						   if(data.code==1){
+							   //showmessage(data.msg);
+
+							   wx.config({
+								debug: false,//这里是开启测试，如果设置为true，则打开每个步骤，都会有提示，是否成功或者失败
+								appId: data.content.appId,
+								timestamp: data.content.timestamp,//这个一定要与上面的php代码里的一样。
+								nonceStr: data.content.nonceStr,//这个一定要与上面的php代码里的一样。
+								signature: data.content.signature,//签名
+								jsApiList: [
+								  // 所有要调用的 API 都要加到这个列表中
+										'checkJsApi',  
+										'onMenuShareTimeline', //分享到朋友圈 
+										'onMenuShareAppMessage', //分享到微信朋友 
+										'onMenuShareQQ',  //分享到qq 
+										'onMenuShareQZone'//qq空间
+								]
+								});  
+
+						   }else{
+							  //showmessage(data.msg);
+						   }
+					   }
+					});
+
+
+				wx.ready(function () {
+
+					//wx.hideOptionMenu();//隐藏右上角的 微信原生 分享
+
+					 commonUtil.request({
+								url: userShare,
+								type: "get", 
+								contentType: "application/json",
+								success: function(data) { 
+									if(data.code == 1) {   
+										//window.localStorage.setItem("share_title",data.content.title);
+										//window.localStorage.setItem("share_content",data.content.content); 
+									//alert(window.localStorage.getItem("share_title"));
+
+									  var onMenu={
+											title: data.content.title, // 分享标题
+											desc: data.content.content, // 分享描述
+											link: data.content.url, // 分享链接 'https://m.mcyou.net/mid_code.html?promoterId='+$(".toshare_id").val()
+											imgUrl: photo+data.content.logPhoto//'https://m.mcyou.net/images/buyer/logo288.png', // 分享图标
+										} 
+
+										wx.checkJsApi({
+												jsApiList: [
+													'getLocation',
+													'onMenuShareTimeline',
+													'onMenuShareAppMessage'
+												],
+												success: function (res) {
+													//alert(JSON.stringify(res));
+												}
+											});
+
+										wx.onMenuShareQQ({//分享到QQ
+											title: onMenu.title, // 分享标题
+											desc: onMenu.desc, // 分享描述
+											link: onMenu.link, // 分享链接
+											imgUrl:onMenu.imgUrl, // 分享图标
+											success: function () {
+											// 用户确认分享后执行的回调函数
+											},
+											cancel: function () {
+											// 用户取消分享后执行的回调函数
+											}
+										});
+										//alert(onMenu.title);
+										wx.onMenuShareAppMessage({//分享到微信朋友
+											title: onMenu.title, // 分享标题
+											desc: onMenu.desc, // 分享描述
+											link: onMenu.link, // 分享链接
+											imgUrl:onMenu.imgUrl, // 分享图标
+											type: '', // 分享类型,music、video或link，不填默认为link
+											dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+											success: function () {
+												// 用户确认分享后执行的回调函数
+											},
+											cancel: function () {
+												// 用户取消分享后执行的回调函数
+											}
+										});
+
+										wx.onMenuShareTimeline({//分享到朋友圈
+											title: onMenu.title, // 分享标题 
+											link: onMenu.link, // 分享链接
+											imgUrl:onMenu.imgUrl, // 分享图标
+											trigger: function (res) {
+												// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+												//alert('用户点击分享到朋友圈');
+											  },
+											success: function () {
+											// 用户确认分享后执行的回调函数
+												//alert('已分享');
+											},
+											cancel: function () {
+											// 用户取消分享后执行的回调函数'
+												//alert('已取消');
+											}
+									   });
+
+										wx.onMenuShareQZone({
+										   title: onMenu.title, // 分享标题
+											desc: onMenu.desc, // 分享描述
+											link: onMenu.link, // 分享链接
+											imgUrl:onMenu.imgUrl, // 分享图标
+											success: function () { 
+											   // 用户确认分享后执行的回调函数
+											},
+											cancel: function () { 
+												// 用户取消分享后执行的回调函数
+											}
+										});
+
+
+
+
+									}else{
+										showmessage("分享出错");
+										return false;
+									}
+								}
+							}); 
+
+
+
+				});	 
+
+				wx.error(function(res){  
+					// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。  
+					//alert("errorMSG:"+res);  
+				}); 
+	  
+	 
+            } 	 
+	  })
+	  
+	  
+	  
+  }) 
+</script> 

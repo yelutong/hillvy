@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>订单详情</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="min_css/public.css">
+		<link rel="stylesheet" href="min_css/content.css">
+		<link rel="stylesheet" href="min_css/detail.css">
+		<link rel="stylesheet" href="min_css/user.css">
+	</head>
+
+	<body>
+		<header class="header-box">
+			<div class="header-menu" id="headerMenu">
+				<span class="logo">订单详情</span>
+				<div class="header-icon left-icon">
+					<a href="buyer_order.html" class="icon_bk sprite" ></a>
+				</div>
+				<div class="header-icon right-icon">
+					<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+				</div>
+			</div>
+		</header>
+		<div class="content21 order" id="app">
+
+			<ul>
+				<li>
+					<div class="order_ids">
+						<i><span class="ids_left">订单号码：</span><span class="ids_right" v-text="orderNumber"></span></i>
+						<i><span class="ids_left">下单时间：</span><span class="ids_right" v-text="orderDetail.addTime"></i>
+						<i><span class="ids_left">订单状态：</span><span class="ct_active ids_right" v-text="orderDetail.status"></span></i>
+					</div>
+				</li>
+				<li>
+
+					<div class="order_idstyle ov_store">
+						<!--<a href="http://m.amall.com/buyer/order_view.htm?id=4020"><i>{{orderDetail.storeName}}</i></a>-->
+						<a href="javascript:void(0)"><i v-text="orderDetail.storeName"></i></a>
+					</div>
+
+					<div class="order_olstyle">
+						<template v-for="goods in orderDetail.items">
+						<div class="good_xq">
+							<div class="pic_pa"> 
+								<img :src="goods.goodsPhoto">
+							</div>
+							<div class="info_pl">
+								<p class="order_goodsname">
+									<a href="javascript:void(0)" @click="toDetail(goods.goodsId)" v-text="goods.goodsName"></a>
+								</p>
+								<p class="order_goodsprice ct_active">￥<b v-text="goods.originalPrice"></b></p>
+								<p class="f12 order_goodscount"> × <b v-text="goods.goodsCount"></b></p>
+							</div>
+						</div>	
+						</template>
+
+					</div>
+				</li>
+
+				<li>
+					<div class="order_ids"> <i><span class="ids_left">支付方式：</span><span class="ct_active ids_right">微信支付</span></i></div>
+					<div class="order_ids"> <i><span class="ids_left">备注信息：</span><span class="ids_right" v-text="orderDetail.remark"></span></i></div>
+				</li>
+				<li>
+					<div class="order_ids">
+						<i class="hr h30">收货地址</i>
+						<i><span class="ids_left">联系电话：</span><span class="ids_right" v-text="orderDetail.orderformAddress.phone"></span></i>
+						<i><span class="ids_left">收货地址：</span><span class="ids_right" v-text="orderDetail.orderformAddress.areaInfo+orderDetail.orderformAddress.address"></span></i>
+					</div>
+				</li>
+			<!--	<li>
+					<div class="order_ids">
+						<i class="hr">配送方式</i>
+						<i><span class="ids_left">物流公司：</span><span class="ids_right">15323438158</span></i>
+						<i><span class="ids_left">运单编号：</span><span class="ids_right">是多大的多多多都是事实所所所所所所所所所多多多多多多多</span></i>
+					</div>
+				</li>-->
+				<li>
+					<div class="order_ids">
+						<i class="hr h30">商品总额</i>
+						<i><span class="ids_left">运费：</span><span class="ids_right ct_active carriage">¥<b v-text="orderDetail.shipPrice"></b></span></i>
+						<i><span class="ids_left">总价：</span><span class="ids_right ct_active carriage total">¥<b v-text="orderDetail.totalPrice"></b></span></i>
+					</div>
+				</li>
+
+				<div class="order_buy">
+					<span @click="toWuliu(orderDetail.shipCompany,orderDetail.shipCode)">查看物流</span>
+					<span class="bg_active" @click="toShopPing">继续购物</span>
+				</div>
+
+			</ul>
+
+		</div>
+
+		<div id="Msg"></div>
+	</body>
+
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+
+<script type="text/javascript" src="min_js/user.js"></script>
+
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			orderDetail: {
+				orderformAddress:{
+					phone:""
+				}
+				
+			},
+			orderNumber: ""
+		},
+
+		created: function() {
+			var orderNumber = window.localStorage.getItem("orderDetailId");
+			//用户订单x详情
+			commonUtil.request({
+				url: orderDatailById + orderNumber,
+				type: "get",
+				contentType: "application/json",
+				success: function(data) {
+					console.log(data);
+					if(data.code == 1) {
+						vm.orderNumber = orderNumber;
+						var status = data.content.status;
+						$.each(data.content.items, function() {
+							this.goodsPhoto=photo+this.goodsPhoto;						
+						});
+						if(status == 0) {
+							data.content.status = "已取消 ";
+						} else if(status == 10) {
+							data.content.status = "未付款";
+						} else if(status == 20) {
+							data.content.status = "已付款 ";
+						} else if(status == 30) {
+							data.content.status = "已发货";
+						} else if(status == 40) {
+							data.content.status = "已收货 ";
+						} else if(status == 50) {
+							data.content.status = "待评价";
+						} else if(status == 60) {
+							data.content.status = "已完成 ";
+						}
+						
+						
+						vm.orderDetail = data.content;
+					} else {
+						showmessage(data.msg);
+					}
+				}
+
+			});
+		},
+		methods: {
+				//去商品详情页面
+			toDetail: function(goodsId) {
+				window.sessionStorage.removeItem("detailExchange");
+				window.sessionStorage.setItem("detailGoodsId", goodsId);
+				window.location.href = "detail.html";
+			},
+			//继续购物
+			toShopPing: function(goodsId) {
+				//window.sessionStorage.setItem("detailGoodsId", goodsId);
+				window.location.href = "index.html";
+			},
+			toWuliu:function(shipCompany,shipCode){
+				window.localStorage.setItem("shipCompany", shipCompany);
+				window.localStorage.setItem("shipCode", shipCode);
+				window.location.href="stream.html";
+				//window.location.href='https://m.kuaidi100.com/index_all.html?type='+shipCompany+'&postid='+orderNumber;
+				return false;
+				
+			}
+		}
+
+	})
+</script>

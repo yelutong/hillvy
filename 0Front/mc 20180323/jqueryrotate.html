@@ -1,0 +1,376 @@
+﻿
+<!doctype html>
+<html> 
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>抽奖</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css">
+<link rel="stylesheet" href="min_css/detail.css">
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<style>
+.g-content {
+width: 100%;
+background: #ff4153;
+height:100%;
+display: block;
+float:left
+}
+.g-content .g-lottery-case {
+width: 96%;
+margin: 0 auto;
+padding-top:50px;
+overflow: hidden;
+}
+
+.g-content .g-lottery-case .g-left h2 {
+font-size:14px;
+line-height:50px; 
+font-weight: normal;
+width:100%;
+color:#FFF;
+}
+
+.g-content .g-lottery-case .g-left {
+width: 100%;
+float: left;
+}
+
+.g-lottery-box {
+width: 100%;
+height: auto;  
+position: relative;
+background: url(jqueryrotate/ly-plate-c.gif) no-repeat;
+background-size:100% 100%;-moz-background-size:100% 100%;
+}
+
+.g-lottery-box .g-lottery-img {
+width:84%;
+height: auto; 
+margin:8%;
+position: absolute;
+background: url(jqueryrotate/bg-lottery.png) no-repeat;
+background-size:100% 100%;-moz-background-size:100% 100%;
+}
+
+.g-lottery-box .playbtn {
+width: 186px;
+height: 186px;
+position: absolute;
+top: 50%;
+left: 50%;
+margin-left: -94px;
+margin-top: -94px;
+background: url(jqueryrotate/playbtn.png) no-repeat;
+background-size:100% 100%;-moz-background-size:100% 100%;
+}
+@media screen and (max-width:640px){
+.g-lottery-box .playbtn { 
+margin-left: -65px;
+margin-top: -65px;
+width: 130px;
+height: 130px;
+}
+}
+@media screen and (max-width:400px){
+.g-lottery-box .playbtn { 
+margin-left: -50px;
+margin-top: -50px;
+width: 100px;
+height: 100px;
+}
+}	
+.detail_sp{ 
+    width: 96%;
+	margin: 20px 2%;
+	background:#fb4f67; 
+	min-height:150px;
+	float:left;
+	padding:20px 10px;
+	border:1px solid #eee;
+	border-radius:5px;
+}	
+.detail_sp span { 
+	width: 100%;
+	color:#FFF;
+    float: left;
+    line-height:26px;
+    padding: 0 0 4px 0;
+}
+</style> 
+</head>
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">抽奖</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"></a>
+            </div>
+			<div class="header-icon right-icon"> 
+				<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+			</div>
+		</div>
+</header> 
+<div class="g-content">
+    <div class="g-lottery-case">
+        <div class="g-left">
+            <h2 class="center">您已拥有<span class="playnum"></span>次抽奖机会，点击启动抽奖！</h2>
+            <div class="g-lottery-box">
+                <div class="g-lottery-img">
+                </div>
+                <a class="playbtn" href="javascript:void(0);" title="开始抽奖"></a>
+            </div>
+        </div>
+    </div>
+    
+    <span class="mb_okbtn02 bg_active hide" id="getAward21" style="display: none">领取奖品</span>
+    
+    <div class="detail_sp">
+    	<span class="goodsname">兑奖须知：</span>
+    	<p></p><span class="goodsname">1.活动期间(2017年12月24日-2018年1月3日)，购买任意商品均可参与抽奖活动（中奖率为100%）。</span>
+    	<span class="goodsname">2.中奖人员请按系统要求提交收货地址，奖品将在3个工作日内发货，抵用券请到“我的”界面优惠券中查看。</span>
+    	
+    </div>   
+</div>
+<div class="mb_dioalog02">
+	<div class="mb_tit02">恭喜您，你抽中的奖品是</div>
+	 <p class="center h40"></p>
+	<div>
+		<span class="mb_nobtn02 od_jx">继续抽奖</span>
+		<span class="mb_okbtn02 bg_active od_define">返回首页</span>
+	</div>
+</div>
+<div class="mb_bg"></div>
+<div id="Msg"></div>
+</body>
+</html> 
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="jqueryrotate/jQueryRotate.2.2.js"></script>
+<script>
+function onIOSGetToken(token){
+	showmessage(token);
+    if(token.length>0){ 
+		window.localStorage.setItem("token", token);  
+	}else{ 
+		window.webkit.messageHandlers.h5Login.postMessage(null);//ios
+	}
+} 
+
+var useragent=navigator.userAgent; 
+if(navigator.userAgent.indexOf('ouyanghehe')>=0){
+	 $(".header-box,footer,.od_bottom").hide();
+	 showmessage("IOS签到完善中");
+	 window.webkit.messageHandlers.getAppToken.postMessage(null);//ios   
+}
+else if(navigator.userAgent.indexOf('mcyou')>=0){ 
+	$(".header-box,footer,.od_bottom").hide();
+	if(window.jsBridge.getAppToken()){
+		window.localStorage.setItem("token", window.jsBridge.getAppToken());  
+		$(".g-content .g-lottery-case").css("padding-top","5px"); 
+	}else{   
+		window.localStorage.removeItem("token");
+		window.jsBridge.h5Login(); 
+	}  
+}else{
+	if(!window.localStorage.getItem("token")){
+		  window.location.href="login.html";
+	} 
+} 	
+$(function() { 
+if(window.localStorage.getItem("token")){	
+	 var playnum = 1;
+	 commonUtil.request({	 
+	   type: "get",
+	   url: turnplateinfo, 
+	   dataType : "json",
+	   contentType: "application/json", 
+	   success: function(data){
+		   console.log(data);
+		   if(data.code==1){
+			 playnum=data.content.userCanRunCount;
+			 $('.playnum').html(playnum);//显示还剩下多少次抽奖机会 
+		   }else{
+				showmessage(data.msg);
+		   }
+	   }
+	});
+	 
+	//转盘中奖列表
+	var userAward=[];
+	commonUtil.request({
+		url: noaddressawardslist,
+		dataType: "json",
+		type: "get", 
+		contentType: "application/json",
+		success: function(data) {
+			console.log(data);
+			if(data.code == 1 && data.content.length>0) { 
+				$.each(data.content,function(index,val){ 
+					  if(val.awardType==1||val.awardType==5){ 
+						  userAward.push(val);  
+					   }   
+				}) 
+				console.log(userAward);  
+			}
+			if(userAward.length>0){
+				$("#getAward21").css("display","block");
+			}else{
+				$("#getAward21").hide();
+			}
+		}
+
+	   })
+	 
+    var $btn = $('.g-lottery-img');// 旋转的div
+	
+    //var playnum = 2; //初始次数，由后台传入
+    //$('.playnum').html(playnum);//显示还剩下多少次抽奖机会
+	
+    var isture = 0;//是否正在抽奖
+	var dataVal=0;
+    var clickfunc = function(dataVal) {
+        var data = [1, 2, 3, 4, 5, 6];//抽奖
+        //data为随机出来的结果，根据概率后的结果
+        //var dataVal = data[Math.floor(Math.random() * data.length)];//1~6的随机数
+	 
+		 
+        switch(dataVal) {//dataVal为奖品id
+            case 28:
+                rotateFunc(28, 0, '恭喜您获得花间里面膜1张');
+                break;
+            case 27:
+                rotateFunc(27, 300, '恭喜您获得花间里口红1支');
+                break;
+            case 24:
+                rotateFunc(24, 240, '恭喜您获得50元抵用券');
+                break;
+            case 25:
+                rotateFunc(25, 180, '恭喜您获得80元抵用券');
+                break;
+            case 29:
+                rotateFunc(29, 120, '谢谢参与');
+                break;
+            case 26:
+                rotateFunc(26, 60, '恭喜您获得120元抵用券');
+                break;
+        }
+    }
+    $(".playbtn").click(function() {
+        if(isture) return; // 如果在执行就退出
+        isture = true; // 标志为 在执行
+		
+		if(playnum <= 0) { //当抽奖次数为0的时候执行
+            showmessage("没有次数了");
+            $('.playnum').html(0);//次数显示为0
+            isture = false;
+        } else { //还有次数就执行
+            playnum = playnum - 1; //执行转盘了则次数减1
+            if(playnum <= 0) {
+                playnum = 0;
+            }
+            $('.playnum').html(playnum); 
+        }
+		
+		 commonUtil.request({	 
+		   type: "get",
+		   url: trunturnplate, 
+		   dataType : "json",
+		   contentType: "application/json", 
+		   success: function(data){
+				   console.log(data);
+				   if(data.code==1){
+                     dataVal=data.content.id;//中奖id
+					   console.log(dataVal);
+                     var awardType=data.content.awardType;
+					 clickfunc(dataVal);
+					if(awardType==1||awardType==5){//商品 
+						$(".od_define").addClass("toFillAdress"); 
+						$(".od_define").html("领取奖品");
+					}
+					if(awardType==2||awardType==3){//2.平台优惠券 3.商家优惠券
+						$(".od_define").addClass("toCoupon"); 
+						$(".od_define").html("查看抵用券");
+					}  
+				   }else{
+						showmessage(data.msg);
+					    setTimeout(function(){
+							window.location.reload();
+						},1500)
+				   }
+			   }
+			});
+		 
+    });
+    var rotateFunc = function(awards, angle, text) {
+        isture = true;
+        $btn.stopRotate();
+        $btn.rotate({
+            angle: 0,//旋转的角度数
+            duration: 4000, //旋转时间
+            animateTo: angle + 1440, //给定的角度,让它根据得出来的结果加上1440度旋转
+            callback: function() {
+                isture = false; // 标志为 执行完毕
+                //showmessage(text);
+				    $(".mb_dioalog02 p").html(text);
+					$(".mb_bg").fadeIn();
+					$(".mb_dioalog02").show();  
+            }
+        });
+    };
+	
+   $(".g-lottery-box").widH();$(".g-lottery-img").widH();
+	
+   $(".g-content").css("min-height",window.screen.height);	
+	
+	$(".od_jx").click(function(){
+		
+		if(playnum <= 0) { //当抽奖次数为0的时候执行
+            showmessage("没有次数了");
+            $('.playnum').html(0);//次数显示为0
+            isture = false;
+        } else { //还有次数就执行
+            $(".mb_bg").fadeOut();
+			$(".mb_dioalog02").hide(); 
+            window.location.reload()
+		}
+		
+		
+	})
+	
+  $(".od_define").click(function(){ 
+		var useragent=navigator.userAgent; 
+		if(navigator.userAgent.indexOf('mcyou')>=0){ 
+			showmessage("请到微信公众号H5商城查看或领取");
+		}else{
+			  if($(this).hasClass("toFillAdress")==true){
+				window.location.href="awardAcounts.html";  
+				return false;
+			  }
+			 else if($(this).hasClass("toCoupon")==true){ 
+				  window.location.href="favourable.html"; 
+				  return false;
+			  }else{ 
+				$(".mb_bg").fadeOut();
+				$(".mb_dioalog02").hide();  
+				window.location.href="index.html";  
+			  } 
+		}   
+	  
+  }) 
+  
+$("#getAward21").click(function(){
+	var useragent=navigator.userAgent; 
+		if(navigator.userAgent.indexOf('mcyou')>=0){ 
+			showmessage("请到微信公众号H5商城领取奖品");
+		}else{
+			window.location.href="awardAcounts.html";   
+		}	 
+	
+}) 
+}
+});
+</script> 

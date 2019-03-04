@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>找回密码</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script> 
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/login.js"></script> 
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">找回密码</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="index.html" class="icon" ><i class="sprite gosy"></i></a>
+            </div>
+			</div>
+</header>
+<div class="login">  
+<form name="findForm" id="findForm" class="loginform"  method="post"> 
+            
+            <div class="verification_box">
+                <p class="c-form-search verification">
+                    <label for="mobi" class="mobi user sprite"></label>
+                    <input type="text" id="findName" name="findName" autocomplete="off" placeholder="请输入手机号" value=""/>
+                    <button type="button" class="sprite"></button>
+                    <span class="datalist"></span>
+                </p>
+            </div>
+            
+            <div class="verification_box">
+                        <p class="c-form-search verification">
+                            <label for="mobiCode" class="mobiCode sprite"></label>
+                            <input type="text" id="findCode" name="findCode" placeholder="请输入短信验证码" maxlength="6" value="">
+                            <button type="button" class="register_code"></button>
+                        </p>
+                        <a href="javascript:;" class="getCode isClick" id="findGetCode" data-waiting="秒">获取验证码</a>
+              </div>
+              
+            <div class="verification_box">
+                <p class="c-form-search verification">
+                    <label for="MobiPwd" class="MobiPwd sprite"></label>
+                    <input type="password" id="findPwd" name="findPwd" autocomplete="off" placeholder="重新设置登录密码" maxlength="20" value=""/>
+                    <button type="button" class="sprite"></button>
+                </p>
+                <span class="pwd_eyes close sprite"></span>
+            </div>
+             
+                    
+                    
+              <input type="button" class="find_btn" value="确 定"/>
+
+        
+    </form> 
+</div>  
+<div id="Msg"></div>
+</body>
+</html>

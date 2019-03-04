@@ -1,0 +1,213 @@
+﻿<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>商品详情</title>
+<link rel="shortcut icon" href="..//images/favicon.ico">
+<link rel="stylesheet" type="text/css" href="../min_css/public.css">
+<link rel="stylesheet" type="text/css" href="../min_css/content.css"> 
+</head>
+<body>
+		<div id="app">
+				<header class="header-box">
+				<div id="headerMenu" class="header-menu"><span class="logo">活动详情</span></div>
+				</header> 
+				
+				<div class="content">
+				 <div class="swiper-container swiper-container-horizontal">
+				   <img  src="http://pic.mcyou.net/GOODS/e353bf41-1a96-4d88-9404-8be52c3ddc0d.jpg" width="100%">
+				 </div> 
+				<div class="detail_bg"></div> 
+				
+				<div class="detail_sp"><span class="dt_active saleprice f18">¥<i>568</i></span> <span class="collect"></span> <span class="goodsname">山茶油原香型 2L</span> <span class="saleSpots">零添加 零胆固醇 降三高 物理压榨 烟点高达230度</span></div> 
+					
+					<div class="detail_hr black">商品介绍</div> 
+					<div class="detail_content">
+					<img src="http://pic.mcyou.net/GOODS/abd680c7-fe15-4f4d-b1f9-d78981468086.jpg" style="display: inline;">
+					<img src="http://pic.mcyou.net/GOODS/d9080f27-b419-467f-a760-6cce8b10f7fc.jpg" style="display: inline;">
+					<img src="http://pic.mcyou.net/GOODS/e2cb11bb-0e37-4532-9b78-5fb61674ad44.jpg" style="display: inline;">
+					<img src="http://pic.mcyou.net/GOODS/2a3a9775-5e2c-49ea-b74b-7090a660b1ae.jpg" style="display: inline;">
+					<img src="http://pic.mcyou.net/GOODS/16818199-dcfd-4b42-9187-5a2a5c74e8c7.jpg" style="display: inline;">
+					<img src="http://pic.mcyou.net/GOODS/dbf58b50-e4d9-4370-8de6-984751a8e4d2.jpg" style="display: inline;">
+					<img src="http://pic.mcyou.net/GOODS/d1560bb7-6e72-42f7-9265-1ec9d3c62822.jpg" class="display: inline;">
+					</div> 
+					
+					<div class="od_bottom center" style="background:#FFF;border-top:1px solid #eee"><i id="nowBuyOil" class="bg_active" style="padding:10px 40px;color:#FFF;border-radius:5px">立即购买</i></div> 
+				 
+					</div> 
+					<div id="gotop" style="display: none;"><div class="sprite gopic"></div></div> 
+					<div id="Msg"></div></div>
+
+
+<div class="mb_dioalogde" style="top:20%">
+	 <div style="position: relative;height: 36px;line-height: 36px;margin: 15px 0 20px 0;">
+			 <span class="salebuy">
+			 <i style="float:left" class="f16">购买数量:</i>
+			 <div class="standards f16" style="margin:0 0 0 76px;display: block"><div class="minus" style="margin-top:0">-</div><input type="number" style="margin-top:0" id="goodsNum" value="1" class="num"><div style="margin-top:0" class="plus">+</div></div>
+			 </span>
+		</div>
+	 <div class="verific_box">
+		<p class="c-form-search verific"> 
+			<input type="text" id="userName" name="userName" style="font-size:16px;width:100%"  autocomplete="off" placeholder="请输入姓名" value=""> 
+		</p>
+      </div>
+	 <div class="verific_box">
+		<p class="c-form-search verific"> 
+			<input type="text" id="midName" name="midName" style="font-size:16px;width:100%"  autocomplete="off" placeholder="请输入手机号" value=""> 
+		</p>
+      </div>
+	 <div style="margin: 15px 0 20px 0;">
+			<p class="c-form-search verific"> 
+			  <textarea id="midOiladd" style="width:100%;font-size:16px;padding: 5px;resize:none;height:58px;line-height:24px;border: none;background: #fdfdfd;border-radius: 10px;" name="midOiladd" placeholder="请输入收货地址"></textarea>
+			</p> 
+     </div>
+	 
+	<div>
+		<span class="mb_nobtnde od_km">取消</span>
+		<span class="mb_okbtnde bg_active od_km de_submit">提交</span>
+	</div> 
+</div>
+<div class="mb_bg"></div>
+<div class="sharebg"></div> 
+ 
+<script type="text/javascript" src="../min_js/jquery-1.10.1.min.js"></script>  
+<script>
+function showmessage(msg) { 
+        $("#Msg").show();
+        $("#Msg").html( '<div style="position: fixed;z-index:99999991;padding:10px;width: 150px;min-height:40px;background: #222;color: #fff;left: 50%;border-radius: 0.6em;z-index: 9999999999;' +
+        'line-height: 80px;margin-left: -75px;word-break: break-all;text-align: center;top: 40%;opacity: .7;text-shadow: 0 1px 0 #111;height: auto;">' +
+         '<p id="alert_message" style="line-height:20px;margin:10px 0 10px 0;color:#FFF">' + msg + '</p>' +
+        '</div>');
+	    setTimeout(closemessage, 2000);//两秒种关闭提示框
+}	
+//关闭提示信息
+function closemessage() {
+     $("#Msg").hide();
+}		
+function getQueryString(name) { //根据链接获取值 如 id=1
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+		var r = window.location.search.substr(1).match(reg); 
+		if (r != null) return unescape(r[2]); return null; 
+}	 
+$(document).ready(function(){
+	//$("#userName").val(getQueryString('code'));
+	$(window).scroll(function(){
+	    t = $(document).scrollTop(); 
+	    if(t>200){  
+			$('#gotop').fadeIn('slow');
+	    }else{
+	        $('#gotop').fadeOut('slow');
+	    }  
+	})   
+	    
+	$('#gotop').click(function(){  
+		$('body,html').animate({
+			scrollTop: 0
+		},
+		800);//点击回到顶部按钮，缓懂回到顶部,数字越小越快
+		return false;  
+	})
+	
+  $("#nowBuyOil").click(function(){
+	  $(".mb_bg").show();
+	  $(".mb_dioalogde").show();
+  })
+  $(".mb_bg,.mb_nobtnde").click(function(){
+	  $(".mb_bg").hide();
+	  $(".mb_dioalogde").hide();
+  })
+  $(".minus").click(function(){ 
+		var t = $(this).next('.num');
+		t.val(parseInt(t.val()) - 1);
+		if (t.val() < 1) {
+			showmessage("受不了了，商品不能再减少了哦");
+			t.val(1);
+		} 
+	})
+	 
+	$(".plus").click(function() {  
+		var t = $(this).prev('.num');  
+		t.val(parseInt(t.val()) + 1);
+		if (t.val() <= 1) {
+			t.val(1);
+		} 
+	})
+	  
+	$(".de_submit").click(function(){
+		var num=$(".num").val();
+		var midName=$("#midName").val();
+		var wx_code=getQueryString('code');
+		var midOiladd=$("#midOiladd").val();
+		var userName=$("#userName").val();
+		if(num.length<1){
+			showmessage("数量最少为1");$(".num").val(1);
+			return false;
+		}
+		if(userName==""){
+			showmessage("姓名不能为空");
+			return false;
+		}
+		if(midName.length!=11){
+			showmessage("请输入11位手机号");
+			return false;
+		} 
+		if (!/^1[34587]\d{9}$/.test(midName)) {
+		 showmessage("手机号码格式不对");
+		 return false;
+	    }
+		if(midOiladd.length==""){
+			showmessage("请填写地址");
+			return false;
+		}	
+		if(!wx_code){
+			return false;
+		}	
+		
+		$.ajax({
+			url: "http://api.mcyou.net/api/orderformoutlinepay/wxScanCodeBuy",
+			type: "POST", 
+			dataType:"json",
+			data: JSON.stringify({"areaInfo":midOiladd,"userName":userName,"code":wx_code,"goodsCount":num,"goodsId":93,"phone":midName}),
+			contentType: "application/json",
+			success: function(data) {
+				 $(".mb_bg").hide();
+	             $(".mb_dioalogde").hide();
+				var data = JSON.parse(JSON.stringify(data));
+				if(data.code == 0) {
+					
+					window.location.href = 'http://mp.weixin.qq.com/s/PdcVJRVpzVxlGFb8VshS8g';
+				} else {
+				sessionStorage.setItem('orderNumber', data.content.orderNumber);
+				sessionStorage.setItem('orderPrice', data.content.orderPrice);
+				sessionStorage.setItem('goodsName', data.content.goodsName);
+				function onBridgeReady(){
+						   WeixinJSBridge.invoke(
+							   'getBrandWCPayRequest', JSON.parse(data.content.payData),
+							   function(res){
+									alert(res.err_msg)
+								   if(res.err_msg == "get_brand_wcpay_request:ok" ) { 
+									   window.location.href="shopcar_pay_ok.html";
+									   return false; 
+								   }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+							   }
+						   ); 
+						}
+						if (typeof WeixinJSBridge == "undefined"){
+						   if( document.addEventListener ){
+							   document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+						   }else if (document.attachEvent){
+							   document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+							   document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+						   }
+						}else{
+						   onBridgeReady();
+						}
+				}
+			},
+			
+	  });
+		
+		
+  })
+})  
+</script>

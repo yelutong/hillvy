@@ -1,0 +1,14 @@
+﻿<script> 
+	//判断是微信app的浏览器
+		var userAgent = navigator.userAgent.toLowerCase();
+
+		if(userAgent.match(/MicroMessenger/i)=="micromessenger") { 
+			var rurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9f967234a3fbd634&redirect_uri=https%3A%2F%2Fm.mcyou.net%2Foutpay%2FactivityOil.html&response_type=code&scope=snsapi_userinfo&state=openid#wechat_redirect";
+			window.location.href = rurl;
+			
+		} else {
+			alert("open in wxchat");
+			window.location.href="index.html";
+		} 
+
+</script>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>省代理商</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="min_css/public.css">
+		<link rel="stylesheet" href="min_css/content.css">
+		<link rel="stylesheet" href="min_css/detail.css">
+		<link rel="stylesheet" href="min_css/user.css"> 
+		<link rel="stylesheet" href="min_css/shopcar.css"> 
+	</head>
+
+	<body>
+		<div id="app">
+			<header class="header-box">
+				<div class="header-menu" id="headerMenu">
+					<span class="logo">省代理商</span>
+					<div class="header-icon left-icon">
+						<a href="javascript:window.history.back()" class="icon_bk sprite" ></a>
+					</div>
+					<div class="header-icon right-icon">
+						<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+					</div>
+				</div>
+			</header>
+			<div class="content21">
+              <div class="agent_s">选择省
+			  <select class="prov" v-model="prov" @change="getCityList" >
+				 <option disabled value="">请选择</option>
+				 <option v-for="option in provList" v-bind:value="option" >
+				{{ option.areaname }}
+				</option>
+			  </select> 
+              </div>
+             <div class="truke">
+             	<p>金额</p>
+             	<p>¥20000.00</p>
+             	<p><input type="checkbox" class="check trunkcheck">阅读并同意<a href="#" class="ct_active">升级协议</a></p>
+             	<p><button type="button" class="addressbtn trukebtn">立即升级</button></p>
+             </div> 
+            <ul class="tk_li">
+            	<li>省代升级特权</li>
+            	<li>省代升级特权</li>
+            	<li>省代升级特权</li>
+            	<li>省代升级特权</li>
+            	<li>省代升级特权</li>
+            </ul>
+			</div>
+			<div id="Msg"></div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '.content21',
+		data: {
+			prov:{},
+			provList:[],
+			city:{},
+			cityList:[],
+			area:{},
+			areaList:[],
+			orderAddress:{
+				areaId:"",
+				userName:"",
+				phone:"",
+				address:"",
+				isChecked:0
+			}
+			
+		},
+		mounted: function () {
+		  this.$nextTick(function () {
+		  	/*获取省列表*/
+		   $.ajax({ 
+			url:listAreaByParentId+0,
+			type: "get", 
+			contentType: "application/json",
+			success: function (data) {
+				var data = JSON.parse(data);
+				console.log(data);
+				if(data.code==1){
+					vm.provList=data.content;
+				}
+			},
+			beforeSend: function(request) {
+               request.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+              }
+			});
+		  })
+		},
+		methods:{
+			/*获取城市列表*/
+			getCityList:function (){
+			$.ajax({ 
+			url:listAreaByParentId+vm.prov.id,
+			type: "get", 
+			contentType: "application/json",
+			success: function (data) {
+				var data = JSON.parse(data);
+				console.log(data);
+				if(data.code==1){
+					$("#citySelect").attr("disabled",false);
+					$("#areaSelect").hide();
+					vm.cityList=data.content;
+					
+				}
+				
+			},
+			beforeSend: function(request) {
+               request.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+              }
+			});
+			},
+			/*获取地区列表*/
+			getAreaList:function (){
+			$.ajax({ 
+			url:listAreaByParentId+vm.city.id,
+			type: "get", 
+			contentType: "application/json",
+			success: function (data) {
+				var data = JSON.parse(data);
+				console.log(data);
+				if(data.code==1){
+					$("#areaSelect").attr("disabled",false);
+					vm.areaList=data.content;
+					if(vm.areaList.length<=0){
+						$("#areaSelect").hide();
+					}else{
+						$("#areaSelect").show();
+					}
+				}
+			},
+			beforeSend: function(request) {
+               request.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+              }
+			});
+			},
+			
+			//保存地址信息
+			addAddress:function (id){
+			var userName=$("#userName").val().trim();//	showmessageTop("密码过短");
+			var phone=$("#txtPhone").val().trim();
+			var address=$("#txtarea").val().trim();
+			if(!userName){
+				showmessageTop("联系姓名不能空");
+				return false;
+			}
+			if(!phone){
+				showmessageTop("联系电话不能空");
+				return false;
+			}
+			
+			if (!/^1[34587]\d{9}$/.test(phone)) {
+				showmessageTop("联系电话格式不对");
+				return false;
+			}
+			if(!address){
+				showmessageTop("详细地址不能空");
+				return false;
+			}
+			if(!vm.area.id){
+				vm.orderAddress.areaId=vm.city.id;
+				vm.orderAddress.areaInfo=vm.city.areaname;
+			}else{
+				vm.orderAddress.areaId=vm.area.id;
+				vm.orderAddress.areaInfo=vm.area.areaname;
+			}
+			vm.orderAddress.userName=userName;
+			vm.orderAddress.phone=phone;
+			vm.orderAddress.address=address;
+
+			commonUtil.request({ 
+			url:useraddressSave,
+			type: "POST", 
+			contentType: "application/json",
+			data:vm.orderAddress,
+			success: function (data) {
+				if(data.code==1){
+					window.location.href="address.html"
+				}
+			}
+			});
+
+			}
+			
+			
+			
+		}
+	})
+</script>

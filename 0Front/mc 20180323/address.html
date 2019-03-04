@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>收货地址</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+<link rel="stylesheet" href="min_css/detail.css">
+<link rel="stylesheet" href="min_css/user.css">
+<link rel="stylesheet" href="min_css/font-awesome.min.css">
+</head> 
+<body onLoad="sc_addr()">
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">收货地址</span>
+		    <div class="header-icon left-icon"> 
+					<a href="buyer_setting.html" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+            </div>
+			</div>
+</header> 
+
+<div class="content21 sca" id="app">
+ 
+<div class="mt10 pt10 address_list" style="color: #888;">您已创建<i v-text="add_num"></i>个收货地址，最多可创建20个</div>
+		<ul v-for="orderAddress in orderAddressList" class="add_num"> 
+		   <li>
+	      <div class="myaddress chadd" @click.stop="chooseAddress(orderAddress.id)">
+	          <span class="name" v-text="orderAddress.userName"></span>
+	          <span class="num" v-text="orderAddress.phone"></span>
+	          <span class="address" v-text="orderAddress.areaInfo"></span>
+	          <span class="address" v-text="orderAddress.address"></span>
+	          <span class="appAdress dree_active" v-if="orderAddress.isChecked">默认地址</span> 		          
+	          <span class="add_del" style="z-index: 999;" @click.stop="deleteAddress(orderAddress)" ><a href="javascript:void(0)"></a><a><i class="fa fa-trash-o color2" style="font-size:20px"></i></a></span>
+	          <span class="add_edit" style="z-index: 999;" @click.stop="toEdite(orderAddress.id)" ><a href="javascript:void(0)" ><i class="fa fa-pencil-square-o color3" style="font-size:20px"></i></a></span>
+	      </div>
+	   
+	    </li>
+		    
+	</ul>
+	
+	
+	
+		   <!-- 删除订单 -->
+		    <div class="bg_black" style="opacity: 0.3; "></div>
+			<div class="cancel_list">
+				<div class="cancel_listtit">删除地址</div>
+				<div class="cancel_listtext"><img alt="" src="images/buyer/warningtip.png" width="40px;"><span>是否确认删 除？</span></div>
+				<div>
+					<span class="cancel_nobtn">取消</span>
+					<span class="cancel_okbtn" onclick="delAddress(1163);">确认</span>
+				</div>
+			</div>
+			
+			
+	<div class="w96 mb20">
+	<a href="javascript:void(0)" onclick="addressAdd();">
+		<button class="addressbtn">+ 添加新地址</button>
+	</a>
+    </div>
+    
+    
+	</div>
+   
+   
+
+
+
+<div id="Msg"></div>		
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/detail.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+<script type="text/javascript" src="min_js/address.js"></script>

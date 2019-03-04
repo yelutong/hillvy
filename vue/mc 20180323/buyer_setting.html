@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>个人设置</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css"> 
+<link rel="stylesheet" type="text/css" href="min_css/user.css"/>
+<link href="uploadifive/uploadifive.css" type="text/css" rel="stylesheet" /> 
+</head> 
+<body onLoad="buyerSet()">
+<header class="header-box">
+<div class="header-menu" id="headerMenu">
+<span class="logo">个人设置</span>
+<div class="header-icon left-icon"> 
+		<a href="buyer.html" class="icon_bk sprite"  ></a>
+</div>
+<div class="header-icon right-icon"> 
+	<a href="index.html" class="icon" ><i class="sprite gosy"></i></a>
+</div>
+</div>
+</header>
+<div class="content21">
+<div class="color3 h40 set avatar">头像<i><img src="images/logo_f.png"></i></div>
+<input id="file_upload" name="file_upload" type="file" multiple>
+
+<div class="color3 h40 set uesrname">账号<i></i></div> 
+<div class="color3 h40 set level">会员等级<i></i></div> 
+<div class="color3 h40 set nickname"  onclick="javascript:location.href='buyer_nickname.html'">修改昵称<i></i></div> 
+<!--<div class="color3 h40 set turename" onclick="javascript:location.href='buyer_realname.html'">真实姓名<i>小昌</i></div>-->
+<div class="color3 h40 set uesrpass" onclick="javascript:location.href='buyer_pass.html'">修改密码<i></i></div> 
+<!--<div class="color3 h40 set paypass" onclick="javascript:location.href='buyer_paypass.html'">支付密码<i></i></div>-->
+<div class="color3 h40 set address" onclick="javascript:location.href='address.html'">收货地址<i></i></div> 
+<div class="color3 h40 set mycode" onclick="javascript:location.href='buyer_mycode.html'">我的推广码<i><img src="images/buyer/tool_app.png"></i></div>  
+<div class="color3 h40 set loginout">退出登录<i></i></div> 
+</div>
+<div id="Msg"></div><!-- 如果当前页有提示信息 请加上这个-->
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/user.js"></script>
+<script type="text/javascript" src="uploadifive/jquery.uploadifive.js"></script>
+<script type="text/javascript">  
+ if(!localStorage.getItem('token')){
+	window.location.href="login.html";
+ } 
+$(function(){ 
+//更换头像 
+$('#file_upload').uploadifive({
+	'auto'             : true,//是否自动上传，默认true
+	'multi'            : false, //是否允许多个文件上传，默认为true
+	//'queueID'          : 'queue',//进度条显示位置的id
+	'uploadScript'     : userPhoto,//上传路径
+	'buttonText'       : '上传头像',
+	'fileSizeLimit'   : 1024,
+	//'fileType'         : 'image/jpg',//上传文件类型  这个会使上传变慢
+	'method'           : 'post',
+	'height'           : 40,
+    'width'            : '100%',
+	//'formData'		   :{"isCheckWithHeight":0},//{"file":$(".filename").html()},// {"isCheckWithHeight":0},  不需要除了file以外的上传参数
+	'onUploadComplete' : function(file, data) { 
+		var data = JSON.parse(data);//转为json对象
+	   // console.log(data);  
+		if(data.code==0){//上传失败
+			showmessage(data.msg);
+		}
+		else if(data.code==1){//上传成功
+			showmessage(data.msg);
+			var picname=data.content[0].name;
+			var path=data.content[0].path; 
+			$(".avatar img").attr("src",photo+path+"/"+picname);//替换头像
+			
+			console.log(photo+path+"/"+picname);
+			console.log(data.content[0].name);
+			console.log(data.content[0].path);
+			
+			commonUtil.request({
+				url:userUpdate,
+				type: "post", 
+				dataType:"json",
+				contentType: "application/json",
+				data:{"headPhoto":path+"/"+picname},
+				success: function(data) {
+					showmessageTop(data.msg);
+					if(data.code==1){  
+					}
+				},
+			  error : function (jqXHR, textStatus) {
+
+			   }
+
+		});
+			
+			
+			
+		} 
+		//showmessage(data.msg); 
+		
+	},
+	'onError':function(errorType) {
+        if(errorType=="FILE_SIZE_LIMIT_EXCEEDED"){
+			showmessageTop("上传文件大小不能超过1M哦");
+		}
+    }
+		 
+}); 
+
+});
+</script>

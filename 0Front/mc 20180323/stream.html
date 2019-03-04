@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>物流查询</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="min_css/public.css">
+		<link rel="stylesheet" href="min_css/content.css">
+		<link rel="stylesheet" href="min_css/detail.css">
+		<link rel="stylesheet" href="min_css/user.css">
+	</head>
+
+	<body>
+		<header class="header-box">
+			<div class="header-menu" id="headerMenu">
+				<span class="logo">物流查询</span>
+				<div class="header-icon left-icon">
+					<a href="order_view.html" class="icon_bk sprite" ></a>
+				</div>
+				<div class="header-icon right-icon">
+					<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+				</div>
+			</div>
+		</header>
+		<div class="content21 order" id="app">
+         <iframe width="100%" id="iframeid" height="1" frameborder="0" src=""></iframe>
+			 
+
+		</div>
+
+		<div id="Msg"></div>
+	</body>
+
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script> 
+
+<script type="text/javascript">
+	 var shipCode=window.localStorage.getItem("shipCode");
+	 var shipCompany=window.localStorage.getItem("shipCompany");
+	parent.document.getElementById("iframeid").height=0;
+    parent.document.getElementById("iframeid").height=document.body.scrollHeight;
+	$("#iframeid").attr("src",'https://m.kuaidi100.com/index_all.html?type='+shipCompany+'&postid='+shipCode);
+</script>

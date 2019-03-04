@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+/*购物车*/
+.shopcar{background:#f9f9f9}
+.shopcar li{padding-bottom: 0!important;width: 100%!important;margin-left: 0!important}
+h4{font-weight: 500}
+.shopping{clear:both;overflow:hidden;height:auto}
+.shopping21{clear:both;overflow:hidden;height:auto;background:#FFF;padding-top:100px}
+.shop-group-item{margin-bottom:15px;background: #fff;border-bottom: 1px solid #ddd;border-top:1px solid #ddd}
+.shop-group-item ul li{border-bottom:1px solid #fff}
+.shop-group-item ul li:last-child{border-bottom:none}
+.shop-name{background:#fff;height:35px;line-height:35px;padding:0 15px;position:relative;border-bottom: 1px solid #eee}
+.shop-name h4{float:left;font-size:14px;font-weight: 500; background:url(../images/icon-kin.png) no-repeat left center;background-size:18px 18px;padding-left:25px;margin-left: 28px}
+.shop-name h4 a{color:#888}
+.shop-name h4 a:after{content:url(../images/right21.png);margin-top:3px;margin-left: 5px;float:right;width:10px;height:19px;}
+.shop-name .coupons{float:right}
+.shop-name .coupons span{display:inline-block;padding:0 5px}
+.shop-name .coupons em{color:#e0e0e0}
+.shop-info{min-height:120px;padding:0 15px;position:relative}
+.shop-info .checkbox{background:url(../images/icon_radio3.png) no-repeat left center;background-size:18px 18px;position:absolute;top:50%;left:15px;margin-top:-60px;width:20px;height:120px}
+.shop-info .checkbox1{background:url(../images/icon_radio4.png) no-repeat left center;background-size:18px 18px;position:absolute;top:50%;left:15px;margin-top:-60px;width:20px;height:120px}
+.shop-info .shop-info-img{position:absolute;top:15px;left:45px;width:90px;height:90px}
+.shop-info .shop-info-img img{width:100%;height:100%}
+.shop-info .shop-info-text{margin-left:130px;padding:15px 0}
+.shop-info .shop-info-text h4{font-size:14px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow: hidden;margin-right: 15px}
+.shop-info .shop-info-text .shop-brief{line-height:25px;font-size:12px;color:#81838e; display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden}
+.shop-info .shop-info-text .shop-brief span{display:inline-block;margin-right:8px}
+.shop-info .shop-info-text .shop-price{height:24px;line-height:24px;position:relative}
+.shop-info .shop-info-text .shop-price .shop-pices{color:#d8a300;font-size:14px}
+.shop-info .shop-info-text .shop-arithmetic{position:absolute;right:0px;top:0;width:84px;box-sizing:border-box;white-space:nowrap;height:100%;border:1px solid #e0e0e0}
+.shop-info .shop-info-text .shop-arithmetic a{display:inline-block;width:23px;height:22px;line-height:22px;text-align:center;background:#fff;font-size:16px;color:#333}
+.shop-info .shop-info-text .shop-arithmetic .minus{border-right:1px solid #e0e0e0}
+.shop-info .shop-info-text .shop-arithmetic .failed{color:#d1d1d1}
+.shop-info .shop-info-text .shop-arithmetic .plus{border-left:1px solid #e0e0e0}
+.shop-info .shop-info-text .shop-arithmetic .num{width:32px;text-align:center;border:none;display: inline-block;height:100%;box-sizing:border-box;vertical-align:top;margin:0 -6px}
+.shopPrice{background:#fff;height:35px;line-height:35px;padding:0 15px;text-align:right}
+.shopPrice span{color:#d8a300}
+.shop-pices b{font-weight:500}
+.payment-bar{clear:both;overflow:hidden;width:100%;height:49px;position:fixed;bottom:0;left:0;border-top:1px solid #e0e0e0;background:#fff}
+.payment-bar .all-checkbox{float:left;line-height:49px;padding-left:40px}
+.payment-bar .shop-total{float:left;margin:15px 0 9px 30px}
+.payment-bar .shop-total strong{display:block;font-size:16px}
+.payment-bar .shop-total span{display:block;font-size:12px}
+.payment-bar .settlement{position: absolute;right:0; padding:0 40px;height:49px;line-height:49px;text-align:center;color:#fff;font-size:16px;background:#254345}
+input[type="checkbox"]{-webkit-appearance:none;outline: none;border:none}
+input.check{background:url(../images/icon_radio3.png) no-repeat center left;background-size:18px 18px;position:absolute;top:50%;left:10px;margin-top:-18px;width:20px;height:35px}
+input.check:checked{background:url(../images/icon_radio4.png) no-repeat center left;background-size:18px 18px}
+input.goodsCheck:checked{background:url(../images/icon_radio4.png) no-repeat center left;background-size:18px 18px}
+input.check:checked{background:url(../images/icon_radio4.png) no-repeat center left;background-size:18px 18px}
+.checked{background:url(../images/icon_radio4.png) no-repeat left center;background-size:18px 18px;position:absolute;top:50%;left:15px;margin-top:-18px;width:20px;height:35px}
+.shop-info a.close{width: 32px; height: 32px; display: inline-block; overflow: hidden; text-indent: -300px; position: absolute; float: right; right: 0px; top: 7px; background: url(../images/close1.png) 8px 8px no-repeat; background-size: 16px;}

@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>活动支付数据统计</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+<style>
+.data_men_ul li{width:33.33%!important}
+.data_men_centent li span:nth-child(4), .data_men_centent1 li span:nth-child(4){width: 30%!important;text-align: right!important;color: #666!important;}	
+.data_men_centent li span:nth-child(2), .data_men_centent1 li span:nth-child(2),.data_men_centent li span:nth-child(3), .data_men_centent1 li span:nth-child(3) {width: 20%!important;text-align: center!important;color: #d9a201!important;}
+@media screen and (max-width:375px){.uname{font-size:10px;}.data_men_centent li span:nth-child(4), .data_men_centent1 li span:nth-child(4){font-size:10px;}}
+</style> 
+</head> 
+<body> 
+<div class="data_main">
+<header class="header-box" id="header_data">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">支付数据统计</span>
+		<div class="header-icon left-icon"> 
+			<a href="index.html" class="icon_bk sprite" ></a>
+        </div>  
+        <div class="header-icon right-icon data_search"> 
+			<i class="icon"><img src="images/search_icon21.png"></i>
+         </div>
+		</div>
+</header>
+<div class="content data_menb">
+   <div class="data_men_top">
+ 	<h2 class="totalPrice">0</h2>
+ 	<p>支付总额</p>
+ 	<p class="tc_Count">支付数据条数：<i class="totalDataList">0</i></p>
+ 	<ul class="data_men_ul">
+ 		<li class="data_men_pt" dataClass="data_men_pt_today"><i>口红总额</i><i class="lipstickPrice">0</i></li> 
+ 		<li class="data_men_pt" dataClass="data_men_pt_today"><i>面膜总额</i><i class="maskPrice">0</i></li> 
+ 		<li class="data_men_pt" dataClass="data_men_pt_today"><i>批量总额</i><i class="varPrice">0</i></li> 
+ 	</ul>	
+   </div>
+	 <ul class="data_men_centent1">
+	 <li><span>订单号</span><span>支付类别</span><span>支付金额</span><span>支付时间</span></li>
+	 </ul>
+	 <div class="data_men_centent" id="data_men_pt_today">
+	    <ul></ul>
+	 </div> 
+</div>  
+ </div>  
+ 
+ 
+<div id="search_top">
+	<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">订单查询</span>
+		<div class="header-icon left-icon gotodm"> 
+			<a href="javascript:;" class="icon_bk sprite" ></a>
+        </div>  
+         <div class="header-icon right-icon"> 
+			<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+         </div>
+		</div>
+</header>
+	
+<div class="content">
+	<div class="search_div"> 
+		<div class="search_name sear21"><input placeholder="请输入订单号" type="text"><button>查 询</button></div>
+	</div>
+	
+<div class="search_data21" style="display:none"> 
+<ul class="data_men_centent">
+    <li class="sel">查询结果：</li>
+ 	<li><span>订单号</span><span>支付类别</span><span>支付金额</span><span>支付时间</span></li> 
+ </ul>
+ <div class="data_men_centent search_data" id="search_data">
+ <ul></ul>
+ </div>	
+</div>	
+
+ 
+</div> 
+</div>	
+   
+<div id="Msg"></div>  
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div> 
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script> 
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script> 
+<script type="text/javascript" src="min_js/dropload.min21.js"></script>
+<script>  
+$(function(){
+	$(".data_search").click(function(){
+		$(".data_main").hide();
+		$("#search_top").show();  
+	})
+	$(".gotodm").click(function(){
+		$("#search_top").hide();
+		$(".data_main").show();
+	}) 
+	$(".search_div button").click(function(){ 
+		var s_name=$(".search_name input").val();
+		$("#search_data ul").empty();
+		$("#search_data div").remove();
+		if(s_name==""){
+			showmessageTop("请输入订单号");
+			return false;
+		}
+		pageloadAll(".search_data","search_data",s_name); 
+		
+		$(".search_data21").show();
+	})
+})	 
+	
+var category21="";	
+function category(obj){
+	switch(obj){
+	  case 1:category21="面膜";break;
+	  case 2:category21="口红";break;
+	  default:category21="批量";break;
+	}
+	return category21;
+}	
+//获取今日会员数据	 
+	//总页数
+	var totalPage = 1;//初始化
+	//当前页
+	var page = 0;
+
+	// dropload
+	$(".data_men_centent").dropload({
+		scrollArea : window,
+		domDown : {
+			domClass   : 'dropload-down', 
+			domLoad    : '<div class="dropload-load" style="clear:both"><span class="loading"></span>加载中...</div>'
+		},
+		loadDownFn : function(me){  
+			if(page< totalPage){
+				page= parseInt(page) + 1;
+				if(page==window.localStorage.getItem("page21") && page>1){
+					//console.log("重复");
+					return false;
+				}else{
+					window.localStorage.setItem("page21",page);
+				}  
+				var result = '';
+
+			     $.ajax({  
+				    type: "POST",
+				    url: orderforpay,
+				    contentType: "application/json", 
+				    dataType : "json",  
+					data : JSON.stringify({ 
+						"page" : page,
+						"limit":8
+					}),
+					success: function(data){ 
+						console.log(data);
+						totalPage=data.content.page.totalPage; 
+						if(totalPage==0||data.content.page.totalCount==0){
+							$(".dropload-down").html("查询无数据");
+							return false;
+						}
+						if(totalPage==1){
+							setTimeout(function(){ 
+							   $(".dropload-down").html("已全部加载");
+							},300);
+							setTimeout(function(){ 
+								$(".dropload-down").hide();
+							},500);
+						}
+						
+						$(".totalPrice").html(data.content.lipstickPrice+data.content.maskPrice+data.content.varPrice);
+						$(".lipstickPrice").html(data.content.lipstickPrice);
+						$(".maskPrice").html(data.content.maskPrice);
+						$(".varPrice").html(data.content.varPrice);
+						$(".totalDataList").html(data.content.page.totalCount);
+
+						jQuery.each(data.content.page.list,function(i,v){ 
+						 
+							result += '<li><span><i class="phone">'+v.orderPayNumber+'</i></span> <span>'+category(v.goodsType)+'</span> <span>'+v.price+'</span><span>'+v.payTime.substring(5)+'</span><i class="uname">微信订单号：'+ v.paySerial +'</i></li>'; 
+						}); 
+					},
+					error: function(xhr, type){
+						me.resetload();
+					}
+				});
+				setTimeout(function(){
+					$("#data_men_pt_today ul").append(result);
+					me.resetload(); 
+				},300);
+
+			}else{
+				$(" .dropload-down").html("已全部加载");
+				setTimeout(function(){
+					$(".dropload-down").hide();
+				},500);
+			}
+		}
+	}); 
+	
+	
+function pageloadAll(dropClass,appendId,orderPayNumber){	 
+	// dropload
+	$(dropClass).dropload({
+		scrollArea : window,
+		domDown : {
+			domClass   : 'dropload-down', 
+			domLoad    : '<div class="dropload-load" style="clear:both"><span class="loading"></span>加载中...</div>'
+		},
+		loadDownFn : function(me){   
+				var result = ''; 
+				$.ajax({  
+				    type: "get",
+				    url: orderforpayinfo+orderPayNumber,
+				    contentType: "application/json", 
+				    dataType : "json",
+					success: function(data){
+						//$("."+appendId+" i").html(data.content.totalCount);
+						 console.log(data); 
+						if(!data.content.orderPayNumber){
+							$(".dropload-down").html("查询无数据");
+							return false;
+						}
+						 result += '<li><span><i class="phone">'+data.content.orderPayNumber+'</i></span> <span>'+category(data.content.goodsType)+'</span> <span>'+data.content.price+'</span><span>'+data.content.payTime.substring(5)+'</span><i class="uname">微信订单号：'+ data.content.paySerial +'</i></li>'; 
+						 
+					},
+					error: function(xhr, type){
+						me.resetload();
+					}
+				});
+				setTimeout(function(){
+					$("#"+appendId+" ul").append(result);
+					me.resetload();   
+				},300);  
+				setTimeout(function(){
+					$(dropClass+" .dropload-down").hide();
+				},500);
+		}
+	});
+}		
+</script>

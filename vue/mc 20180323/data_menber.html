@@ -1,0 +1,436 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>数据统计</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css"> 
+</head> 
+<body>
+<div class="app">
+<div class="data_main">
+<header class="header-box" id="header_data">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">会员统计</span>
+		<div class="header-icon left-icon"> 
+			<a href="javascript:window.history.back()" class="icon_bk sprite" ></a>
+        </div>  
+         <div class="header-icon right-icon data_search"> 
+			<i class="icon"><img src="images/search_icon21.png"></i>
+         </div>
+		</div>
+</header>
+<div class="content data_menb">
+ <div class="data_men_top">
+ 	<h2 v-text="queryInfoTotal.totalCount"></h2>
+ 	<p>会员总数</p>
+ 	<p class="tc_Count">购买套餐总数：<i v-text="queryInfoTotal.packageCount"></i></p>
+ 	<ul class="data_men_ul">
+ 		<li class="data_men_pt select_on" dataClass="data_men_pt_today"><i>今日普通</i><i v-text="queryInfoTotal.daynormalUserCount"></i></li>
+ 		<li class="data_men_pt" dataClass="data_men_pt_all"><i>普通总数</i><i v-text="queryInfoTotal.normalUserCount"></i></li>
+ 		<li class="data_men_ck" dataClass="data_men_ck_today"><i>今日创客</i><i v-text="queryInfoTotal.daycreateUserCount"></i></li> 
+ 		<li class="data_men_ck" dataClass="data_men_ck_all"><i>创客总数</i><i v-text="queryInfoTotal.createUserCount"></i></li>
+ 		<!--<li class="data_men_tc" dataClass="data_men_tc_today"><i>套餐</i><i v-text="queryInfoTotal.packageCount"></i></li>-->
+ 	</ul>
+ 	<ul class="data_men_ul_bt data_men_pt_today_bt" style="display:none">
+ 		<li class="data_men_pt_today select_ou" dataClass="data_men_pt_today">今日(<i></i>)</li>
+ 		<li class="data_men_pt_all" dataClass="data_men_pt_all">总数(<i></i>)</li> 
+ 	</ul>
+ 	<ul class="data_men_ul_bt data_men_ck_today_bt" style="display:none">
+ 		<li class="data_men_ck_today select_ou" dataClass="data_men_ck_today">今日(<i></i>)</li>
+ 		<li class="data_men_ck_all" dataClass="data_men_ck_all">总数(<i></i>)</li> 
+ 	</ul>
+ 	<ul class="data_men_ul_bt data_men_tc_today_bt" style="display:none">
+ 		<li class="data_men_tc_today select_ou" dataClass="data_men_tc_today">今日(<i></i>)</li>
+ 		<li class="data_men_tc_all" dataClass="data_men_tc_all">总数(<i></i>)</li> 
+ 	</ul>
+ </div>
+ <ul class="data_men_centent1"> 
+ <li><span>普通会员</span><span>直推</span><span>间推</span><span>套餐</span><span>注册时间</span></li>
+ </ul>
+ <div class="data_men_centent" id="data_men_pt_today">
+ <ul>
+ 	<!--<li @click="toSee(15323438158)">
+ 	<span><i class="phone">15323438158</i><i class="uname">刘德华</i></span>
+ 	<span>100</span>
+ 	<span>100</span>
+ 	<span>2017-09-09</span>
+ 	</li> 
+ 	 -->
+ </ul>
+ </div>
+ <div class="data_men_centent" id="data_men_pt_all" style="display:none">
+     <ul></ul>
+ </div>
+  <div class="data_men_centent" id="data_men_ck_today" style="display:none">
+  	  <ul></ul> 
+  </div>
+  <div class="data_men_centent" id="data_men_ck_all" style="display:none">
+      <ul></ul>
+ </div> 
+ <div class="data_men_centent" id="data_men_tc_today" style="display:none">
+ 	  <ul></ul>
+ </div>
+<div class="data_men_centent" id="data_men_tc_all" style="display:none">
+      <ul></ul> 
+</div>
+
+</div>
+
+ </div>
+ 
+   
+
+
+<div id="search_top">
+	<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">会员搜索</span>
+		<div class="header-icon left-icon gotodm"> 
+			<a href="javascript:;" class="icon_bk sprite" ></a>
+        </div>  
+         <div class="header-icon right-icon"> 
+			<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+         </div>
+		</div>
+</header>
+	
+<div class="content">
+	<div class="search_div">
+		<div class="search_phone sear21"><input placeholder="请输入手机号" type="number"></div>
+		<div class="search_name sear21"><input placeholder="请输入姓名" type="text"><button>搜 索</button></div>
+	</div>
+	
+<div class="search_data21" style="display:none"> 
+<ul class="data_men_centent">
+    <li class="sel">查询结果：</li>
+ 	<li class="sel"><span>用户</span><span>直推</span><span>间推</span><span>套餐</span><span>注册时间</span></li> 
+ </ul>
+ <div class="data_men_centent search_data" id="search_data">
+ <ul></ul>
+ </div>	
+</div>	
+
+ 
+</div> 
+</div>	
+
+</div>	
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div> 
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script> 
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js" ></script> 
+<script>
+	var vm = new Vue({
+		el: '.app',
+		data: { 
+           queryInfoTotal:{}
+		},
+
+		created: function() { 
+			
+			commonUtil.request({
+				url: queryInfoTotal,
+				type: "get", 
+				contentType: "application/json",
+				success: function(data) {
+					console.log("haha ");console.log(data);
+					if(data.code == 1) {  
+						vm.queryInfoTotal = data.content; 
+
+					}
+				}
+			}); 
+
+		},
+		mounted: function() { //生命期钩子 
+			 
+
+		},
+		methods: {
+            toSee:function(data_menb_id){
+			window.localStorage.setItem("data_menb_id", data_menb_id);
+			window.location.href = "data_menb_detail.html";
+				
+			}
+
+		}
+
+	})
+</script>
+<script> 
+function toSee(data_menb_id){
+	window.localStorage.setItem("data_menb_id", data_menb_id);
+	window.location.href = "data_menb_detail.html";
+}
+	
+/*	
+function geturlId(obj) {  
+	if(getQueryString("id")==obj){
+	   var bb=obj.length<=2?"today":"all";
+	   var bj=obj.substring(0,2);
+	   $(".data_men_"+bj).addClass("select_on").siblings().removeClass("select_on");
+	   $(".data_men_"+bj+"_"+bb).addClass("select_ou").siblings().removeClass("select_ou");
+	   $(".data_men_centent").hide();
+	   $(".data_men_ul_bt").hide();
+	   $(".data_men_"+bj+"_today_bt").show();  
+	   $("#data_men_"+bj+"_"+bb).show();
+	 }	 
+
+} */
+$(function(){  
+   // geturlId("pt");geturlId("ptall");geturlId("ck");geturlId("ckall");geturlId("tc");geturlId("tcall");
+
+	//数据统计 
+	$(".data_men_ul li").click(function(){  
+		$(this).addClass("select_on").siblings().removeClass("select_on");
+		var obj_id=$(this).attr("dataClass"); 
+		console.log(window.localStorage.getItem("obj_id"));
+		if(obj_id==window.localStorage.getItem("obj_id")){
+			return false;
+		}else{   
+			  window.localStorage.setItem("obj_id",obj_id); 
+			  var obj_dt=obj_id.substring(0,12);
+				$(".data_main .data_men_centent").hide();
+				//$(".data_men_ul_bt").hide();
+				//$("."+obj_id+"_bt").show(); 
+				$("#"+obj_id+" ul").empty();
+				$("#"+obj_id+" div").remove();
+				$("#"+obj_id).show();  
+				var level=1;
+				if(obj_id.indexOf("pt") > 0){
+					level=1;
+					$(".data_men_centent1 li span:first-child").html("普通会员");
+				}
+				if(obj_id.indexOf("ck") > 0){
+					level=2;
+					$(".data_men_centent1 li span:first-child").html("创客会员");
+				}
+				if(obj_id.indexOf("today") > 0){   
+					 pageloadToday("#"+obj_id,obj_id,dayUserList,level);  
+				}
+				if(obj_id.indexOf("all") > 0){   
+				     pageloadAll("#"+obj_dt+"all",obj_dt+"all",memberUserList,level); 
+				} 
+			
+			setTimeout(function(){ 
+				window.localStorage.removeItem('obj_id');
+			},1000);
+		}   
+		
+		
+	});
+	
+	
+	
+	$(".data_men_ul_bt li").click(function(){ 
+		$(this).addClass("select_ou").siblings().removeClass("select_ou");
+		var obj_id=$(this).attr("dataClass");  
+		$("data_main .data_men_centent").hide();
+		$("#"+obj_id).show();  
+		
+	});
+	$(".data_search").click(function(){
+		$(".data_main").hide();
+		$("#search_top").show();  
+	})
+	$(".gotodm").click(function(){
+		$("#search_top").hide();
+		$(".data_main").show();
+	}) 
+	$(".search_div button").click(function(){
+		var s_phone=$(".search_phone input").val();
+		var s_name=$(".search_name input").val();
+		$("#search_data ul").empty();
+		$("#search_data div").remove();
+		pageloadAll(".search_data","search_data",memberUserList,"",s_phone,s_name); 
+		$(".search_data21").show();
+	})
+})
+</script>
+<script type="text/javascript" src="min_js/dropload.min21.js"></script>
+<script> 
+ pageloadToday("#data_men_pt_today","data_men_pt_today",dayUserList,1);
+// pageloadAll("#data_men_pt_all","data_men_pt_all",memberUserList,1);
+	
+//获取今日会员数据	
+function pageloadToday(dropClass,appendId,url,level){	
+	//总页数
+	var totalPage = 1;//初始化
+	//当前页
+	var page = 0;
+
+	// dropload
+	$(dropClass).dropload({ 
+		scrollArea : window,
+		domDown : {
+			domClass   : 'dropload-down', 
+			domLoad    : '<div class="dropload-load" style="clear:both"><span class="loading"></span>加载中...</div>'
+		},
+		loadDownFn : function(me){   
+			if(page< totalPage){
+				page= parseInt(page) + 1;
+				if(page==window.localStorage.getItem("page21") && page>1){
+					//console.log("重复");
+					return false;
+				}else{
+					window.localStorage.setItem("page21",page);
+				}  
+				var result = '';
+
+			commonUtil.request({
+					type: 'post',
+					url: url,
+
+					dataType: 'json',
+					cache : false,
+					async : false,
+					data : {
+						"level":level,
+						"page" : page,
+						"limit":8
+					},
+					success: function(data){ 
+						//$("."+appendId+" i").html(data.content.totalCount);
+						console.log(data);
+						totalPage=data.content.totalPage; 
+						if(totalPage==0||data.content.totalCount==0){
+							$(dropClass+" .dropload-down").html("查询无数据");
+							return false;
+						}
+						if(totalPage==1){
+							setTimeout(function(){ 
+							   $(dropClass+" .dropload-down").html("已全部加载");
+							},300);
+							setTimeout(function(){ 
+								$(dropClass+" .dropload-down").hide();
+							},500);
+						}
+						jQuery.each(data.content.list,function(i,v){ 
+							if(v.realName==undefined){
+								if(v.nickName){
+								   v.realName=v.nickName;
+								}else{ 
+								   v.realName="无名";
+								}  
+							} 
+							result += '<li onclick="toSee('+v.userId+')"><span><i class="phone">'+v.userName+'</i><i class="uname">'+ v.realName +'</i></span> <span>'+v.listDirectCount+'</span> <span>'+v.listIndirectCount+'</span><span>'+v.packageCount+'</span> <span>'+v.createTime.substring(2,10)+'</span></li>'; 
+						}); 
+					},
+					error: function(xhr, type){
+						me.resetload();
+					}
+				});
+				setTimeout(function(){
+					$("#"+appendId+" ul").append(result);
+					me.resetload(); 
+				},300);
+
+			}else{
+				$(dropClass+" .dropload-down").html("已全部加载");
+				setTimeout(function(){
+					$(dropClass+" .dropload-down").hide();
+				},500);
+			}
+		}
+	});
+}
+	
+function pageloadAll(dropClass,appendId,url,level,userName,realName){	
+	//总页数
+	var totalPage = 1;//初始化
+	//当前页
+	var page = 0;
+
+	// dropload
+	$(dropClass).dropload({
+		scrollArea : window,
+		domDown : {
+			domClass   : 'dropload-down', 
+			domLoad    : '<div class="dropload-load" style="clear:both"><span class="loading"></span>加载中...</div>'
+		},
+		loadDownFn : function(me){  
+			if(page< totalPage){
+				page= parseInt(page) + 1; 
+				//console.log("页码"+page);
+				if(page==window.localStorage.getItem("page21") && page>1){
+					//console.log("重复");
+					return false;
+				}else{
+					window.localStorage.setItem("page21",page);
+				}  
+				
+				var result = '';
+				var data={ 
+						"page" : page,
+						"limit":8,
+						"realName":realName,
+						"userName":userName
+					}
+				if(level!=""){ 
+					data["level"] = level;
+				}
+                
+			commonUtil.request({
+					type: 'post',
+					url: url,
+
+					dataType: 'json',
+					cache : false,
+					async : false,
+					data : data,
+					success: function(data){ 
+						//$("."+appendId+" i").html(data.content.totalCount);
+						console.log(data);
+						totalPage=data.content.totalPage; 
+						if(totalPage==0||data.content.totalCount==0){
+							$(dropClass+" .dropload-down").html("查询无数据");
+							return false;
+						}
+						if(totalPage==1){
+							setTimeout(function(){ 
+							   $(dropClass+" .dropload-down").html("已全部加载");
+							},300);
+							setTimeout(function(){ 
+								$(dropClass+" .dropload-down").hide();
+							},500);
+						}
+						jQuery.each(data.content.list,function(i,v){ 
+							if(v.realName==undefined){
+								if(v.nickName){
+								   v.realName=v.nickName;
+								}else{ 
+								   v.realName="无名";
+								} 
+							} 
+							result += '<li onclick="toSee('+v.userId+')"><span><i class="phone">'+v.userName+'</i><i class="uname">'+ v.realName +'</i></span> <span>'+v.listDirectCount+'</span> <span>'+v.listIndirectCount+'</span><span>'+v.packageCount+'</span> <span>'+v.createTime.substring(2,10)+'</span></li>'; 
+						}); 
+					},
+					error: function(xhr, type){
+						me.resetload();
+					}
+				});
+				setTimeout(function(){
+					$("#"+appendId+" ul").append(result);
+					me.resetload(); 
+				},300);
+
+			}else{
+				$(dropClass+" .dropload-down").html("已全部加载");
+				setTimeout(function(){
+					$(dropClass+" .dropload-down").hide();
+				},500);
+			}
+		}
+	});
+}	
+</script>

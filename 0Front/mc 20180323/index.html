@@ -1,0 +1,804 @@
+﻿<!doctype html>
+<html> 
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+		<META HTTP-EQUIV="Expires" CONTENT="0">
+		<meta http-equiv="Cache" content="no-cache">
+		<title>明昌生态</title>
+		<script>
+		var protocolStr = document.location.protocol; 
+		if(protocolStr == "http:"){   
+		  //window.location.href="https://m.mcyou.net";  
+		} 
+		</script> 
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="min_css/public.css">
+		<link rel="stylesheet" href="min_css/content.css">
+		<link rel="stylesheet" href="min_css/swiper.min.css">
+		<style>
+			html,
+			body {
+				position: relative;
+			}
+			
+			.swiper-container {
+				width: 100%;
+				height: auto;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.swiper-slide {
+				text-align: center;
+				float: left;
+				background: #fff;
+				width: 100%;
+				height: auto;
+				position: relative;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			}
+			
+			.swiper-slide img {
+				width: 100%;
+			}
+			
+			.swiper-pagination-bullet {
+				opacity: 1;
+			}
+			
+			.swiper-pagination-bullet-active {
+				display: inline-block;
+				margin-top: 14px;
+				margin-left: 5px;
+				margin-right: 5px;
+				width: 20px;
+				height: 8px;
+				background: #c7c7c7!important;
+				border-radius: 9999px;
+				cursor: pointer;
+				transition: all 0.6s;
+			}
+			
+			.swiper-pagination-bullet {
+				background: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<header class="header-box">
+				<div class="header-menu" id="headerMenu">
+					<span class="logo">商城</span>
+					<div class="header-icon left-icon">
+						<a href="javascript:;" class="icon_mall sprite"></a>
+					</div>
+					<div class="header-icon right-icon">
+						<a href="shopcar.html" class="icon"><i class="sprite gocar"></i><em></em></a>
+					</div>
+				</div>
+			</header>
+			<div class="content ct_other market">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">  
+						<div class="swiper-slide"  v-for="mallPhotoListpic in mallPhoto"> 
+							<a v-if="mallPhotoListpic.linkType==1" :href="mallPhotoListpic.h5LinkUrl">  
+							<img v-bind:data-src="mallPhotoListpic.photoUrl" class="swiper-lazy" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)"> 
+							</a> 
+
+							<div  v-if="mallPhotoListpic.linkType==2" @click="toStore(mallPhotoListpic.param)">
+							<img v-bind:data-src="mallPhotoListpic.photoUrl" class="swiper-lazy" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)">
+							</div>
+
+							<span v-if="mallPhotoListpic.linkType==3" @click="toDetail(mallPhotoListpic.param)">
+							<img v-bind:data-src="mallPhotoListpic.photoUrl" class="swiper-lazy" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)">
+							</span> 
+							<span v-if="!mallPhotoListpic.linkType">
+							<img v-bind:data-src="mallPhotoListpic.photoUrl" class="swiper-lazy" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)">
+							</span> 
+						</div> 
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+				 
+				<div class="detail_bg21"></div>
+			    <div class="floor_one" v-if="floor_one.id">
+			    	<div class="fl_one_like"><span v-text="floor_one.name"></span><i></i></div>
+			    	<div class="fl_one_pic1" v-if="">
+			    	<a v-if="floor_one_pic0.linkType==1" :href="floor_one_pic0.h5LinkUrl">  
+			    	    <img v-bind:data-original="floor_one_pic0.photoUrl" class="lazy21" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)">
+			    	</a> 
+			    	<div  v-if="floor_one_pic0.linkType==2" @click="toStore(floor_one_pic0.param)">
+						<img v-bind:data-original="floor_one_pic0.photoUrl" class="lazy21" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)">
+					</div> 
+					<span v-if="floor_one_pic0.linkType==3" @click="toDetail(floor_one_pic0.param)">
+					    <img v-bind:data-original="floor_one_pic0.photoUrl" class="lazy21" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)">
+					</span>
+		    	
+			    	</div>
+			    	
+			    	 
+			    	<div class="fl_one_pic2" v-if="floor_one_goodsLst0" @click="toDetail(floor_one_goodsLst0.id)">  
+			    	<p>
+						<span class="color_orange overflow" v-text="floor_one_goodsLst0.brandName"></span>
+	    	            <span class="overflow" v-text="floor_one_goodsLst0.goodsName"></span>
+	    	           <span v-if="floor_one_goodsLst0.saleSpots"><i v-for="saleSpots in floor_one_goodsLst0.saleSpots.split(' ')" v-if="saleSpots && saleSpots!=''" v-text="saleSpots"></i></span>
+		    	    </p>
+			    	<p class="flor_one_right_pic" v-if="floor_one_goodsLst0.goodsMainPhoto"><img v-bind:data-original="floor_one_goodsLst0.goodsMainPhoto" class="lazy21"></p>
+			    	</div>
+			    	<div class="fl_one_pic3">
+			    		<div  v-if="floor_one_goodsLst1" @click="toDetail(floor_one_goodsLst1.id)">
+						<span class="color_orange overflow center" v-text="floor_one_goodsLst1.brandName"></span>
+	    	            <span class="overflow center" v-text="floor_one_goodsLst1.goodsName"></span>
+	    	            <i v-if="floor_one_goodsLst1.goodsMainPhoto"><img v-bind:data-original="floor_one_goodsLst1.goodsMainPhoto" class="lazy21"></i>
+		    		    </div>
+		    		    
+			    		<div  v-if="floor_one_goodsLst2" @click="toDetail(floor_one_goodsLst2.id)">
+						<span class="color_orange overflow center" v-text="floor_one_goodsLst2.brandName"></span>
+	    	            <span class="overflow center" v-text="floor_one_goodsLst2.goodsName"></span>
+	    	            <i v-if="floor_one_goodsLst2.goodsMainPhoto"><img v-bind:data-original="floor_one_goodsLst2.goodsMainPhoto" class="lazy21"></i>
+		    		    </div>
+			    	</div>
+			    </div>
+			  <div class="detail_bg21" v-if="floor_one.id"></div>
+			  <div class="floor_two" v-if="floor_two.id">
+	    	    
+		    	    <ul class="marketUl" v-for="floor_two_advertPic in floor_two_advertPicList" v-if="floor_two_advertPic.sequence==1"><a href="register.html"><li><img :src="floor_two_advertPicList.photoUrl" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)"></li></a></ul>
+		    	    
+			    	<div class="fl_one_like" v-if="floor_two.name"><span v-text="floor_two.name"></span><i></i></div>
+			    	<div class="fl_two_left" v-if="floor_two_goodsLst0 && floor_two_goodsLst0.floorPhoto" @click="toDetail(floor_two_goodsLst0.id)"><img v-bind:src="floor_two_goodsLst0.floorPhoto" onLoad="imagetoCanvas(this,'image/jpeg',320,0.5)"></div>
+			    	<div class="fl_two_right" v-if="floor_two.id">
+					<p v-if="floor_two_goodsLst1" @click="toDetail(floor_two_goodsLst1.id)">
+    	              <span v-if="floor_two_goodsLst1.floorPhoto"><img v-bind:data-original="floor_two_goodsLst1.floorPhoto" class="lazy21" onLoad="imagetoCanvas(this,'image/png',200,0.5)"></span> 
+	    	          <span>
+	    	          <i class="color_m overflow right" v-text="floor_two_goodsLst1.brandName"></i>
+	    	          <i class="overflow2 right" v-text="floor_two_goodsLst1.goodsName"></i> 
+	    	         <i class="overflow center bg_bq" v-if="floor_two_goodsLst1.saleSpots" v-text="floor_two_goodsLst1.saleSpots.split(' ')[0]"></i>
+	    	          </span>
+	    	        </p>
+	    	        <p v-if="floor_two_goodsLst2" @click="toDetail(floor_two_goodsLst2.id)" class="blue"> 
+	    	          <span>
+	    	          <i class="color_m overflow" v-text="floor_two_goodsLst2.brandName"></i>
+	    	          <i class="overflow2" v-text="floor_two_goodsLst2.goodsName"></i> 
+	    	          <i class="overflow center bg_bq1" v-if="floor_two_goodsLst2.saleSpots" v-text="floor_two_goodsLst2.saleSpots.split(' ')[0]"></i>
+	    	          </span>
+	    	          <span v-if="floor_two_goodsLst2.floorPhoto"><img v-bind:data-original="floor_two_goodsLst2.floorPhoto" class="lazy21" onLoad="imagetoCanvas(this,'image/png',200,0.5)"></span> 
+	    	        </p>
+	    	        
+		    	    </div> 
+		    	    <ul class="marketUl" v-for="floor_two_advertPic in floor_two_advertPicList" v-if="floor_two_advertPic.sequence==2"><a href="share_index.html"><li><img :src="floor_two_advertPic.photoUrl" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)"></li></a></ul>
+		    	    <div class="floor_two_bottom">
+		    	    <div class="fl_two_head" v-if="floor_two_arr.length>0"><i>品牌浏览</i></div>
+			    	<div class="swiper-container-hot21">
+						<div class="swiper-wrapper">
+
+							<div class="swiper-slide  swiper_pp" v-for="fl_two_goods in floor_two_arr" @click="toDetail(fl_two_goods.id)"   v-if="floor_two_arr.length>0" >
+								<p class="market_P"><img v-bind:src="fl_two_goods.goodsMainPhoto" onLoad="imagetoCanvas(this,'image/png',220,0.5)"><em v-text="fl_two_goods.goodsName"></em><i class="color_m f16">¥<b v-text="fl_two_goods.salePrice"></b></i><i class="swipe_hr">¥<b v-text="fl_two_goods.marketPrice"></b></i></p>
+							</div>
+						</div> 
+						<div class="swiper-pagination"></div>
+					</div>
+		    	   </div> 
+		    	   <ul class="marketUl" v-for="floor_two_advertPic in floor_two_advertPicList" v-if="floor_two_advertPic.sequence==4"><a href="exchangeList.html"><li><img :src="floor_two_advertPic.photoUrl" onLoad="imagetoCanvas(this,'image/jpeg',750,0.5)"></li></a></ul>
+		    	   
+		    	   
+			      <!-- <ul class="marketUl" style="margin-top:10px" v-if="floor_two_advertPic2 && floor_two_advertPic2.linkType==1"><a :href="floor_two_advertPic2.h5LinkUrl"><li><img :src="floor_two_advertPic2.photoUrl"></li></a></ul> -->
+			    </div> 
+			    
+			   
+				<div class="detail_bg21"  v-if="floor_two.id"></div>
+               <div class="floor_three" v-if="floor_three.id">
+                	<div class="fl_one_like"><span v-text="floor_three.name"></span><i></i></div>
+			    	<div class="fl_one_pic1" v-if="floor_three_pic0">
+						<a v-if="floor_three_pic0.linkType==1" :href="floor_three_pic0.h5LinkUrl">  
+							<img v-bind:data-original="floor_three_pic0.photoUrl" class="lazy21">
+						</a> 
+						<div  v-if="floor_three_pic0.linkType==2" @click="toStore(floor_three_pic0.param)">
+							<img v-bind:data-original="floor_three_pic0.photoUrl" class="lazy21">
+						</div> 
+						<span v-if="floor_three_pic0.linkType==3" @click="toDetail(floor_three_pic0.param)">
+							<img v-bind:data-original="floor_three_pic0.photoUrl" class="lazy21">
+						</span>
+             	        <i v-if="!floor_three_pic0.linkType">
+             	        	<img v-bind:data-original="floor_three_pic0.photoUrl" class="lazy21">
+             	        </i>
+              	    </div> 
+               	
+                	
+                	<div class="fl_three">
+                		<p v-for="fl_three_a1 in floor_three_arr1" @click="toDetail(fl_three_a1.id)"><em class="center" v-text="fl_three_a1.goodsName"></em><i class="color_m center" v-text="fl_three_a1.saleSpots.split(' ')[0]"></i><img  v-bind:data-original="fl_three_a1.goodsMainPhoto" class="lazy21"></p> 
+                	</div> 
+                </div>
+				 <div class="detail_bg21 fl_four_bg" v-if="floor_three.id"></div>
+				
+				<!-- <div class="floor_four">
+				 	<p v-for="fl_three_a2 in floor_three_arr2" @click="toDetail(fl_three_a2.id)" v-if="floor_three_arr2"><img v-bind:data-original="fl_three_a2.goodsMainPhoto" class="lazy21"><em class="center" v-text="fl_three_a2.goodsName"></em><i class="color_m center">¥{{ fl_three_a2.salePrice }}</i></p> 
+				 </div>-->
+				 <div class="floor_four" v-if="floor_four.id">
+				 	<p v-for="fl_three_a2 in fl_four_goodsLst" @click="toDetail(fl_three_a2.id)" v-if="floor_three_arr2"><img v-bind:data-original="fl_three_a2.goodsMainPhoto" class="lazy21"><em class="center" v-text="fl_three_a2.goodsName"></em><i class="color_m center">¥<b v-text="fl_three_a2.salePrice"></b></i></p> 
+				 </div>
+				 
+				 
+				 
+				 <div class="detail_bg21"  v-if="floor_four.id"></div>
+			
+
+				<div class="hotsale choice">
+					<div class="mall_line"></div>
+					<div class="mall_wd">为您精选</div>
+
+					<ul>
+						<li v-for="goods in LatestGoodsList" @click="toDetail(goods.id)">
+							<p><img :data-original="photo+goods.goodsMainPhoto" src="images/logo_mr.png" class="lazy"></p>
+							<p v-text="goods.goodsName"></p>
+							<p class="ct_active">¥<b v-text="goods.salePrice"></b></p>
+						</li> 
+					</ul> 
+				</div>
+				
+				
+				
+				
+			</div>
+
+			<footer>
+				<div class="bg_footer"></div>
+				<ul>
+					<li onclick="javascript:window.location.href='index.html'">
+						<p><i class="sprite pic_sc0"></i></p>
+						<p class="active">商城</p>
+					</li> 
+					<!--<li onclick="javascript:window.location.href='live.html'">
+						<p><i class="sprite pic_zb1"></i></p>
+						<p>直播</p>
+					</li>-->
+					<li onclick="javascript:window.location.href='information.html'">
+						<p><i class="sprite pic_zx1"></i></p>
+						<p>资讯</p>
+					</li>
+					
+					<li onclick="javascript:window.location.href='hots.html'">
+						<p><i class="sprite pic_rx1 hots"></i></p>
+						<p>热销</p>
+					</li> 
+					<li onclick="javascript:window.location.href='order.html'">
+						<p><i class="sprite pic_dz1"></i></p>
+						<p>定制</p>
+					</li>
+					<!--
+					<li onclick="javascript:window.location.href='business_school.html'">
+						<p><i class="sprite pic_sxy1"></i></p>
+						<p>商学院</p>
+					</li>-->
+					<li onclick="javascript:window.location.href='buyer.html'">
+						<p><i class="sprite pic_wd1"></i></p>
+						<p>我的</p>
+					</li>
+				</ul>
+			</footer>
+			<div id="gotop">
+				<div class="sprite gopic"></div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/jquery.lazyload.min.js"></script>
+<script>
+document.write("<s"+"cript type='text/javascript' src='min_js/publick.js?timestamp="+new Date().getTime()+"'></scr"+"ipt>");  
+document.write('<scr'+'ipt type="text/javascript" src="min_js/api.js?rand='+Math.random()+'"></sc'+'ript>');
+</script>  
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+<!-- Swiper JS -->
+<script src="min_js/swiper.min.js"></script>
+<script>
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			mallPhotoList: [],
+			goodsOneList: [],
+			goodsTwoList: [],
+			goodsThreeList: [],
+			mallPhoto:[],
+			//最新商品
+			LatestGoodsList: [],
+			goodsTwoList_one: "",
+			goodsTwoList_two: "",
+			goodsTwoList_three: "",
+			goodsTwoList_four: "",
+			goodsTwoList_five: "", 
+			//临时楼层
+			floor_one:{},
+			floor_two:{},
+			floor_three:{},
+			floor_four:{}, 
+            floor_one_pic0:[],
+			floor_one_goodsLst0:[],
+			floor_one_goodsLst1:[],
+			floor_one_goodsLst2:[],
+			floor_two_goodsLst0:[],
+			floor_two_goodsLst1:[],
+			floor_two_goodsLst2:[],
+			floor_two_goodsLst3:[],
+			floor_two_advertPicList:[], 
+			floor_two_arr:[],
+			floor_three_pic0:[],
+			floor_three_arr1:[],
+			fl_four_goodsLst:[],
+			floor_three_arr2:[]
+		},
+
+		created: function() {
+			//商城轮播
+			commonUtil.request({
+				url: carouselPic,
+				type: "post",
+				data: {
+					advertType: 1,
+					deviceType: 1
+				},
+				contentType: "application/json",
+				success: function(data) {
+					//console.log(data);
+					if(data.code == 1) {  
+						$.each(data.content, function(index, obj) {
+							if(obj && obj.photoUrl) {
+								 obj.photoUrl=photo + obj.photoUrl;
+							}
+						}); 
+						vm.mallPhoto = data.content;  
+					}
+				}
+			});
+			//楼层
+			commonUtil.request({
+				url: getAllFloor,
+				type: "get",
+				contentType: "application/json",
+				success: function(data) {
+					//console.log(data);
+					if(data.code == 1) {
+						vm.goodsOneList = data.content[0].goodsLst; 
+						$.each(vm.goodsOneList, function(index, value) {
+							if(this.goodsMainPhoto) {
+								this.goodsMainPhoto = photo + this.goodsMainPhoto.split(",")[0];
+							}
+
+						});  
+						vm.lazyloadImg();  
+					}
+				}
+			}); 
+			
+			//临时-楼层
+			
+			commonUtil.request({
+				url: newListFloor,
+				type: "get",
+				contentType: "application/json",
+				success: function(data) {
+					console.log(data);
+					if(data.code == 1) {
+					   //循环showType 
+					$.each(data.content, function(index, value) {
+							if(this.showType==3) { 
+								 vm.floor_one=this; 
+								 $.each(vm.floor_one.advertPic, function(index, value) {
+									if(this.photoUrl) {
+										this.photoUrl = photo + this.photoUrl.split(",")[0]; 
+									}
+
+								}); 
+								 vm.floor_one_pic0=vm.floor_one.advertPic[0]; 
+								 $.each(vm.floor_one.goodsLst, function(index, value) {
+									if(this.goodsMainPhoto) {
+										this.goodsMainPhoto = photo + this.goodsMainPhoto.split(",")[0]; 
+									}
+
+								}); 
+
+								 vm.floor_one_goodsLst0=vm.floor_one.goodsLst[0];
+								 vm.floor_one_goodsLst1=vm.floor_one.goodsLst[1];
+								 vm.floor_one_goodsLst2=vm.floor_one.goodsLst[2]; 
+								
+							}
+							else if(this.showType==5) { 
+								vm.floor_two=this;
+								//楼层2
+								if(vm.floor_two.advertPic.length>0){
+									$.each(vm.floor_two.advertPic, function(index, value) {  
+										if(this.photoUrl) {
+											this.photoUrl = photo + this.photoUrl; 
+										} 
+								    }); 
+								} 
+								if(vm.floor_two.advertPic.length>0){
+									vm.floor_two_advertPicList=vm.floor_two.advertPic; 
+								}
+							    
+								if(vm.floor_two.goodsLst.length>0){
+									$.each(vm.floor_two.goodsLst, function(index, value) {
+										if(this.goodsMainPhoto) {
+											this.goodsMainPhoto = photo + this.goodsMainPhoto.split(",")[0]; 
+										}
+										if(this.floorPhoto) {
+											this.floorPhoto = photo + this.floorPhoto.split(",")[0]; 
+										} 
+								    });  
+								}
+								if(vm.floor_two.goodsLst.length>0){
+									vm.floor_two_goodsLst0=vm.floor_two.goodsLst[0];
+								}
+								if(vm.floor_two.goodsLst.length>1){
+									vm.floor_two_goodsLst1=vm.floor_two.goodsLst[1];
+								}
+								if(vm.floor_two.goodsLst.length>2){
+									vm.floor_two_goodsLst2=vm.floor_two.goodsLst[2];
+								} 
+								
+								//四个滚动商品
+								if(vm.floor_two.goodsLst.length>3){
+									vm.floor_two_arr.push(vm.floor_two.goodsLst[3]);
+								} 
+								if(vm.floor_two.goodsLst.length>4){
+									vm.floor_two_arr.push(vm.floor_two.goodsLst[4]);
+								} 
+								if(vm.floor_two.goodsLst.length>5){
+									vm.floor_two_arr.push(vm.floor_two.goodsLst[5]);
+								} 
+								if(vm.floor_two.goodsLst.length>6){
+									vm.floor_two_arr.push(vm.floor_two.goodsLst[6]);
+								} 
+								  
+								setTimeout(function(){
+									var hotSwiper = new Swiper('.swiper-container-hot21', { //swiper-container为上面的class容器
+									freeMode: false, //默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合
+									pagination: '.swiper-pagination-hot', //分页器 
+									slidesPerView:3, //一个页面宽度显示2.6个板块
+									//loop: true, //是否循环播放
+									//autoplay: 5000, //自动播放
+									//speed: 300, //速度
+									spaceBetween: 10, ///两个板块之间的空间间距30px 
+									//lazyLoading: true,
+									initialSlide:10, //从第10个图片开始， 默认为0
+									observer: true, //修改swiper自己或子元素时，自动初始化swiper
+									observeParents: true, //修改swiper的父元素时，自动初始化swiper
+									//autoplayDisableOnInteraction: false, //注意此参数，默认为true,Swiper自动地轮播时slides触碰该滑块自动轮播就会停止 这句代码为false时再次触发
+
+								});
+								
+								},500);
+								
+							}
+							else if(this.showType==6) { 
+								 vm.floor_three=this;
+								//楼层3 
+								$.each(vm.floor_three.advertPic, function(index, value) {
+									if(this.photoUrl) {
+										this.photoUrl = photo + this.photoUrl.split(",")[0]; 
+									}
+
+								}); 
+								vm.floor_three_pic0=vm.floor_three.advertPic[0];
+
+								$.each(vm.floor_three.goodsLst, function(index, value) {
+									if(this.goodsMainPhoto) {
+										this.goodsMainPhoto = photo + this.goodsMainPhoto.split(",")[0]; 
+									}
+
+								});  
+
+								vm.floor_three_arr1.push(vm.floor_three.goodsLst[0]);
+								vm.floor_three_arr1.push(vm.floor_three.goodsLst[1]);
+								vm.floor_three_arr1.push(vm.floor_three.goodsLst[2]);
+
+								vm.floor_three_arr2.push(vm.floor_three.goodsLst[3]);
+								vm.floor_three_arr2.push(vm.floor_three.goodsLst[4]);
+								vm.floor_three_arr2.push(vm.floor_three.goodsLst[5]);
+								
+							}
+							else if(this.showType==8) { 
+								 vm.floor_four=this;
+								//楼层4 
+								$.each(vm.floor_four.goodsLst, function(index, value) {
+									if(this.goodsMainPhoto) {
+										this.goodsMainPhoto = photo + this.goodsMainPhoto.split(",")[0]; 
+									}
+
+								});
+								vm.fl_four_goodsLst=vm.floor_four.goodsLst;
+								
+							}
+ 
+						}); 
+						  
+						
+						 setTimeout(function(){
+								$("img.lazy21").lazyload({
+									placeholder: "images/logo_mr.png",
+									effect: "fadeIn",
+									failurelimit: 10
+								}); 
+							 setTimeout(function(){
+								if($(".fl_two_left img").height()>189){
+								   $(".fl_two_right p").css("height",($(".fl_two_left img").height()-6)/2); 
+								}else{
+									$(".fl_two_left img").height($(".fl_two_right").height());
+								}
+							    $(".fl_two_right p span").css({"height":$(".fl_two_right p span img").height(),"overflow":"hidden"});
+							 },1000);
+							  $.each($(".floor_four p"), function(index, value) {
+									if((index+1)%3==0) {
+										$(this).css("border-right",0);
+									} 
+								}); 
+						 },500);  
+					} 
+				}
+			});  
+		},
+		mounted: function() { //生命期钩子 
+			this.$nextTick(function() {
+				vm.GoodsNum();
+			}) 
+		},
+		methods: { 
+			lazyloadImg: function() { 
+				this.$nextTick(function() {
+					$("img.lazy").lazyload({
+						placeholder: "images/logo_mr.png",
+						effect: "fadeIn",
+						failurelimit: 10
+					});
+					$(".choice li img").widH();  
+				
+				})
+
+			},
+			//去商品详情页面
+			toDetail: function(goodsId) {
+				window.sessionStorage.removeItem("detailExchange");
+				window.sessionStorage.setItem("detailGoodsId", goodsId);
+				window.location.href = "detail.html";
+			},
+			toStore: function(storeId) { 
+				window.sessionStorage.removeItem("detailExchange");
+				window.sessionStorage.setItem("storeId",storeId);
+				window.location.href = "store.html";
+			},
+			GoodsNum: function() {
+				$(".right-icon em").html(window.sessionStorage.getItem("carGoodsNumber"));
+			}
+
+		}
+
+	})
+	
+</script>
+<script>
+	var mySwiper = new Swiper('.swiper-container', { //swiper-container为上面的class容器
+		freeMode: false, //默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合
+		pagination: '.swiper-pagination', //分页器 
+		slidesPerView: 1, //一个页面宽度显示2.6个板块
+		loop: true, //是否循环播放
+		autoplay: 5000, //自动播放
+		speed: 300, //速度
+		spaceBetween: 0, ///两个板块之间的空间间距0px 
+		lazyLoading: true,
+		initialSlide: 10, //从第10个图片开始， 默认为0
+		observer: true, //修改swiper自己或子元素时，自动初始化swiper
+		observeParents: true, //修改swiper的父元素时，自动初始化swiper
+		autoplayDisableOnInteraction: false, //注意此参数，默认为true,Swiper自动地轮播时slides触碰该滑块自动轮播就会停止 这句代码为false时再次触发
+		onSlideChangeStart: function(swiper) {
+			swiper.update(); //更新Swiper 
+			mySwiper.startAutoplay(); //重新开始自动切换； 
+			mySwiper.reLoop(); //重新对需要循环的slide个数进行计算 
+		}
+	});
+</script> 
+<script type="text/javascript" src="min_js/dropload.min21.js"></script>
+<script> 
+//总页数
+var totalPage = 1;//初始化
+//当前页
+var page = 0;
+
+// dropload
+$('.choice').dropload({
+    scrollArea : window,
+    domDown : {
+        domClass   : 'dropload-down', 
+        domLoad    : '<div class="dropload-load" style="clear:both"><span class="loading"></span>加载中...</div>'
+    },
+    loadDownFn : function(me){  
+    	if(page< totalPage){
+			page= parseInt(page) + 1;
+			//console.log(page);
+			var result = '';
+			 
+		commonUtil.request({
+	            type: 'post',
+	            url: goodsList,
+	            
+	            dataType: 'json',
+	            cache : false,
+				async : false,
+				data : {
+					"page" : page,
+					"limit":8
+				},
+	            success: function(data){
+					totalPage=data.content.totalPage; 
+	            	jQuery.each(data.content.list,function(i,v){  
+						v.goodsMainPhoto=v.goodsMainPhoto.split(",")[0];  
+						result += '<li onclick="toDetail('+v.id+')"><p><img data-original='+photo+v.goodsMainPhoto+' src="images/logo_mr.png" class="lazy" onLoad="imagetoCanvas(this,\'image/png\',250,0.5)"></p> <p>'+v.goodsName+'</p> <p class="center market_P"><b class="color_m">¥'+v.salePrice+'</b><i class="swipe_hr">¥<b>'+v.marketPrice+'</b></i></p></li>';   
+					}); 
+	            },
+	            error: function(xhr, type){
+	                me.resetload();
+	            }
+	        });
+			setTimeout(function(){
+				$('.choice ul').append(result);
+				me.resetload();
+				$("img.lazy").widH();
+				$("img.lazy").lazyload({
+						placeholder: "images/logo_mr.png",
+						effect: "fadeIn",
+						failurelimit: 10
+				}); 
+                $(".swiper-container-hot21 .swiper-slide img").css("height",$(".swiper-container-hot21 .swiper-slide img").width()-5);
+			},1000);
+			
+		}else{
+			$(".dropload-down").html("已全部加载");
+			setTimeout(function(){
+				$(".dropload-down").hide();
+			},1500);
+		}
+    }
+});
+	
+function toDetail(goodsId) {
+	window.sessionStorage.removeItem("detailExchange");
+	window.sessionStorage.setItem("detailGoodsId", goodsId);
+	window.location.href = "detail.html";
+}	
+</script>
+	 
+<script type="text/javascript" src="min_js/jweixin-1.2.0.js" ></script> 
+<script>
+$(function(){  
+ $.ajax({
+	   type: "POST",
+	   url: wxShareSign,
+	   contentType: "application/json",
+	   data: JSON.stringify({"url":window.location.href}),
+	   dataType : "json", 
+	   success: function(data){ 
+		  // console.log(data);
+		   if(data.code==1){
+			   //showmessage(data.msg);
+
+			   wx.config({
+				debug: false,//这里是开启测试，如果设置为true，则打开每个步骤，都会有提示，是否成功或者失败
+				appId: data.content.appId,
+				timestamp: data.content.timestamp,//这个一定要与上面的php代码里的一样。
+				nonceStr: data.content.nonceStr,//这个一定要与上面的php代码里的一样。
+				signature: data.content.signature,//签名
+				jsApiList: [
+				  // 所有要调用的 API 都要加到这个列表中
+						'checkJsApi',  
+						'onMenuShareTimeline', //分享到朋友圈 
+						'onMenuShareAppMessage', //分享到微信朋友 
+						'onMenuShareQQ',  //分享到qq 
+					    'onMenuShareQZone'//qq空间
+				]
+				});  
+
+		   }else{
+			  //showmessage(data.msg);
+		   }
+	   }
+	 
+	}); 
+	
+});  
+	     
+wx.ready(function () {
+    var onMenu={
+		title: "明昌优惠大放送，创造财富不是梦！", // 分享标题
+		desc: "以消费者做代言人为己任，以品牌为生命之使命，以创新为发展之生产力，明昌等你加入！", // 分享描述
+		link: 'https://m.mcyou.net/index.html', // 分享链接
+		imgUrl:"https://m.mcyou.net/images/logo270.png", // 分享图标
+	}
+	
+	wx.checkJsApi({
+            jsApiList: [
+                'getLocation',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ],
+            success: function (res) {
+                //alert(JSON.stringify(res));
+            }
+        });
+	
+	wx.onMenuShareQQ({//分享到QQ
+		title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		success: function () {
+		// 用户确认分享后执行的回调函数
+		},
+		cancel: function () {
+		// 用户取消分享后执行的回调函数
+		}
+	}); 
+	wx.onMenuShareAppMessage({//分享到微信朋友
+		title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		type: '', // 分享类型,music、video或link，不填默认为link
+		dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		success: function () {
+			// 用户确认分享后执行的回调函数
+		},
+		cancel: function () {
+			// 用户取消分享后执行的回调函数
+		}
+    });
+	
+	wx.onMenuShareTimeline({//分享到朋友圈
+		title: onMenu.title, // 分享标题 
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		trigger: function (res) {
+            // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+            //alert('用户点击分享到朋友圈');
+          },
+		success: function () {
+		// 用户确认分享后执行的回调函数
+			//alert('已分享');
+		},
+		cancel: function () {
+		// 用户取消分享后执行的回调函数'
+			//alert('已取消');
+		}
+   });
+	
+	wx.onMenuShareQZone({
+	   title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		success: function () { 
+		   // 用户确认分享后执行的回调函数
+		},
+		cancel: function () { 
+			// 用户取消分享后执行的回调函数
+		}
+	}); 
+ 
+	
+})	
+</script>

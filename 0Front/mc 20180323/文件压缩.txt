@@ -1,0 +1,22 @@
+运行-cmd-输入：
+
+D:\jsmin\jsmin.exe <D:jsmin\jsfile.js>D:\jsmin\jsfile_new_name.js
+
+
+D:\jsmin\jsmin.exe 为jsmin.exe的位置；
+D:jsmin\jsfile.js 为需要压缩的文件位置和文件名；
+D:\jsmin\jsfile_new_name.js 为压缩后的文件位置和文件名
+
+必须填写绝对路径，js文件的编码最好为utf-8。
+
+使用JSMin压缩js文件，文件必须符合JSLint的编写风格，不然容易出现错误。
+JSMin的压缩主要是清除多余空白和备注。
+
+
+D:\jsmin\jsmin.exe <D:jsmin\jsfile.js>D:\jsmin\jsfile_new_name.js
+
+
+
+执行命令：
+
+jsmin.exe<D:\wamp\www\明昌科技\mc\js\activation.js>D:\wamp\www\明昌科技\mc\js\min\activation.js

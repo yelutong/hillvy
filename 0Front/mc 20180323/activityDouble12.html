@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>定制</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css"> 
+<link rel="stylesheet" href="min_css/detail.css"> 
+<style>
+.od_detail img{vertical-align:bottom;}
+.double12 div{float:left;width:33.33%}	
+</style>
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">双“十二”狂欢再惠</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="shopcar.html" class="icon" ><i class="sprite gocar"></i><em></em></a>
+            </div>
+			</div>
+</header>
+<div class="content od_detail">   
+<div><img src="images/content/12/dobule12_01.png"></div>
+<div class="double12">
+<div onClick="toHDetail(16,1)"><img src="images/content/12/dobule12_02_01.png"></div>
+<div onClick="toHDetail(17,1)"><img src="images/content/12/dobule12_02_02.png"></div>
+<div onClick="toHDetail(18,1)"><img src="images/content/12/dobule12_02_03.png"></div>
+</div>
+<div onClick="toOdDetail(106)"><img src="images/content/12/dobule12_03.png"></div>
+<div onClick="toOdDetail(105)"><img src="images/content/12/dobule12_04.png"></div>
+<div onClick="toOdDetail(93)"><img src="images/content/12/dobule12_05.png"></div>
+<div onClick="toOdDetail(103)"><img src="images/content/12/dobule12_06.png"></div>
+<div onClick="toOdDetail(102)"><img src="images/content/12/dobule12_07.png"></div>
+<div onClick="toOdDetail(100)"><img src="images/content/12/dobule12_08.png"></div>
+<div onClick="toOdDetail(95)"><img src="images/content/12/dobule12_09.png"></div> 
+</div>
+<footer>
+</footer> 
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div>
+<div id="Msg"></div>
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script> 
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>  
+<script>
+  $("footer").load("footer.html"); 
+function toH5Detail(couponId,couponType){
+	 commonUtil.request({	 
+	   type: "POST",
+	   url: takeCoupon, 
+	   dataType : "json", 
+	   data:{"couponId" : Number(couponId), "couponType" : Number(couponType)}, 
+	   contentType: "application/json",
+	   success: function(data){
+		 console.log(data);
+		   showmessage(data.msg);
+		}
+	   })   
+ }	
+</script>  

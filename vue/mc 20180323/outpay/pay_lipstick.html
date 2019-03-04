@@ -1,0 +1,63 @@
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>		
+	//判断是微信app的浏览器
+		var userAgent = navigator.userAgent.toLowerCase();
+		var wxCode = getQueryString('code');
+		if(userAgent.match(/MicroMessenger/i)=="micromessenger") {
+			
+			$.ajax({
+			url: "https://api.mcyou.net/api/orderformoutlinepay/pay",
+			type: "POST",
+			contentType: "application/json",
+			data: JSON.stringify({
+				goodsType: 2,
+				price: 28,
+				wxCode: wxCode,
+			}),
+
+			success: function(data) {
+				var data = JSON.parse(data);
+				if(data.code == 0) {
+					alert(data.msg);
+					window.location.href = 'http://mp.weixin.qq.com/s/PdcVJRVpzVxlGFb8VshS8g';
+				} else {
+				sessionStorage.setItem('orderNumber', data.content.orderNumber);
+				sessionStorage.setItem('orderPrice', data.content.orderPrice);
+				sessionStorage.setItem('goodsName', data.content.goodsName);
+				function onBridgeReady(){
+						   WeixinJSBridge.invoke(
+							   'getBrandWCPayRequest', JSON.parse(data.content.payData),
+							   function(res){
+							   
+								   if(res.err_msg == "get_brand_wcpay_request:ok" ) { 
+									   window.location.href="shopcar_pay_ok.html";
+									   return false; 
+								   }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+							   }
+						   ); 
+						}
+						if (typeof WeixinJSBridge == "undefined"){
+						   if( document.addEventListener ){
+							   document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+						   }else if (document.attachEvent){
+							   document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+							   document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+						   }
+						}else{
+						   onBridgeReady();
+						}
+				}
+			}
+		});
+			
+		}else {
+			alert("open in wxchat");
+		}
+		
+		function getQueryString(name) { 
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+			var r = window.location.search.substr(1).match(reg); 
+			if (r != null) return unescape(r[2]); return null; 
+		} 
+
+</script>

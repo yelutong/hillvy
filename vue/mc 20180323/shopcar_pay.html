@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>支付方式</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+<link rel="stylesheet" href="min_css/detail.css">
+<link rel="stylesheet" href="min_css/font-awesome.min.css">
+</head> 
+<body>
+<header class="header-box">
+	<div class="header-menu" id="headerMenu">
+				<span class="logo">支付方式</span>
+				<div class="header-icon left-icon">
+					<a href="index.html" class="icon_bk sprite" ></a>
+				</div>
+				<div class="header-icon right-icon">
+					<a href="index.html" class="icon"><i class="sprite gosy"></i></a>
+				</div>
+			</div>
+</header>
+<div class="content21 sca" id="app"> 
+	<div class="paytit">
+	<span style="float:right">应支付金额：<label class="ct_active">¥<b v-text="allPrice"></b></label></span>
+    </div>
+
+    <div class="pay">
+  <ul class="plist">
+   <!-- <li id="app_online"> 
+    	<label>
+    	<div class="pimg"><img src="images/z3.png" width="100%">  </div> 
+    	<div class="pbandkc" style="float:right">
+	        <input type="radio" class="checkbox checked" checked="checked" value="Unionpay" name="webbankpay">
+        </div>
+        </label>
+    </li>-->
+    <li> 
+    	<label>
+    	<div class="pimg"><img src="images/z5.jpg" width="100%"></div> 
+        <div class="pbandkc" style="float:right">
+	        <input type="radio" class="checkbox checked" value="webwxpay" name="webbankpay" checked>
+        </div>
+        </label>
+    </li>
+   <!--
+   	 <li> 
+    	<label>
+    	<div class="pimg"><img src="images/zfb.png" width="100%"></div> 
+        <div class="pbandkc" style="float:right">
+	        <input type="radio" class="checkbox" value="alipay" name="webbankpay">
+        </div>
+        </label>
+    </li> 
+    -->
+  <!--  <li> 
+    	<label>
+    	<div class="pimg"><img src="images/z13.png" width="100%"></div> 
+        <div class="pbandkc" style="float:right">
+	        <input type="radio" class="checkbox" value="AGPay" name="webbankpay" id="AGPay">
+        </div>
+        </label>
+    </li>
+    -->
+  </ul>
+</div>
+	
+<div class="mt45">
+      <input type="button" value="立即支付" class="ui-button bg_active" id="pay">
+      <input type="hidden" id="theForm">
+</div>
+<div class="w90">
+ <p class="colo666">温馨提示：请您在提交订单后<span class="colorred"> 24小时 </span>内完成支付，否则订单会自动取消。</p>
+ </div>
+
+	
+</div>
+ 
+<div class="mb_dioalog02">
+	<div class="mb_tit02">请输入支付密码</div>
+	<form action="" method="post" name="payPassword" id="form_paypsw">
+		<input type="password" value="" name="payment_pwd" class="payment_pwd" maxlength="6" placeholder="请输入6位数的支付密码">
+		<a href="" class="pg_forgot" style="position:relative;top:43px;color:blue;text-decoration:underline;">忘记密码？</a>
+    </form>	
+	<div>
+		<span class="mb_nobtn02" style="cursor:pointer;margin-top:20px;">取消</span>
+		<span class="mb_okbtn02" style="cursor:pointer;margin-top:20px;">确定</span>
+	</div>
+</div>
+<div class="py_dioalog03">
+	<div class="mb_tit02">设置支付密码</div>
+	<form action="" method="post" name="payPassword" id="set_paypsw">
+		<span class="py_txt01">设置密码：</span><input type="password" value="" name="set_pwd" class="payment_pwds" maxlength="6" placeholder="请设置6位数的支付密码">
+		<span class="py_txt02">确认密码：</span><input type="password" value="" name="set_compwd" class="payment_pwds" maxlength="6" placeholder="请确认密码">
+    </form>	
+	<div>
+		<span class="mb_nobtn03" style="cursor:pointer;">取消</span>
+		<span class="mb_okbtn03" style="cursor:pointer;">确定</span>
+	</div>
+</div>
+
+<div class="mb_bg"></div>
+
+<footer>
+</footer> 
+ 
+<div id="Msg"></div>		
+</body>
+</html>
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script>
+document.write("<s"+"cript type='text/javascript' src='min_js/publick.js?timestamp="+new Date().getTime()+"'></scr"+"ipt>");  
+document.write('<scr'+'ipt type="text/javascript" src="min_js/api.js?rand='+Math.random()+'"></sc'+'ript>');
+document.write('<scr'+'ipt type="text/javascript" src="min_js/detail.js?rand='+Math.random()+'"></sc'+'ript>'); 
+</script> 
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script>
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+<script>
+  $("footer").load("footer.html"); 
+</script> 
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			allPrice:window.sessionStorage.getItem("allPrice"),
+
+		},
+		mounted: function() {
+		 this.$nextTick(function() {
+			
+			 
+		 })
+		},
+
+		methods: {
+	 
+			
+		}
+	});
+	
+	console.log(window.localStorage.getItem("oderIds"));
+</script>

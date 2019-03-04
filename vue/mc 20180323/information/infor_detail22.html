@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>资讯</title>
+<link rel="shortcut icon" href="../images/favicon.ico" />
+<link rel="stylesheet" href="../min_css/public.css"> 
+<link rel="stylesheet" href="../min_css/content.css"> 
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">“油你真好”健康美丽创富交流会成功举办</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="shopcar.html" class="icon" ><i class="sprite gocar"></i><em></em></a>
+            </div>
+			</div>
+</header>
+<div class="content infor"> 
+<p class="contenty">12月3日，“油你真好”健康美丽创富交流会在明昌生态深圳运营中心成功举办，此次交流会吸引了众多对明昌生态模式及明昌生态产品感兴趣的商界精英，明昌生态董事长李圆女士表示，在未来的两年内，明昌生态要完成主板上市。</p>
+<div><img src="../images/content/infor/infor22/1.png"></div>  
+<p class="center contenty">湖南明昌生态农业有限公司（深圳运营中心）</p>
+<div><img src="../images/content/infor/infor22/1 (3).png"></div>  
+<p class="center contenty">会议开始前，嘉宾签到，领取精美礼品</p>
+<div><img src="../images/content/infor/infor22/1 (6).png"></div>  
+<p class="center contenty">参会嘉宾认真做笔记，仔细聆听</p>
+<div><img src="../images/content/infor/infor22/1 (2).png"></div>  
+<p class="center contenty">明昌商学院邹峰老师精彩演讲</p>
+<p class="contenty">交流会现场，明昌商学院战略导师邹峰老师，结合自身的经历来了一场别开生面的演讲，全场掌声不断。邹峰老师从营销行为、营销模试、营销特点的互联网快节奏观等举例说明：“圈子对了，赚钱就像呼吸一样简单！”在这个快节奏的互联网时代下，努力不如选择，选择不如找对平台。现在明昌生态以领头羊的身份带领大家走向创富大道，这是快节奏互联网时代才有的机会，我们要做的就是不辜负这个时代，踊跃参与进来。</p>
+<div><img src="../images/content/infor/infor22/1 (4).png"></div> 
+<div><img src="../images/content/infor/infor22/1 (5).png"></div> 
+<p class="center contenty">参会嘉宾积极提问</p>
+<div><img src="../images/content/infor/infor22/1 (2).png"></div> 
+<p class="contenty">明昌商学院战略导师邹峰老师又对明昌生态的开放模式进行了更深层次的解读。邹峰老师以《明昌是什么？》《明昌需要什么样的人？》《明昌应该怎么样做？》三个大篇幅，分别讲述了明昌的工作理念和工作方式、以及明昌生态未来的战略和战术。</p>
+<p class="contenty">交流会结束，参会嘉宾纷纷表示受益良多。大家踊跃报名，积极加入明昌成为明昌事业合伙人。在创富交流会我们看到了嘉宾们对明昌生态战略模式以及对明昌生态产品的高度认可。我们坚信，在互联网快节奏时代的分享和连接下，明昌生态必定能带领所有伙伴们在创富道路上开创一片蓝天。</p> 
+<img id="wx_code_21" src="../images/content/infor/code.png"> 
+</div>
+<footer>
+</footer> 
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div> 
+		
+</body>
+</html> 
+
+<script type="text/javascript" src="../min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="../min_js/publick.js"></script>
+<script type="text/javascript" src="../min_js/api.js"></script>
+<script type="text/javascript" src="../min_js/jweixin-1.2.0.js" ></script>
+<script>
+  $("footer").load("../footer.html"); 
+</script>	
+<script>
+$(function(){  
+ $.ajax({
+	   type: "POST",
+	   url: wxShareSign,
+	   contentType: "application/json",
+	   data: JSON.stringify({"url":window.location.href}),
+
+	   dataType : "json", 
+	   success: function(data){
+		   console.log("d");
+		   console.log(data);
+		   if(data.code==1){
+			   //showmessage(data.msg);
+
+			   wx.config({
+				debug: false,//这里是开启测试，如果设置为true，则打开每个步骤，都会有提示，是否成功或者失败
+				appId: data.content.appId,
+				timestamp: data.content.timestamp,//这个一定要与上面的php代码里的一样。
+				nonceStr: data.content.nonceStr,//这个一定要与上面的php代码里的一样。
+				signature: data.content.signature,//签名
+				jsApiList: [
+				  // 所有要调用的 API 都要加到这个列表中
+						'checkJsApi',  
+						'onMenuShareTimeline', //分享到朋友圈 
+						'onMenuShareAppMessage', //分享到微信朋友 
+						'onMenuShareQQ',  //分享到qq 
+					    'onMenuShareQZone'//qq空间
+				]
+				});  
+
+		   }else{
+			  //showmessage(data.msg);
+		   }
+	   }
+	 
+	}); 
+	
+});  
+	     
+wx.ready(function () {
+    var onMenu={
+		title: "“油你真好”健康美丽创富交流会成功举办", // 分享标题
+		desc: "12月3日，“油你真好”健康美丽创富交流会在明昌生态深圳运营中心成功举办，此次交流会吸引了众多对明昌生态模式及明昌生态产品感兴趣的商界精英，明昌生态董事长李圆女士表示，在未来的两年内，明昌生态要完成主板上市。", // 分享描述
+		link: 'https://m.mcyou.net/infor_detail22.html', // 分享链接
+		imgUrl:"https://m.mcyou.net/images/content/infor/infor22/1 (2).png", // 分享图标
+	}
+	
+	wx.checkJsApi({
+            jsApiList: [
+                'getLocation',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ],
+            success: function (res) {
+                //alert(JSON.stringify(res));
+            }
+        });
+	
+	wx.onMenuShareQQ({//分享到QQ
+		title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		success: function () {
+		// 用户确认分享后执行的回调函数
+		},
+		cancel: function () {
+		// 用户取消分享后执行的回调函数
+		}
+	}); 
+	wx.onMenuShareAppMessage({//分享到微信朋友
+		title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		type: '', // 分享类型,music、video或link，不填默认为link
+		dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		success: function () {
+			// 用户确认分享后执行的回调函数
+		},
+		cancel: function () {
+			// 用户取消分享后执行的回调函数
+		}
+    });
+	
+	wx.onMenuShareTimeline({//分享到朋友圈
+		title: onMenu.title, // 分享标题 
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		trigger: function (res) {
+            // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+            //alert('用户点击分享到朋友圈');
+          },
+		success: function () {
+		// 用户确认分享后执行的回调函数
+			//alert('已分享');
+		},
+		cancel: function () {
+		// 用户取消分享后执行的回调函数'
+			//alert('已取消');
+		}
+   });
+	
+	wx.onMenuShareQZone({
+	   title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		success: function () { 
+		   // 用户确认分享后执行的回调函数
+		},
+		cancel: function () { 
+			// 用户取消分享后执行的回调函数
+		}
+	}); 
+ 
+	
+})	
+</script>

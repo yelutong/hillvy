@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>资讯</title>
+<link rel="shortcut icon" href="../images/favicon.ico" />
+<link rel="stylesheet" href="../min_css/public.css"> 
+<link rel="stylesheet" href="../min_css/content.css"> 
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">山茶油PK橄榄油，结果你想知道吗？</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="shopcar.html" class="icon" ><i class="sprite gocar"></i><em></em></a>
+            </div>
+			</div>
+</header>
+<div class="content infor"> 
+
+<p class="contenty">西方人将神奇的山茶油称为“东方橄榄油”，究竟山茶油和橄榄油谁又更胜一筹呢，我们来做个详细的对比:</p>
+
+<img src="../images/content/infor/infor18/1.jpg">
+<p class="contenty">PK</p>
+<img src="../images/content/infor/infor18/1 (2).jpg">
+<p class="contenty">生长期：山茶果从孕育花苞到果实成熟长达13个月，沐浴全年的阳光雨露，蕴含丰富的营养。而油橄榄果是5月开花、当年11月熟果，果实成长期比山茶果短很多。</p>
+<img src="../images/content/infor/infor18/1 (3).jpg">
+
+<p class="contenty">单不饱和脂肪酸：橄榄油倍受推崇的重要原因是高含量的单不饱和脂肪酸（具有降低胆固醇、预防动脉硬化的作用），可达到75%，已远远高于一般油脂。而油古姥山茶油中单不饱和脂肪酸的含量高达80%，是油中之冠。</p>
+<img src="../images/content/infor/infor18/1 (4).jpg">
+
+<p class="contenty">微量元素：油古姥山茶油中维生素E的含量是橄榄油的两倍左右，山茶油还含有橄榄油所没有的角鲨烯、山茶甙、山茶皂甙等活性物质，这些物质具有抗氧化、溶血栓作用。</p>
+<p class="contenty">烟点：橄榄油加热到160℃即产生油烟，此时不仅会失去原有营养，还会生成有害的反式脂肪酸，释放致癌物。而山茶油烟点高达250℃，反复煎炸也不会产生致癌物，亦为食用油之冠。</p>
+
+ 
+<img id="wx_code_21" src="../images/content/infor/code.png">
+    
+</div>
+<footer>
+</footer> 
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div> 
+		
+</body>
+</html> 
+
+<script type="text/javascript" src="../min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="../min_js/publick.js"></script>
+<script type="text/javascript" src="../min_js/api.js"></script>
+<script type="text/javascript" src="../min_js/jweixin-1.2.0.js" ></script>
+<script>
+  $("footer").load("../footer.html"); 
+</script>	
+<script>
+$(function(){  
+ $.ajax({
+	   type: "POST",
+	   url: wxShareSign,
+	   contentType: "application/json",
+	   data: JSON.stringify({"url":window.location.href}),
+
+	   dataType : "json", 
+	   success: function(data){
+		   console.log("d");
+		   console.log(data);
+		   if(data.code==1){
+			   //showmessage(data.msg);
+
+			   wx.config({
+				debug: false,//这里是开启测试，如果设置为true，则打开每个步骤，都会有提示，是否成功或者失败
+				appId: data.content.appId,
+				timestamp: data.content.timestamp,//这个一定要与上面的php代码里的一样。
+				nonceStr: data.content.nonceStr,//这个一定要与上面的php代码里的一样。
+				signature: data.content.signature,//签名
+				jsApiList: [
+				  // 所有要调用的 API 都要加到这个列表中
+						'checkJsApi',  
+						'onMenuShareTimeline', //分享到朋友圈 
+						'onMenuShareAppMessage', //分享到微信朋友 
+						'onMenuShareQQ',  //分享到qq 
+					    'onMenuShareQZone'//qq空间
+				]
+				});  
+
+		   }else{
+			  //showmessage(data.msg);
+		   }
+	   }
+	 
+	}); 
+	
+});  
+	     
+wx.ready(function () {
+    var onMenu={
+		title: "山茶油PK橄榄油，结果你想知道吗？", // 分享标题
+		desc: "西方人将神奇的山茶油称为“东方橄榄油”，究竟山茶油和橄榄油谁又更胜一筹呢，我们来做个详细的对比...", // 分享描述
+		link: 'https://m.mcyou.net/infor_detail18.html', // 分享链接
+		imgUrl:"https://m.mcyou.net/images/content/infor/infor18/1 (3).jpg", // 分享图标
+	}
+	
+	wx.checkJsApi({
+            jsApiList: [
+                'getLocation',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ],
+            success: function (res) {
+                //alert(JSON.stringify(res));
+            }
+        });
+	
+	wx.onMenuShareQQ({//分享到QQ
+		title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		success: function () {
+		// 用户确认分享后执行的回调函数
+		},
+		cancel: function () {
+		// 用户取消分享后执行的回调函数
+		}
+	}); 
+	wx.onMenuShareAppMessage({//分享到微信朋友
+		title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		type: '', // 分享类型,music、video或link，不填默认为link
+		dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		success: function () {
+			// 用户确认分享后执行的回调函数
+		},
+		cancel: function () {
+			// 用户取消分享后执行的回调函数
+		}
+    });
+	
+	wx.onMenuShareTimeline({//分享到朋友圈
+		title: onMenu.title, // 分享标题 
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		trigger: function (res) {
+            // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+            //alert('用户点击分享到朋友圈');
+          },
+		success: function () {
+		// 用户确认分享后执行的回调函数
+			//alert('已分享');
+		},
+		cancel: function () {
+		// 用户取消分享后执行的回调函数'
+			//alert('已取消');
+		}
+   });
+	
+	wx.onMenuShareQZone({
+	   title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		success: function () { 
+		   // 用户确认分享后执行的回调函数
+		},
+		cancel: function () { 
+			// 用户取消分享后执行的回调函数
+		}
+	}); 
+ 
+	
+})	
+</script>

@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>店铺详情</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="min_css/public.css">
+		<link rel="stylesheet" type="text/css" href="min_css/content.css">
+		<link rel="stylesheet" type="text/css" href="min_css/user.css"/>
+		<link rel="stylesheet" type="text/css"  href="min_css/swiper.min.css">
+		<link rel="stylesheet" type="text/css"  href="min_css/font-awesome.min.css">
+		<style>
+			html,
+			body {
+				position: relative;
+			}
+			
+			.swiper-container {
+				width: 100%;
+				height: auto;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			
+			.swiper-slide {
+				text-align: center;
+				font-size: 18px;
+				float: left;
+				background: #fff;
+				width: 100%;
+				height: auto;
+				position: relative;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			}
+			
+			.swiper-slide img {
+				width: 100%;
+			}
+			
+			.swiper-pagination-bullet {
+				opacity: 1;
+			}
+			
+			.swiper-pagination-bullet-active {
+				display: inline-block;
+				margin-top: 14px;
+				margin-left: 5px;
+				margin-right: 5px;
+				width: 20px;
+				height: 8px;
+				background: #c7c7c7;
+				border-radius: 9999px;
+				cursor: pointer;
+				transition: all 0.6s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<header class="header-box">
+				<div class="header-menu" id="headerMenu">
+					<span class="logo" v-text="dp_fund.name"></span>
+					<div class="header-icon left-icon">
+						<a href="javascript:window.history.back()" class="icon_bk sprite" ></a>
+					</div>
+					<div class="header-icon right-icon">
+						<a href="shopcar.html" class="icon"><i class="sprite gocar"></i><em></em></a>
+                        <span class="icon_share" onClick="toshare21()"><i class="sprite goshare"></i></span>
+					</div>
+				</div>
+			</header>
+			<div class="content"> 
+				 <div class="kk_s_main">
+				    <p class="kk_s_logo"><img :src="dp_fund.logIcon"></p>
+				 	<p class="kk_s_name" v-text="dp_fund.name"></p>
+				 	<span class="collect" @click="collect(dp_fund)">  
+					<i class="fa fa-heart dt_active" aria-hidden="true"  v-if="dp_fund.isCollect==true"></i><i class="fa fa-heart" aria-hidden="true" v-else></i>
+					收藏
+					</span> 
+				 	<p class="displaynone kk_s_adress" v-text="dp_fund.address"></p>
+				 </div> 
+                <div class="detail_bg21"></div>
+                <div class="hotsale choice"> 
+                <ul></ul>
+                </div>
+		</div>
+		<div id="gotop">
+			<div class="sprite gopic"></div>
+		</div>
+		<div id="Msg"></div>
+
+		</div>
+ 
+<div class="sharebg"></div>
+<div class="share_wxbg"><img src="images/buyer/share_weixin.png"></div>
+<footer>
+</footer> 
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="min_js/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="min_js/publick.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script>
+<script type="text/javascript" src="min_js/commonUtil.js"></script>
+<script type="text/javascript" src="min_js/jquery.md5.js"></script> 
+<script type="text/javascript" src="min_js/vue.min.js"></script>
+<script>
+  $("footer").load("footer.html"); 
+</script>
+<script>
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			dp_fund:{}, 
+			goods: {
+				goodsDetailPhoto: "",
+				goodsMainPhoto: ""
+			},
+			//sku价格
+			skuPrice: 0,
+			//sku库存
+			skuStock: 0,
+			//sku 信息
+			skuInfoStr: "",
+
+		},
+		mounted: function() {
+
+			this.$nextTick(function() { 
+				$(".right-icon em").html(window.sessionStorage.getItem("carGoodsNumber"));
+				var storeId = Number(vm.getParam('storeId'));//获取url链接参数
+				if(!storeId){
+					storeId = window.sessionStorage.getItem("storeId");
+				}  
+				if(storeId) { 
+					//店铺信息
+					commonUtil.request({
+						url: sellerstore + storeId, //店铺id,
+						type: "get",
+						contentType: "application/json",
+						success: function(data) {
+							console.log(data);
+							if(data.code == 1) {
+								if(data.content.logIcon){ 
+								   data.content.logIcon=photo+data.content.logIcon;
+								}else{
+									data.content.logIcon="https://m.mcyou.net/images/logo_f.png";
+								}
+								if(!data.content.name){
+									data.content.name="明昌生态商家店";
+								}
+								if(!data.content.address){
+									data.content.address="深圳市福田区彩田路新浩e都大厦1802";
+								}
+								vm.dp_fund=data.content;
+							}
+						}
+					})
+				}
+
+			})
+
+		},
+		computed: {
+
+			 
+		},
+		methods: {//这里面写方法
+			
+			//url获取路径参数
+			getParam:function (paramName) {
+			    paramValue = "";
+			    isFound = false;
+			    if (window.location.search.indexOf("?") == 0 && window.location.search.indexOf("=") > 1) {
+			        arrSource = unescape(window.location.search).substring(1, window.location.search.length).split("&");
+			        i = 0;
+			        while (i < arrSource.length && !isFound) {
+			            if (arrSource[i].indexOf("=") > 0) {
+			                if (arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase()) {
+			                    paramValue = arrSource[i].split("=")[1];
+			                    isFound = true;
+			                }
+			            }
+			            i++;
+			        }
+			    }
+			    return paramValue;
+			 },
+			collect:function(dp_fund){
+				commonUtil.request({	 
+			   type: "get",
+			   url: storecollect+dp_fund.id, 
+	           dataType : "json",  
+			   contentType: "application/json",
+			   success: function(data){ 
+				   showmessageTop(data.msg); 
+				   if(dp_fund.isCollect==false){
+					   dp_fund.isCollect=true;
+				   }else{
+					   dp_fund.isCollect=false;
+				   } 
+	            }
+			   })
+			}
+		} 
+
+	}) 	
+</script> 
+<script type="text/javascript" src="min_js/dropload.min21.js"></script>
+<script> 
+//总页数
+var totalPage = 1;//初始化
+//当前页
+var page = 0;
+var storeId = Number(getQueryString('storeId'));
+if(!storeId){
+    storeId = window.sessionStorage.getItem("storeId");//获取url链接参数
+}
+// dropload
+$('.choice').dropload({
+    scrollArea : window,
+    domDown : {
+        domClass   : 'dropload-down', 
+        domLoad    : '<div class="dropload-load" style="clear:both"><span class="loading"></span>加载中...</div>'
+    },
+    loadDownFn : function(me){  
+    	if(page< totalPage){
+			page= parseInt(page) + 1;
+			//console.log(page);
+			var result = '';
+			 
+		commonUtil.request({
+	            type: 'post',
+	            url: goodsList,
+	            
+	            dataType: 'json',
+	            cache : false,
+				async : false,
+				data : {
+					"sellerStoreId":storeId,
+					"page" : page,
+					"limit":8
+				},
+	            success: function(data){
+					console.log(data);
+					totalPage=data.content.totalPage; 
+	            	jQuery.each(data.content.list,function(i,v){  
+						v.goodsMainPhoto=v.goodsMainPhoto.split(",")[0];  
+						result += '<li onclick="toDetail('+v.id+')"><p><img data-original='+photo+v.goodsMainPhoto+' src="images/logo_mr.png" class="lazy"></p> <p>'+v.goodsName+'</p>  <p class="center market_P"><b class="color_m">¥'+v.salePrice+'</b><i class="swipe_hr">¥<b>'+v.marketPrice+'</b></i></p></li>';   
+					}); 
+	            },
+	            error: function(xhr, type){
+	                me.resetload();
+	            }
+	        });
+			setTimeout(function(){
+				$('.choice ul').append(result);
+				me.resetload();
+				$("img.lazy").widH();
+				$("img.lazy").lazyload({
+						placeholder: "images/logo_mr.png",
+						effect: "fadeIn",
+						failurelimit: 10
+				});
+				if(totalPage==1){
+					setTimeout(function(){ 
+					   $(".dropload-down").html("已全部加载");
+					},300);
+					setTimeout(function(){ 
+						$(".dropload-down").hide();
+					},500);
+				}
+			},500);
+			
+		}else{
+			$(".dropload-down").html("已全部加载");
+			setTimeout(function(){
+				$(".dropload-down").hide();
+			},800);
+		}
+    }
+});
+</script>	
+</body> 
+</html> 
+<script type="text/javascript" src="min_js/jweixin-1.2.0.js" ></script>
+<script type="text/javascript" src="min_js/shore_wx.js"></script> 

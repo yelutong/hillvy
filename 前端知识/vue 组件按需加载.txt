@@ -1,0 +1,26 @@
+<swiper v-model="index" height="100%" :show-dots="false">
+  <component :is="currentView"></component>
+</swiper>
+
+import indexNew from "@/views/index/indexNew";
+import tabContent from "@/views/index/tabContent";
+
+computed:{
+    currentView(){
+      if(this.onTab===0){
+        return indexNew;
+      }
+      else{
+       this.$axios.get(this.api.getChildsList+this.onTab)
+       .then(res => {
+        if(res.data.code === 1){
+           console.log(res.data);
+        }
+      })
+      .catch(res => {
+       //下单失败，请您稍后重试
+      });
+        return tabContent;
+      }
+    }
+  },

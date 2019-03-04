@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>明昌生态推广二维码</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<script type="text/javascript" src="min_js/jquery-1.10.1.min.js"></script> 
+<script type="text/javascript" src="min_js/publick.js"></script>  
+<script type="text/javascript" src="min_js/jquery.qrcode.min.js"></script> 
+<script type="text/javascript" src="min_js/canvas2image.js"></script>
+<script type="text/javascript" src="min_js/api.js"></script> 
+<link rel="stylesheet" href="min_css/public.css"> 
+<link rel="stylesheet" href="min_css/content.css">
+<link rel="stylesheet" href="min_css/detail.css">
+<link rel="stylesheet" href="min_css/user.css">  
+<style>
+*,html,body{background:#d09c3f;font-size:0!important}
+</style>
+<script>
+function shareCode(){ 
+	var promoteId=getQueryString("promoterId"); 
+	var code=getQueryString("code");
+	$.ajax({
+ 		url: bindOpenId+promoteId+"/"+code,
+ 		type: "get",
+ 		contentType: "application/json", 
+ 		success: function(data) {  
+ 			
+ 		}
+ 	});
+	
+		//合并多张图片 
+		/*var data21={"image":["images/buyer/mycode1730.png","images/buyer/qrcode_share.png"]},imgPath;  
+		function draw(){
+			var mycanvas=document.createElement('canvas');
+			document.body.appendChild(mycanvas);
+			var len=data21.image.length;
+			mycanvas.width=1080;//画布宽度
+			mycanvas.height=1730;//画布高度
+			if(mycanvas.getContext){
+				var context=mycanvas.getContext('2d');
+				 mycanvas.style.display="none";//这里让canvas隐藏了
+				 mycanvas.id="mypic";
+				// 宣传图片
+				//var h=0;
+				function drawing(num){
+					if(num<len){
+						var img=new Image;
+						img.crossOrigin="anonymous"; //关键 解决Canvas图片toDataURL的报错
+						img.src=data21.image[num];
+						if(num==0){
+							img.onerror=function(){
+								context.fillStyle='#fff';
+								context.stokeStyle='#dfdfdf';
+								context.fillRect(0,0,1080,1080);//坐标
+								context.strokeRect(0,0,1730,1730);//坐标
+								context.font='24px 微软雅黑';
+								context.textAlign='center';
+								context.textBaseline='middle';
+								context.fillStyle='#333'; 
+								drawing(num+1);
+							}
+							img.onload=function(){
+								context.drawImage(img,0,0,1080,1730);//横坐标，纵坐标，宽度，高度
+								drawing(num+1);
+							}
+						}
+						else if(num==1){
+							img.onload=function(){
+								context.drawImage(img,289,235,500,500);  
+								// 底部内容 
+								drawing(num+1);
+							}
+						}
+						else if(num==2){
+							img.onload=function(){ 
+								context.drawImage(img,465,540,145,145);
+
+
+								var draw = function(x, y, width, height, radius, color, type){
+									context.beginPath();
+									context.moveTo(x, y+radius);
+									context.lineTo(x, y+height-radius);
+									context.quadraticCurveTo(x, y+height, x+radius, y+height);
+									context.lineTo(x+width-radius, y+height);
+									context.quadraticCurveTo(x+width, y+height, x+width, y+height-radius);
+									context.lineTo(x+width, y+radius);
+									context.quadraticCurveTo(x+width, y, x+width-radius, y);
+									context.lineTo(x+radius, y);
+									context.quadraticCurveTo(x, y, x, y+radius);
+									context[type + 'Style'] = color || params.color;
+									//context.strokeStyle=gradient;
+									context.lineWidth=10;
+									context.closePath();
+									context[type]();
+								}
+								draw(460,538,155,150,30,"#FFF","stroke");
+
+
+								// 底部内容 
+								drawing(num+1);
+							}
+						}
+					}else{
+
+						imgPath=mycanvas.toDataURL("image/jpeg");
+						//document.getElementsByTagName('img')[3].src=imgPath;
+						$("#img-buffer21").attr("src",imgPath); 
+
+					}  
+
+				}
+				drawing(0);
+
+			}
+			}
+		CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+		var min_size = Math.min(w, h);
+		if (r > min_size / 2) r = min_size / 2;
+		// 开始绘制
+		this.beginPath();
+		this.moveTo(x + r, y);
+		this.arcTo(x + w, y, x + w, y + h, r);
+		this.arcTo(x + w, y + h, x, y + h, r);
+		this.arcTo(x, y + h, x, y, r);
+		this.arcTo(x, y, x + w, y, r);
+		this.closePath();
+		return this;
+		}
+		draw(); 
+	*/
+	
+}
+</script>
+</head> 
+<body onLoad="shareCode()">  
+<img src="images/buyer/mycode21.png" style="width: 100%"/>
+<div class="content0">
+  <div class="buyer_mycode">
+  	<div id="code" style="display:none"></div>    
+    <img src="" id="myImg" style="display:none"/>  
+    <img id="img-buffer" style="display:none" src="images/buyer/logo288.png"/>
+    <img id="img-buffer21" src="" width="100%" style="display: none"/> 
+  </div>
+	
+</div>  	
+</body>
+</html>   

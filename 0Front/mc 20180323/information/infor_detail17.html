@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>资讯</title>
+<link rel="shortcut icon" href="../images/favicon.ico" />
+<link rel="stylesheet" href="../min_css/public.css"> 
+<link rel="stylesheet" href="../min_css/content.css"> 
+</head> 
+<body>
+<header class="header-box">
+		<div class="header-menu" id="headerMenu">
+		<span class="logo">山茶油与中外名人不得不说的故事</span>
+		    <div class="header-icon left-icon"> 
+					<a href="javascript:window.history.back()" class="icon_bk sprite"  ></a>
+            </div>
+			<div class="header-icon right-icon"> 
+					<a href="shopcar.html" class="icon" ><i class="sprite gocar"></i><em></em></a>
+            </div>
+			</div>
+</header>
+<div class="content infor"> 
+<p class="center">山茶油与中外名人不得不说的故事......</p>
+
+<p class="center">说起山茶油</p>
+
+<p class="center">相信大家一定不陌生，</p>
+
+<p class="center">但是山茶油与古今中外许多名人都有联系</p>
+
+<p class="center">他们之间的故事你知道吗？</p>
+
+<p class="center">而且山茶油都是和“爱美”人士发生的关系哦……</p>
+
+<p class="center">今天听小昌君来扒一扒</p>
+
+<p class="center">山茶油和名人之间的关系吧……</p>
+<img src="../images/content/infor/infor17/1 (5).png">
+
+<p class="center">香奈儿</p>
+
+<p class="contenty">山茶花象征着奔放的激情与浪漫主义情怀，同时素雅清新又不失尊贵的气质与独特，山茶花是Chanel王国中最重要的主角，经典简约的山茶花是源远流长的爱的宣言，更寄托着可可·香奈儿至真至情对真爱的思念。</p>
+<p class="contenty">在香奈儿的世界中，山茶花有着不可替代的地位，无论是时装或是高级珠宝，山茶花的元素无处不在。</p>
+<img src="../images/content/infor/infor17/1 (2).png">
+<p class="center">毛泽东</p>
+
+<p class="contenty">中国人都知道毛泽东喜欢吃辣椒、吃红烧肉，却很少知道他喜欢吃茶油。毛泽东进住中南海后，韶山的乡亲们来看他，常常带给他的就是辣椒、腊肉和茶油。茶油用粗糙的罐子装着，每每打开稻草罐盖，菊香书屋就会弥漫淡淡的芳馥。</p>
+<img src="../images/content/infor/infor17/1.png">
+<p class="center">李商隐</p>
+
+<p class="contenty">山茶油在古代就已经相当受欢迎了，唐代著名诗人李商隐食用山茶油后,曾为之赋“芳香滋补味津津,一瓯冲出安昌春”的诗句。</p>
+<img src="../images/content/infor/infor17/1 (4).png">
+<p class="center">李英爱</p>
+
+<p class="contenty">不仅中国人爱山茶油，外国人也同样喜爱它，韩国43岁的不老女神李英爱，也是山茶油的爱好者。 她在SBS《美好的早晨》节目中接受采问说：我用太多的护肤品反而皮肤变得不好，只用山茶油和保湿霜。</p>
+
+<img src="../images/content/infor/infor17/1 (1).png">
+<p class="center">小仲马</p>
+
+<p class="contenty">小仲马写出的《茶花女》成为傲视之美的代表，证实了19世纪山茶花在欧洲的流行。</p>
+<p class="contenty">如此多中外名人原来都和山茶油“发生关系”，小昌君不得不感叹山茶油的与众不同……</p> 
+<img id="wx_code_21" src="../images/content/infor/code.png">
+    
+</div>
+<footer>
+</footer> 
+<div id="gotop">
+  <div class="sprite gopic"></div> 
+</div> 
+		
+</body>
+</html> 
+
+<script type="text/javascript" src="../min_js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="../min_js/publick.js"></script>
+<script type="text/javascript" src="../min_js/api.js"></script>
+<script type="text/javascript" src="../min_js/jweixin-1.2.0.js" ></script>
+<script>
+  $("footer").load("../footer.html"); 
+</script>	
+<script>
+$(function(){  
+ $.ajax({
+	   type: "POST",
+	   url: wxShareSign,
+	   contentType: "application/json",
+	   data: JSON.stringify({"url":window.location.href}),
+
+	   dataType : "json", 
+	   success: function(data){
+		   console.log("d");
+		   console.log(data);
+		   if(data.code==1){
+			   //showmessage(data.msg);
+
+			   wx.config({
+				debug: false,//这里是开启测试，如果设置为true，则打开每个步骤，都会有提示，是否成功或者失败
+				appId: data.content.appId,
+				timestamp: data.content.timestamp,//这个一定要与上面的php代码里的一样。
+				nonceStr: data.content.nonceStr,//这个一定要与上面的php代码里的一样。
+				signature: data.content.signature,//签名
+				jsApiList: [
+				  // 所有要调用的 API 都要加到这个列表中
+						'checkJsApi',  
+						'onMenuShareTimeline', //分享到朋友圈 
+						'onMenuShareAppMessage', //分享到微信朋友 
+						'onMenuShareQQ',  //分享到qq 
+					    'onMenuShareQZone'//qq空间
+				]
+				});  
+
+		   }else{
+			  //showmessage(data.msg);
+		   }
+	   }
+	 
+	}); 
+	
+});  
+	     
+wx.ready(function () {
+    var onMenu={
+		title: "山茶油与中外名人不得不说的故事", // 分享标题
+		desc: "说起山茶油,相信大家一定不陌生，但是山茶油与古今中外许多名人都有联系,他们之间的故事你知道吗？", // 分享描述
+		link: 'https://m.mcyou.net/infor_detail17.html', // 分享链接
+		imgUrl:"https://m.mcyou.net/images/content/infor/infor17/1.png", // 分享图标
+	}
+	
+	wx.checkJsApi({
+            jsApiList: [
+                'getLocation',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ],
+            success: function (res) {
+                //alert(JSON.stringify(res));
+            }
+        });
+	
+	wx.onMenuShareQQ({//分享到QQ
+		title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		success: function () {
+		// 用户确认分享后执行的回调函数
+		},
+		cancel: function () {
+		// 用户取消分享后执行的回调函数
+		}
+	}); 
+	wx.onMenuShareAppMessage({//分享到微信朋友
+		title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		type: '', // 分享类型,music、video或link，不填默认为link
+		dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		success: function () {
+			// 用户确认分享后执行的回调函数
+		},
+		cancel: function () {
+			// 用户取消分享后执行的回调函数
+		}
+    });
+	
+	wx.onMenuShareTimeline({//分享到朋友圈
+		title: onMenu.title, // 分享标题 
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		trigger: function (res) {
+            // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+            //alert('用户点击分享到朋友圈');
+          },
+		success: function () {
+		// 用户确认分享后执行的回调函数
+			//alert('已分享');
+		},
+		cancel: function () {
+		// 用户取消分享后执行的回调函数'
+			//alert('已取消');
+		}
+   });
+	
+	wx.onMenuShareQZone({
+	   title: onMenu.title, // 分享标题
+		desc: onMenu.desc, // 分享描述
+		link: onMenu.link, // 分享链接
+		imgUrl:onMenu.imgUrl, // 分享图标
+		success: function () { 
+		   // 用户确认分享后执行的回调函数
+		},
+		cancel: function () { 
+			// 用户取消分享后执行的回调函数
+		}
+	}); 
+ 
+	
+})	
+</script>
