@@ -1,0 +1,51 @@
+.page-juniorgrant {
+  padding: 10px 0 90px;
+  .lay-info {
+    margin-bottom: 10px;
+    .v-cell-box {
+      &:active {
+        background-color: #fff;
+      }
+      .lay-cell:after,
+      .ico {
+        display: none;
+      }
+      .text {
+        font-size: 14px;
+        color: #000;
+      }
+    }
+  }
+  .lay-chose {
+    .v-cell-box {
+      &:last-child {
+        .lay-cell:after {
+          display: none;
+        }
+      }
+    }
+    .select {
+      flex: 1;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+      color: #828282;
+    }
+    .chose {
+      color: #000;
+    }
+  }
+  .lay-action {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 30px;
+    background-color: #f5f5f5;
+  }
+}
