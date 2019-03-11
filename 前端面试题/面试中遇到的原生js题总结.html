@@ -1,0 +1,244 @@
+1、js 去重
+1) indexOf
+
+Array.prototype.unique = function(){
+    var result = [];
+    var len = this.length;
+    for(var i = 0; i<len; i++){
+        if(result.indexOf(this[i])<0){
+            result.push(this[i]);
+        }
+    }
+    return result;
+}
+var arr = [1,2,3,2,1,3,2,1];
+arr.unique();//arr = [1,2,3]
+在IE6、7、8不支持indexOf方法，可以在Array原型链上扩展indexOf方法
+if(!Array.prototype.indexOf){    
+   Array.prototype.indexOf = function(val){    
+       var value = this;    
+       for(var i =0; i < value.length; i++){    
+          if(value[i] == val) return i;    
+       }    
+      return -1;    
+   };    
+}  
+2)数组先排序
+
+Array.prototype.unique = function(){
+    this.sort();
+    var result = [this[0]];
+    var len = this.length;
+    for(var i = 0; i<len; i++){
+        if(this[i] !== result[result.length-1]){
+            result.push(this[i]);
+        }
+    }
+    return result;
+}
+var arr = [1,2,3,2,1,3,2,1];
+arr.unique();//arr = [1,2,3]
+3)ES6新方法set和Array.from
+
+function unique(arr){
+  return Array.from(new Set(arr));
+}
+set是一种新的数据结构，它可以接收一个数组或者是类数组对象，自动去重其中的重复项目，返回的是json对象
+Array.from可以把类数组对象、可迭代对象转化为数组
+2、js 字符串转为驼峰法
+
+function tansform(str){
+    var re = /-(\w)/g;
+    return str.replace(re,function($0,$1){//replace 中正则表达式$0,$1,$n等代表正则表达式内小括号的匹配值，从$1开始，$0代表正则表达式的整体值
+        return $1.toUpperCase();
+    });
+}
+var str = 'border-left-color';
+tansform(str);//borderLeftColor
+3、查找字符串中最多的字符及个数
+
+function repeatCharNum(str){
+    var arr = str.split('');
+    str = arr.sort().join('');
+    var re = /(\w)\1+/g;
+    var index = 0;
+    var value = '';
+    str.replace(re,function($0,$1){
+        if(index < $0.length){
+            index = $0.length;
+            value = $1 ;
+        }
+    });
+    alert ('最多字符'+value+'出现的次数'+index);
+}
+4、编写一个函数，将输入的参数中的数字字符追加为一个数字字符串，参数输入不确定
+
+function getStrChange(){
+  var len = arguments.length;//参数不确定时使用arguments关键字
+  var re = /^\d+$/;
+  var str = '';debugger;
+  for(var i =0; i< len; i++){
+    if(!(re.test(arguments[i]))){ 
+      continue;
+    }
+    if(i == len-1){
+      str = str+arguments[i];
+    }else{
+      str = str+arguments[i]+',';
+    }  
+  }
+  return str;
+}
+alert(getStrChange('1','a','45','b','3',1));//('1,45,3,1')
+5、var和function的预解析问题,以及变量和function的先后顺序的问题
+
+ // 以下代码执行输出结果是什么
+    function b () {
+        console.log(a);// function a(){}
+        var a = 10;
+        function a() {};
+        a = 100;
+        console.log(a);//100
+    }
+    b();
+
+    function c () {
+        console.log(a);//function a(){}
+        function a() {};
+        var a = 10;
+        a = 100;
+        console.log(a);//100
+    }
+    c();
+
+    (function d (num) {
+        console.log(num);//100
+        var num = 10;
+    }(100))
+
+    (function e (num) {
+        console.log(num);//function num () {};
+        var num = 10;
+        function num () {};
+    }(100))
+
+    (function f (num) {
+        function num () {};
+        console.log(num);//function num () {};
+        var num =10
+        console.log(num);//10
+    }(100))
+
+    //仍然是预解析(在与解析过程中还要考虑一下当前变量的作用于)
+    function m () {
+        console.log(a1); // underfined
+        console.log(a2); // underfined
+        console.log(b1); // underfined
+        console.log(b2); // underfined
+        if(false) {
+            function b1 (){};
+            var a1 = 10;
+        }
+        if(true) {
+            function b2 (){};
+            var a2 = 10;
+        }
+        console.log(a1); // underfined
+        console.log(a2); // 10
+        console.log(b1); // underfined
+        console.log(b2); // function
+    }
+    m();
+
+    function n() {
+        if(2>1) {
+            arr = 10;
+            brr = 10;
+            let arr;//要在严格模式'use strict'下运行
+            var brr;
+            console.log(arr);
+            console.log(brr);
+        }
+    }
+    n(); // ReferenceError
+函数声明：function a(){}可以提前解析；
+函数表达式：var b = function a(){} : 命名函数表达式
+var b = function (){} ：匿名函数表达式
+(function a(){}) : 表达式
+位运算符：（为了区分函数表达式和函数声明）
+~funtion a(){} : 表达式
+-funtion a(){} : 表达式
++funtion a(){} : 表达式
+！funtion a(){} : 表达式
+（不可以被提前解析）
+函数表达式和函数声明的区别：函数声明可以提前被解析，函数表达式不可以，需要在引用前提前声明；函数表达式可以直接后面加括号执行，函数声明不可以。
+let关键字要在严格模式'use strict'下运行
+6、判断数据类型
+
+   function gettype(nm){
+    return Object.prototype.toString.call(nm);
+} 
+   console.log(gettype(3)); //[object number]
+js基础数据类型：number string null undefined string boolean，存放在栈内存
+js引用数据类型：Object （Array，Date，RegExp，Function），存放在堆内存
+7、如何将arguments转为array
+
+function changeArg(arguments){
+    return Array.prototype.slice.apply(arguments);
+}
+8、如何判断array对象
+可以使用Array.isArray()或者Object.prototype.toString.call()判断
+
+9、原生dom实现删除dom结点
+
+function deleteNode(node){
+    if(!node) return;
+    if(node.parentNode){
+        node.parentNode.removeChild(node);
+    }
+}
+10、给button绑定click事件
+
+var x = document.getElementById("myBtn");
+if (x.addEventListener) {                    //所有主流浏览器，除了 IE 8 及更早 IE版本
+    x.addEventListener("click", myFunction);
+} else if (x.attachEvent) {                  // IE 8 及更早 IE 版本
+    x.attachEvent("onclick", myFunction);
+}
+还可以用onclick()绑定，但是onclick()混合了js和html，不建议使用。
+addEventListener("click", function,useCapture)，useCapture默认false，代表事件冒泡阶段执行，true代表事件捕获阶段执行。
+addEventListener和onclick的区别：addEventListener可以添加多个事件，不会被覆盖；onclick只可以一个事件，重复添加，后面一个会覆盖前面一个的事件。
+11、排序算法
+1）冒泡排序
+
+function bubbleSort(arr){
+  for(var i = 0;i< arr.length-1;i++){
+    for(j=i+1;j<arr.length;j++){
+      if(arr[i]>arr[j]){
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+  return arr;
+}
+2）快速排序
+
+function quickSort(arr){
+  if(arr.length<=1){
+    return arr;
+  }
+  var len = Math.floor(arr.length/2);
+  var cur = arr.splice(len,1);
+  var left = [];
+  var right = [];
+  for(var i=0;i<arr.length;i++){
+    if(cur>arr[i]){
+      left.push(arr[i]);
+    }else{
+      right.push(arr[i]);
+    }
+  }
+  return quickSort(left).concat(cur,quickSort(right));
+}
